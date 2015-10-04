@@ -11,6 +11,30 @@
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
-require_once(dirname(__FILE__).'/../config/global.php');
+//require_once(dirname(__FILE__).'/../config/global.php');
 
-echo Doctrine_Core::getPath();
+//echo Doctrine_Core::getPath();
+
+?>
+
+<!DOCTYPE html>
+<html>
+  <?php
+    include 'head.php';
+   ?>
+  <body>
+    <?php
+      include 'header.php';
+     ?>
+    <div class="container">
+
+      <div class="row">
+        <?php
+          include 'menu.php';
+         ?>
+      </div>
+
+    </div>
+
+  </body>
+</html>
