@@ -11,6 +11,10 @@
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Id;
+
 class DomainObject
 {
     /**

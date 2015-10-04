@@ -10,6 +10,9 @@
 /*                Date: 28/09/2015 17:01               */
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\Table;
 
 /**
  * @Entity

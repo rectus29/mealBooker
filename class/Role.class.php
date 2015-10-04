@@ -7,10 +7,13 @@
 /*     | | \ \  __/ (__| |_| |_| \__ \  / /_   / /     */
 /*     |_|  \_\___|\___|\__|\__,_|___/ |____| /_/      */
 /*                                                     */
-/*                Date: 28/09/2015 17:01                */
+/*                Date: 28/09/2015 17:01               */
 /*                 All right reserved                  */
 
 /*-----------------------------------------------------*/
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\Table;
 
 /**
  * @Entity
@@ -40,9 +43,19 @@ class Role extends DomainObject
      * @Column(type="boolean")
      * @var Boolean
      */
-    private $isAdmin;
+    private $isAdmin = false;
 
-    private
+    /**
+     * @ManytoMany(targetingEntity="Permission")
+     * @var Permission[]
+     */
+    private $permissions = array();
+
+    /**
+     * @OneToMany(targetEntity="User", mappedBy="role")
+     * @var User[]
+     */
+    private $Users = array();
 
 
 

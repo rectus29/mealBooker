@@ -18,5 +18,8 @@ define('CFG_DIR',  dirname(__FILE__).'/');
 define('WEB_DIR',  dirname(__FILE__).'/../web/');
 define('HTML_DIR', dirname(__FILE__).'/../html/');
 
-require_once(LIB_DIR.'vendor/doctrine/Doctrine.php');
-spl_autoload_register(array('Doctrine_Core', 'autoload'));
+
+require LIB_DIR . 'vendor/doctrine/lib/Doctrine/Common/doctrine';
+
+$classLoader = new ClassLoader('Doctrine', '/path/to/doctrine');
+$classLoader->register();
