@@ -12,12 +12,31 @@
 /*-----------------------------------------------------*/
 
 
+?>
+<form class="form-horizontal col-md-4 col-md-offset-4 well" id="connectWrapper">
+    <div class="input-group">
+        <div class="input-group-addon">
+            <i class="fa fa-user"/>
+        </div>
+        <input class="form-control" type="text"/>
+    </div>
+    <br/>
 
-define('APP_PATH',  '/reservresto/');
-define('LIB_DIR',  dirname(__FILE__).'/../lib/');
-define('CFG_DIR',  dirname(__FILE__).'/');
-define('CSS_DIR',  dirname(__FILE__).'/../css/');
-define('WEB_DIR',  dirname(__FILE__).'/../web/');
-define('HTML_DIR', dirname(__FILE__).'/../html/');
-define('ROOT_DIR', dirname(__FILE__).'/../');
+    <div class="input-group">
+        <div class="input-group-addon">
+            <i class="fa fa-lock"/>
+        </div>
+        <input class="form-control" type="password"/>
+    </div>
+    <br/>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">
+            Connection
+        </button>
+    </div>
+    <span id="feedback"/>
+</form>
+
+
 

@@ -11,10 +11,8 @@
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
-//require_once(dirname(__FILE__).'/../config/global.php');
-
-//echo Doctrine_Core::getPath();
-
+require_once(dirname(__FILE__).'/../config/global.php');
+require_once(ROOT_DIR.'/bootstrap.php');
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +28,7 @@
 
       <div class="row">
         <?php
-          include 'menu.php';
+          include 'security/signin.php';
          ?>
       </div>
 

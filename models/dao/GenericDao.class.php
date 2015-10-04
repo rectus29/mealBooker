@@ -12,7 +12,6 @@
 /*-----------------------------------------------------*/
 
 namespace models\dao;
-use Doctrine\ORM\EntityManager;
 
 class GenericDAO {
 
