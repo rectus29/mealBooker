@@ -7,22 +7,21 @@
 /*     | | \ \  __/ (__| |_| |_| \__ \  / /_   / /     */
 /*     |_|  \_\___|\___|\__|\__,_|___/ |____| /_/      */
 /*                                                     */
-/*                Date: 28/09/2015 17:01                */
+/*                Date: 28/09/2015 17:01               */
 /*                 All right reserved                  */
-
 /*-----------------------------------------------------*/
 
 /**
  * @Entity
- * @Table(name="role")
+ * @Table(name="permission")
  */
-class Role extends DomainObject
+class Permission extends DomainObject
 {
     /**
      * @Column(type="string")
      * @var String
      */
-    private $name;
+    private $codeString;
 
     /**
      * @Column(type="string")
@@ -31,18 +30,45 @@ class Role extends DomainObject
     private $description;
 
     /**
-     * @Column(type="integer")
-     * @var Integer
+     * Permission constructor.
      */
-    private $weight = 100;
+    public function __construct()
+    {
+    }
 
     /**
-     * @Column(type="boolean")
-     * @var Boolean
+     * @return String
      */
-    private $isAdmin;
+    public function getCodeString()
+    {
+        return $this->codeString;
+    }
 
-    private
+    /**
+     * @param String $codeString
+     */
+    public function setCodeString($codeString)
+    {
+        $this->codeString = $codeString;
+    }
+
+    /**
+     * @return String
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param String $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+
 
 
 
