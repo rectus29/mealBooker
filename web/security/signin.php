@@ -13,10 +13,13 @@
 
 
 ?>
-<form class="form-horizontal col-md-4 col-md-offset-4 well" id="connectWrapper">
+
+
+<form class="form-horizontal col-md-4 col-md-offset-4 " id="connectWrapper">
+  <h2>Connexion</h2>
     <div class="input-group">
         <div class="input-group-addon">
-            <i class="fa fa-user"/>
+            <i class="fa fa-user"></i>
         </div>
         <input class="form-control" type="text"/>
     </div>
@@ -24,19 +27,16 @@
 
     <div class="input-group">
         <div class="input-group-addon">
-            <i class="fa fa-lock"/>
+            <i class="fa fa-lock"></i>
         </div>
         <input class="form-control" type="password"/>
     </div>
     <br/>
 
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">
+    <div class="form-group" style="text-align: center">
+        <button type="submit" class="btn btn-warning">
             Connection
         </button>
     </div>
     <span id="feedback"/>
 </form>
-
-
-
