@@ -6365,3 +6365,13 @@ button.close {
 
 .container {
   width: 970px; }
+
+.hero {
+  background-image: url(../img/hero.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  min-height: 400px; }
+
+.navbar {
+  min-height: 150px; }
