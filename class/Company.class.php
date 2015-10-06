@@ -9,8 +9,9 @@
 /*                                                     */
 /*                Date: 28/09/2015 17:01                */
 /*                 All right reserved                  */
-
 /*-----------------------------------------------------*/
+namespace MealBooker;
+
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
