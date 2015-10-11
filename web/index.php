@@ -28,7 +28,7 @@ require_once(ROOT_DIR.'/bootstrap.php');
 
       <div class="row">
         <?php
-          include 'security/signin.php';
+          include 'security/signup.php';
          ?>
       </div>
 

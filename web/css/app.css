@@ -6373,5 +6373,17 @@ button.close {
   background-position: center center;
   min-height: 400px; }
 
+.headings {
+  background: #2C2C2C;
+  padding: 10px 0; }
+  .headings p {
+    float: right;
+    color: #fff; }
+
 .navbar {
-  min-height: 150px; }
+  background: #A9CE49; }
+  .navbar a {
+    color: #fff; }
+
+.nav > li > a:hover, .nav > li > a:focus {
+  background: #667C22; }
