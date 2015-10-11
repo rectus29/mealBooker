@@ -36,6 +36,24 @@ class User extends DomainObject
     private $lastName;
 
     /**
+     * @Column(type="string")
+     * @var String
+     */
+    private $mail;
+
+    /**
+     * @Column(type="string")
+     * @var String
+     */
+    private $salt;
+
+    /**
+     * @Column(type="string")
+     * @var String
+     */
+    private $password;
+
+    /**
      * @ManyToOne(targetEntity="Role")
      * @var Role
      */
