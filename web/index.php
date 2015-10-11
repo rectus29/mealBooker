@@ -13,6 +13,7 @@
 
 require_once(dirname(__FILE__).'/../config/global.php');
 require_once(ROOT_DIR.'/bootstrap.php');
+require_once(ROOT_DIR.'/cli-config.php');
 ?>
 
 <!DOCTYPE html>

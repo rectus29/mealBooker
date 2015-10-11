@@ -13,5 +13,5 @@
     <script language="javascript" type="text/javascript" src="<?php echo APP_PATH ?>web/js/highChartsv4/highcharts.js"></script>
     <script language="javascript" type="text/javascript" src="<?php echo APP_PATH ?>web/js/highChartsv4/highcharts-all.js"></script>
     <script language="javascript" type="text/javascript" src="<?php echo APP_PATH ?>web/js/highChartsv4/highcharts-more.js"></script>
-    <link rel="stylesheet" href="<?php echo APP_PATH ?>css/app.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="<?php echo APP_PATH ?>web/css/app.css" media="screen" title="no title" charset="utf-8">
 </head>

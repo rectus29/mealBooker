@@ -14,16 +14,16 @@
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 
+require_once "config/global.php";
 require_once "vendor/autoload.php";
 
-$isDevMode = true;
 // database configuration parameters
 $conn = array(
     'driver' => 'pdo_mysql',
     'user'     => 'root',
     'password' => '',
-    'dbname'   => 'mealBooker'
+    'dbname'   => 'mealbooker'
 );
 // obtaining the entity manager
-$config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/src"), $isDevMode);
+$config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/class"), DEV_MODE);
 $entityManager = EntityManager::create($conn, $config);

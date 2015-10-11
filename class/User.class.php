@@ -54,6 +54,12 @@ class User extends DomainObject
     private $password;
 
     /**
+     * @Column(type="string")
+     * @var String
+     */
+    private $phoneNumber;
+
+    /**
      * @ManyToOne(targetEntity="Role")
      * @var Role
      */
@@ -64,5 +70,11 @@ class User extends DomainObject
      * @var Company
      */
     private $company;
+
+    /**
+     * @Column(type="boolean")
+     * @var bool
+     */
+    private $optIn = false;
 
 }

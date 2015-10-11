@@ -7,7 +7,7 @@
 /*     | | \ \  __/ (__| |_| |_| \__ \  / /_   / /     */
 /*     |_|  \_\___|\___|\__|\__,_|___/ |____| /_/      */
 /*                                                     */
-/*                Date: 28/09/2015 17:01                */
+/*                Date: 28/09/2015 17:01               */
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 namespace MealBooker;
@@ -23,14 +23,17 @@ use Doctrine\ORM\Mapping\Table;
  */
 class Company extends DomainObject
 {
-
-
-
     /**
      * @Column(type="string")
      * @var String
      */
     private $name;
+
+    /**
+     * @Column(type="string")
+     * @var String
+     */
+    private $validationCode;
 
     /**
      * @OneToMany(targetEntity="User", mappedBy="company")
