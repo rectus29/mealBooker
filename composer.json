@@ -6,7 +6,10 @@
 
   "autoload": {
     "psr-4": {
-      "MealBooker\\model\\": "classes/"
+      "MealBooker\\model\\": "classes/",
+      "MealBooker\\manager\\": "manager/",
+      "MealBooker\\": ""
+
     }
   }
 

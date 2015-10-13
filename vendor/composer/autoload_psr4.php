@@ -9,4 +9,6 @@ return array(
     'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
     'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
     'MealBooker\\model\\' => array($baseDir . '/classes'),
+    'MealBooker\\manager\\' => array($baseDir . '/manager'),
+    'MealBooker\\' => array($baseDir . '/'),
 );
