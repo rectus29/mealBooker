@@ -27,20 +27,14 @@ require_once(ROOT_DIR.'/cli-config.php');
      ?>
     <div class="container">
 
-    <div class="row">
+      <?php include 'courses.php' ?>
 
-      <?php include 'success.php' ?>
-
-    </div>
-
-      <div class="row">
         <?php
             if(isset($_SESSION) && $securityManager.isAuthentified($_SESSION))
-                include 'menu.php';
+                include 'courses.php';
             else
                 include 'security/signup.php';
          ?>
-      </div>
 
     </div>
 
