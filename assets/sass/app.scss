@@ -4,8 +4,10 @@
 
 
 @import "1-base/fonts";
+@import "1-base/variables";
 
 @import "2-layout/default";
+@import "2-layout/success";
 
 @import "3-components/hero";
 @import "3-components/navbar";

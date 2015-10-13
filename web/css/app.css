@@ -6363,27 +6363,49 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
+body {
+  color: #999999; }
+
+h1, h2, h3, h4, h5, h6 {
+  color: #333333; }
+
 .container {
   width: 970px; }
+
+.success {
+  padding: 50px 0;
+  width: 600px;
+  margin: 0 auto;
+  text-align: center; }
+  .success i.fa.fa-check-circle {
+    font-size: 150px;
+    color: #A9CE49; }
 
 .hero {
   background-image: url(../img/hero.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  min-height: 400px; }
+  min-height: 200px; }
 
 .headings {
   background: #2C2C2C;
   padding: 10px 0; }
   .headings p {
     float: right;
-    color: #fff; }
+    color: #fff;
+    margin-top: 20px;
+    font-style: italic; }
 
 .navbar {
-  background: #A9CE49; }
-  .navbar a {
-    color: #fff; }
+  background: #A9CE49;
+  min-height: 0;
+  border: 0; }
 
-.nav > li > a:hover, .nav > li > a:focus {
-  background: #667C22; }
+.nav > li > a {
+  color: #667C22;
+  padding-top: 5px;
+  padding-bottom: 5px; }
+  .nav > li > a:hover, .nav > li > a:focus {
+    background: #667C22;
+    color: #A9CE49; }

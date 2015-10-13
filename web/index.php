@@ -26,6 +26,13 @@ require_once(ROOT_DIR.'/cli-config.php');
       include 'header.php';
      ?>
     <div class="container">
+
+    <div class="row">
+
+      <?php include 'success.php' ?>
+
+    </div>
+
       <div class="row">
         <?php
             if(isset($_SESSION) && $securityManager.isAuthentified($_SESSION))
