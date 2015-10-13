@@ -1,4 +1,5 @@
 <?php
+namespace MealBooker\model;
 /*-----------------------------------------------------*/
 /*      _____           _               ___   ___      */
 /*     |  __ \         | |             |__ \ / _ \     */
@@ -7,75 +8,73 @@
 /*     | | \ \  __/ (__| |_| |_| \__ \  / /_   / /     */
 /*     |_|  \_\___|\___|\__|\__,_|___/ |____| /_/      */
 /*                                                     */
-/*                Date: 28/09/2015 17:01               */
+/*                Date: 28/09/2015 17:01                */
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
-namespace MealBooker;
 
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 
 /**
  * @Entity
- * @Table(name="permission")
+ * @Table(name="user")
  */
-class Permission extends DomainObject
+class User extends DomainObject
 {
     /**
      * @Column(type="string")
      * @var String
      */
-    private $codeString;
+    private $firstName;
 
     /**
      * @Column(type="string")
      * @var String
      */
-    private $description;
+    private $lastName;
 
     /**
-     * Permission constructor.
+     * @Column(type="string")
+     * @var String
      */
-    public function __construct()
-    {
-    }
+    private $mail;
 
     /**
-     * @return String
+     * @Column(type="string")
+     * @var String
      */
-    public function getCodeString()
-    {
-        return $this->codeString;
-    }
+    private $salt;
 
     /**
-     * @param String $codeString
+     * @Column(type="string")
+     * @var String
      */
-    public function setCodeString($codeString)
-    {
-        $this->codeString = $codeString;
-    }
+    private $password;
 
     /**
-     * @return String
+     * @Column(type="string")
+     * @var String
      */
-    public function getDescription()
-    {
-        return $this->description;
-    }
+    private $phoneNumber;
 
     /**
-     * @param String $description
+     * @ManyToOne(targetEntity="Role")
+     * @var Role
      */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    }
+    private $role;
 
+    /**
+     * @ManyToOne(targetEntity="Company")
+     * @var Company
+     */
+    private $company;
 
-
-
-
+    /**
+     * @Column(type="boolean")
+     * @var bool
+     */
+    private $optIn = false;
 
 }

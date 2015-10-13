@@ -1,4 +1,5 @@
 <?php
+namespace MealBooker\model;
 /*-----------------------------------------------------*/
 /*      _____           _               ___   ___      */
 /*     |  __ \         | |             |__ \ / _ \     */
@@ -7,22 +8,21 @@
 /*     | | \ \  __/ (__| |_| |_| \__ \  / /_   / /     */
 /*     |_|  \_\___|\___|\__|\__,_|___/ |____| /_/      */
 /*                                                     */
-/*                Date: 28/09/2015 17:01               */
+/*                Date: 06/10/2015 11:50               */
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
-namespace MealBooker;
 
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Table;
 
 /**
  * @Entity
- * @Table(name="company")
+ * @Table(name="drink")
  */
-class Company extends DomainObject
+class Drink extends DomainObject
 {
+
     /**
      * @Column(type="string")
      * @var String
@@ -33,20 +33,7 @@ class Company extends DomainObject
      * @Column(type="string")
      * @var String
      */
-    private $validationCode;
-
-    /**
-     * @OneToMany(targetEntity="User", mappedBy="company")
-     * @var User[]
-     * @Column(type="string")
-     */
-    private $Users;
-
-    /**
-     * Company constructor.
-     */
-    public function __construct()
-    {
-    }
+    private $description;
+    
 
 }

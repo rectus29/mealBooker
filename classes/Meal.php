@@ -1,4 +1,5 @@
 <?php
+namespace MealBooker\model;
 /*-----------------------------------------------------*/
 /*      _____           _               ___   ___      */
 /*     |  __ \         | |             |__ \ / _ \     */
@@ -7,21 +8,20 @@
 /*     | | \ \  __/ (__| |_| |_| \__ \  / /_   / /     */
 /*     |_|  \_\___|\___|\__|\__,_|___/ |____| /_/      */
 /*                                                     */
-/*                Date: 06/10/2015 11:50                */
+/*                Date: 06/10/2015 11:50               */
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
-namespace MealBooker;
 
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 
 /**
  * @Entity
  * @Table(name="meal")
  */
-class Meal
+class Meal extends DomainObject
 {
 
     /**
@@ -30,5 +30,22 @@ class Meal
      */
     private $name;
 
+    /**
+     * @ManyToOne(targetEntity="Drink")
+     * @var Drink
+     */
+    private $drink;
+
+    /**
+     * @ManyToOne(targetEntity="Course")
+     * @var Course
+     */
+    private $course;
+
+    /**
+     * @ManyToOne(targetEntity="TimeFrame")
+     * @var TimeFrame
+     */
+    private $timeFrame;
 
 }

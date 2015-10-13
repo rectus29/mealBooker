@@ -1,4 +1,5 @@
 <?php
+namespace MealBooker\model;
 /*-----------------------------------------------------*/
 /*      _____           _               ___   ___      */
 /*     |  __ \         | |             |__ \ / _ \     */
@@ -7,24 +8,32 @@
 /*     | | \ \  __/ (__| |_| |_| \__ \  / /_   / /     */
 /*     |_|  \_\___|\___|\__|\__,_|___/ |____| /_/      */
 /*                                                     */
-/*                Date: 04/10/2015 17:41               */
+/*                Date: 06/10/2015 11:50               */
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
-use Doctrine\ORM\Tools\Setup;
-use Doctrine\ORM\EntityManager;
-use MealBooker\model;
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\Table;
 
-require_once "config/global.php";
-require_once __DIR__."/vendor/autoload.php";
+/**
+ * @Entity
+ * @Table(name="course")
+ */
+class Course extends DomainObject
+{
 
-// database configuration parameters
-$conn = array(
-    'driver' => 'pdo_mysql',
-    'user'     => 'root',
-    'password' => '',
-    'dbname'   => 'mealbooker'
-);
-// obtaining the entity manager
-$config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/classes/"), DEV_MODE);
-$entityManager = EntityManager::create($conn, $config);
+    /**
+     * @Column(type="string")
+     * @var String
+     */
+    private $name;
+
+    /**
+     * @Column(type="string")
+     * @var String
+     */
+    private $description;
+    
+
+}

@@ -1,4 +1,5 @@
 <?php
+namespace MealBooker\model;
 /*-----------------------------------------------------*/
 /*      _____           _               ___   ___      */
 /*     |  __ \         | |             |__ \ / _ \     */
@@ -7,74 +8,77 @@
 /*     | | \ \  __/ (__| |_| |_| \__ \  / /_   / /     */
 /*     |_|  \_\___|\___|\__|\__,_|___/ |____| /_/      */
 /*                                                     */
-/*                Date: 28/09/2015 17:01                */
+/*                Date: 06/10/2015 11:50               */
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
-namespace MealBooker;
 
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
-use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 
 /**
  * @Entity
- * @Table(name="user")
+ * @Table(name="config")
  */
-class User extends DomainObject
+class Config extends DomainObject
 {
-    /**
-     * @Column(type="string")
-     * @var String
-     */
-    private $firstName;
 
     /**
      * @Column(type="string")
      * @var String
      */
-    private $lastName;
+    private $key;
 
     /**
      * @Column(type="string")
      * @var String
      */
-    private $mail;
+    private $value;
 
     /**
-     * @Column(type="string")
-     * @var String
+     * Config constructor.
+     * @param String $key
+     * @param String $value
      */
-    private $salt;
+    public function __construct($key, $value)
+    {
+        $this->key = $key;
+        $this->value = $value;
+    }
 
     /**
-     * @Column(type="string")
-     * @var String
+     * @return String
      */
-    private $password;
+    public function getKey()
+    {
+        return $this->key;
+    }
 
     /**
-     * @Column(type="string")
-     * @var String
+     * @param String $key
      */
-    private $phoneNumber;
+    public function setKey($key)
+    {
+        $this->key = $key;
+    }
 
     /**
-     * @ManyToOne(targetEntity="Role")
-     * @var Role
+     * @return String
      */
-    private $role;
+    public function getValue()
+    {
+        return $this->value;
+    }
 
     /**
-     * @ManyToOne(targetEntity="Company")
-     * @var Company
+     * @param String $value
      */
-    private $company;
+    public function setValue($value)
+    {
+        $this->value = $value;
+    }
 
-    /**
-     * @Column(type="boolean")
-     * @var bool
-     */
-    private $optIn = false;
+
+    
 
 }
