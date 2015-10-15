@@ -1,8 +1,13 @@
 .navbar
   background: #A9CE49
+  min-height: 0
+  border: 0
 
-  a
-    color: #fff
+.nav > li > a
+  color: $dark-green
+  padding-top: 5px
+  padding-bottom: 5px
 
-.nav > li > a:hover, .nav > li > a:focus
-  background: #667C22
+  &:hover, &:focus
+    background: $dark-green
+    color: $green
