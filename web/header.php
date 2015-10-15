@@ -14,6 +14,7 @@
           <li><a href="#">Item</a></li>
           <li><a href="#">Item</a></li>
           <li><a href="#">Item</a></li>
+          <li class="log-out"><a href="#">Log out</a></li>
         </ul>
       </div>
 
