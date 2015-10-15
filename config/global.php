@@ -11,8 +11,7 @@
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
-
-
+session_start();
 define('APP_PATH',  '/reservresto/');
 define('LIB_DIR',  dirname(__FILE__).'/../lib/');
 define('CFG_DIR',  dirname(__FILE__).'/');

@@ -1,4 +1,5 @@
 <?php
+namespace MealBooker;
 /*-----------------------------------------------------*/
 /*      _____           _               ___   ___      */
 /*     |  __ \         | |             |__ \ / _ \     */
@@ -11,9 +12,9 @@
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
-require_once(dirname(__FILE__).'/../config/global.php');
-require_once(ROOT_DIR.'/bootstrap.php');
-require_once(ROOT_DIR.'/cli-config.php');
+require(dirname(__FILE__).'/../config/global.php');
+require(ROOT_DIR.'/bootstrap.php');
+require(ROOT_DIR.'/cli-config.php');
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +29,7 @@ require_once(ROOT_DIR.'/cli-config.php');
     <div class="container">
       <div class="row">
         <?php
-            if(isset($_SESSION) && $securityManager.isAuthentified($_SESSION))
+            if(isset($_SESSION) && $securityManager->isAuthentified($_SESSION))
                 include 'menu.php';
             else
                 include 'security/signup.php';

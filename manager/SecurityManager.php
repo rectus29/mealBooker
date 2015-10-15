@@ -31,7 +31,7 @@ class SecurityManager
     /**
      * @return $this|SecurityManager
      */
-    public static function create()
+    public static function get()
     {
         if (self::$ownInstance == null)
             self::$ownInstance = new SecurityManager();
@@ -45,7 +45,7 @@ class SecurityManager
      */
     public function isAuthentified($session)
     {
-        if ($session['auth'] && $session['auth'] == true)
+        if (isset($session['auth']) && $session['auth'] == true)
             return true;
         return false;
     }

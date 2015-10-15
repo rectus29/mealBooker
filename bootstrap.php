@@ -16,6 +16,8 @@ use Doctrine\ORM\EntityManager;
 use MealBooker\model;
 use MealBooker\manager\SecurityManager;
 
+//session_start();
+
 require_once "config/global.php";
 require_once __DIR__."/vendor/autoload.php";
 
@@ -29,4 +31,4 @@ $conn = array(
 // obtaining the entity manager
 $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/classes/"), DEV_MODE);
 $entityManager = EntityManager::create($conn, $config);
-$securityManager = SecurityManager::create();
+$securityManager = SecurityManager::get();
