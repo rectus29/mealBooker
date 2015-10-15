@@ -1,0 +1,9 @@
+Errordocument 401 /web/error/error401.php
+Errordocument 403 /web/error/error403.php
+Errordocument 404 /web/error/error404.php
+
+
+<Files .htaccess>
+	order allow,deny
+	deny from all
+</Files>

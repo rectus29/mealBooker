@@ -1,4 +1,5 @@
 <?php
+namespace MealBooker;
 /*-----------------------------------------------------*/
 /*      _____           _               ___   ___      */
 /*     |  __ \         | |             |__ \ / _ \     */
@@ -12,32 +13,31 @@
 /*-----------------------------------------------------*/
 
 use MealBooker\manager\SecurityManager;
+use MealBooker\model;
+use MealBooker\model\User;
 
-require(dirname(__FILE__).'/../config/global.php');
-require(ROOT_DIR.'/bootstrap.php');
-require(ROOT_DIR.'/cli-config.php');
+require_once(dirname(__FILE__) . '/../config/global.php');
+require_once(ROOT_DIR . '/bootstrap.php');
+require_once(ROOT_DIR . '/cli-config.php');
 ?>
-
 <!DOCTYPE html>
 <html>
-  <?php
-    include 'head.php';
-   ?>
-  <body>
-    <?php
-      include 'header.php';
-     ?>
-    <div class="container">
-      <div class="row">
+<?php
+include 'head.php';
+?>
+<body>
+<?php
+    include 'header.php';
+?>
+<div class="container">
+    <div class="row">
         <?php
-            if(isset($_SESSION) && SecurityManager::get()->isAuthentified($_SESSION))
-                include 'courses.php';
-            else
-                include 'security/signup.php';
-         ?>
-      </div>
-
+        if (isset($_SESSION) && SecurityManager::get()->isAuthentified($_SESSION))
+            include 'courses.php';
+        else
+            include 'security/signup.php';
+        ?>
     </div>
-
-  </body>
+</div>
+</body>
 </html>

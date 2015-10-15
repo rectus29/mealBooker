@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST) && isset($_POST['email']) && isset($_POST['password'])) {
     $_SESSION['auth'] = true;
-    header('index.php');
+    header('Location: index.php');
 } else {
     ?>
     <div class="col-md-6 col-md-offset-3">

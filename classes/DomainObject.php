@@ -44,8 +44,8 @@ class DomainObject
     protected $updated;
 
     /**
-     * @Column(type="string")
-     * @var string
+     * @Column(type="integer")
+     * @var int
      */
     protected $status;
 
@@ -90,7 +90,7 @@ class DomainObject
     }
 
     /**
-     * @param string $status
+     * @param int $status
      */
     public function setStatus($status)
     {
