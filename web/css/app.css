@@ -6478,3 +6478,59 @@ h1, h2, h3, h4, h5, h6 {
   .nav > li > a:hover, .nav > li > a:focus {
     background: #667C22;
     color: #A9CE49; }
+
+.nav li.log-out a {
+  background: white;
+  color: #A9CE49; }
+  .nav li.log-out a:hover {
+    background: #CE4949;
+    color: white; }
+
+.card {
+  overflow: hidden;
+  display: block;
+  height: 200px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  text-decoration: none; }
+  .card .card_body {
+    padding: 5px 10px; }
+    .card .card_body h3 {
+      margin: 0;
+      font-size: 1.1em;
+      text-transform: uppercase; }
+  .card:hover {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+    -webkit-transition: all ease 0.3s;
+            transition: all ease 0.3s; }
+  .card .meal-thumbnail {
+    background: #000;
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+    -webkit-transition: all ease 0.3s;
+            transition: all ease 0.3s; }
+    .card .meal-thumbnail img {
+      opacity: 1;
+      -webkit-transition: all ease 0.3s;
+              transition: all ease 0.3s; }
+    .card .meal-thumbnail .card_date {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background: #f99000;
+      color: #fff;
+      padding: 3px 5px; }
+      .card .meal-thumbnail .card_date p {
+        margin: 0;
+        font-size: 0.9em; }
+  .card:hover .meal-thumbnail {
+    height: 100px;
+    -webkit-transition: all ease 0.3s;
+            transition: all ease 0.3s; }
+  .card:hover .meal-thumbnail img {
+    opacity: 0.5;
+    -webkit-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+            transform: scale(1.5);
+    -webkit-transition: all ease 0.3s;
+            transition: all ease 0.3s; }

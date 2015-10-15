@@ -1,0 +1,52 @@
+.card
+  overflow: hidden
+  display: block
+  height: 200px
+  box-shadow: 0 0 10px rgba(0,0,0,0.4)
+  text-decoration: none
+
+  .card_body
+    padding: 5px 10px
+
+    h3
+      margin: 0
+      font-size: 1.1em
+      text-transform: uppercase
+
+
+  &:hover
+    box-shadow: 0 0 30px rgba(0,0,0,0.7)
+    transition: all ease 0.3s
+
+  .meal-thumbnail
+    background: #000
+    position: relative
+    overflow: hidden
+    height: 200px
+    transition: all ease 0.3s
+
+    img
+      opacity: 1
+      transition: all ease 0.3s
+
+    .card_date
+      position: absolute
+      bottom: 0
+      right: 0
+      background: #f99000
+      color: #fff
+      padding: 3px 5px
+
+      p
+        margin: 0
+        font-size: 0.9em
+
+  &:hover .meal-thumbnail
+    height: 100px
+    transition: all ease 0.3s
+
+
+  &:hover .meal-thumbnail img
+    opacity: 0.5
+    transform: scale(1.5)
+    transition: all ease 0.3s
