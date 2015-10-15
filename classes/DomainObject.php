@@ -12,6 +12,7 @@ namespace MealBooker\model;
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
+use DateTime;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;

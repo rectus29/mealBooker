@@ -1,6 +1,7 @@
 <?php
-if (isset($_POST) && isset($email) && isset($password)) {
-
+if (isset($_POST) && isset($_POST['email']) && isset($_POST['password'])) {
+    $_SESSION['auth'] = 'true';
+    header('index.php');
 } else {
     ?>
     <div class="col-md-6 col-md-offset-3">
@@ -11,7 +12,7 @@ if (isset($_POST) && isset($email) && isset($password)) {
             Créez un compte et faites-vous livrer votre repas directement à votre lieu de travail !
         </p>
 
-        <form method="post" action="signup.php">
+        <form method="post" action="#">
             <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
                 <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
