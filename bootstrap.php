@@ -15,6 +15,7 @@ use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 use MealBooker\model;
 use MealBooker\manager\SecurityManager;
+use MealBooker\models\dao\GenericDAO;
 
 //session_start();
 
@@ -30,4 +31,5 @@ $conn = array(
 );
 // obtaining the entity manager
 $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/classes/"), DEV_MODE);
-$entityManager = EntityManager::create($conn, $config);
+$em = EntityManager::create($conn, $config);
+$gDao = new GenericDAO($em);
