@@ -12,6 +12,8 @@ namespace MealBooker;
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
+use MealBooker\manager\SecurityManager;
+
 require(dirname(__FILE__).'/../config/global.php');
 require(ROOT_DIR.'/bootstrap.php');
 require(ROOT_DIR.'/cli-config.php');
@@ -29,7 +31,7 @@ require(ROOT_DIR.'/cli-config.php');
     <div class="container">
       <div class="row">
         <?php
-            if(isset($_SESSION) && $securityManager->isAuthentified($_SESSION))
+            if(isset($_SESSION) && SecurityManager::get()->isAuthentified($_SESSION))
                 include 'menu.php';
             else
                 include 'security/signup.php';

@@ -31,4 +31,3 @@ $conn = array(
 // obtaining the entity manager
 $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/classes/"), DEV_MODE);
 $entityManager = EntityManager::create($conn, $config);
-$securityManager = SecurityManager::get();
