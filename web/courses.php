@@ -1,38 +1,45 @@
-<article class="course">
-  <div class="row">
+<?php
+/*-----------------------------------------------------*/
+/*      _____           _               ___   ___      */
+/*     |  __ \         | |             |__ \ / _ \     */
+/*     | |__) |___  ___| |_ _   _ ___     ) | (_) |    */
+/*     |  _  // _ \/ __| __| | | / __|   / / \__, |    */
+/*     | | \ \  __/ (__| |_| |_| \__ \  / /_   / /     */
+/*     |_|  \_\___|\___|\__|\__,_|___/ |____| /_/      */
+/*                                                     */
+/*                Date: 04/10/2015 17:41               */
+/*                 All right reserved                  */
+/*-----------------------------------------------------*/
+use MealBooker\model\Course;
+use MealBooker\model\Meal;
 
-    <div class="col-md-4">
-      <a href="#" class="card">
-        <div class="meal-thumbnail">
-          <img src="img/feu.jpg" alt="" class="img-responsive">
-          <div class="card_date">
-            <p>13 octobre</p>
-          </div>
+foreach ($gDao->findAll(Course::class) as $course) {
+    ?>
+    <article class="course">
+        <div class="row">
+
+            <div class="col-md-4">
+                <a href="#" class="card">
+                    <div class="meal-thumbnail">
+                        <img src="img/feu.jpg" alt="" class="img-responsive">
+
+                        <div class="card_date">
+                            <p><?php echo $course->getUpdated()->format('d M Y') ?></p>
+                        </div>
+                    </div>
+                    <div class="card_body">
+                        <h3><?php echo $course->getName(); ?></h3>
+                        <p>
+                            <?php echo $course->getDescription(); ?>
+                        </p>
+                    </div>
+                </a>
+            </div>
         </div>
-
-        <div class="card_body">
-          <h3>Fricassé de légumes</h3>
-        </div>
-      </a>
-    </div>
-
-    <div class="col-md-4">
-      <a href="#" class="card">
-        <div class="meal-thumbnail">
-          <img src="img/crepe-chocolat.jpg" alt="" class="img-responsive">
-          <div class="card_date">
-            <p>13 octobre</p>
-          </div>
-        </div>
-
-        <div class="card_body">
-          <h3>Fricassé de légumes</h3>
-        </div>
-      </a>
-    </div>
-
-  </div>
-</article>
+    </article>
+    <?php
+}
+?>
 
 <article class="course">
   <div class="row">
