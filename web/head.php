@@ -8,10 +8,10 @@
     <meta http-equiv="pragma" content="no-cache"/>
     <meta http-equiv="expires" content="-1"/>
     <link rel="shortcut icon" type="image/x-icon" href="<?php echo APP_PATH ?>web/img/favicon.ico"/>
-    <script src="<?php echo APP_PATH ?>web/js/jquery-1.11.3.min.js" type="text/javascript"></script>
-    <script src="<?php echo APP_PATH ?>web/js/jquery-ui.1.11.4.min.js" type="text/javascript"></script>
-    <script language="javascript" type="text/javascript" src="<?php echo APP_PATH ?>web/js/highChartsv4/highcharts.js"></script>
-    <script language="javascript" type="text/javascript" src="<?php echo APP_PATH ?>web/js/highChartsv4/highcharts-all.js"></script>
-    <script language="javascript" type="text/javascript" src="<?php echo APP_PATH ?>web/js/highChartsv4/highcharts-more.js"></script>
-    <link rel="stylesheet" href="<?php echo APP_PATH ?>web/css/app.css" media="screen" title="no title" charset="utf-8">
+    <script src="<?php echo APP_PATH ?>js/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <script src="<?php echo APP_PATH ?>js/jquery-ui.1.11.4.min.js" type="text/javascript"></script>
+    <script language="javascript" type="text/javascript" src="<?php echo APP_PATH ?>js/highChartsv4/highcharts.js"></script>
+    <script language="javascript" type="text/javascript" src="<?php echo APP_PATH ?>js/highChartsv4/highcharts-all.js"></script>
+    <script language="javascript" type="text/javascript" src="<?php echo APP_PATH ?>js/highChartsv4/highcharts-more.js"></script>
+    <link rel="stylesheet" href="<?php echo APP_PATH ?>css/app.css" media="screen" title="no title" charset="utf-8">
 </head>
