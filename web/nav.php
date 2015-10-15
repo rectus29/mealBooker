@@ -15,11 +15,11 @@
 <nav class="navbar">
   <div class="container">
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#">Item</a></li>
-      <li><a href="#">Item</a></li>
-      <li><a href="#">Item</a></li>
+      <li><a href="#">Accueil</a></li>
+      <li><a href="#">Mon compte</a></li>
+      <li><a href="#">Mon panier</a></li>
       <li class="log-out">
-          <a href="<?php echo APP_PATH ?>web/security/signout.php">Log out</a>
+          <a href="<?php echo APP_PATH ?>web/security/signout.php">Déconnexion</a>
       </li>
     </ul>
   </div>
