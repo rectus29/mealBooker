@@ -31,7 +31,7 @@ require(ROOT_DIR.'/cli-config.php');
       <div class="row">
         <?php
             if(isset($_SESSION) && SecurityManager::get()->isAuthentified($_SESSION))
-                include 'menu.php';
+                include 'courses.php';
             else
                 include 'security/signup.php';
          ?>
