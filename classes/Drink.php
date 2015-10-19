@@ -34,6 +34,47 @@ class Drink extends DomainObject
      * @var String
      */
     private $description;
-    
+
+    function __construct($name = null, $description = null)
+    {
+        $this->name = $name;
+        $this->description = $description;
+    }
+
+
+    /**
+     * @return String
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param String $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return String
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param String $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+
+
 
 }

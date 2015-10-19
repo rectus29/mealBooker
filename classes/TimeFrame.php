@@ -34,6 +34,47 @@ class TimeFrame extends DomainObject
      * @var String
      */
     private $stop;
+
+    function __construct($start= null, $stop= null)
+    {
+        $this->start = $start;
+        $this->stop = $stop;
+    }
+
+
+    /**
+     * @return String
+     */
+    public function getStart()
+    {
+        return $this->start;
+    }
+
+    /**
+     * @param String $start
+     */
+    public function setStart($start)
+    {
+        $this->start = $start;
+    }
+
+    /**
+     * @return String
+     */
+    public function getStop()
+    {
+        return $this->stop;
+    }
+
+    /**
+     * @param String $stop
+     */
+    public function setStop($stop)
+    {
+        $this->stop = $stop;
+    }
+
+
     
 
 }

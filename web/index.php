@@ -32,14 +32,35 @@ include 'head.php';
 <div class="container">
     <div class="row">
         <?php
-        var_dump(SecurityManager::get()->isAuthentified($_SESSION));
-        if (isset($_SESSION) && SecurityManager::get()->isAuthentified($_SESSION))
-            //include 'courses.php';
-            include 'meal.php';
-        else
+        if (isset($_SESSION) && SecurityManager::get()->isAuthentified($_SESSION)) {
+            if (isset($_GET['page'])) {
+                switch ($_GET['page']) {
+                    case 'meal':
+                        include 'meal.php';
+                        break;
+                    case 'courses':
+                        include 'courses.php';
+                        break;
+                    case 'cart':
+                        include 'cart.php';
+                        break;
+                    case 'admin':
+                        include 'admin/admin.php';
+                        break;
+                    default :
+                        include 'courses.php';
+                        break;
+                }
+            }else{
+                include 'courses.php';
+            }
+        } else
             include 'security/signup.php';
         ?>
     </div>
 </div>
+<?php
+    include 'footer.php';
+?>
 </body>
 </html>
