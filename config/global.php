@@ -12,7 +12,7 @@
 /*-----------------------------------------------------*/
 
 session_start();
-define('APP_PATH',  '/reservresto/');
+define('APP_PATH',  '/mealbooker/');
 define('LIB_DIR',  dirname(__FILE__).'/../lib/');
 define('CFG_DIR',  dirname(__FILE__).'/');
 define('CSS_DIR',  dirname(__FILE__).'/../css/');

@@ -12,12 +12,15 @@
 /*-----------------------------------------------------*/
 use MealBooker\model\Course;
 use MealBooker\model\Meal;
+use MealBooker\models\dao\CourseDao;
+
+$courseDao = new CourseDao($em);
 
 ?>
 <article class="course">
     <div class="row">
         <?php
-        foreach ($gDao->findAll(Course::class) as $course) {
+        foreach ($courseDao->findAll() as $course) {
             ?>
             <div class="col-md-4">
                 <a href="/meal" class="card">

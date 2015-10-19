@@ -34,7 +34,8 @@ include 'head.php';
         <?php
         var_dump(SecurityManager::get()->isAuthentified($_SESSION));
         if (isset($_SESSION) && SecurityManager::get()->isAuthentified($_SESSION))
-            include 'courses.php';
+            //include 'courses.php';
+            include 'meal.php';
         else
             include 'security/signup.php';
         ?>

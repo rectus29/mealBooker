@@ -12,55 +12,49 @@ namespace MealBooker\models\dao;
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
-class GenericDAO {
+use MealBooker\model\Drink;
+use MealBooker\model\Meal;
 
-    protected $entityManager;
+class DrinkDao extends GenericDAO {
 
     /**
-     * DAO builder
-     * @param $em
+     * @inheritdoc
+     * @param $em EntityManager
      */
     public function __construct($em) {
-        $this->entityManager = $em;
+        parent::__construct($em);
     }
 
     /**
-     * find an entity by primarykey
-     * @param $entity
+     * @inheritdoc
      * @param $id
-     * @return mixed
+     * @return Drink
      */
-    public function findByPrimaryKey($entity, $id) {
-        return $this->entityManager->find($entity, $id);
+    public function findByPrimaryKey($id) {
+        return parent::findByPrimaryKey(Drink::class, $id);
     }
 
     /**
-     * Save an entity
+     * @inheritdoc
      * @param $entity
      */
     public function save($entity) {
-        $this->entityManager->persist($entity);
-        $this->entityManager->flush();
+        parent::save($entity);
     }
 
     /**
-     * delete an entity
+     * @inheritdoc
      * @param $entity
      */
     public function delete($entity) {
-        $this->entityManager->remove($entity);
-        $this->entityManager->flush();
+        parent::delete($entity);
     }
 
     /**
-     * return all entity of a class
-     * @param $entity
-     * @return mixed
+     * Find All User
+     * @return Drink[]
      */
-    public function findAll($entity) {
-        $query = $this->entityManager->createQuery("SELECT e FROM ". $entity . " e");
-        return $query->getResult();
+    public function findAll() {
+        return parent::findAll(Drink::class);
     }
-
-
 }
