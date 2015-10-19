@@ -32,6 +32,7 @@ include 'head.php';
 <div class="container">
     <div class="row">
         <?php
+        var_dump(SecurityManager::get()->isAuthentified($_SESSION));
         if (isset($_SESSION) && SecurityManager::get()->isAuthentified($_SESSION))
             include 'courses.php';
         else

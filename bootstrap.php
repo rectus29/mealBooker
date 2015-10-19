@@ -14,10 +14,7 @@
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 use MealBooker\model;
-use MealBooker\manager\SecurityManager;
 use MealBooker\models\dao\GenericDAO;
-
-//session_start();
 
 require_once "config/global.php";
 require_once __DIR__."/vendor/autoload.php";

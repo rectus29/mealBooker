@@ -12,6 +12,7 @@
 /*-----------------------------------------------------*/
 
 use MealBooker\manager\SecurityManager;
+
 ?>
 <header>
     <div class="hero">
@@ -24,13 +25,9 @@ use MealBooker\manager\SecurityManager;
                 </p>
             </div>
         </div>
-
-
         <?php
         if (isset($_SESSION) && SecurityManager::get()->isAuthentified($_SESSION))
             include 'nav.php'
         ?>
-
     </div>
-
 </header>

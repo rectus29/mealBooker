@@ -19,4 +19,9 @@ define('CSS_DIR',  dirname(__FILE__).'/../css/');
 define('WEB_DIR',  dirname(__FILE__).'/../web/');
 define('HTML_DIR', dirname(__FILE__).'/../html/');
 define('ROOT_DIR', dirname(__FILE__).'/../');
+define('FILE_DIR', ROOT_DIR . '/files/');
 define('DEV_MODE', true);
+
+if(!file_exists(FILE_DIR)){
+    mkdir(FILE_DIR);
+}

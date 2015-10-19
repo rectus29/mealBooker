@@ -11,16 +11,37 @@
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
+use MealBooker\manager\SecurityManager;
+
 ?>
 <nav class="navbar">
-  <div class="container">
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#">Accueil</a></li>
-      <li><a href="#">Mon compte</a></li>
-      <li><a href="#">Mon panier</a></li>
-      <li class="log-out">
-          <a href="<?php echo APP_PATH ?>web/security/signout.php">Déconnexion</a>
-      </li>
-    </ul>
-  </div>
+    <div class="container">
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <i class="fa-icon-user"></i>
+                <?php SecurityManager::get()->getCurrentUser($_SESSION)?>
+            </li>
+            <li>
+                <a href="<?php echo APP_PATH ?>/">Accueil</a>
+            </li>
+            <li>
+                <a href="<?php echo APP_PATH ?>/account">Mon compte</a>
+            </li>
+            <li>
+                <a href="<?php echo APP_PATH ?>/cart">Mon panier</a>
+            </li>
+            <?php
+            if (SecurityManager::get()->isAdmin($_SESSION)) {
+                ?>
+                <li>
+                    <a href="<?php echo APP_PATH ?>/admin">Administration</a>
+                </li>
+                <?php
+            }
+            ?>
+            <li class="log-out">
+                <a href="<?php echo APP_PATH ?>web/security/signout.php">Déconnexion</a>
+            </li>
+        </ul>
+    </div>
 </nav>
