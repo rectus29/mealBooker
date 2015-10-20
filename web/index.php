@@ -14,7 +14,6 @@ namespace MealBooker;
 
 use MealBooker\manager\SecurityManager;
 use MealBooker\model;
-use MealBooker\model\User;
 
 require_once(dirname(__FILE__) . '/../config/global.php');
 require_once(ROOT_DIR . '/bootstrap.php');
@@ -43,6 +42,9 @@ include 'head.php';
                         break;
                     case 'cart':
                         include 'cart.php';
+                        break;
+                    case 'account':
+                        include 'account.php';
                         break;
                     case 'admin':
                         include 'admin/admin.php';

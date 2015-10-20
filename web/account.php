@@ -11,17 +11,23 @@
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
-session_start();
-define('APP_PATH',  '/reservresto/');
-define('LIB_DIR',  dirname(__FILE__).'/../lib/');
-define('CFG_DIR',  dirname(__FILE__).'/');
-define('CSS_DIR',  dirname(__FILE__).'/../css/');
-define('WEB_DIR',  dirname(__FILE__).'/../web/');
-define('HTML_DIR', dirname(__FILE__).'/../html/');
-define('ROOT_DIR', dirname(__FILE__).'/../');
-define('FILE_DIR', ROOT_DIR . '/files/');
-define('DEV_MODE', true);
 
-if(!file_exists(FILE_DIR)){
-    mkdir(FILE_DIR);
-}
+use MealBooker\manager\SecurityManager;
+
+$user = SecurityManager::get()->getCurrentUser($_SESSION);
+if (isset($user) && $user == null)
+    header('Location: /');
+
+?>
+<div class="page-header">
+    <h1>Mon compte</h1>
+</div>
+<div class="row">
+
+    <?php echo $user->getFirstName() . " " . $user->getLastName(); ?><br>
+    <?php echo $user->getMail(); ?><br>
+    <?php echo $user->getPhoneNumber(); ?><br>
+    <?php echo $user->getCreated(); ?><br>
+    <?php echo $user->getCompany()->getName()?><br>
+
+</div>

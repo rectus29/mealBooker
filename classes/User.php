@@ -1,15 +1,15 @@
 <?php
 namespace MealBooker\model;
-/*-----------------------------------------------------*/
-/*      _____           _               ___   ___      */
-/*     |  __ \         | |             |__ \ / _ \     */
-/*     | |__) |___  ___| |_ _   _ ___     ) | (_) |    */
-/*     |  _  // _ \/ __| __| | | / __|   / / \__, |    */
-/*     | | \ \  __/ (__| |_| |_| \__ \  / /_   / /     */
-/*     |_|  \_\___|\___|\__|\__,_|___/ |____| /_/      */
-/*                                                     */
-/*                Date: 28/09/2015 17:01                */
-/*                 All right reserved                  */
+    /*-----------------------------------------------------*/
+    /*      _____           _               ___   ___      */
+    /*     |  __ \         | |             |__ \ / _ \     */
+    /*     | |__) |___  ___| |_ _   _ ___     ) | (_) |    */
+    /*     |  _  // _ \/ __| __| | | / __|   / / \__, |    */
+    /*     | | \ \  __/ (__| |_| |_| \__ \  / /_   / /     */
+    /*     |_|  \_\___|\___|\__|\__,_|___/ |____| /_/      */
+    /*                                                     */
+    /*                Date: 28/09/2015 17:01                */
+    /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
 use Doctrine\ORM\Mapping\Column;
@@ -97,7 +97,7 @@ class User extends DomainObject
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->mail = $mail;
-        $this->salt = $salt;
+        $this->salt = ($salt == null) ? uniqid(mt_rand(), true) : $salt;
         $this->password = $password;
         $this->phoneNumber = $phoneNumber;
         $this->role = $role;
@@ -207,7 +207,9 @@ class User extends DomainObject
      */
     public function getRole()
     {
-        return $this->role;
+        if(isset($this->role))
+            return $this->role;
+        return null;
     }
 
     /**
@@ -248,6 +250,12 @@ class User extends DomainObject
     public function setOptIn($optIn)
     {
         $this->optIn = $optIn;
+    }
+
+    public function isAdmin(){
+        if($this->getRole() != null)
+            return $this->getRole()->isIsAdmin();
+        return false;
     }
 
 }

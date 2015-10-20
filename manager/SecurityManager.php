@@ -89,9 +89,25 @@ class SecurityManager
      */
     public function getCurrentUser($session)
     {
+        //TODO
         $user = new User();
         if ($user != null)
             return $user;
         return null;
+    }
+
+    /**
+     * generate alphanumeric code
+     * @param int length of string to generate
+     * @return string
+     */
+    public function generateStringCode($codelength = 10)
+    {
+        $characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+        $string = '';
+        for ($i = 0; $i < $codelength; $i++) {
+            $string .= $characters[rand(0, strlen($characters) - 1)];
+        }
+        return $string;
     }
 }
