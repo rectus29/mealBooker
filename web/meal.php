@@ -21,22 +21,32 @@ $timeFrameDao = new TimeFrameDao($em);
 
 if (isset($_GET) && isset($_GET['courseID'])) {
     /** @var $course  Course */
-    $course = $courseDao->findByPrimaryKey($_GET['courseID']);
+    $course = $courseDao->getByPrimaryKey($_GET['courseID']);
     if ($course != null) {
         ?>
-        <form action="">
+        <script type="text/javascript">
+            $(document).on('click', '.drinkElement', function(e){
+                e.preventDefault();
+                var el = $(this);
+                $('.drinkElement').removeClass('selected');
+                $('#drink').val($(el).attr('id'));
+                el.addClass('selected');
+            });
+        </script>
+        <form action="<?php echo APP_PATH;?>/web/?page=cart" method="post">
+            <input type="hidden" value="<?php echo $course->getId(); ?>" name="course" id="course"/>
+            <input type="hidden" value="" name="drink" id="drink" />
+            <input type="hidden" value="<?php echo time(); ?>" name="ts" />
             <article class="course">
                 <div class="row">
-
                     <div class="col-md-4">
-                        <img src="img/crepe-chocolat.jpg" alt="" class="img-responsive">
+                        <img src="<?php echo APP_PATH; ?>files/course/<?php echo $course->getId(); ?>.jpg" alt="" class="img-responsive">
                     </div>
-
                     <div class="col-md-8">
                         <h2><?php echo $course->getName(); ?></h2>
 
                         <p class="date">
-                            <?php echo $course->getUpdated()->format('d M Y') ?>
+                            <?php echo $course->getUpdated()->format('d M Y'); ?>
                         </p>
 
                         <p>
@@ -51,43 +61,46 @@ if (isset($_GET) && isset($_GET['courseID'])) {
                 </div>
                 <div class="row">
                     <?php
-                    foreach ($drinkDao->findAll() as $drink) {
+                    foreach ($drinkDao->getAll() as $drink) {
                         ?>
-                        <div class="col-md-3">
+                        <a href="#" class="col-md-3 drinkElement" id="<?php echo $drink->getId(); ?>">
                             <div>
-                                <img src="img/crepe-chocolat.jpg" alt="" class="img-responsive">
+                                <img src="<?php echo APP_PATH; ?>files/drink/<?php echo $drink->getId(); ?>.jpg" alt="" class="img-responsive">
                             </div>
                             <div>
                                 <h4>
                                     <?php echo $drink->getName() ?>
                                 </h4>
                             </div>
-                        </div>
-                    <?php
+                        </a>
+                        <?php
                     }
                     ?>
                 </div>
             </article>
             <article>
-                <p>Choisissez un horaire de livraison :</p>
-                <select name="timeframe" id="tf">
-                    <?php
-                        foreach($timeFrameDao->findAll() as $timeFrame) {
+                <div>
+                    Choisissez un horaire de livraison :
+                    <select name="timeframe" id="tf">
+                        <?php
+                        foreach ($timeFrameDao->getAll() as $timeFrame) {
                             ?>
                             <option value="<?php echo $timeFrame->getId(); ?>"><?php echo $timeFrame->getStart() . " - " . $timeFrame->getStop() ?></option>
-                        <?php
+                            <?php
                         }
-                    ?>
-                </select>
+                        ?>
+                    </select>
+                </div>
             </article>
+            <br><br>
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
                     <a href="#" class="btn btn-default">Revenir à la sélection</a>
-                    <a href="#" class="btn btn-green">Réserver</a>
+                    <input type="submit" class="btn btn-green" value="Réserver"/>
                 </div>
             </div>
         </form>
-    <?php
+        <?php
     }
 } else {
     header("location:");

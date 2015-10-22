@@ -2,11 +2,20 @@ Errordocument 401 /web/error/error401.php
 Errordocument 403 /web/error/error403.php
 Errordocument 404 /web/error/error404.php
 
-#RewriteEngine on
-#RewriteRule ^(.*)$ index.php?parsedurl=$1 [L,QSA]
+RewriteEngine on
+#RewriteBase web/
+Options +FollowSymlinks
 
-#Uncomment following line and modify username if you use UserDir mod
-#RewriteBase /~myusername/
+#RewriteRule ^web/(.*)$ web/index.php?parsedurl=$1 [L,QSA]
+
+#RewriteCond %{HTTP_REFERER} !^$
+#RewriteCond %{REQUEST_FILENAME} (.*)\.(jpg|png)$
+#RewriteRule %1 img/%1.jpg
+
+#RewriteCond %{HTTP_REFERER} !^$
+#RewriteCond %{REQUEST_FILENAME} (.*)\.css$
+#RewriteRule %1 css/%1.css
+
 
 <Files .htaccess>
 	order allow,deny

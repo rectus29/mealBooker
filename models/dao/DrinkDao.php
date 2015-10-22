@@ -30,7 +30,7 @@ class DrinkDao extends GenericDAO {
      * @param $id
      * @return Drink
      */
-    public function findByPrimaryKey($id) {
+    public function getByPrimaryKey($id) {
         return parent::findByPrimaryKey(Drink::class, $id);
     }
 
@@ -51,10 +51,10 @@ class DrinkDao extends GenericDAO {
     }
 
     /**
-     * Find All User
+     * Find All Drink
      * @return Drink[]
      */
-    public function findAll() {
+    public function getAll() {
         return parent::findAll(Drink::class);
     }
 }

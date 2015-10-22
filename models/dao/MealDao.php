@@ -29,7 +29,7 @@ class MealDao extends GenericDAO {
      * @param $id
      * @return Meal
      */
-    public function findByPrimaryKey($id) {
+    public function getByPrimaryKey($id) {
         return parent::findByPrimaryKey(Meal::class, $id);
     }
 
@@ -53,7 +53,7 @@ class MealDao extends GenericDAO {
      * Find All User
      * @return Meal[]
      */
-    public function findAll() {
+    public function getAll() {
         return parent::findAll(Meal::class);
     }
 }

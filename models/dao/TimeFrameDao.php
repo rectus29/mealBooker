@@ -29,7 +29,7 @@ class TimeFrameDao extends GenericDAO {
      * @param $id
      * @return TimeFrame
      */
-    public function findByPrimaryKey($id) {
+    public function getByPrimaryKey($id) {
         return parent::findByPrimaryKey(TimeFrame::class, $id);
     }
 
@@ -53,7 +53,7 @@ class TimeFrameDao extends GenericDAO {
      * Find All User
      * @return TimeFrame[]
      */
-    public function findAll() {
+    public function getAll() {
         return parent::findAll(TimeFrame::class);
     }
 }

@@ -15,6 +15,7 @@ namespace MealBooker\model;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
 
 /**
@@ -70,6 +71,12 @@ class User extends DomainObject
      * @var Company
      */
     private $company;
+
+    /**
+     * @OneToMany(mappedBy="user", targetEntity="Meal")
+     * @var Meal[]
+     */
+    private $meals;
 
     /**
      * @Column(type="boolean")

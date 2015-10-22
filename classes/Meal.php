@@ -14,6 +14,7 @@ namespace MealBooker\model;
 
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\Table;
 
@@ -23,13 +24,6 @@ use Doctrine\ORM\Mapping\Table;
  */
 class Meal extends DomainObject
 {
-
-    /**
-     * @Column(type="string")
-     * @var String
-     */
-    private $name;
-
     /**
      * @ManyToOne(targetEntity="Drink")
      * @var Drink
@@ -47,5 +41,11 @@ class Meal extends DomainObject
      * @var TimeFrame
      */
     private $timeFrame;
+
+    /**
+     * @ManyToOne(targetEntity="User")
+     * @var User
+     */
+    private $user;
 
 }

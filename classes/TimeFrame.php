@@ -1,15 +1,15 @@
 <?php
 namespace MealBooker\model;
-/*-----------------------------------------------------*/
-/*      _____           _               ___   ___      */
-/*     |  __ \         | |             |__ \ / _ \     */
-/*     | |__) |___  ___| |_ _   _ ___     ) | (_) |    */
-/*     |  _  // _ \/ __| __| | | / __|   / / \__, |    */
-/*     | | \ \  __/ (__| |_| |_| \__ \  / /_   / /     */
-/*     |_|  \_\___|\___|\__|\__,_|___/ |____| /_/      */
-/*                                                     */
-/*                Date: 06/10/2015 11:50               */
-/*                 All right reserved                  */
+    /*-----------------------------------------------------*/
+    /*      _____           _               ___   ___      */
+    /*     |  __ \         | |             |__ \ / _ \     */
+    /*     | |__) |___  ___| |_ _   _ ___     ) | (_) |    */
+    /*     |  _  // _ \/ __| __| | | / __|   / / \__, |    */
+    /*     | | \ \  __/ (__| |_| |_| \__ \  / /_   / /     */
+    /*     |_|  \_\___|\___|\__|\__,_|___/ |____| /_/      */
+    /*                                                     */
+    /*                Date: 06/10/2015 11:50               */
+    /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
 use Doctrine\ORM\Mapping\Column;
@@ -35,7 +35,7 @@ class TimeFrame extends DomainObject
      */
     private $stop;
 
-    function __construct($start= null, $stop= null)
+    function __construct($start = null, $stop = null)
     {
         $this->start = $start;
         $this->stop = $stop;
@@ -74,7 +74,13 @@ class TimeFrame extends DomainObject
         $this->stop = $stop;
     }
 
+    /**
+     * @return string
+     */
+    public function toString()
+    {
+        return self::getStart() . " - " . self::getStop();
+    }
 
-    
 
 }

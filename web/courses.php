@@ -20,10 +20,13 @@ $courseDao = new CourseDao($em);
 <article class="course">
     <div class="row">
         <?php
-        foreach ($courseDao->findAll() as $course) {
+        /**
+         * @var $course Course
+         */
+        foreach ($courseDao->getAll() as $course) {
             ?>
             <div class="col-md-4">
-                <a href="/meal" class="card">
+                <a href="<?php echo APP_PATH ?>/web/?page=meal&courseID=<?php echo $course->getId(); ?>" class="card">
                     <div class="meal-thumbnail">
                         <img src="img/feu.jpg" alt="" class="img-responsive">
 
@@ -66,7 +69,7 @@ $courseDao = new CourseDao($em);
                 Portland 90's chambray viral meditation actually pour-over Echo Park cardigan.
             </p>
 
-            <a href="#" class="btn btn-green">Réserver</a>
+            <a href="/web/?page=meal&courseID=<?php $course->getId(); ?>" class="btn btn-green">Réserver</a>
 
         </div>
 

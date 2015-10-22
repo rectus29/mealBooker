@@ -29,7 +29,7 @@ class CourseDao extends GenericDAO {
      * @param $id
      * @return Course
      */
-    public function findByPrimaryKey($id) {
+    public function getByPrimaryKey($id) {
         return parent::findByPrimaryKey(Course::class, $id);
     }
 
@@ -53,7 +53,7 @@ class CourseDao extends GenericDAO {
      * Find All Course
      * @return Course[]
      */
-    public function findAll() {
+    public function getAll() {
         return parent::findAll(Course::class);
     }
 }

@@ -27,7 +27,28 @@ if (isset($user) && $user == null)
     <?php echo $user->getFirstName() . " " . $user->getLastName(); ?><br>
     <?php echo $user->getMail(); ?><br>
     <?php echo $user->getPhoneNumber(); ?><br>
-    <?php echo $user->getCreated(); ?><br>
-    <?php echo $user->getCompany()->getName()?><br>
+    <?php echo $user->getCreated()->format('d M Y'); ?><br>
+    <?php
+    var_dump($user->getCompany());
+    echo $user->getCompany()->getName();
+    ?><br>
 
+</div>
+<div class="row">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Commande</th>
+            <th>Statut</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
