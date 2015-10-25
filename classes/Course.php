@@ -79,4 +79,13 @@ class Course extends DomainObject
         $this->description = $description;
     }
 
+    /**
+     * @return String
+     */
+    function __toString()
+    {
+        return $this->getName();
+    }
+
+
 }

@@ -18,20 +18,44 @@ $courseDao = new CourseDao($em);
 $drinkDao = new DrinkDao($em);
 $timeFrameDao = new TimeFrameDao($em);
 
-$mealCart = "";
+$mealCart = '{"cart":[]}';
 if (isset($_COOKIE['mealCart'])) {
     $mealCart = $_COOKIE['mealCart'];
 }
 if ($_POST && isset($_POST['course']) && isset($_POST['drink']) && isset($_POST['timeframe']) && isset($_POST['ts'])) {
-    $mealCart .= "{ id:" . $_POST['ts'] . ",course:" . $_POST['course'] . ", drink:" . $_POST['drink'] . ", timeframe:" . $_POST['timeframe'] . "},";
+    if(strlen($mealCart) >0)
+        $mealCart .= ",";
+    $mealCart .= "{ id:" . $_POST['ts'] . ",course:" . $_POST['course'] . ", drink:" . $_POST['drink'] . ", timeframe:" . $_POST['timeframe'] . "}";
     setcookie("mealCart", $mealCart);
 }
-$cartObject = json_decode($mealCart);
+echo $mealCart;
+$cartObject = json_decode('{
+  "cart": [
+    {
+      "id": 1445806721,
+      "course": 2,
+      "drink": 2,
+      "timeframe": 1
+    },
+    {
+      "id": 1445806721,
+      "course": 2,
+      "drink": 2,
+      "timeframe": 1
+    },
+    {
+      "id": 1445806721,
+      "course": 2,
+      "drink": 2,
+      "timeframe": 1
+    }
+  ]
+}');
 ?>
 <div class="row">
-    <div>
+    <h2>
         Votre panier
-    </div>
+    </h2>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -41,17 +65,20 @@ $cartObject = json_decode($mealCart);
         </thead>
         <tbody>
         <?php
-        foreach ($mealCart as $meal) {
+        foreach ($cartObject->cart as $meal) {
             ?>
             <tr>
                 <td>
-                    <?php echo $meal->getName(); ?>
+                    <?php echo $meal->id; ?>
                 </td>
                 <td>
-                    <?php echo $drink->getName(); ?>
+                    <?php echo $courseDao->getByPrimaryKey($meal->course); ?>
                 </td>
                 <td>
-                    <?php echo $timeFrame->toString(); ?>
+                    <?php echo $drinkDao->getByPrimaryKey($meal->drink); ?>
+                </td>
+                <td>
+                    <?php echo $timeFrameDao->getByPrimaryKey($meal->timeframe); ?>
                 </td>
                 <td>
                     <a href="#" class="remove" id="">
@@ -67,6 +94,9 @@ $cartObject = json_decode($mealCart);
 
 <div class="row">
     <div class="col-md-offset-4 col-md-4">
+        <a href="#" class="btn btn-red">
+            Vider mon panier
+        </a>
         <a href="#" class="btn btn-green">
             Valider ma commande
         </a>

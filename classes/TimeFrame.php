@@ -73,11 +73,10 @@ class TimeFrame extends DomainObject
     {
         $this->stop = $stop;
     }
-
     /**
      * @return string
      */
-    public function toString()
+    function __toString()
     {
         return self::getStart() . " - " . self::getStop();
     }

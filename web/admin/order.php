@@ -38,7 +38,7 @@ $mealDao = new MealDao($em);
                 <td><?php echo Utils::get()->formatDate($meal->getCreated());?></td>
                 <td><?php echo $meal->getCourse()->getName();?></td>
                 <td><?php echo $meal->getDrink()->getName();?></td>
-                <td><?php echo $meal->getTimeFrame()->toString();?></td>
+                <td><?php echo $meal->getTimeFrame()->__toString();?></td>
                 <td><?php echo $meal->getUser()->getFormattedName() . " (" . $meal->getUser()->getCompany()->getName().")";?></td>
                 <td>
                     <a href=""><i class="fa fa-edit"></i></a>
