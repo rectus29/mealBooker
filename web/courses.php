@@ -17,6 +17,9 @@ use MealBooker\models\dao\CourseDao;
 $courseDao = new CourseDao($em);
 
 ?>
+<p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce posuere, lacus sit amet rhoncus semper, risus justo euismod justo, vitae commodo velit dui eu lacus. Nam iaculis enim dolor, nec sodales lorem sollicitudin condimentum. Pellentesque sed enim enim. Pellentesque dapibus nisl eget arcu sagittis porttitor. Suspendisse feugiat nec odio imperdiet maximus. Maecenas fringilla nulla vitae ante mattis placerat. Morbi dictum neque quis dui fringilla auctor. Cras bibendum feugiat leo, et tincidunt risus accumsan ac. Praesent sit amet commodo sapien. Cras consectetur blandit ipsum, vitae dapibus ligula tempus vitae.
+</p>
 <article class="course">
     <div class="row">
         <?php
@@ -47,31 +50,5 @@ $courseDao = new CourseDao($em);
             <?php
         }
         ?>
-    </div>
-</article>
-<article class="course">
-    <div class="row">
-
-        <div class="col-md-4">
-            <img src="img/crepe-chocolat.jpg" alt="" class="img-responsive">
-        </div>
-
-        <div class="col-md-8">
-            <h2>Plaid slow-carb</h2>
-
-            <p class="date">
-                Le 12 octobre 2015
-            </p>
-
-            <p>Pitchfork blog Schlitz hella umami.
-                Readymade beard cred forage tattooed art party. Vinyl scenester
-                polaroid 3 wolf moon keytar butcher. Locavore cold-pressed,
-                Portland 90's chambray viral meditation actually pour-over Echo Park cardigan.
-            </p>
-
-            <a href="/web/?page=meal&courseID=<?php $course->getId(); ?>" class="btn btn-green">Réserver</a>
-
-        </div>
-
     </div>
 </article>

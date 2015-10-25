@@ -26,7 +26,7 @@ $userDao = new UserDao($em);
             <th>Créé le</th>
             <th>Société</th>
             <th>Rôle</th>
-            <th>Status</th>
+            <th>Statut</th>
             <th>Action</th>
         </tr>
         </thead>

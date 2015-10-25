@@ -32,8 +32,15 @@ if (isset($_GET) && isset($_GET['courseID'])) {
                 $('#drink').val($(el).attr('id'));
                 el.addClass('selected');
             });
+
+           /* $(document).on('submit', '#mealForm', function(e){
+                e.preventDefault();
+                boxOpen();
+
+
+            })*/
         </script>
-        <form action="<?php echo APP_PATH;?>/web/?page=cart" method="post">
+        <form action="<?php echo APP_PATH;?>/web/?page=cart" method="post" id="mealForm">
             <input type="hidden" value="<?php echo $course->getId(); ?>" name="course" id="course"/>
             <input type="hidden" value="" name="drink" id="drink" />
             <input type="hidden" value="<?php echo time(); ?>" name="ts" />
@@ -44,11 +51,6 @@ if (isset($_GET) && isset($_GET['courseID'])) {
                     </div>
                     <div class="col-md-8">
                         <h2><?php echo $course->getName(); ?></h2>
-
-                        <p class="date">
-                            <?php echo $course->getUpdated()->format('d M Y'); ?>
-                        </p>
-
                         <p>
                             <?php echo $course->getDescription(); ?>
                         </p>
@@ -96,7 +98,7 @@ if (isset($_GET) && isset($_GET['courseID'])) {
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
                     <a href="#" class="btn btn-default">Revenir à la sélection</a>
-                    <input type="submit" class="btn btn-green" value="Réserver"/>
+                    <input type="submit" id="submit" class="btn btn-green" value="Réserver"/>
                 </div>
             </div>
         </form>

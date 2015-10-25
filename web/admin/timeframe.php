@@ -24,7 +24,7 @@ $tfDao = new TimeFrameDao($em);
             <th>#</th>
             <th>Début</th>
             <th>Fin</th>
-            <th>Status</th>
+            <th>Statut</th>
             <th>Action</th>
         </tr>
         </thead>

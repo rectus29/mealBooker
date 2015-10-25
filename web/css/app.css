@@ -6542,3 +6542,9 @@ h1, h2, h3, h4, h5, h6 {
   .selected{
       border:2px solid #ffe827;
   }
+
+  #box{
+      position:absolute;
+      left:30%;
+      height:30%;
+  }

@@ -10,6 +10,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="<?php echo APP_PATH ?>web/img/favicon.ico"/>
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="<?php echo APP_PATH ?>web/js/app.js"></script>
     <!--<script src="<?php echo APP_PATH ?>web/js/jquery-1.11.3.min.js" type="text/javascript"></script>
     <script src="<?php echo APP_PATH ?>web/js/jquery-ui.1.11.4.min.js" type="text/javascript"></script>-->
     <script language="javascript" type="text/javascript" src="<?php echo APP_PATH ?>web/js/highChartsv4/highcharts.js"></script>

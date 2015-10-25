@@ -24,7 +24,7 @@ $courseDao = new CourseDao($em);
             <th>#</th>
             <th>Nom</th>
             <th>Créé le</th>
-            <th>Status</th>
+            <th>Statut</th>
             <th>Action</th>
         </tr>
         </thead>
