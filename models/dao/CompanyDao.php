@@ -12,13 +12,14 @@ namespace MealBooker\models\dao;
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
-use MealBooker\model\User;
+use MealBooker\model\Company;
+use MealBooker\model\Course;
 
-class UserDao extends GenericDAO {
+class CompanyDao extends GenericDAO {
 
     /**
      * @inheritdoc
-     * @param $user
+     * @param $em EntityManager
      */
     public function __construct($em) {
         parent::__construct($em);
@@ -26,50 +27,34 @@ class UserDao extends GenericDAO {
 
     /**
      * @inheritdoc
-     * @param $user
+     * @param $id
+     * @return Company
      */
     public function getByPrimaryKey($id) {
-        return parent::findByPrimaryKey(User::class, $id);
+        return parent::findByPrimaryKey(Company::class, $id);
     }
 
     /**
      * @inheritdoc
-     * @param $user
+     * @param $ent Company
      */
-    public function save($user) {
-        parent::save($user);
+    public function save($ent) {
+        parent::save($ent);
     }
 
     /**
      * @inheritdoc
-     * @param $user
+     * @param $ent
      */
-    public function delete($user) {
-        parent::delete($user);
+    public function delete($ent) {
+        parent::delete($ent);
     }
 
     /**
-     * Find All User
-     * @return User[]
+     * Find All
+     * @return Company[]
      */
     public function getAll() {
-        return parent::findAll(User::class);
+        return parent::findAll(Company::class);
     }
-
-    /**
-     * find user by Mail address
-     * @param $mail
-     * @return User|null
-     */
-    public function getUserByMail($mail)
-    {
-        $query = $this->entityManager->createQuery("SELECT e FROM User WHERE mail = '". $mail ."'");
-        $result =$query->getResult();
-        if(sizeof($result)>0)
-            return $result[1];
-        return null;
-    }
-
-
-
 }

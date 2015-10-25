@@ -15,8 +15,7 @@ namespace MealBooker\manager;
 use MealBooker\model\User;
 use MealBooker\models\dao\UserDao;
 
-class SecurityManager
-{
+class SecurityManager {
 
     /**
      * @var SecurityManager

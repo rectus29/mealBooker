@@ -22,25 +22,25 @@ use MealBooker\manager\SecurityManager;
                 <?php SecurityManager::get()->getCurrentUser($_SESSION)?>
             </li>
             <li>
-                <a href="<?php echo APP_PATH ?>/">Accueil</a>
+                <a href="<?php echo WEB_PATH ?>">Accueil</a>
             </li>
             <li>
-                <a href="<?php echo APP_PATH ?>/account">Mon compte</a>
+                <a href="<?php echo WEB_PATH ?>?page=account">Mon compte</a>
             </li>
             <li>
-                <a href="<?php echo APP_PATH ?>/cart">Mon panier</a>
+                <a href="<?php echo WEB_PATH ?>?page=cart">Mon panier</a>
             </li>
             <?php
             if (SecurityManager::get()->isAdmin($_SESSION)) {
                 ?>
                 <li>
-                    <a href="<?php echo APP_PATH ?>/admin">Administration</a>
+                    <a href="<?php echo WEB_PATH ?>?page=admin">Administration</a>
                 </li>
                 <?php
             }
             ?>
             <li class="log-out">
-                <a href="<?php echo APP_PATH ?>web/security/signout.php">Déconnexion</a>
+                <a href="<?php echo WEB_PATH ?>security/signout.php">Déconnexion</a>
             </li>
         </ul>
     </div>

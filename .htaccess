@@ -2,9 +2,9 @@ Errordocument 401 /web/error/error401.php
 Errordocument 403 /web/error/error403.php
 Errordocument 404 /web/error/error404.php
 
-RewriteEngine on
+#RewriteEngine on
 #RewriteBase web/
-Options +FollowSymlinks
+#Options +FollowSymlinks
 
 #RewriteRule ^web/(.*)$ web/index.php?parsedurl=$1 [L,QSA]
 

@@ -48,4 +48,70 @@ class Meal extends DomainObject
      */
     private $user;
 
+    /**
+     * @return Drink
+     */
+    public function getDrink()
+    {
+        return $this->drink;
+    }
+
+    /**
+     * @param Drink $drink
+     */
+    public function setDrink($drink)
+    {
+        $this->drink = $drink;
+    }
+
+    /**
+     * @return Course
+     */
+    public function getCourse()
+    {
+        return $this->course;
+    }
+
+    /**
+     * @param Course $course
+     */
+    public function setCourse($course)
+    {
+        $this->course = $course;
+    }
+
+    /**
+     * @return TimeFrame
+     */
+    public function getTimeFrame()
+    {
+        return $this->timeFrame;
+    }
+
+    /**
+     * @param TimeFrame $timeFrame
+     */
+    public function setTimeFrame($timeFrame)
+    {
+        $this->timeFrame = $timeFrame;
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+
+
 }

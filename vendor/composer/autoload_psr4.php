@@ -10,5 +10,6 @@ return array(
     'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
     'MealBooker\\model\\' => array($baseDir . '/classes'),
     'MealBooker\\manager\\' => array($baseDir . '/manager'),
+    'MealBooker\\utils\\' => array($baseDir . '/utils'),
     'MealBooker\\' => array($baseDir . '/'),
 );

@@ -12,12 +12,6 @@ namespace MealBooker\model;
     /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
-use Doctrine\ORM\Mapping\Column;
-use Doctrine\ORM\Mapping\Entity;
-use Doctrine\ORM\Mapping\ManyToOne;
-use Doctrine\ORM\Mapping\OneToMany;
-use Doctrine\ORM\Mapping\Table;
-
 /**
  * @Entity
  * @Table(name="user")
@@ -214,7 +208,7 @@ class User extends DomainObject
      */
     public function getRole()
     {
-        if(isset($this->role))
+        if (isset($this->role))
             return $this->role;
         return null;
     }
@@ -259,8 +253,24 @@ class User extends DomainObject
         $this->optIn = $optIn;
     }
 
-    public function isAdmin(){
-        if($this->getRole() != null)
+    /**
+     * return name formatted
+     * @return string
+     */
+    public function getFormattedName()
+    {
+        $out = null;
+        if($this->getFirstName() != null)
+            $out = $this->getFirstName() ." ";
+        return $this->getFirstName() . " " . $this->getLastName();
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        if ($this->getRole() != null)
             return $this->getRole()->isIsAdmin();
         return false;
     }

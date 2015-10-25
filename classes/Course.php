@@ -79,6 +79,4 @@ class Course extends DomainObject
         $this->description = $description;
     }
 
-
-
 }

@@ -77,8 +77,8 @@ class Role extends DomainObject
         $this->description = $description;
         $this->weight = $weight;
         $this->isAdmin = $isAdmin;
-        $this->permissions = ($permissions == null) ? new Permission[] : $permissions;
-        $this->Users = ($Users == null) ? new User[] : $Users;
+        $this->permissions = ($permissions == null) ? array() : $permissions;
+        $this->Users = ($Users == null) ? array() : $Users;
     }
 
 
