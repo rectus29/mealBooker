@@ -23,15 +23,10 @@ require_once __DIR__."/vendor/autoload.php";
 $conn = array(
     'driver' => 'pdo_mysql',
     'user'     => 'root',
-    'password' => 'root',
+    'password' => '',
     'dbname'   => 'mealbooker'
 );
 // obtaining the entity manager
 $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/classes/"), DEV_MODE);
 $em = EntityManager::create($conn, $config);
 $gDao = new GenericDAO($em);
-try {
-    $em->getConnection()->connect();
-} catch (Exception $e) {
-   echo $e;
-}

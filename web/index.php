@@ -13,11 +13,26 @@ namespace MealBooker;
 /*-----------------------------------------------------*/
 
 use MealBooker\manager\SecurityManager;
+use MealBooker\models\dao\ConfigDao;
 use MealBooker\model;
 
 require_once(dirname(__FILE__) . '/../config/global.php');
 require_once(ROOT_DIR . '/bootstrap.php');
 require_once(ROOT_DIR . '/cli-config.php');
+
+$configDao = new ConfigDao($em);
+
+//here check connection to dbserver
+$maintenance = false;
+try {
+    $em->getConnection()->connect();
+} catch (Exception $e) {
+    $maintenance= true;
+}
+//check maintenance mod
+if($configDao->getByKey('serverState') != null && $configDao->getByKey('serverState')->getValue() == '1')
+    $maintenance = true;
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,7 +46,9 @@ include 'head.php';
 <div class="main container">
     <div class="row">
         <?php
-        if (isset($_SESSION) && SecurityManager::get()->isAuthentified($_SESSION)) {
+        if($maintenance){
+            include 'security/maintenance.php';
+        } else if (isset($_SESSION) && SecurityManager::get()->isAuthentified($_SESSION)) {
             if (isset($_GET['page'])) {
                 switch ($_GET['page']) {
                     case 'meal':
@@ -46,6 +63,9 @@ include 'head.php';
                     case 'account':
                         include 'account.php';
                         break;
+                    case 'cartconfirm':
+                        include 'cart_validate.php';
+                        break;
                     case 'admin':
                         include 'admin/admin.php';
                         break;
@@ -56,8 +76,9 @@ include 'head.php';
             }else{
                 include 'courses.php';
             }
-        } else
+        }else{
             include 'security/signup.php';
+        }
         ?>
     </div>
 </div>
