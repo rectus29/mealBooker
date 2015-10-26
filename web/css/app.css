@@ -6429,8 +6429,11 @@ h1, h2, h3, h4, h5, h6 {
   color: #333333; }
 
 .container {
-  width: 970px;
-  margin-bottom: 50px; }
+  width: 970px; }
+
+footer {
+  margin-top: 50px;
+  border-top: solid 1px #b3b3b3; }
 
 .success {
   padding: 50px 0;

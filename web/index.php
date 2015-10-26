@@ -28,7 +28,7 @@ include 'head.php';
 <?php
     include 'header.php';
 ?>
-<div class="container">
+<div class="main container">
     <div class="row">
         <?php
         if (isset($_SESSION) && SecurityManager::get()->isAuthentified($_SESSION)) {
