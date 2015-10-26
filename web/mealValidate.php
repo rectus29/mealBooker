@@ -12,9 +12,14 @@
 /*-----------------------------------------------------*/
 
 ?>
-<h2>
-    Valider votre repas
-</h2>
-<div class="row">
+<div class="success">
+    <i class="fa fa-check-circle"></i>
 
+    <h1>Votre commande est validée!</h1>
+    <p>
+      Votre commande de repas est validée, vous allez recevoir un mail récapitulatif de votre commande.
+      <br>
+      A bientôt sur Aurore Traiteur
+    </p>
+    <a href="#" class="btn btn-default">Retour à l'accueil</a>
 </div>
