@@ -24,18 +24,8 @@ if (isset($_GET) && isset($_GET['courseID'])) {
     $course = $courseDao->getByPrimaryKey($_GET['courseID']);
     if ($course != null) {
         ?>
-        <script type="text/javascript">
-            $(document).on('click', '.drinkElement', function(e){
-                e.preventDefault();
-                var el = $(this);
-                $('.drinkElement').removeClass('selected');
-                $('#drink').val($(el).attr('id'));
-                el.addClass('selected');
-            });
-        </script>
         <form action="<?php echo APP_PATH;?>/web/?page=cart" method="post" id="mealForm">
             <input type="hidden" value="<?php echo $course->getId(); ?>" name="course" id="course"/>
-            <input type="hidden" value="" name="drink" id="drink" />
             <input type="hidden" value="<?php echo time(); ?>" name="ts" />
             <article class="course">
               <div class="row">
@@ -57,7 +47,7 @@ if (isset($_GET) && isset($_GET['courseID'])) {
                             ?>
                             <div class="radio">
                               <label>
-                                <input type="radio" name="drinkOption" id="<?php echo $drink->getId(); ?>" value="<?php echo $drink->getId(); ?>">
+                                <input type="radio" name="drink" id="<?php echo $drink->getId(); ?>" value="<?php echo $drink->getId(); ?>">
                                 <?php echo $drink->getName() ?>
                               </label>
                             </div>
