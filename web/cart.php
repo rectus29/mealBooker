@@ -25,7 +25,6 @@ $mealCart = ["cart" => []];
 if (isset($_COOKIE['mealCart'])) {
     $mealCart = json_decode($_COOKIE['mealCart']);
 }
-var_dump($mealCart);
 //add new value in cookie
 if ($_POST && isset($_POST['course']) && isset($_POST['drink']) && isset($_POST['timeframe']) && isset($_POST['ts'])) {
     //search for doubloon
@@ -36,10 +35,14 @@ if ($_POST && isset($_POST['course']) && isset($_POST['drink']) && isset($_POST[
     }
     //if meal stub not in current array
     if (!$found) {
-        array_push($mealCart->cart, ['id' => $_POST['ts'], 'course' => $_POST['course'], 'drink' => $_POST['drink'], 'timeframe' => $_POST['timeframe']]);
+        $object = new stdClass();
+        $object->id = $_POST['ts'];
+        $object->course = $_POST['course'];
+        $object->drink = $_POST['drink'];
+        $object->timeframe = $_POST['timeframe'];
+        array_push($mealCart->cart, $object);
         setcookie("mealCart", json_encode($mealCart));
     }
-    var_dump($mealCart);
 };
 ?>
 

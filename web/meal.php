@@ -32,12 +32,6 @@ if (isset($_GET) && isset($_GET['courseID'])) {
                 $('#drink').val($(el).attr('id'));
                 el.addClass('selected');
             });
-
-            /*$(document).on('submit', '#mealForm', function(e){
-                e.preventDefault();
-                boxOpen("Valider votre repas ?");
-
-            })*/
         </script>
         <form action="<?php echo APP_PATH;?>/web/?page=cart" method="post" id="mealForm">
             <input type="hidden" value="<?php echo $course->getId(); ?>" name="course" id="course"/>
@@ -96,7 +90,7 @@ if (isset($_GET) && isset($_GET['courseID'])) {
             <br><br>
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
-                    <a href="#" class="btn btn-default">Revenir à la sélection</a>
+                    <a href="<?php WEB_PATH ?>?page=course" class="btn btn-default">Revenir à la sélection</a>
                     <input type="submit" id="submit" class="btn btn-green" value="Réserver"/>
                 </div>
             </div>
