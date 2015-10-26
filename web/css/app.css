@@ -6429,7 +6429,8 @@ h1, h2, h3, h4, h5, h6 {
   color: #333333; }
 
 .container {
-  width: 970px; }
+  width: 970px;
+  margin-bottom: 50px; }
 
 .success {
   padding: 50px 0;
@@ -6535,16 +6536,3 @@ h1, h2, h3, h4, h5, h6 {
             transform: scale(1.5);
     -webkit-transition: all ease 0.3s;
             transition: all ease 0.3s; }
-
-
-
-
-  .selected{
-      border:2px solid #ffe827;
-  }
-
-  #box{
-      position:absolute;
-      left:30%;
-      height:30%;
-  }
