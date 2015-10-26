@@ -38,44 +38,38 @@ if (isset($_GET) && isset($_GET['courseID'])) {
             <input type="hidden" value="" name="drink" id="drink" />
             <input type="hidden" value="<?php echo time(); ?>" name="ts" />
             <article class="course">
-                <div class="row">
-                    <div class="col-md-4">
-                        <img src="<?php echo APP_PATH; ?>files/course/<?php echo $course->getId(); ?>.jpg" alt="" class="img-responsive">
-                    </div>
-                    <div class="col-md-8">
-                        <h2><?php echo $course->getName(); ?></h2>
-                        <p>
-                            <?php echo $course->getDescription(); ?>
-                        </p>
-                    </div>
-                </div>
-            </article>
-            <article>
-                <div>
-                    Choisissez une boisson :
-                </div>
-                <div class="row">
-                    <?php
-                    foreach ($drinkDao->getAll() as $drink) {
-                        ?>
-                        <a href="#" class="col-md-3 drinkElement" id="<?php echo $drink->getId(); ?>">
-                            <div>
-                                <img src="<?php echo APP_PATH; ?>files/drink/<?php echo $drink->getId(); ?>.jpg" alt="" class="img-responsive">
-                            </div>
-                            <div>
-                                <h4>
-                                    <?php echo $drink->getName() ?>
-                                </h4>
-                            </div>
-                        </a>
+              <div class="row">
+                  <div class="col-md-4">
+                      <img src="<?php echo APP_PATH; ?>files/course/<?php echo $course->getId(); ?>.jpg" alt="" class="img-responsive">
+                  </div>
+                  <div class="col-md-8">
+                      <h2><?php echo $course->getName(); ?></h2>
+                      <p>
+                          <?php echo $course->getDescription(); ?>
+                      </p>
+                  </div>
+              </div>
+              <div class="row">
+                <section class="drinkOptions col-md-6">
+                  <h4>Choisissez une boisson :</h4>
                         <?php
-                    }
-                    ?>
-                </div>
-            </article>
-            <article>
-                <div>
-                    Choisissez un horaire de livraison :
+                        foreach ($drinkDao->getAll() as $drink) {
+                            ?>
+                            <div class="radio">
+                              <label>
+                                <input type="radio" name="drinkOption" id="<?php echo $drink->getId(); ?>" value="<?php echo $drink->getId(); ?>">
+                                <?php echo $drink->getName() ?>
+                              </label>
+                            </div>
+                            <?php
+                        }
+                        ?>
+                </section>
+                <section class="deliveryTime col-md-6">
+                  <h4>Choisissez un horaire de livraison </h4>
+                    <p>
+                      Le 27 octobre 2015 entre :
+                    </p>
                     <select name="timeframe" id="tf">
                         <?php
                         foreach ($timeFrameDao->getAll() as $timeFrame) {
@@ -84,16 +78,18 @@ if (isset($_GET) && isset($_GET['courseID'])) {
                             <?php
                         }
                         ?>
-                    </select>
+                </select>
+              </div>
+              </section>
+              <section class="validateCourse">
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                        <a href="<?php WEB_PATH ?>?page=course" class="btn btn-default">Revenir à la sélection</a>
+                        <input type="submit" id="submit" class="btn btn-green" value="Réserver"/>
+                    </div>
                 </div>
-            </article>
-            <br><br>
-            <div class="row">
-                <div class="col-md-4 col-md-offset-4">
-                    <a href="<?php WEB_PATH ?>?page=course" class="btn btn-default">Revenir à la sélection</a>
-                    <input type="submit" id="submit" class="btn btn-green" value="Réserver"/>
-                </div>
-            </div>
+              </section>
+          </article>
         </form>
         <?php
     }
