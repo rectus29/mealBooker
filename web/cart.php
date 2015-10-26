@@ -20,7 +20,8 @@ $drinkDao = new DrinkDao($em);
 $timeFrameDao = new TimeFrameDao($em);
 
 //prepare new value
-$mealCart = ["cart" => []];
+$mealCart = new stdClass();
+$mealCart->cart= [];
 //get value from cookie if cookie already set
 if (isset($_COOKIE['mealCart'])) {
     $mealCart = json_decode($_COOKIE['mealCart']);
@@ -59,28 +60,36 @@ if ($_POST && isset($_POST['course']) && isset($_POST['drink']) && isset($_POST[
         </thead>
         <tbody>
         <?php
-        foreach ($mealCart->cart as $meal) {
+        if (sizeof($mealCart->cart) > 0) {
+            foreach ($mealCart->cart as $meal) {
+                ?>
+                <tr>
+                    <td>
+                        <?php echo $meal->id; ?>
+                    </td>
+                    <td>
+                        <?php echo $courseDao->getByPrimaryKey($meal->course); ?>
+                    </td>
+                    <td>
+                        <?php echo $drinkDao->getByPrimaryKey($meal->drink); ?>
+                    </td>
+                    <td>
+                        <?php echo $timeFrameDao->getByPrimaryKey($meal->timeframe); ?>
+                    </td>
+                    <td>
+                        <a href="#" class="remove" id="">
+                            <i class="fa fa-remove"></i>
+                        </a>
+                    </td>
+                </tr>
+                <?php
+            }
+        } else {
             ?>
             <tr>
-                <td>
-                    <?php echo $meal->id; ?>
-                </td>
-                <td>
-                    <?php echo $courseDao->getByPrimaryKey($meal->course); ?>
-                </td>
-                <td>
-                    <?php echo $drinkDao->getByPrimaryKey($meal->drink); ?>
-                </td>
-                <td>
-                    <?php echo $timeFrameDao->getByPrimaryKey($meal->timeframe); ?>
-                </td>
-                <td>
-                    <a href="#" class="remove" id="">
-                        <i class="fa fa-remove"></i>
-                    </a>
-                </td>
+                <td colspan="5">Votre panier est vide</td>
             </tr>
-            <?php
+        <?php
         }
         ?>
         </tbody>
@@ -88,10 +97,10 @@ if ($_POST && isset($_POST['course']) && isset($_POST['drink']) && isset($_POST[
 
     <div class="row">
         <div class="col-md-offset-4 col-md-4">
-            <a href="#" class="btn btn-red">
+            <a href="<?php WEB_PATH?>?page=cart" class="btn btn-red">
                 Vider mon panier
             </a>
-            <a href="#" class="btn btn-green">
+            <a href="<?php WEB_PATH?>?page=cartconfirm" class="btn btn-green">
                 Valider ma commande
             </a>
         </div>

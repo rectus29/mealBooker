@@ -27,7 +27,7 @@ class Config extends DomainObject
      * @Column(type="string")
      * @var String
      */
-    private $key;
+    private $keyCode;
 
     /**
      * @Column(type="string")
@@ -42,7 +42,7 @@ class Config extends DomainObject
      */
     public function __construct($key, $value)
     {
-        $this->key = $key;
+        $this->keyCode = $key;
         $this->value = $value;
     }
 
@@ -51,7 +51,7 @@ class Config extends DomainObject
      */
     public function getKey()
     {
-        return $this->key;
+        return $this->keyCode;
     }
 
     /**

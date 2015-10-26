@@ -24,6 +24,13 @@ use Doctrine\ORM\Mapping\Table;
  */
 class Meal extends DomainObject
 {
+
+    /**
+     * @Column
+     * @var string
+     */
+    private $bookingId;
+
     /**
      * @ManyToOne(targetEntity="Drink")
      * @var Drink
