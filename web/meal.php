@@ -33,10 +33,9 @@ if (isset($_GET) && isset($_GET['courseID'])) {
                 el.addClass('selected');
             });
 
-           /* $(document).on('submit', '#mealForm', function(e){
+            /*$(document).on('submit', '#mealForm', function(e){
                 e.preventDefault();
-                boxOpen();
-
+                boxOpen("Valider votre repas ?");
 
             })*/
         </script>
