@@ -25,6 +25,7 @@ if(!isset($_COOKIE['mealCart']) && SecurityManager::get()->isAuthentified($_SESS
 
 $mealCart = json_decode($_COOKIE['mealCart']);
 foreach($mealCart->cart as $mealStub){
+    $meal = new Meal();
     echo $mealStub->id;
 }
 

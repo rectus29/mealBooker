@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 26 Octobre 2015 à 19:53
+-- Généré le :  Lun 26 Octobre 2015 à 22:16
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `company` (
   `validationCode` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
-  `status` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `company` (
 --
 
 INSERT INTO `company` (`id`, `name`, `validationCode`, `created`, `updated`, `status`) VALUES
-(1, 'Sopra', '0987654321', '2015-10-15 00:00:00', '2015-10-15 00:00:00', '1');
+  (1, 'Sopra', '0987654321', '2015-10-15 00:00:00', '2015-10-15 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -45,13 +45,23 @@ INSERT INTO `company` (`id`, `name`, `validationCode`, `created`, `updated`, `st
 
 CREATE TABLE IF NOT EXISTS `config` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `key` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `keyCode` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `value` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
-  `status` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+
+--
+-- Contenu de la table `config`
+--
+
+INSERT INTO `config` (`id`, `keyCode`, `value`, `created`, `updated`, `status`) VALUES
+  (1, 'mealPerDay', '40', '2015-10-26 00:00:00', '2015-10-26 00:00:00', 1),
+  (2, 'serverState', '0', '2015-10-26 00:00:00', '2015-10-26 00:00:00', 1),
+  (3, 'startBookingStep', '1', '2015-10-26 00:00:00', '2015-10-26 00:00:00', 1),
+  (4, 'stopBookingHour', '14:00', '2015-10-26 00:00:00', '2015-10-26 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -65,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `course` (
   `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
-  `status` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
@@ -74,9 +84,9 @@ CREATE TABLE IF NOT EXISTS `course` (
 --
 
 INSERT INTO `course` (`id`, `name`, `description`, `created`, `updated`, `status`) VALUES
-(1, 'Tartiflette', 'Tartiflette qui va bien ', '2015-10-15 00:00:00', '2015-10-15 00:00:00', '1'),
-(2, 'Cassoulet', 'cassoulet qui fait PETER', '2015-10-13 00:00:00', '2015-10-13 00:00:00', '1'),
-(3, 'Raclette', 'plein de fromage qui fond', '2015-10-06 00:00:00', '2015-10-06 00:00:00', '1');
+  (1, 'Tartiflette', 'Tartiflette qui va bien ', '2015-10-15 00:00:00', '2015-10-15 00:00:00', 1),
+  (2, 'Cassoulet', 'cassoulet qui fait PETER', '2015-10-13 00:00:00', '2015-10-13 00:00:00', 1),
+  (3, 'Raclette', 'plein de fromage qui fond', '2015-10-06 00:00:00', '2015-10-06 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -90,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `drink` (
   `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
-  `status` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
@@ -99,8 +109,8 @@ CREATE TABLE IF NOT EXISTS `drink` (
 --
 
 INSERT INTO `drink` (`id`, `name`, `description`, `created`, `updated`, `status`) VALUES
-(1, 'Coca', 'Coca-Cola', '2015-10-22 00:00:00', '2015-10-22 00:00:00', '1'),
-(2, 'Ice-Tea', 'Ice-Tea', '2015-10-22 00:00:00', '2015-10-22 00:00:00', '1');
+  (1, 'Coca', 'Coca-Cola', '2015-10-22 00:00:00', '2015-10-22 00:00:00', 1),
+  (2, 'Ice-Tea', 'Ice-Tea', '2015-10-22 00:00:00', '2015-10-22 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -114,21 +124,23 @@ CREATE TABLE IF NOT EXISTS `meal` (
   `course_id` int(11) DEFAULT NULL,
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
-  `status` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL,
   `timeFrame_id` int(11) DEFAULT NULL,
-  `user_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `bookingId` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_9EF68E9C36AA4BB4` (`drink_id`),
   KEY `IDX_9EF68E9C591CC992` (`course_id`),
-  KEY `IDX_9EF68E9CE61AE10A` (`timeFrame_id`)
+  KEY `IDX_9EF68E9CE61AE10A` (`timeFrame_id`),
+  KEY `IDX_9EF68E9CA76ED395` (`user_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
 -- Contenu de la table `meal`
 --
 
-INSERT INTO `meal` (`id`, `drink_id`, `course_id`, `created`, `updated`, `status`, `timeFrame_id`, `user_id`) VALUES
-(1, 1, 1, '2015-10-25 00:00:00', '2015-10-25 00:00:00', '1', 1, 1);
+INSERT INTO `meal` (`id`, `drink_id`, `course_id`, `created`, `updated`, `status`, `timeFrame_id`, `user_id`, `bookingId`) VALUES
+  (1, 1, 1, '2015-10-25 00:00:00', '2015-10-25 00:00:00', 1, 1, 1, 'mlkjhgfd');
 
 -- --------------------------------------------------------
 
@@ -142,7 +154,7 @@ CREATE TABLE IF NOT EXISTS `permission` (
   `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
-  `status` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
@@ -160,7 +172,7 @@ CREATE TABLE IF NOT EXISTS `role` (
   `isAdmin` tinyint(1) NOT NULL,
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
-  `status` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
@@ -169,8 +181,8 @@ CREATE TABLE IF NOT EXISTS `role` (
 --
 
 INSERT INTO `role` (`id`, `name`, `description`, `weight`, `isAdmin`, `created`, `updated`, `status`) VALUES
-(1, 'Administrateur', 'Administrateur', 100, 1, '2015-10-15 00:00:00', '2015-10-15 00:00:00', '1'),
-(2, 'Utilisateur', 'Utilisateur', 50, 0, '2015-10-15 00:00:00', '2015-10-15 00:00:00', '1');
+  (1, 'Administrateur', 'Administrateur', 100, 1, '2015-10-15 00:00:00', '2015-10-15 00:00:00', 1),
+  (2, 'Utilisateur', 'Utilisateur', 50, 0, '2015-10-15 00:00:00', '2015-10-15 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -198,7 +210,7 @@ CREATE TABLE IF NOT EXISTS `timeframe` (
   `stop` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
-  `status` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
@@ -207,8 +219,8 @@ CREATE TABLE IF NOT EXISTS `timeframe` (
 --
 
 INSERT INTO `timeframe` (`id`, `start`, `stop`, `created`, `updated`, `status`) VALUES
-(1, '12:00', '12:30', '2015-10-22 00:00:00', '2015-10-22 00:00:00', '1'),
-(2, '13:00', '13:30', '2015-10-22 00:00:00', '2015-10-22 00:00:00', '1');
+  (1, '12:00', '12:30', '2015-10-22 00:00:00', '2015-10-22 00:00:00', 1),
+  (2, '13:00', '13:30', '2015-10-22 00:00:00', '2015-10-22 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -229,7 +241,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `optIn` tinyint(1) NOT NULL,
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
-  `status` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_8D93D649D60322AC` (`role_id`),
   KEY `IDX_8D93D649979B1AD6` (`company_id`)
@@ -240,7 +252,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `role_id`, `company_id`, `firstName`, `lastName`, `mail`, `salt`, `password`, `phoneNumber`, `optIn`, `created`, `updated`, `status`) VALUES
-(1, 1, 1, 'Admin', 'istrateur', 'contact@alexandrebernard.fr', 'tre', 'tre', '0606060606', 1, '2015-10-15 00:00:00', '2015-10-15 00:00:00', '1');
+  (1, 1, 1, 'Admin', 'istrateur', 'contact@alexandrebernard.fr', 'tre', 'tre', '0606060606', 1, '2015-10-15 00:00:00', '2015-10-15 00:00:00', 1);
 
 --
 -- Contraintes pour les tables exportées
@@ -250,20 +262,21 @@ INSERT INTO `user` (`id`, `role_id`, `company_id`, `firstName`, `lastName`, `mai
 -- Contraintes pour la table `meal`
 --
 ALTER TABLE `meal`
-  ADD CONSTRAINT `FK_9EF68E9C36AA4BB4` FOREIGN KEY (`drink_id`) REFERENCES `drink` (`id`),
-  ADD CONSTRAINT `FK_9EF68E9C591CC992` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`),
-  ADD CONSTRAINT `FK_9EF68E9CE61AE10A` FOREIGN KEY (`timeFrame_id`) REFERENCES `timeframe` (`id`);
+ADD CONSTRAINT `FK_9EF68E9CA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+ADD CONSTRAINT `FK_9EF68E9C36AA4BB4` FOREIGN KEY (`drink_id`) REFERENCES `drink` (`id`),
+ADD CONSTRAINT `FK_9EF68E9C591CC992` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`),
+ADD CONSTRAINT `FK_9EF68E9CE61AE10A` FOREIGN KEY (`timeFrame_id`) REFERENCES `timeframe` (`id`);
 
 --
 -- Contraintes pour la table `role_permission`
 --
 ALTER TABLE `role_permission`
-  ADD CONSTRAINT `FK_6F7DF886D60322AC` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `FK_6F7DF886FED90CCA` FOREIGN KEY (`permission_id`) REFERENCES `permission` (`id`) ON DELETE CASCADE;
+ADD CONSTRAINT `FK_6F7DF886D60322AC` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`) ON DELETE CASCADE,
+ADD CONSTRAINT `FK_6F7DF886FED90CCA` FOREIGN KEY (`permission_id`) REFERENCES `permission` (`id`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `user`
 --
 ALTER TABLE `user`
-  ADD CONSTRAINT `FK_8D93D649979B1AD6` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`),
-  ADD CONSTRAINT `FK_8D93D649D60322AC` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);
+ADD CONSTRAINT `FK_8D93D649979B1AD6` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`),
+ADD CONSTRAINT `FK_8D93D649D60322AC` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);
