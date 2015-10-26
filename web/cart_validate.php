@@ -1,3 +1,4 @@
+<?php
 /*-----------------------------------------------------*/
 /*      _____           _               ___   ___      */
 /*     |  __ \         | |             |__ \ / _ \     */
@@ -9,27 +10,15 @@
 /*                Date: 04/10/2015 17:41               */
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
+use MealBooker\model\Meal;
+use MealBooker\models\dao\CourseDao;
+use MealBooker\models\dao\DrinkDao;
+use MealBooker\models\dao\TimeFrameDao;
 
-function boxOpen() {
-    $(body).append(
-        '<div id="box" class="row">' +
-        '<div id="boxHeader" class="row">' +
-        '<a href="#" id="boxClose" class="pull-right"><i class="fa fa-close "></i></a>' +
-        '</div>' +
-        '<div id="boxContent"></div>' +
-        '</div>');
-}
+$courseDao = new CourseDao($em);
+$drinkDao = new DrinkDao($em);
+$timeFrameDao = new TimeFrameDao($em);
 
-
-function boxOpen(content) {
-    $('body').append(
-        '<div id="box" class="row" >' +
-        '<div id="boxHeader" class="row" >' +
-        '<a href="#" id="boxClose" class="pull-right"><i class="fa fa-close"></i></a>' +
-        '</div>' +
-        '<div id="boxContent">' + content + '</div>' +
-        '</div>');
-
-
-}
-
+?>
+<div>
+</div>
