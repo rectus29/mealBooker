@@ -54,8 +54,11 @@ if ($_POST && isset($_POST['course']) && isset($_POST['drink']) && isset($_POST[
     <table class="table table-striped">
         <thead>
         <tr>
+            <th>#</th>
             <th>Plats</th>
             <th>Boisson</th>
+            <th>Horaire</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>

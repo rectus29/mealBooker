@@ -6434,6 +6434,9 @@ h1, h2, h3, h4, h5, h6 {
 footer {
   margin-top: 50px;
   border-top: solid 1px #e6e6e6; }
+  footer p {
+    color: #cccccc;
+    font-size: 0.8em; }
 
 .success {
   padding: 50px 0;
@@ -6503,6 +6506,13 @@ footer {
   .nav li.log-out a:hover {
     background: #CE4949;
     color: white; }
+
+.nav-tabs.nav > li > a {
+  color: #555; }
+  .nav-tabs.nav > li > a:hover {
+    background: #f5f9ea;
+    color: #6f8b26;
+    border-color: #A9CE49; }
 
 .card {
   overflow: hidden;

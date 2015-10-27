@@ -23,7 +23,7 @@ require_once __DIR__."/vendor/autoload.php";
 $conn = array(
     'driver' => 'pdo_mysql',
     'user'     => 'root',
-    'password' => '',
+    'password' => 'root',
     'dbname'   => 'mealbooker'
 );
 // obtaining the entity manager

@@ -62,6 +62,9 @@ if (isset($_GET['tab'])) {
                     case 'server' :
                         include 'server.php';
                         break;
+                    default :
+                        include 'dash.php';
+                        break;
                 }
             ?>
         </div>

@@ -47,9 +47,9 @@ class SecurityManager {
      */
     public function isAuthentified($session)
     {
-        if (isset($session['auth']) && $session['auth'] === true)
+        //if (isset($session['auth']) && $session['auth'] === true)
             return true;
-        return false;
+        //return false;
     }
 
     /**
