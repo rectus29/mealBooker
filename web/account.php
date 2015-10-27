@@ -16,7 +16,7 @@ use MealBooker\manager\SecurityManager;
 
 $user = SecurityManager::get()->getCurrentUser($_SESSION);
 if (isset($user) && $user == null)
-    header('Location: /');
+    header('Location: ' . WEB_PATH);
 
 ?>
 <div class="page-header">
@@ -24,31 +24,36 @@ if (isset($user) && $user == null)
 </div>
 <div class="row">
 
-    <?php echo $user->getFirstName() . " " . $user->getLastName(); ?><br>
-    <?php echo $user->getMail(); ?><br>
-    <?php echo $user->getPhoneNumber(); ?><br>
-    <?php echo $user->getCreated()->format('d M Y'); ?><br>
-    <?php
-    var_dump($user->getCompany());
-    echo $user->getCompany()->getName();
-    ?><br>
+    Nom <?php echo $user->getFirstName(); ?><br>
+    Prénom <?php echo $user->getLastName(); ?><br>
+    Mail <?php echo $user->getMail(); ?><br>
+    Téléphone <?php echo $user->getPhoneNumber(); ?><br>
+    Date d'inscription <?php echo $user->getCreated()->format('d M Y'); ?><br>
+    Société <?php echo $user->getCompany()->getName(); ?><br>
 
 </div>
 <div class="row">
+    <h2>Historique de vos commandes</h2>
     <table class="table table-striped">
         <thead>
         <tr>
+            <th>#</th>
             <th>Date</th>
             <th>Commande</th>
-            <th>Statut</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
+        <?php
+        foreach ($user->getMeals() as $meal) {
+            ?>
+            <tr>
+                <td><?php $meal->getBookingId() ?></td>
+                <td><?php $meal->getCreated() ?></td>
+                <td><?php $meal->getCourse() . " " . $meal->getDrink() ?></td>
+            </tr>
+            <?php
+        }
+        ?>
         </tbody>
     </table>
 </div>

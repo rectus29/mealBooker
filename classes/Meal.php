@@ -12,6 +12,7 @@ namespace MealBooker\model;
     /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
+use DateTime;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\ManyToMany;
@@ -24,7 +25,6 @@ use Doctrine\ORM\Mapping\Table;
  */
 class Meal extends DomainObject
 {
-
     /**
      * @Column
      * @var string
@@ -50,10 +50,19 @@ class Meal extends DomainObject
     private $timeFrame;
 
     /**
-     * @ManyToOne(targetEntity="User")
+     * @ManyToOne(inversedBy="meals", targetEntity="User")
      * @var User
      */
     private $user;
+
+    /**
+     * Meal constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
 
     /**
      * @return Drink
@@ -118,6 +127,24 @@ class Meal extends DomainObject
     {
         $this->user = $user;
     }
+
+    /**
+     * @return string
+     */
+    public function getBookingId()
+    {
+        return $this->bookingId;
+    }
+
+    /**
+     * @param string $bookingId
+     */
+    public function setBookingId($bookingId)
+    {
+        $this->bookingId = $bookingId;
+    }
+
+
 
     function __toString()
     {

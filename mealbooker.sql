@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 26 Octobre 2015 à 22:16
+-- Généré le :  Mar 27 Octobre 2015 à 21:59
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -242,6 +242,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
   `status` int(11) NOT NULL,
+  `session` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_8D93D649D60322AC` (`role_id`),
   KEY `IDX_8D93D649979B1AD6` (`company_id`)
@@ -251,8 +252,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Contenu de la table `user`
 --
 
-INSERT INTO `user` (`id`, `role_id`, `company_id`, `firstName`, `lastName`, `mail`, `salt`, `password`, `phoneNumber`, `optIn`, `created`, `updated`, `status`) VALUES
-  (1, 1, 1, 'Admin', 'istrateur', 'contact@alexandrebernard.fr', 'tre', 'tre', '0606060606', 1, '2015-10-15 00:00:00', '2015-10-15 00:00:00', 1);
+INSERT INTO `user` (`id`, `role_id`, `company_id`, `firstName`, `lastName`, `mail`, `salt`, `password`, `phoneNumber`, `optIn`, `created`, `updated`, `status`, `session`) VALUES
+  (1, 1, 1, 'Admin', 'istrateur', 'contact@alexandrebernard.fr', 'GZokcpR4upD65B/avAk85XDfEM2QLg==', '$2y$10$R1pva2NwUjR1cEQ2NUIvYO.w14kb4WJdJK4a0hi5cQhzxXmTx8w4O', '0606060606', 1, '2015-10-15 00:00:00', '2015-10-15 00:00:00', 1, 'vv4c6vneqk6rqkht5u766t26p3');
 
 --
 -- Contraintes pour les tables exportées

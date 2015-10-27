@@ -11,6 +11,11 @@ namespace MealBooker\model;
     /*                Date: 28/09/2015 17:01                */
     /*                 All right reserved                  */
 /*-----------------------------------------------------*/
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\OneToMany;
+use Doctrine\ORM\Mapping\Table;
 
 /**
  * @Entity
@@ -77,6 +82,12 @@ class User extends DomainObject
      * @var bool
      */
     private $optIn = false;
+
+    /**
+     * @Column(type="string")
+     * @var string
+     */
+    private $session = false;
 
     /**
      * User constructor.
@@ -251,6 +262,38 @@ class User extends DomainObject
     public function setOptIn($optIn)
     {
         $this->optIn = $optIn;
+    }
+
+    /**
+     * @return Meal[]
+     */
+    public function getMeals()
+    {
+        return $this->meals;
+    }
+
+    /**
+     * @param Meal[] $meals
+     */
+    public function setMeals($meals)
+    {
+        $this->meals = $meals;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSession()
+    {
+        return $this->session;
+    }
+
+    /**
+     * @param string $session
+     */
+    public function setSession($session)
+    {
+        $this->session = $session;
     }
 
     /**

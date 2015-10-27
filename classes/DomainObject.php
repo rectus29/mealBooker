@@ -50,6 +50,17 @@ class DomainObject
     protected $status;
 
     /**
+     * DomainObject constructor.
+     */
+    public function __construct()
+    {
+        $this->setCreated(new DateTime());
+        $this->setUpdated(new DateTime());
+        $this->setStatus(1);
+    }
+
+
+    /**
      * @return int
      */
     public function getId()

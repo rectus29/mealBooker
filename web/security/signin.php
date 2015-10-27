@@ -15,21 +15,23 @@ use MealBooker\manager\SecurityManager;
 if ($_POST & isset($_POST['login']) && isset($_POST['password'])) {
     $login = $_POST['login'];
     $password = $_POST['password'];
+    echo $login;
+    echo $password;
     if(SecurityManager::get()->authentificate($login, $password, $_SESSION)){
-        header('Location: /');
+        header('Location: '. WEB_PATH);
     }else{
-        header('Location: /');
+        header('Location: '. WEB_PATH .'?error=authError');
     }
 
 } else {
 ?>
-<form class="form-horizontal col-md-4 col-md-offset-4 " id="connectWrapper">
+<form class="form-horizontal col-md-4 col-md-offset-4 " target="#" method="post" id="connectWrapper">
   <h2>Connexion</h2>
     <div class="input-group">
         <div class="input-group-addon">
             <i class="fa fa-user"></i>
         </div>
-        <input class="form-control" type="text"/>
+        <input name="login" class="form-control" type="text"/>
     </div>
     <br/>
 
@@ -37,16 +39,19 @@ if ($_POST & isset($_POST['login']) && isset($_POST['password'])) {
         <div class="input-group-addon">
             <i class="fa fa-lock"></i>
         </div>
-        <input class="form-control" type="password"/>
+        <input name="password" class="form-control" type="password"/>
     </div>
     <br/>
 
     <div class="form-group" style="text-align: center">
-        <button type="submit" class="btn btn-warning">
-            Connection
-        </button>
+        <input type="submit" class="btn btn-warning" value="Connection"/>
     </div>
-    <span id="feedback"/>
+    <span id="feedback">
+        <?php
+            if(isset($_GET['error']))
+                echo 'Erreur lors de l\'authentification';
+        ?>
+    </span>
 </form>
     <?php
 }

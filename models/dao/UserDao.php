@@ -63,10 +63,30 @@ class UserDao extends GenericDAO {
      */
     public function getUserByMail($mail)
     {
-        $query = $this->entityManager->createQuery("SELECT e FROM User WHERE mail = '". $mail ."'");
-        $result =$query->getResult();
-        if(sizeof($result)>0)
-            return $result[1];
+        $query = $this->entityManager->createQuery('
+          SELECT e
+          FROM ' . User::class . ' e
+          WHERE e.mail = :mail'
+        )->setParameter('mail', $mail);
+        if($query->getResult() != null)
+            return $query->getResult()[0];
+        return null;
+    }
+
+    /**
+     * find user by session
+     * @param $mail
+     * @return User|null
+     */
+    public function getBySession($session)
+    {
+        $query = $this->entityManager->createQuery('
+          SELECT e
+          FROM ' . User::class . ' e
+          WHERE e.session = :sessi'
+        )->setParameter('sessi', $session);
+        if($query->getResult() != null)
+            return $query->getResult()[0];
         return null;
     }
 

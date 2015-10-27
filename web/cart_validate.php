@@ -14,21 +14,36 @@ use MealBooker\manager\SecurityManager;
 use MealBooker\model\Meal;
 use MealBooker\models\dao\CourseDao;
 use MealBooker\models\dao\DrinkDao;
+use MealBooker\models\dao\MealDao;
 use MealBooker\models\dao\TimeFrameDao;
 
 $courseDao = new CourseDao($em);
 $drinkDao = new DrinkDao($em);
 $timeFrameDao = new TimeFrameDao($em);
+$mealDao = new MealDao($em);
 
 if(!isset($_COOKIE['mealCart']) && SecurityManager::get()->isAuthentified($_SESSION))
     header('location :' .APP_PATH);
 
 $mealCart = json_decode($_COOKIE['mealCart']);
 foreach($mealCart->cart as $mealStub){
-    $meal = new Meal();
-    echo $mealStub->id;
+    $drink = $drinkDao->getByPrimaryKey($mealStub->drink);
+    $course = $courseDao->getByPrimaryKey($mealStub->course);
+    $timeframe = $timeFrameDao->getByPrimaryKey($mealStub->timeframe);
+    if($drink != null && $course!= null &&  $timeframe!= null){
+        $meal = new Meal();
+        $meal->setUser(SecurityManager::get()->getCurrentUser($_SESSION));
+        $meal->setBookingId($mealStub->id);
+        $meal->setDrink($drink);
+        $meal->setCourse($course);
+        $meal->setTimeFrame($timeframe);
+        $mealDao->save($meal);
+    }
 }
-
+if (isset($_COOKIE['mealCart'])) {
+    unset($_COOKIE['mealCart']);
+    setcookie('mealCart', '', time() - 3600);
+}
 
 ?>
 <div class="success">
