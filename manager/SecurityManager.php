@@ -15,9 +15,9 @@ namespace MealBooker\manager;
 use Doctrine\ORM\EntityManager;
 use MealBooker\model\User;
 use MealBooker\models\dao\UserDao;
-include_once '../bootstrap.php';
 
-class SecurityManager {
+class SecurityManager
+{
 
     /**
      * @var SecurityManager
@@ -35,7 +35,7 @@ class SecurityManager {
      */
     public function __construct($entityManager)
     {
-       self::$em = $entityManager;
+        self::$em = $entityManager;
     }
 
 
@@ -66,8 +66,12 @@ class SecurityManager {
      */
     public function isAuthentified($session)
     {
-        if (isset($session['auth']) && $session['auth'] === true)
-            return true;
+        if (isset($session['auth'])) {
+            $userDao = new UserDao(self::$em);
+            $user = $userDao->getBySession($session['auth']);
+            if ($user != null)
+                return true;
+        }
         return false;
     }
 
@@ -79,7 +83,7 @@ class SecurityManager {
     public function isAdmin($session)
     {
         $user = $this->getCurrentUser($session);
-        if($user != null && $user->getRole()!= null)
+        if ($user != null && $user->getRole() != null)
             return $user->getRole()->isIsAdmin();
         return false;
     }
@@ -88,19 +92,19 @@ class SecurityManager {
      * check credential and authenticate user
      * @param $login
      * @param $password
-     * @return bool
+     * @return User
      */
     public function authentificate($login, $password)
     {
         $userDao = new UserDao(self::$em);
         $user = $userDao->getUserByMail($login);
-        if ($user != null && $user->getPassword() === password_hash($password , PASSWORD_BCRYPT, ['salt' => $user->getSalt()])) {
+        if ($user != null && $user->getPassword() === password_hash($password, PASSWORD_BCRYPT, ['salt' => $user->getSalt()])) {
             $user->setSession(session_id());
             $userDao->save($user);
-            $_SESSION['auth'] = true;
-            return true;
+            $_SESSION['auth'] = session_id();
+            return $user;
         } else {
-            return false;
+            return null;
         }
     }
 
@@ -132,4 +136,19 @@ class SecurityManager {
         }
         return $string;
     }
+
+    /**
+     * logout user by session id
+     * @param $session
+     */
+    public function logOutUser($session)
+    {
+        $userDao = new UserDao(self::$em);
+        $user = $this->getCurrentUser($session['auth']);
+        if ($user != null) {
+            $user->setSession(null);
+            $userDao->save($user);
+        }
+    }
+
 }

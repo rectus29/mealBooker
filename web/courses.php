@@ -31,7 +31,7 @@ $courseDao = new CourseDao($em);
             <div class="col-md-4">
                 <a href="<?php echo APP_PATH ?>/web/?page=meal&courseID=<?php echo $course->getId(); ?>" class="card">
                     <div class="meal-thumbnail">
-                        <img src="img/feu.jpg" alt="" class="img-responsive">
+                        <img src="<?php echo APP_PATH; ?>files/course/<?php echo $course->getId(); ?>.jpg" alt="" class="img-responsive">
 
                         <div class="card_date">
                             <p><?php echo $course->getUpdated()->format('d M Y') ?></p>

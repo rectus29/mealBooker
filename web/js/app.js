@@ -32,3 +32,18 @@ function boxOpen(content) {
 
 
 }
+
+
+$(document).on('click', 'signupForm > input[type="submit"]', function(e){
+    e.preventDefault();
+    var requiredFree = true;
+    $('input.required').each(function(){
+        if($(this).val() == null || $(this).val().length < 1){
+            $(this).css('background', '#FFD5D5');
+            requiredFree = false;
+        }
+    });
+    if(requiredFree){
+        $(this).parent('form').submit();
+    }
+});

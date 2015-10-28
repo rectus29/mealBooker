@@ -35,26 +35,21 @@ class CompanyDao extends GenericDAO {
     }
 
     /**
-     * @inheritdoc
-     * @param $ent Company
-     */
-    public function save($ent) {
-        parent::save($ent);
-    }
-
-    /**
-     * @inheritdoc
-     * @param $ent
-     */
-    public function delete($ent) {
-        parent::delete($ent);
-    }
-
-    /**
      * Find All
      * @return Company[]
      */
     public function getAll() {
         return parent::findAll(Company::class);
+    }
+
+    public function getByValidationCode($validationCode){
+        $query = $this->entityManager->createQuery('
+          SELECT e
+          FROM ' . Company::class . ' e
+          WHERE e.validationCode = :validcode'
+        )->setParameter('validcode', $validationCode);
+        if($query->getResult() != null)
+            return $query->getResult()[0];
+        return null;
     }
 }

@@ -17,8 +17,6 @@ use MealBooker\models\dao\ConfigDao;
 use MealBooker\model;
 
 require_once(dirname(__FILE__) . '/../config/global.php');
-require_once(ROOT_DIR . '/bootstrap.php');
-require_once(ROOT_DIR . '/cli-config.php');
 
 $configDao = new ConfigDao($em);
 
@@ -73,9 +71,11 @@ include 'head.php';
                         include 'courses.php';
                         break;
                 }
-            }else{
+            } else {
                 include 'courses.php';
             }
+        }else if(false){
+            include 'security/signup.php';
         }else{
             include 'security/signin.php';
         }

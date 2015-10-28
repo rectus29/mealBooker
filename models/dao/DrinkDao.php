@@ -35,22 +35,6 @@ class DrinkDao extends GenericDAO {
     }
 
     /**
-     * @inheritdoc
-     * @param $entity
-     */
-    public function save($entity) {
-        parent::save($entity);
-    }
-
-    /**
-     * @inheritdoc
-     * @param $entity
-     */
-    public function delete($entity) {
-        parent::delete($entity);
-    }
-
-    /**
      * Find All Drink
      * @return Drink[]
      */

@@ -64,7 +64,7 @@ if (isset($_GET) && isset($_GET['courseID'])) {
                         <?php
                         foreach ($timeFrameDao->getAll() as $timeFrame) {
                             ?>
-                            <option value="<?php echo $timeFrame->getId(); ?>"><?php echo $timeFrame->getStart() . " - " . $timeFrame->getStop() ?></option>
+                            <option value="<?php echo $timeFrame->getId(); ?>"><?php echo $timeFrame->getStart()?></option>
                             <?php
                         }
                         ?>

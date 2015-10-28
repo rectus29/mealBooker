@@ -1,7 +1,20 @@
 <?php
-require(dirname(__FILE__) . '/../../config/global.php');
-
+namespace MealBooker;
+    /*-----------------------------------------------------*/
+    /*      _____           _               ___   ___      */
+    /*     |  __ \         | |             |__ \ / _ \     */
+    /*     | |__) |___  ___| |_ _   _ ___     ) | (_) |    */
+    /*     |  _  // _ \/ __| __| | | / __|   / / \__, |    */
+    /*     | | \ \  __/ (__| |_| |_| \__ \  / /_   / /     */
+    /*     |_|  \_\___|\___|\__|\__,_|___/ |____| /_/      */
+    /*                                                     */
+    /*                Date: 23/09/2015                     */
+    /*                 All right reserved                  */
+    /*-----------------------------------------------------*/
+require( '../../config/global.php');
+use MealBooker\manager\SecurityManager;
+SecurityManager::get()->logOutUser($_SESSION);
 unset($_SESSION['auth']);
-unset($_SESSION);
+session_regenerate_id();
 header('Location : /index.php');
 

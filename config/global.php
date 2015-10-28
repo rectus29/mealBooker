@@ -11,8 +11,14 @@
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
+use Doctrine\ORM\Tools\Setup;
+use Doctrine\ORM\EntityManager;
+use MealBooker\manager\SecurityManager;
+use MealBooker\model;
+use MealBooker\models\dao\GenericDAO;
+
 session_start();
-define('APP_PATH',  '/mealbooker/');
+define('APP_PATH',  '/reservresto/');
 define('WEB_PATH',  APP_PATH.'web/');
 define('LIB_DIR',  dirname(__FILE__).'/../lib/');
 define('CFG_DIR',  dirname(__FILE__).'/');
@@ -26,3 +32,17 @@ define('DEV_MODE', true);
 if(!file_exists(FILE_DIR)){
     mkdir(FILE_DIR);
 }
+require_once ROOT_DIR."/vendor/autoload.php";
+
+// database configuration parameters
+$conn = array(
+    'driver' => 'pdo_mysql',
+    'user'     => 'root',
+    'password' => '',
+    'dbname'   => 'mealbooker'
+);
+// obtaining the entity manager
+$config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/classes/"), DEV_MODE);
+$em = EntityManager::create($conn, $config);
+$securityMananger = SecurityManager::init($em);
+$gDao = new GenericDAO($em);
