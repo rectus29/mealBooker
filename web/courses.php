@@ -28,7 +28,7 @@ $courseDao = new CourseDao($em);
          */
         foreach ($courseDao->getAll() as $course) {
             ?>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <a href="<?php echo APP_PATH ?>/web/?page=meal&courseID=<?php echo $course->getId(); ?>" class="card">
                     <div class="meal-thumbnail">
                         <img src="<?php echo APP_PATH; ?>files/course/<?php echo $course->getId(); ?>.jpg" alt="" class="img-responsive">

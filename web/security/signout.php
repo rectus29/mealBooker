@@ -10,11 +10,12 @@ namespace MealBooker;
     /*                                                     */
     /*                Date: 23/09/2015                     */
     /*                 All right reserved                  */
-    /*-----------------------------------------------------*/
-require( '../../config/global.php');
+/*-----------------------------------------------------*/
+require('../../config/global.php');
 use MealBooker\manager\SecurityManager;
+
 SecurityManager::get()->logOutUser($_SESSION);
 unset($_SESSION['auth']);
 session_regenerate_id();
-header('Location : /index.php');
+header('Location : ' . WEB_PATH);
 

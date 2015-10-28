@@ -74,7 +74,7 @@ include 'head.php';
             } else {
                 include 'courses.php';
             }
-        }else if(false){
+        }else if(isset($_GET['page']) && $_GET['page'] == 'inscription'){
             include 'security/signup.php';
         }else{
             include 'security/signin.php';
@@ -87,3 +87,5 @@ include 'head.php';
 ?>
 </body>
 </html>
+<?php
+

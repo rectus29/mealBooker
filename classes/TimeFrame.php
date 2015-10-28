@@ -78,7 +78,7 @@ class TimeFrame extends DomainObject
      */
     function __toString()
     {
-        return self::getStart() . " - " . self::getStop();
+        return self::getStart();
     }
 
 
