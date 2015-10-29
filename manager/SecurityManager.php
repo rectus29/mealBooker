@@ -98,7 +98,7 @@ class SecurityManager
     {
         $userDao = new UserDao(self::$em);
         $user = $userDao->getUserByMail($login);
-        if ($user != null && $user->getPassword() === password_hash($password, PASSWORD_BCRYPT, ['salt' => $user->getSalt()])) {
+        if ($user != null && $user->getPassword() === password_hash($password, PASSWORD_BCRYPT, ['salt' => $user->getSalt()]) && $user->getStatus() == 1 ) {
             $user->setSession(session_id());
             $userDao->save($user);
             $_SESSION['auth'] = session_id();
