@@ -89,8 +89,7 @@ class MailManager
     {
         self::$mail->addAddress($user->getMail());
         self::$mail->Subject = 'Inscription Aurore traiteur';
-        self::$mail->Body = 'This is the HTML message body <b>in bold!</b> <a href="' . SERVER_URL . WEB_PATH . "?page=signupvalidation&authToken=" . $user->getSession() . '">Se connecter</a>';
-        self::$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+        self::$mail->Body = 'Pour valider votre inscription cliquez sur le suivant : <a href="' . SERVER_URL . WEB_PATH . "?page=signupvalidation&authToken=" . $user->getSession() . '">Se connecter</a>';
         if (!self::$mail->send()) {
             throw new Exception("Message could not be sent - " . self::$mail->ErrorInfo);
         } else {
@@ -105,6 +104,7 @@ class MailManager
      * @return bool
      * @throws Exception
      */
+    //TODO faire le recap commande
     public static function sendOrderConfirmation($user, $order)
     {
         self::$mail->addAddress($user->getMail());
