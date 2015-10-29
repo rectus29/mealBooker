@@ -34,7 +34,7 @@ function boxOpen(content) {
 }
 
 
-$(document).on('click', 'signupForm > input[type="submit"]', function(e){
+$(document).on('click', '#signupForm input[type="submit"]', function(e){
     e.preventDefault();
     var requiredFree = true;
     $('input.required').each(function(){
@@ -44,6 +44,6 @@ $(document).on('click', 'signupForm > input[type="submit"]', function(e){
         }
     });
     if(requiredFree){
-        $(this).parent('form').submit();
+        $($(this).parents('form')[0]).submit();
     }
 });

@@ -25,7 +25,7 @@ if ($_POST & isset($_POST['login']) && isset($_POST['password'])) {
 
 } else {
     ?>
-    <form class="form-horizontal col-md-4 col-md-offset-4 " target="#" method="post" id="connectWrapper">
+    <form class="form-horizontal col-md-4 col-md-offset-4 " target="<?php echo WEB_PATH;?>" method="post" id="connectWrapper">
         <h2>Connexion</h2>
 
         <div class="input-group">
@@ -45,14 +45,16 @@ if ($_POST & isset($_POST['login']) && isset($_POST['password'])) {
         <br/>
 
         <div class="form-group" style="text-align: center">
+            <a href="<?php echo WEB_PATH;?>?page=inscription" class="btn btn-default">S'incrire</a>
             <input type="submit" class="btn btn-warning" value="Connection"/>
         </div>
-    <span id="feedback">
         <?php
-        if (isset($_GET['error']))
+        if (isset($_GET['error'])) {
+            echo '<div id = "feedback" class="alert alert-danger" >';
             echo 'Erreur lors de l\'authentification';
+            echo '</div>';
+        }
         ?>
-    </span>
     </form>
     <?php
 }

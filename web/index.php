@@ -12,11 +12,13 @@ namespace MealBooker;
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
+use MealBooker\manager\MailManager;
 use MealBooker\manager\SecurityManager;
 use MealBooker\models\dao\ConfigDao;
 use MealBooker\model;
 
-require_once(dirname(__FILE__) . '/../config/global.php');
+require_once( dirname(__FILE__) . '/../config/global.php');
+require_once('../vendor/phpmailer/phpmailer/PHPMailerAutoload.php');
 
 $configDao = new ConfigDao($em);
 
@@ -30,7 +32,6 @@ try {
 //check maintenance mod
 if($configDao->getByKey('serverState') != null && $configDao->getByKey('serverState')->getValue() == '1')
     $maintenance = true;
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -74,8 +75,18 @@ include 'head.php';
             } else {
                 include 'courses.php';
             }
-        }else if(isset($_GET['page']) && $_GET['page'] == 'inscription'){
-            include 'security/signup.php';
+        }else if(isset($_GET['page'])){
+            switch ($_GET['page']){
+                case 'inscription':
+                    include 'security/signup.php';
+                    break;
+                case 'signupvalidation':
+                    include 'security/signupvalidation.php';
+                    break;
+                default :
+                    include 'security/signin.php';
+                    break;
+            }
         }else{
             include 'security/signin.php';
         }

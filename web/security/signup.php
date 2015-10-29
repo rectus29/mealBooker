@@ -11,6 +11,8 @@
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
+use MealBooker\manager\MailManager;
+use MealBooker\manager\SecurityManager;
 use MealBooker\model\User;
 use MealBooker\models\dao\CompanyDao;
 use MealBooker\models\dao\RoleDao;
@@ -31,7 +33,7 @@ if (isset($_POST) && isset($_POST['email']) && isset($_POST['phone']) && isset($
         //check password validation
         if ($_POST['password'] != $_POST['passwordCheck'])
             throw new Exception("Le champs mot de passe et confirmation mot de passe doivent étre identiques");
-        $user->setPassword(password_hash($_POST['password'],PASSWORD_BCRYPT, ['salt' => $user->getSalt() ]));
+        $user->setPassword(password_hash($_POST['password'], PASSWORD_BCRYPT, ['salt' => $user->getSalt()]));
         //set user role to user
         $role = $roleDao->getByPrimaryKey('2');
         if ($role == null)
@@ -45,10 +47,13 @@ if (isset($_POST) && isset($_POST['email']) && isset($_POST['phone']) && isset($
         //set optIn
         if (isset($_POST['optIn']))
             $user->setOptIn($_POST['optIn']);
+        //use session field to put authToken
+        $user->setSession(SecurityManager::get()->generateStringCode());
+        $user->setStatus(0);
         //save user
         $userDao->save($user);
-
-        header('Location: '.WEB_PATH.'?page=signupvalidation');
+        MailManager::get()->sendSignUpMail($user);
+        $info = "Un mail vous à été envoyé pour confirmer votre inscription.";
     } catch (Exception $ex) {
         $error = $ex->getMessage();
     }
@@ -113,9 +118,18 @@ if (isset($_POST) && isset($_POST['email']) && isset($_POST['phone']) && isset($
     <?php
     if ($error != null) {
         ?>
-        <span id="feeback">
+        <div class="alert alert-danger">
             <?php echo $error; ?>
-        </span>
+        </div>
+        <?php
+    }
+    ?>
+    <?php
+    if ($info != null) {
+        ?>
+        <div class="alert alert-success">
+            <?php echo $info; ?>
+        </div>
         <?php
     }
     ?>

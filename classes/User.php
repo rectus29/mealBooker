@@ -36,7 +36,7 @@ class User extends DomainObject
     private $lastName;
 
     /**
-     * @Column(type="string")
+     * @Column(type="string",unique=true)
      * @var String
      */
     private $mail;
