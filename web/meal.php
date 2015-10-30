@@ -82,9 +82,10 @@ if (isset($_GET) && isset($_GET['courseID'])) {
                         }
                         ?>
                 </section>
-                <div id="feedback" class="alert alert-danger">
+                <div id="feedback" class="alert alert-danger" style="display: none">
 
                 </div>
+            </div>
               <section class="validateCourse">
                 <div class="row">
                     <div class="col-md-4 col-md-offset-4">

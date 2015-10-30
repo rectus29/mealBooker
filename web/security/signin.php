@@ -26,33 +26,23 @@ if ($_POST & isset($_POST['login']) && isset($_POST['password'])) {
 } else {
     ?>
     <form class="form-horizontal col-md-4 col-md-offset-4 " target="<?php echo WEB_PATH;?>" method="post" id="connectWrapper">
-        <h2>Connexion</h2>
+        <h2>Vous avez un compte</h2>
 
-        <p>
-            Vous ne disposez pas encore de compte ? cliquez ici pour vous inscrire <br>
-
-            <a href="<?php echo WEB_PATH;?>?page=inscription" class="btn btn-default">S'incrire</a>
-
-        </p>
-
-        <div class="input-group">
-            <div class="input-group-addon">
-                <i class="fa fa-user"></i>
-            </div>
+        <div class="control-group">
+            <label for="login">E-mail</label>
             <input name="login" class="form-control" type="text"/>
         </div>
         <br/>
 
-        <div class="input-group">
-            <div class="input-group-addon">
-                <i class="fa fa-lock"></i>
-            </div>
+        <div class="control-group">
+            <label for="password">Password</label>
             <input name="password" class="form-control" type="password"/>
         </div>
         <br/>
 
         <div class="form-group" style="text-align: center">
-            <input type="submit" class="btn btn-warning" value="Connexion"/>
+            <a href="<?php echo WEB_PATH;?>?page=inscription" class="btn btn-default">S'incrire</a>
+            <input type="submit" class="btn btn-warning" value="Connection"/>
         </div>
         <?php
         if (isset($_GET['error'])) {
