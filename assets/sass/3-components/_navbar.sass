@@ -1,7 +1,29 @@
 .navbar
   background: #A9CE49
-  min-height: 0
+  min-height: 30px
   border: 0
+  z-index: 1000
+
+  ul
+    margin: 0
+    padding: 0
+    list-style: none
+    float: right
+
+    li
+      float: left
+      display: block
+
+      a
+        display: block
+        position: relative
+        padding: 5px 15px
+        color: $dark-green
+        text-decoration: none
+        font-weight: 400
+        &:hover, &:focus
+          background: $dark-green
+          color: $green
 
 .nav > li > a
   color: $dark-green
@@ -19,3 +41,23 @@
   &:hover
     background: #CE4949
     color: white
+
+.menu
+  ul
+    padding: 0
+    margin: 0
+    list-style: none
+
+    li
+      float: left
+      display: block
+
+    li > a
+      display: block
+      position: relative
+      padding: 5px 15px
+      color: $dark-green
+      text-decoration: none
+      &:hover, &:focus
+        background: $dark-green
+        color: $green
