@@ -54,9 +54,8 @@ if ($_POST && isset($_POST['course']) && isset($_POST['drink']) && isset($_POST[
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>#</th>
                 <th>Plats</th>
-                <th>Boisson</th>
+                <th>Boissons</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -66,9 +65,6 @@ if ($_POST && isset($_POST['course']) && isset($_POST['drink']) && isset($_POST[
                 foreach ($mealCart->cart as $meal) {
                     ?>
                     <tr>
-                        <td>
-                            <?php echo $meal->id; ?>
-                        </td>
                         <td>
                             <?php echo $courseDao->getByPrimaryKey($meal->course); ?>
                         </td>

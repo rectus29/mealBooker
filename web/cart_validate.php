@@ -69,5 +69,5 @@ if (isset($_COOKIE['mealCart'])) {
         <br>
         A bientôt sur Aurore Traiteur
     </p>
-    <a href="<?php echo WEB_PATH; ?>" class="btn btn-default">Retour à l'accueil</a>
+    <a href="/" class="btn btn-default">Retour à l'accueil</a>
 </div>
