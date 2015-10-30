@@ -17,42 +17,45 @@ if ($_POST & isset($_POST['login']) && isset($_POST['password'])) {
     $password = $_POST['password'];
     echo $login;
     echo $password;
-    if(SecurityManager::get()->authentificate($login, $password, $_SESSION)){
-        header('Location: '. WEB_PATH);
-    }else{
-        header('Location: '. WEB_PATH .'?error=authError');
+    if (SecurityManager::get()->authentificate($login, $password, $_SESSION) != null) {
+        header('Location: ' . WEB_PATH);
+    } else {
+        header('Location: ' . WEB_PATH . '?error=authError');
     }
 
 } else {
-?>
-<form class="form-horizontal col-md-4 col-md-offset-4 " target="#" method="post" id="connectWrapper">
-  <h2>Connexion</h2>
-    <div class="input-group">
-        <div class="input-group-addon">
-            <i class="fa fa-user"></i>
-        </div>
-        <input name="login" class="form-control" type="text"/>
-    </div>
-    <br/>
+    ?>
+    <form class="form-horizontal col-md-4 col-md-offset-4 " target="<?php echo WEB_PATH;?>" method="post" id="connectWrapper">
+        <h2>Connexion</h2>
 
-    <div class="input-group">
-        <div class="input-group-addon">
-            <i class="fa fa-lock"></i>
+        <div class="input-group">
+            <div class="input-group-addon">
+                <i class="fa fa-user"></i>
+            </div>
+            <input name="login" class="form-control" type="text"/>
         </div>
-        <input name="password" class="form-control" type="password"/>
-    </div>
-    <br/>
+        <br/>
 
-    <div class="form-group" style="text-align: center">
-        <input type="submit" class="btn btn-warning" value="Connection"/>
-    </div>
-    <span id="feedback">
+        <div class="input-group">
+            <div class="input-group-addon">
+                <i class="fa fa-lock"></i>
+            </div>
+            <input name="password" class="form-control" type="password"/>
+        </div>
+        <br/>
+
+        <div class="form-group" style="text-align: center">
+            <a href="<?php echo WEB_PATH;?>?page=inscription" class="btn btn-default">S'incrire</a>
+            <input type="submit" class="btn btn-warning" value="Connection"/>
+        </div>
         <?php
-            if(isset($_GET['error']))
-                echo 'Erreur lors de l\'authentification';
+        if (isset($_GET['error'])) {
+            echo '<div id = "feedback" class="alert alert-danger" >';
+            echo 'Erreur lors de l\'authentification';
+            echo '</div>';
+        }
         ?>
-    </span>
-</form>
+    </form>
     <?php
 }
 ?>

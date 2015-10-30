@@ -13,7 +13,7 @@
 
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 
-require_once "bootstrap.php";
+require_once "config/global.php";
 
 
 return ConsoleRunner::createHelperSet($em);

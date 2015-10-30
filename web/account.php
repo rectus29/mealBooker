@@ -13,6 +13,7 @@
 
 
 use MealBooker\manager\SecurityManager;
+use MealBooker\utils\Utils;
 
 $user = SecurityManager::get()->getCurrentUser($_SESSION);
 if (isset($user) && $user == null)
@@ -40,6 +41,7 @@ if (isset($user) && $user == null)
             <th>#</th>
             <th>Date</th>
             <th>Commande</th>
+            <th>Horaire</th>
         </tr>
         </thead>
         <tbody>
@@ -47,9 +49,10 @@ if (isset($user) && $user == null)
         foreach ($user->getMeals() as $meal) {
             ?>
             <tr>
-                <td><?php $meal->getBookingId() ?></td>
-                <td><?php $meal->getCreated() ?></td>
-                <td><?php $meal->getCourse() . " " . $meal->getDrink() ?></td>
+                <td><?php echo $meal->getBookingId(); ?></td>
+                <td><?php echo Utils::formatDate($meal->getCreated()); ?></td>
+                <td><?php echo $meal->getCourse() . " " . $meal->getDrink(); ?></td>
+                <td><?php echo $meal->getTimeFrame()->getStart();?></td>
             </tr>
             <?php
         }

@@ -36,7 +36,7 @@ class User extends DomainObject
     private $lastName;
 
     /**
-     * @Column(type="string")
+     * @Column(type="string",unique=true)
      * @var String
      */
     private $mail;
@@ -89,6 +89,7 @@ class User extends DomainObject
      */
     private $session = false;
 
+
     /**
      * User constructor.
      * @param String $firstName
@@ -109,7 +110,7 @@ class User extends DomainObject
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->mail = $mail;
-        $this->salt = ($salt == null) ? uniqid(mt_rand(), true) : $salt;
+        $this->salt = ($salt == null) ? str_replace('+', '.', base64_encode(mcrypt_create_iv(22, MCRYPT_DEV_URANDOM))) : $salt;
         $this->password = $password;
         $this->phoneNumber = $phoneNumber;
         $this->role = $role;
@@ -303,8 +304,8 @@ class User extends DomainObject
     public function getFormattedName()
     {
         $out = null;
-        if($this->getFirstName() != null)
-            $out = $this->getFirstName() ." ";
+        if ($this->getFirstName() != null)
+            $out = $this->getFirstName() . " ";
         return $this->getFirstName() . " " . $this->getLastName();
     }
 

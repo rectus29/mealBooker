@@ -24,7 +24,25 @@ if (isset($_GET) && isset($_GET['courseID'])) {
     $course = $courseDao->getByPrimaryKey($_GET['courseID']);
     if ($course != null) {
         ?>
-        <form action="<?php echo APP_PATH;?>/web/?page=cart" method="post" id="mealForm">
+        <script type="text/javascript">
+           $(document).on('click', '#mealForm input[type="submit"]', function(e){
+                e.preventDefault();
+                $('#feedback').html('');
+                $('#feedback').hide();
+                var requiredFree = true;
+                var drinkSelected = false;
+                if($('input[name="drink"]:checked').length > 0)
+                    drinkSelected = true;
+                if(drinkSelected && requiredFree){
+                    $($(this).parents('form')[0]).submit();
+                }else if(!drinkSelected){
+                    $('#feedback').html('Veuillez selectionner une boisson');
+                    $('#feedback').show();
+                }
+            });
+
+        </script>
+        <form action="<?php echo WEB_PATH;?>?page=cart" method="post" id="mealForm">
             <input type="hidden" value="<?php echo $course->getId(); ?>" name="course" id="course"/>
             <input type="hidden" value="<?php echo time(); ?>" name="ts" />
             <article class="course">
@@ -47,7 +65,7 @@ if (isset($_GET) && isset($_GET['courseID'])) {
                             ?>
                             <div class="radio">
                               <label>
-                                <input type="radio" name="drink" id="<?php echo $drink->getId(); ?>" value="<?php echo $drink->getId(); ?>">
+                                <input type="radio" name="drink" class="required" required id="<?php echo $drink->getId(); ?>" value="<?php echo $drink->getId(); ?>">
                                 <?php echo $drink->getName() ?>
                               </label>
                             </div>
@@ -60,30 +78,33 @@ if (isset($_GET) && isset($_GET['courseID'])) {
                     <p>
                       Le 27 octobre 2015 entre :
                     </p>
-                    <select name="timeframe" id="tf">
+                    <select name="timeframe" id="tf" class="required">
                         <?php
                         foreach ($timeFrameDao->getAll() as $timeFrame) {
                             ?>
-                            <option value="<?php echo $timeFrame->getId(); ?>"><?php echo $timeFrame->getStart() . " - " . $timeFrame->getStop() ?></option>
+                            <option value="<?php echo $timeFrame->getId(); ?>"><?php echo $timeFrame->getStart()?></option>
                             <?php
                         }
                         ?>
                 </select>
               </div>
               </section>
+                <div id="feedback" class="alert alert-danger">
+
+                </div>
               <section class="validateCourse">
                 <div class="row">
                     <div class="col-md-4 col-md-offset-4">
                         <a href="<?php WEB_PATH ?>?page=course" class="btn btn-default">Revenir à la sélection</a>
-                        <input type="submit" id="submit" class="btn btn-green" value="Réserver"/>
+                        <input type="submit" class="btn btn-green" value="Réserver"/>
                     </div>
                 </div>
               </section>
-          </article>
+            </article>
         </form>
         <?php
     }
 } else {
-    header("location:");
+    header("location:" . WEB_PATH);
 }
 ?>

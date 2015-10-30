@@ -22,8 +22,11 @@ $drinkDao = new DrinkDao($em);
 $timeFrameDao = new TimeFrameDao($em);
 $mealDao = new MealDao($em);
 
-if(!isset($_COOKIE['mealCart']) && SecurityManager::get()->isAuthentified($_SESSION))
-    header('location :' .APP_PATH);
+header('Location : ' . WEB_PATH);
+
+//if no cart or not logged in
+if(!isset($_COOKIE['mealCart']) || SecurityManager::get()->isAuthentified($_SESSION))
+    header('Location : ' . WEB_PATH);
 
 $mealCart = json_decode($_COOKIE['mealCart']);
 foreach($mealCart->cart as $mealStub){
@@ -44,7 +47,6 @@ if (isset($_COOKIE['mealCart'])) {
     unset($_COOKIE['mealCart']);
     setcookie('mealCart', '', time() - 3600);
 }
-
 ?>
 <div class="success">
     <i class="fa fa-check-circle"></i>
@@ -55,5 +57,5 @@ if (isset($_COOKIE['mealCart'])) {
         <br>
         A bientôt sur Aurore Traiteur
     </p>
-    <a href="<?php WEB_PATH ?>" class="btn btn-default">Retour à l'accueil</a>
+    <a href="<?php echo WEB_PATH; ?>" class="btn btn-default">Retour à l'accueil</a>
 </div>

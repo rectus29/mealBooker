@@ -75,7 +75,6 @@ class UserDao extends GenericDAO {
 
     /**
      * find user by session
-     * @param $mail
      * @return User|null
      */
     public function getBySession($session)
