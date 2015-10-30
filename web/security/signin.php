@@ -26,20 +26,16 @@ if ($_POST & isset($_POST['login']) && isset($_POST['password'])) {
 } else {
     ?>
     <form class="form-horizontal col-md-4 col-md-offset-4 " target="<?php echo WEB_PATH;?>" method="post" id="connectWrapper">
-        <h2>Connexion</h2>
+        <h2>Vous avez un compte</h2>
 
-        <div class="input-group">
-            <div class="input-group-addon">
-                <i class="fa fa-user"></i>
-            </div>
+        <div class="control-group">
+            <label for="login">E-mail</label>
             <input name="login" class="form-control" type="text"/>
         </div>
         <br/>
 
-        <div class="input-group">
-            <div class="input-group-addon">
-                <i class="fa fa-lock"></i>
-            </div>
+        <div class="control-group">
+            <label for="password">Password</label>
             <input name="password" class="form-control" type="password"/>
         </div>
         <br/>
