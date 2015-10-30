@@ -14,6 +14,7 @@ namespace MealBooker\manager;
 
 use Doctrine\ORM\EntityManager;
 use Exception;
+use MealBooker\model\MealOrder;
 use MealBooker\model\User;
 use MealBooker\models\dao\UserDao;
 use PHPMailer;
@@ -89,7 +90,7 @@ class MailManager
     {
         self::$mail->addAddress($user->getMail());
         self::$mail->Subject = 'Inscription Aurore traiteur';
-        self::$mail->Body = 'Pour valider votre inscription cliquez sur le suivant : <a href="' . SERVER_URL . WEB_PATH . "?page=signupvalidation&authToken=" . $user->getSession() . '">Se connecter</a>';
+        self::$mail->Body = 'Pour valider votre inscription cliquez sur le lien suivant : <a href="' . SERVER_URL . WEB_PATH . "?page=signupvalidation&authToken=" . $user->getSession() . '">Se connecter</a>';
         if (!self::$mail->send()) {
             throw new Exception("Message could not be sent - " . self::$mail->ErrorInfo);
         } else {
@@ -100,7 +101,7 @@ class MailManager
     /**
      * send order confirmation mail
      * @param User $user
-     * @param Order $order
+     * @param MealOrder $order
      * @return bool
      * @throws Exception
      */

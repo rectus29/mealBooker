@@ -23,6 +23,7 @@ $userDao = new UserDao($em);
         <tr>
             <th>#</th>
             <th>Nom</th>
+            <th>Mail</th>
             <th>Créé le</th>
             <th>Société</th>
             <th>Rôle</th>
@@ -37,6 +38,7 @@ $userDao = new UserDao($em);
             <tr>
                 <td><?php echo $user->getId();?></td>
                 <td><?php echo $user->getFormattedName();?></td>
+                <td><?php echo $user->getMail();?></td>
                 <td><?php echo $user->getCreated()->format('d M Y');?></td>
                 <td><?php echo $user->getCompany()->getName();?></td>
                 <td><?php echo $user->getRole()->getName();?></td>

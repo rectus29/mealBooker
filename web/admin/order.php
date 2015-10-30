@@ -40,14 +40,13 @@ $orderDao = new OrderDao($em);
                 <td><?php echo Utils::get()->formatDate($order->getCreated(), "d M Y H:m"); ?></td>
                 <td><?php echo $order->getTimeFrame()->__toString(); ?></td>
                 <td>
-                    <?php
-                    foreach ($order->getMeals() as $meal) {
-                        echo $meal->getCourse()->getName() . " - ". $meal->getDrink()->getName()
-                        ?>
-
+                    <ul>
                         <?php
-                    }
-                    ?>
+                        foreach ($order->getMeals() as $meal) {
+                            echo "<li>" . $meal->getCourse()->getName() . " - " . $meal->getDrink()->getName() . " </li>";
+                        }
+                        ?>
+                    </ul>
                 </td>
                 <td><?php echo $order->getUser()->getFormattedName() . " (" . $order->getUser()->getCompany()->getName() . ")"; ?></td>
                 <td>

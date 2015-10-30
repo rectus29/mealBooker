@@ -18,7 +18,8 @@ use MealBooker\models\dao\CompanyDao;
 use MealBooker\models\dao\RoleDao;
 use MealBooker\models\dao\UserDao;
 
-$error = "";
+$error = null;
+$info = null;
 if (isset($_POST) && isset($_POST['email']) && isset($_POST['phone']) && isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['idEntreprise']) && isset($_POST['password']) && isset($_POST['passwordCheck'])) {
     $companyDao = new CompanyDao($em);
     $userDao = new UserDao($em);
@@ -53,7 +54,7 @@ if (isset($_POST) && isset($_POST['email']) && isset($_POST['phone']) && isset($
         //save user
         $userDao->save($user);
         MailManager::get()->sendSignUpMail($user);
-        $info = "Un mail vous à été envoyé pour confirmer votre inscription.";
+        $info = "Un mail vous a été envoyé pour confirmer votre inscription.";
     } catch (Exception $ex) {
         $error = $ex->getMessage();
     }
@@ -92,7 +93,7 @@ if (isset($_POST) && isset($_POST['email']) && isset($_POST['phone']) && isset($
         </div>
         <div class="form-group">
             <label for="idEntreprise">Identifiant entreprise</label>
-            <input type="text" name="idEntreprise" class="form-control required" id="idEntreprise" placeholder="Identifiant entreprise">
+            <input type="text" name="idEntreprise" class="form-control required" id="idEntreprise" placeholder="0123456">
         </div>
         <div class="row">
             <div class="col-md-6">
