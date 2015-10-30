@@ -25,6 +25,8 @@ if (isset($_POST) && isset($_POST['email']) && isset($_POST['phone']) && isset($
     $userDao = new UserDao($em);
     $roleDao = new RoleDao($em);
     try {
+        if($userDao->getUserByMail($_POST['email'])!= null)
+            throw new Exception("Ce mail est déjà utilisé par un compte existant");
         //set user data
         $user = new User();
         $user->setLastName($_POST['lastName']);

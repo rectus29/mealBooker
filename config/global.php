@@ -20,7 +20,7 @@ use MealBooker\model;
 use MealBooker\models\dao\GenericDAO;
 
 session_start();
-define('APP_PATH',  '/mealbooker/');
+define('APP_PATH',  '/reservresto/');
 define('WEB_PATH',  APP_PATH.'web/');
 define('SERVER_URL',  'http://127.0.0.1');
 define('LIB_DIR',  dirname(__FILE__).'/../lib/');

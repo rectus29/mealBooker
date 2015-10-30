@@ -90,7 +90,22 @@ class MailManager
     {
         self::$mail->addAddress($user->getMail());
         self::$mail->Subject = 'Inscription Aurore traiteur';
-        self::$mail->Body = 'Pour valider votre inscription cliquez sur le lien suivant : <a href="' . SERVER_URL . WEB_PATH . "?page=signupvalidation&authToken=" . $user->getSession() . '">Se connecter</a>';
+        self::$mail->Body = '
+        <table>
+            <tbody>
+                <tr>
+                    <td style="background: black;"><img src="'. SERVER_URL . WEB_PATH. 'img/logo_mail.jpg"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        Bonjour,<br/>
+                        <br />
+                        Pour valider votre inscription cliquez sur le lien suivant : <a href="' . SERVER_URL . WEB_PATH . "?page=signupvalidation&authToken=" . $user->getSession() . '">Se connecter</a>
+                    </td>
+                </tr>
+            </tbody>
+	    </table>';
         if (!self::$mail->send()) {
             throw new Exception("Message could not be sent - " . self::$mail->ErrorInfo);
         } else {
@@ -105,12 +120,26 @@ class MailManager
      * @return bool
      * @throws Exception
      */
-    //TODO faire le recap commande
     public static function sendOrderConfirmation($user, $order)
     {
         self::$mail->addAddress($user->getMail());
         self::$mail->Subject = 'Confirmation de votre commande Aurore traiteur';
-        self::$mail->Body = 'This is the HTML message body <b>in bold!</b>';
+        self::$mail->Body = '
+        <table>
+            <tbody>
+                <tr style="background: black;">
+                    <td><img src="'. SERVER_URL . WEB_PATH. 'img/logo_mail.jpg"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        Bonjour,<br/>
+                        <br />
+                        Votre commande est bien validée rendez vous à l\'horaire indiqué sur le parking de votre entreprise pour récupérer votre repas.
+                    </td>
+                </tr>
+            </tbody>
+	    </table>';
         self::$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
         if (!self::$mail->send()) {
             throw new Exception("Message could not be sent - " . self::$mail->ErrorInfo);
