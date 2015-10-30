@@ -73,22 +73,6 @@ if (isset($_GET) && isset($_GET['courseID'])) {
                         }
                         ?>
                 </section>
-                <section class="deliveryTime col-md-6">
-                  <h4>Choisissez un horaire de livraison </h4>
-                    <p>
-                      Le 27 octobre 2015 entre :
-                    </p>
-                    <select name="timeframe" id="tf" class="required">
-                        <?php
-                        foreach ($timeFrameDao->getAll() as $timeFrame) {
-                            ?>
-                            <option value="<?php echo $timeFrame->getId(); ?>"><?php echo $timeFrame->getStart()?></option>
-                            <?php
-                        }
-                        ?>
-                </select>
-              </div>
-              </section>
                 <div id="feedback" class="alert alert-danger">
 
                 </div>

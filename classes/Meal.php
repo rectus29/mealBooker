@@ -44,16 +44,10 @@ class Meal extends DomainObject
     private $course;
 
     /**
-     * @ManyToOne(targetEntity="TimeFrame")
-     * @var TimeFrame
+     * @ManyToOne(inversedBy="meals", targetEntity="MealOrder")
+     * @var MealOrder
      */
-    private $timeFrame;
-
-    /**
-     * @ManyToOne(inversedBy="meals", targetEntity="User")
-     * @var User
-     */
-    private $user;
+    private $order;
 
     /**
      * Meal constructor.
@@ -96,36 +90,21 @@ class Meal extends DomainObject
         $this->course = $course;
     }
 
-    /**
-     * @return TimeFrame
-     */
-    public function getTimeFrame()
-    {
-        return $this->timeFrame;
-    }
-
-    /**
-     * @param TimeFrame $timeFrame
-     */
-    public function setTimeFrame($timeFrame)
-    {
-        $this->timeFrame = $timeFrame;
-    }
 
     /**
      * @return User
      */
-    public function getUser()
+    public function getOrder()
     {
-        return $this->user;
+        return $this->order;
     }
 
     /**
-     * @param User $user
+     * @param MealOrder $order
      */
-    public function setUser($user)
+    public function setOrder($order)
     {
-        $this->user = $user;
+        $this->order = $order;
     }
 
     /**
@@ -144,11 +123,9 @@ class Meal extends DomainObject
         $this->bookingId = $bookingId;
     }
 
-
-
     function __toString()
     {
-        return '{ "id" :' . self::getId() . ',"course":' . self::getCourse() . $this->getId() . ',"drink":' . self::getDrink()->getId() . ',"timeframe":' . self::getTimeFrame()->getId() . '}';
+        return '{ "id" :' . self::getId() . ',"course":' . self::getCourse() . $this->getId() . ',"drink":' . self::getDrink()->getId() . '}';
     }
 
 

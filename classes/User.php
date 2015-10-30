@@ -72,10 +72,10 @@ class User extends DomainObject
     private $company;
 
     /**
-     * @OneToMany(mappedBy="user", targetEntity="Meal")
-     * @var Meal[]
+     * @OneToMany(mappedBy="user", targetEntity="MealOrder")
+     * @var MealOrder[]
      */
-    private $meals;
+    private $orders;
 
     /**
      * @Column(type="boolean")
@@ -266,19 +266,19 @@ class User extends DomainObject
     }
 
     /**
-     * @return Meal[]
+     * @return MealOrder[]
      */
-    public function getMeals()
+    public function getOrders()
     {
-        return $this->meals;
+        return $this->orders;
     }
 
     /**
-     * @param Meal[] $meals
+     * @param MealOrder[] $Order
      */
-    public function setMeals($meals)
+    public function setOrders($order)
     {
-        $this->meals = $meals;
+        $this->orders = $order;
     }
 
     /**

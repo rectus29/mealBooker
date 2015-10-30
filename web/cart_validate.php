@@ -12,36 +12,48 @@
 /*-----------------------------------------------------*/
 use MealBooker\manager\SecurityManager;
 use MealBooker\model\Meal;
+use MealBooker\model\MealOrder;
 use MealBooker\models\dao\CourseDao;
 use MealBooker\models\dao\DrinkDao;
 use MealBooker\models\dao\MealDao;
+use MealBooker\models\dao\OrderDao;
 use MealBooker\models\dao\TimeFrameDao;
 
 $courseDao = new CourseDao($em);
 $drinkDao = new DrinkDao($em);
 $timeFrameDao = new TimeFrameDao($em);
+$orderDao = new OrderDao($em);
 $mealDao = new MealDao($em);
 
 header('Location : ' . WEB_PATH);
 
 //if no cart or not logged in
-if(!isset($_COOKIE['mealCart']) || SecurityManager::get()->isAuthentified($_SESSION))
+if((!isset($_COOKIE['mealCart']) && !isset($_POST['timeframe'])) || SecurityManager::get()->isAuthentified($_SESSION))
     header('Location : ' . WEB_PATH);
 
 $mealCart = json_decode($_COOKIE['mealCart']);
-foreach($mealCart->cart as $mealStub){
-    $drink = $drinkDao->getByPrimaryKey($mealStub->drink);
-    $course = $courseDao->getByPrimaryKey($mealStub->course);
-    $timeframe = $timeFrameDao->getByPrimaryKey($mealStub->timeframe);
-    if($drink != null && $course!= null &&  $timeframe!= null){
-        $meal = new Meal();
-        $meal->setUser(SecurityManager::get()->getCurrentUser($_SESSION));
-        $meal->setBookingId($mealStub->id);
-        $meal->setDrink($drink);
-        $meal->setCourse($course);
-        $meal->setTimeFrame($timeframe);
-        $mealDao->save($meal);
+if(sizeof($mealCart->cart) > 0){
+    $order = new MealOrder();
+    $order->setUser(SecurityManager::get()->getCurrentUser($_SESSION));
+    $timeframe = $timeFrameDao->getByPrimaryKey($_POST['timeframe']);
+    if($timeframe != null)
+        $order->setTimeFrame($timeframe);
+    //fill oreder with meal
+    $mealArray =  array();
+    foreach($mealCart->cart as $mealStub){
+        $drink = $drinkDao->getByPrimaryKey($mealStub->drink);
+        $course = $courseDao->getByPrimaryKey($mealStub->course);
+        if($drink != null && $course!= null){
+            $meal = new Meal();
+            $meal->setBookingId($mealStub->id);
+            $meal->setDrink($drink);
+            $meal->setCourse($course);
+            $meal->setOrder($order);
+            array_push($mealArray, $meal);
+        }
     }
+    $order->setMeals($mealArray);
+    $orderDao->save($order);
 }
 if (isset($_COOKIE['mealCart'])) {
     unset($_COOKIE['mealCart']);

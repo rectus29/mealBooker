@@ -12,8 +12,13 @@ namespace MealBooker\models\dao;
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
+use Doctrine\ORM\EntityManager;
+
 class GenericDAO {
 
+    /**
+     * @var $entityManager EntityManager
+     */
     protected $entityManager;
 
     /**
