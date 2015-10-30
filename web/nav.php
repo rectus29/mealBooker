@@ -22,7 +22,7 @@ use MealBooker\manager\SecurityManager;
                 <?php SecurityManager::get()->getCurrentUser($_SESSION)?>
             </li>
             <li>
-                <a href="<?php echo WEB_PATH ?>">Accueil</a>
+                <a href="<?php echo WEB_PATH ?>">Menus</a>
             </li>
             <li>
                 <a href="<?php echo WEB_PATH ?>?page=account">Mon compte</a>
