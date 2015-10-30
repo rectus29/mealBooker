@@ -65,8 +65,14 @@ if (isset($_POST) && isset($_POST['email']) && isset($_POST['phone']) && isset($
     <h2>Bienvenue</h2>
 
     <p>
-        Créez un compte et faites-vous livrer votre repas directement à votre lieu de travail !
+        Vous êtes bien sur le système de réservation de repas Aurore Traiteur.<br />
+        Commandez votre déjeuner pour vous le faire livrer à votre entreprise, selon un horaire pré-défini.
     </p>
+    <ul>
+        <li>Créez un compte</li>
+        <li>Préciser l'identifiant de VOTRE entreprise qui vous a été communiqué (3 chiffres)</li>
+        <li>Faites-vous livrer votre repas directement à votre lieu de travail !</li>
+    </ul>
 
     <form method="post" action="#" id="signupForm">
         <div class="form-group">

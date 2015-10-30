@@ -13,11 +13,20 @@
 use MealBooker\model\Course;
 use MealBooker\models\dao\CourseDao;
 use MealBooker\models\dao\DrinkDao;
+use MealBooker\models\dao\OrderDao;
 use MealBooker\models\dao\TimeFrameDao;
 
 $courseDao = new CourseDao($em);
 $drinkDao = new DrinkDao($em);
 $timeFrameDao = new TimeFrameDao($em);
+$MealOrderDao = new OrderDao($em);
+
+$mealPerDay = 40;
+$config = $configDao->getByKey('mealPerDay');
+if (isset($config))
+    $mealPerDay = $config->getValue();
+//get all order in time window
+$todayMealOrder = $MealOrderDao->getCurrentMealOrder();
 
 if (isset($_GET) && isset($_GET['courseID'])) {
     /** @var $course  Course */
@@ -80,7 +89,7 @@ if (isset($_GET) && isset($_GET['courseID'])) {
                 <div class="row">
                     <div class="col-md-4 col-md-offset-4">
                         <a href="<?php WEB_PATH ?>?page=course" class="btn btn-default">Revenir à la sélection</a>
-                        <input type="submit" class="btn btn-green" value="Réserver"/>
+                        <input type="submit" class="btn btn-green" value="Réserver" <?php if(orderFull) echo "disabled";""?>/>
                     </div>
                 </div>
               </section>

@@ -16,6 +16,7 @@ use MealBooker\manager\MailManager;
 use MealBooker\manager\SecurityManager;
 use MealBooker\models\dao\ConfigDao;
 use MealBooker\model;
+use MealBooker\models\dao\OrderDao;
 
 require_once( dirname(__FILE__) . '/../config/global.php');
 require_once('../vendor/phpmailer/phpmailer/PHPMailerAutoload.php');
