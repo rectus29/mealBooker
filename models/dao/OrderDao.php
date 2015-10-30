@@ -12,9 +12,9 @@ namespace MealBooker\models\dao;
     /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
+use DateTime;
 use Doctrine\ORM\EntityManager;
-use MealBooker\model\Config;
-use MealBooker\model\Order;
+use MealBooker\model\MealOrder;
 
 class OrderDao extends GenericDAO
 {
@@ -31,18 +31,39 @@ class OrderDao extends GenericDAO
     /**
      * @inheritdoc
      * @param $id
-     * @return Order
+     * @return MealOrder
      */
     public function getByPrimaryKey($id)
     {
-        return parent::findByPrimaryKey(Order::class, $id);
+        return parent::findByPrimaryKey(MealOrder::class, $id);
     }
+
+    /**
+     * return all order between 2 date
+     * @param $start DateTime
+     * @param $stop DateTime
+     * @return MealOrder[]
+     */
+    public function getMealOrderBetween($start, $stop)
+    {
+        $query = $this->entityManager->createQuery('
+          SELECT e
+          FROM ' . MealOrder::class . ' e
+          WHERE e.created >= :start
+          AND e.created <= :stop'
+        );
+        $query->setParameter('start', $start);
+        $query->setParameter('stop', $stop);
+        $result = $query->getResult();
+        return $result;
+    }
+
     /**
      * Find All
-     * @return Config[]
+     * @return MealOrder[]
      */
     public function getAll()
     {
-        return parent::findAll(Order::class);
+        return parent::findAll(MealOrder::class);
     }
 }

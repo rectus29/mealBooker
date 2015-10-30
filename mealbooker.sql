@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 27 Octobre 2015 à 21:59
+-- Généré le :  Ven 30 Octobre 2015 à 22:12
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -85,8 +85,7 @@ CREATE TABLE IF NOT EXISTS `course` (
 
 INSERT INTO `course` (`id`, `name`, `description`, `created`, `updated`, `status`) VALUES
   (1, 'Tartiflette', 'Tartiflette qui va bien ', '2015-10-15 00:00:00', '2015-10-15 00:00:00', 1),
-  (2, 'Cassoulet', 'cassoulet qui fait PETER', '2015-10-13 00:00:00', '2015-10-13 00:00:00', 1),
-  (3, 'Raclette', 'plein de fromage qui fond', '2015-10-06 00:00:00', '2015-10-06 00:00:00', 1);
+  (2, 'Cassoulet', 'cassoulet qui fait PETER', '2015-10-13 00:00:00', '2015-10-13 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -102,15 +101,19 @@ CREATE TABLE IF NOT EXISTS `drink` (
   `updated` datetime NOT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
 -- Contenu de la table `drink`
 --
 
 INSERT INTO `drink` (`id`, `name`, `description`, `created`, `updated`, `status`) VALUES
-  (1, 'Coca', 'Coca-Cola', '2015-10-22 00:00:00', '2015-10-22 00:00:00', 1),
-  (2, 'Ice-Tea', 'Ice-Tea', '2015-10-22 00:00:00', '2015-10-22 00:00:00', 1);
+  (1, 'Evian', 'Evian', '2015-10-22 00:00:00', '2015-10-22 00:00:00', 1),
+  (2, 'Badoit', 'Badoit', '2015-10-22 00:00:00', '2015-10-22 00:00:00', 1),
+  (3, 'Coca-Cola', 'Coca-Cola', '2015-10-29 14:38:24', '2015-10-29 14:38:24', 1),
+  (4, 'Sprite', 'Sprite', '2015-10-29 14:38:24', '2015-10-29 14:38:24', 1),
+  (5, 'Fanta Citron', 'Fanta Citron', '2015-10-29 14:38:24', '2015-10-29 14:38:24', 1),
+  (6, 'Cocktail Apple Pie', 'Cocktail Apple Pie', '2015-10-29 14:38:24', '2015-10-29 14:38:24', 1);
 
 -- --------------------------------------------------------
 
@@ -125,22 +128,45 @@ CREATE TABLE IF NOT EXISTS `meal` (
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
   `status` int(11) NOT NULL,
-  `timeFrame_id` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
+  `order_id` int(11) DEFAULT NULL,
   `bookingId` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_9EF68E9C36AA4BB4` (`drink_id`),
   KEY `IDX_9EF68E9C591CC992` (`course_id`),
-  KEY `IDX_9EF68E9CE61AE10A` (`timeFrame_id`),
-  KEY `IDX_9EF68E9CA76ED395` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+  KEY `IDX_9EF68E9C8D9F6D38` (`order_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 --
 -- Contenu de la table `meal`
 --
 
-INSERT INTO `meal` (`id`, `drink_id`, `course_id`, `created`, `updated`, `status`, `timeFrame_id`, `user_id`, `bookingId`) VALUES
-  (1, 1, 1, '2015-10-25 00:00:00', '2015-10-25 00:00:00', 1, 1, 1, 'mlkjhgfd');
+INSERT INTO `meal` (`id`, `drink_id`, `course_id`, `created`, `updated`, `status`, `order_id`, `bookingId`) VALUES
+  (12, 1, 2, '2015-10-30 11:15:47', '2015-10-30 21:15:47', 1, 2, '1446236142');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `mealorder`
+--
+
+CREATE TABLE IF NOT EXISTS `mealorder` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  `status` int(11) NOT NULL,
+  `timeFrame_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_B2D23077A76ED395` (`user_id`),
+  KEY `IDX_B2D23077E61AE10A` (`timeFrame_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `mealorder`
+--
+
+INSERT INTO `mealorder` (`id`, `user_id`, `created`, `updated`, `status`, `timeFrame_id`) VALUES
+  (2, 1, '2015-10-30 10:15:47', '2015-10-30 21:15:47', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -212,15 +238,16 @@ CREATE TABLE IF NOT EXISTS `timeframe` (
   `updated` datetime NOT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Contenu de la table `timeframe`
 --
 
 INSERT INTO `timeframe` (`id`, `start`, `stop`, `created`, `updated`, `status`) VALUES
-  (1, '12:00', '12:30', '2015-10-22 00:00:00', '2015-10-22 00:00:00', 1),
-  (2, '13:00', '13:30', '2015-10-22 00:00:00', '2015-10-22 00:00:00', 1);
+  (1, '12:30', '12:30', '2015-10-22 00:00:00', '2015-10-22 00:00:00', 1),
+  (2, '13:00', '13:30', '2015-10-22 00:00:00', '2015-10-22 00:00:00', 1),
+  (3, '13:30', '13:30', '2015-10-28 00:00:00', '2015-10-28 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -244,16 +271,19 @@ CREATE TABLE IF NOT EXISTS `user` (
   `status` int(11) NOT NULL,
   `session` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_8D93D6495126AC48` (`mail`),
   KEY `IDX_8D93D649D60322AC` (`role_id`),
   KEY `IDX_8D93D649979B1AD6` (`company_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
 -- Contenu de la table `user`
 --
 
 INSERT INTO `user` (`id`, `role_id`, `company_id`, `firstName`, `lastName`, `mail`, `salt`, `password`, `phoneNumber`, `optIn`, `created`, `updated`, `status`, `session`) VALUES
-  (1, 1, 1, 'Admin', 'istrateur', 'contact@alexandrebernard.fr', 'GZokcpR4upD65B/avAk85XDfEM2QLg==', '$2y$10$R1pva2NwUjR1cEQ2NUIvYO.w14kb4WJdJK4a0hi5cQhzxXmTx8w4O', '0606060606', 1, '2015-10-15 00:00:00', '2015-10-15 00:00:00', 1, 'vv4c6vneqk6rqkht5u766t26p3');
+  (1, 1, 1, 'Admin', 'istrateur', 'contact@alexandrebernard.fr', 'GZokcpR4upD65B/avAk85XDfEM2QLg==', '$2y$10$R1pva2NwUjR1cEQ2NUIvYO.w14kb4WJdJK4a0hi5cQhzxXmTx8w4O', '0606060606', 1, '2015-10-15 00:00:00', '2015-10-15 00:00:00', 1, 'rvavma2qkea0dksdd9s3md28s3'),
+  (3, 2, 1, 'Alexandre', 'Bernard', 'rectus29@gmafdsil.com', 'vMFIau1t5B.2GEUoIY7DHKSNnEWjQA==', '$2y$10$dk1GSWF1MXQ1Qi4yR0VVbuhMSrqQJRDn.zfp3zUp1e8ytWFKztsuO', '+33640427440', 0, '2015-10-28 22:03:25', '2015-10-28 22:03:25', 1, ''),
+  (6, 2, 1, 'Alexandre', 'Bernard', 'rectus29@gmail.com', 'g4450mI/Tt.yadFeq1P7KBMm6nxANg==', '$2y$10$ZzQ0NTBtSS9UdC55YWRGZOjba2Q9F2ro5PSZQUd1RXUs29lP.Z97O', '+33640427440', 0, '2015-10-29 22:51:34', '2015-10-29 22:51:34', 1, '');
 
 --
 -- Contraintes pour les tables exportées
@@ -263,10 +293,16 @@ INSERT INTO `user` (`id`, `role_id`, `company_id`, `firstName`, `lastName`, `mai
 -- Contraintes pour la table `meal`
 --
 ALTER TABLE `meal`
-ADD CONSTRAINT `FK_9EF68E9CA76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+ADD CONSTRAINT `FK_9EF68E9C8D9F6D38` FOREIGN KEY (`order_id`) REFERENCES `mealorder` (`id`),
 ADD CONSTRAINT `FK_9EF68E9C36AA4BB4` FOREIGN KEY (`drink_id`) REFERENCES `drink` (`id`),
-ADD CONSTRAINT `FK_9EF68E9C591CC992` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`),
-ADD CONSTRAINT `FK_9EF68E9CE61AE10A` FOREIGN KEY (`timeFrame_id`) REFERENCES `timeframe` (`id`);
+ADD CONSTRAINT `FK_9EF68E9C591CC992` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`);
+
+--
+-- Contraintes pour la table `mealorder`
+--
+ALTER TABLE `mealorder`
+ADD CONSTRAINT `FK_B2D23077E61AE10A` FOREIGN KEY (`timeFrame_id`) REFERENCES `timeframe` (`id`),
+ADD CONSTRAINT `FK_B2D23077A76ED395` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
 -- Contraintes pour la table `role_permission`

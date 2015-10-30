@@ -23,7 +23,6 @@ $tfDao = new TimeFrameDao($em);
         <tr>
             <th>#</th>
             <th>Début</th>
-            <th>Fin</th>
             <th>Statut</th>
             <th>Action</th>
         </tr>
@@ -35,7 +34,6 @@ $tfDao = new TimeFrameDao($em);
             <tr>
                 <td><?php echo $tf->getId();?></td>
                 <td><?php echo $tf->getStart();?></td>
-                <td><?php echo $tf->getStop();?></td>
                 <td><?php echo $tf->getStatus();?></td>
                 <td>
                     <a href=""><i class="fa fa-edit"></i></a>

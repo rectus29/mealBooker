@@ -10,10 +10,10 @@
 /*                Date: 15/10/2015 23:55               */
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
-use MealBooker\models\dao\MealDao;
+use MealBooker\models\dao\OrderDao;
 use MealBooker\utils\Utils;
 
-$mealDao = new MealDao($em);
+$orderDao = new OrderDao($em);
 ?>
 <div class="row">
     <div class="row">
@@ -23,30 +23,40 @@ $mealDao = new MealDao($em);
         <thead>
         <tr>
             <th>#</th>
-            <th>Début</th>
-            <th>Fin</th>
-            <th>Statut</th>
+            <th>Date de réservation</th>
+            <th>Horaire</th>
+            <th>Composition</th>
+            <th>Utilisateur</th>
             <th>Action</th>
         </tr>
         </thead>
         <tbody>
         <?php
-        foreach ($mealDao->getAll() as $meal) {
+
+        foreach ($orderDao->getAll() as $order) {
             ?>
             <tr>
-                <td><?php echo $meal->getId();?></td>
-                <td><?php echo Utils::get()->formatDate($meal->getCreated());?></td>
-                <td><?php echo $meal->getCourse()->getName();?></td>
-                <td><?php echo $meal->getDrink()->getName();?></td>
-                <td><?php echo $meal->getTimeFrame()->__toString();?></td>
-                <td><?php echo $meal->getUser()->getFormattedName() . " (" . $meal->getUser()->getCompany()->getName().")";?></td>
+                <td><?php echo $order->getId(); ?></td>
+                <td><?php echo Utils::get()->formatDate($order->getCreated(), "d M Y H:m"); ?></td>
+                <td><?php echo $order->getTimeFrame()->__toString(); ?></td>
+                <td>
+                    <?php
+                    foreach ($order->getMeals() as $meal) {
+                        echo $meal->getCourse()->getName() . " - ". $meal->getDrink()->getName()
+                        ?>
+
+                        <?php
+                    }
+                    ?>
+                </td>
+                <td><?php echo $order->getUser()->getFormattedName() . " (" . $order->getUser()->getCompany()->getName() . ")"; ?></td>
                 <td>
                     <a href=""><i class="fa fa-edit"></i></a>
                     <a href=""><i class="fa fa-toggle-on"></i></a>
                     <a href=""><i class="fa fa-remove"></i></a>
                 </td>
             </tr>
-        <?php
+            <?php
         }
         ?>
         </tbody>
