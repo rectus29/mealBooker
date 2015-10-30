@@ -1,0 +1,67 @@
+body
+  color: #fff
+  padding-top: 180px
+  background: #000
+  font-family: 'Open Sans', sans-serif
+  font-weight: 300
+  line-height: 1.5
+  // background: url('../img/reglisse.jpg') no-repeat
+  // background-size: cover
+
+h1, h2, h3, h4, h5, h6
+  color: #fff
+  font-weight: 300
+
+header
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+
+.title
+  background: #A9CE49
+  color: #000
+  padding: 5px 15px
+  font-size: 16px
+  text-transform: uppercase
+  font-weight: 700
+  position: relative
+  font-family: 'Open Sans', sans-serif
+  left: -15px
+  letter-spacing: -1px
+  display: inline-block
+
+  &::before
+    display: block
+    content: url(../img/start-title.png)
+    width: 15px
+    height: 15px
+    position: absolute
+    left: 0
+    bottom: -15px
+
+  &::after
+    display: block
+    content: url(../img/end-title.png)
+    width: 10px
+    height: 27px
+    position: absolute
+    top: 0
+    right: -10px
+
+
+h2.avant
+  color: darken(#fff, 40%)
+  margin-bottom: 30px
+
+.site-entry
+  text-align: center
+
+  a
+    display: block
+    color: #fff
+    border: solid 2px $green
+    padding: 15px
+    text-decoration: none
+    &:hover
+      color: $green
