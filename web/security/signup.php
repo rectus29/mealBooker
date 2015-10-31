@@ -76,6 +76,25 @@ if (isset($_POST) && isset($_POST['email']) && isset($_POST['phone']) && isset($
         <li>Faites-vous livrer votre repas directement à votre lieu de travail !</li>
     </ul>
 
+    <?php
+    if ($error != null) {
+        ?>
+        <div class="alert alert-danger">
+            <?php echo $error; ?>
+        </div>
+        <?php
+    }
+    ?>
+    <?php
+    if ($info != null) {
+        ?>
+        <div class="alert alert-success">
+            <?php echo $info; ?>
+        </div>
+        <?php
+    }
+    ?>
+
     <form method="post" action="#" id="signupForm">
         <div class="form-group">
             <label for="exampleInputEmail1">Adresse e-mail</label>
@@ -124,22 +143,5 @@ if (isset($_POST) && isset($_POST['email']) && isset($_POST['phone']) && isset($
         </div>
         <input type="submit" class="btn btn-warning" value="Finaliser l'inscription"/>
     </form>
-    <?php
-    if ($error != null) {
-        ?>
-        <div class="alert alert-danger">
-            <?php echo $error; ?>
-        </div>
-        <?php
-    }
-    ?>
-    <?php
-    if ($info != null) {
-        ?>
-        <div class="alert alert-success">
-            <?php echo $info; ?>
-        </div>
-        <?php
-    }
-    ?>
+
 </div>
