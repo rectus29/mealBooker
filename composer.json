@@ -9,6 +9,7 @@
     "psr-4": {
       "MealBooker\\model\\": "classes/",
       "MealBooker\\manager\\": "manager/",
+      "MealBooker\\models\\dao": "models/dao",
       "MealBooker\\": ""
 
     }
