@@ -8,7 +8,8 @@ $baseDir = dirname($vendorDir);
 return array(
     'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
     'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
-    'MealBooker\\models\\dao' => array($baseDir . '/models/dao'),
+    'MealBooker\\utils' => array($baseDir . '/utils'),
+    'MealBooker\\models\\dao\\' => array($baseDir . '/models/dao'),
     'MealBooker\\model\\' => array($baseDir . '/classes'),
     'MealBooker\\manager\\' => array($baseDir . '/manager'),
     'MealBooker\\' => array($baseDir . '/'),
