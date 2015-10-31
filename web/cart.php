@@ -49,7 +49,7 @@ if ($_POST && isset($_POST['course']) && isset($_POST['drink']) && isset($_POST[
 <div class="row">
     <form action="<?php echo WEB_PATH; ?>?page=cartconfirm" method="post">
         <h2>
-            Votre panier
+            Mes commandes
         </h2>
         <table class="table table-striped">
             <thead>
@@ -82,7 +82,7 @@ if ($_POST && isset($_POST['course']) && isset($_POST['drink']) && isset($_POST[
             } else {
                 ?>
                 <tr>
-                    <td colspan="5">Votre panier est vide</td>
+                    <td colspan="5">Aucune commande</td>
                 </tr>
                 <?php
             }
@@ -90,29 +90,35 @@ if ($_POST && isset($_POST['course']) && isset($_POST['drink']) && isset($_POST[
             </tbody>
         </table>
 
-        <h4>Choisissez un horaire de livraison </h4>
+        <section class="timeOptions">
 
-        <p>
-            Le [DATE +1] à :
-        </p>
+            <h4>Horaire de livraison </h4>
 
-        <select name="timeframe" id="tf" class="required">
-            <?php
-            foreach ($timeFrameDao->getAll() as $timeFrame) {
-                ?>
-                <option value="<?php echo $timeFrame->getId(); ?>"><?php echo $timeFrame->getStart() ?></option>
+            <p>
+                Le [DATE +1] à :
+            </p>
+
+            <select name="timeframe" id="tf" class="required">
                 <?php
-            }
-            ?>
-        </select>
+                foreach ($timeFrameDao->getAll() as $timeFrame) {
+                    ?>
+                    <option value="<?php echo $timeFrame->getId(); ?>"><?php echo $timeFrame->getStart() ?></option>
+                    <?php
+                }
+                ?>
+            </select>
+        </section>
+        <section class="validateCourse">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6" style="text-align: center">
+                    <a href="<?php echo WEB_PATH ?>" class="btn btn-default">Completer ma commande</a>
 
-        <div class="row">
-            <div class="col-md-offset-4 col-md-4">
-                <a href="<?php WEB_PATH ?>?page=cart" class="btn btn-red">
-                    Vider mon panier
-                </a>
-                <input type="submit" class="btn btn-green" value="Valider ma commande" />
+                    <input type="submit" class="btn btn-green" value="Valider ma commande" /><br>
+                    <a href="<?php WEB_PATH ?>?page=cart" style="margin-top: 15px; display: inline-block">
+                        Vider mon panier
+                    </a>
+                </div>
             </div>
-        </div>
+        </section>
     </form>
 </div>

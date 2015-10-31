@@ -21,9 +21,7 @@ $drinkDao = new DrinkDao($em);
 $timeFrameDao = new TimeFrameDao($em);
 ?>
 <div class="row">
-    <div class="row">
-        <a class="btn btn-green pull-right" href="#">Créer</a>
-    </div>
+
     <table class="table table-striped">
         <thead>
         <tr>
@@ -52,4 +50,7 @@ $timeFrameDao = new TimeFrameDao($em);
         ?>
         </tbody>
     </table>
+</div>
+<div class="row">
+    <a class="btn btn-green pull-right" href="#">Créer</a>
 </div>

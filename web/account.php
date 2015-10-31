@@ -25,16 +25,16 @@ if (isset($user) && $user == null)
 </div>
 <div class="row">
 
-    Nom <?php echo $user->getFirstName(); ?><br>
-    Prénom <?php echo $user->getLastName(); ?><br>
-    Mail <?php echo $user->getMail(); ?><br>
-    Téléphone <?php echo $user->getPhoneNumber(); ?><br>
-    Date d'inscription <?php echo $user->getCreated()->format('d M Y'); ?><br>
-    Société <?php echo $user->getCompany()->getName(); ?><br>
+    <strong>Nom :</strong> <?php echo $user->getFirstName(); ?><br>
+    <strong>Prénom :</strong> <?php echo $user->getLastName(); ?><br>
+    <strong>Mail :</strong> <?php echo $user->getMail(); ?><br>
+    <strong>Téléphone :</strong> <?php echo $user->getPhoneNumber(); ?><br>
+    <strong>Date d'inscription :</strong> <?php echo $user->getCreated()->format('d M Y'); ?><br>
+    <strong>Société :</strong> <?php echo $user->getCompany()->getName(); ?><br>
 
 </div>
 <div class="row">
-    <h2>Historique de vos commandes</h2>
+    <h2>Historique de mes commandes</h2>
     <table class="table table-striped">
         <thead>
         <tr>
