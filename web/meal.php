@@ -74,7 +74,7 @@ if (isset($_GET) && isset($_GET['courseID'])) {
                     </div>
                 </div>
                 <div class="row">
-                    <section class="drinkOptions col-md-6">
+                    <div class="drinkOptions col-md-6">
                         <h4>Choisissez une boisson :</h4>
                         <?php
                         foreach ($drinkDao->getAll() as $drink) {
@@ -88,7 +88,7 @@ if (isset($_GET) && isset($_GET['courseID'])) {
                             <?php
                         }
                         ?>
-                    </section>
+                    </div>
                     <div id="feedback" class="alert alert-danger" style="display: none">
 
                     </div>
