@@ -72,7 +72,7 @@ if (isset($_POST) && isset($_POST['email']) && isset($_POST['phone']) && isset($
     </p>
     <ul>
         <li>Créez un compte</li>
-        <li>Préciser l'identifiant de VOTRE entreprise qui vous a été communiqué (3 chiffres)</li>
+        <li>Précisez l'identifiant de VOTRE entreprise qui vous a été communiqué (3 chiffres)</li>
         <li>Faites-vous livrer votre repas directement à votre lieu de travail !</li>
     </ul>
 

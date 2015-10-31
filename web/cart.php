@@ -89,7 +89,7 @@ if ($_POST && isset($_POST['course']) && isset($_POST['drink']) && isset($_POST[
             </tbody>
         </table>
 
-        <section class="timeOptions">
+        <div class="timeOptions">
 
             <h4>Horaire de livraison </h4>
 
@@ -114,8 +114,8 @@ if ($_POST && isset($_POST['course']) && isset($_POST['drink']) && isset($_POST[
                 }
                 ?>
             </select>
-        </section>
-        <section class="validateCourse">
+        </div>
+        <div class="validateCourse">
             <div class="row">
                 <div class="col-md-offset-3 col-md-6" style="text-align: center">
                     <a href="<?php echo WEB_PATH ?>" class="btn btn-default">Completer ma commande</a>
@@ -126,6 +126,6 @@ if ($_POST && isset($_POST['course']) && isset($_POST['drink']) && isset($_POST[
                     </a>
                 </div>
             </div>
-        </section>
+        </div>
     </form>
 </div>

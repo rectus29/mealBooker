@@ -27,8 +27,10 @@ $orderDao = new OrderDao($em);
 $mealDao = new MealDao($em);
 
 //if no cart or not logged in
-if((!isset($_COOKIE['mealCart']) && !isset($_POST['timeframe'])) || SecurityManager::get()->isAuthentified($_SESSION))
+if(!isset($_COOKIE['mealCart']) || !isset($_POST['timeframe'])) {
     header('Location : ' . WEB_PATH);
+    exit;
+}
 
 $mealCart = json_decode($_COOKIE['mealCart']);
 if(sizeof($mealCart->cart) > 0){
@@ -53,7 +55,7 @@ if(sizeof($mealCart->cart) > 0){
     }
     $order->setMeals($mealArray);
     $orderDao->save($order);
-    MailManager::get()->sendOrderConfirmation($user, $order);
+    MailManager::get()->sendOrderConfirmation(SecurityManager::get()->getCurrentUser($_SESSION), $order);
 }
 if (isset($_COOKIE['mealCart'])) {
     unset($_COOKIE['mealCart']);

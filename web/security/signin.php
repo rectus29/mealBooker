@@ -12,11 +12,9 @@
 /*-----------------------------------------------------*/
 use MealBooker\manager\SecurityManager;
 
-if ($_POST & isset($_POST['login']) && isset($_POST['password'])) {
+if (isset($_POST['login']) && isset($_POST['password'])) {
     $login = $_POST['login'];
     $password = $_POST['password'];
-    echo $login;
-    echo $password;
     if (SecurityManager::get()->authentificate($login, $password, $_SESSION) != null) {
         header('Location: ' . WEB_PATH);
     } else {

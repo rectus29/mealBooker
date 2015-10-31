@@ -27,12 +27,17 @@ $config = $configDao->getByKey('mealPerDay');
 if (isset($config))
     $mealPerDay = $config->getValue();
 
+//set ref date
+$refDate = new DateTime();
+if($refDate > (new DateTime())->setTime(14,0)){
+    $refDate->add(new DateInterval('P1D'));
+}
 //set min date
-$startDate = new DateTime();
+$startDate = new DateTime($refDate->getTimestamp());
 $startDate->sub(new DateInterval('P1D'));
 $startDate->setTime(14, 0);
 //set min date
-$stopDate = new DateTime();
+$stopDate = new DateTime($refDate->getTimestamp());
 $stopDate->setTime(12, 0);
 //get all order in time window
 $todayMealOrder = $MealOrderDao->getMealOrderBetween($startDate, $stopDate);
@@ -57,7 +62,7 @@ foreach($todayMealOrder as $order){
 ?>
 
 <h3>Commande du jour <?php echo sizeof($todayMealOrder) . "/" . $mealPerDay ?>
-    <small class="pull-right"><?php echo Utils::formatDate(new DateTime(), "d M Y") ?></small>
+    <small class="pull-right"><?php echo Utils::formatDate($refDate, "d M Y") ?></small>
 </h3>
 <div class="clearfix"></div>
 <div class="table-responsive">
