@@ -19,7 +19,7 @@ use Doctrine\ORM\Mapping\Table;
 
 /**
  * @Entity
- * @Table(name="mealorder")
+ * @Table(name="app_mealorder")
  */
 class MealOrder extends DomainObject
 {

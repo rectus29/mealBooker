@@ -12,11 +12,12 @@ namespace MealBooker\models\dao;
     /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
+use DateInterval;
 use DateTime;
 use Doctrine\ORM\EntityManager;
 use MealBooker\model\MealOrder;
 
-class OrderDao extends GenericDAO
+class OrderDao extends GenericDao
 {
 
     /**
@@ -37,6 +38,19 @@ class OrderDao extends GenericDAO
     {
         return parent::findByPrimaryKey(MealOrder::class, $id);
     }
+
+    public function getCurrentMealOrder()
+    {
+        //set min date
+        $startDate = new DateTime();
+        $startDate->sub(new DateInterval('P1D'));
+        $startDate->setTime(14, 0);
+        //set min date
+        $stopDate = new DateTime();
+        $stopDate->setTime(12, 0);
+        return $this->getMealOrderBetween($startDate, $stopDate);
+    }
+
 
     /**
      * return all order between 2 date

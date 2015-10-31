@@ -12,9 +12,10 @@ namespace MealBooker\models\dao;
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
-use MealBooker\model\TimeFrame;
+use MealBooker\model\Drink;
+use MealBooker\model\Meal;
 
-class TimeFrameDao extends GenericDAO {
+class DrinkDao extends GenericDao {
 
     /**
      * @inheritdoc
@@ -27,33 +28,17 @@ class TimeFrameDao extends GenericDAO {
     /**
      * @inheritdoc
      * @param $id
-     * @return TimeFrame
+     * @return Drink
      */
     public function getByPrimaryKey($id) {
-        return parent::findByPrimaryKey(TimeFrame::class, $id);
+        return parent::findByPrimaryKey(Drink::class, $id);
     }
 
     /**
-     * @inheritdoc
-     * @param $entity
-     */
-    public function save($entity) {
-        parent::save($entity);
-    }
-
-    /**
-     * @inheritdoc
-     * @param $entity
-     */
-    public function delete($entity) {
-        parent::delete($entity);
-    }
-
-    /**
-     * Find All User
-     * @return TimeFrame[]
+     * Find All Drink
+     * @return Drink[]
      */
     public function getAll() {
-        return parent::findAll(TimeFrame::class);
+        return parent::findAll(Drink::class);
     }
 }

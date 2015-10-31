@@ -18,7 +18,7 @@ use Doctrine\ORM\Mapping\Table;
 
 /**
  * @Entity
- * @Table(name="permission")
+ * @Table(name="app_permission")
  */
 class Permission extends DomainObject
 {

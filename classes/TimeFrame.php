@@ -18,7 +18,7 @@ use Doctrine\ORM\Mapping\Table;
 
 /**
  * @Entity
- * @Table(name="timeframe")
+ * @Table(name="app_timeframe")
  */
 class TimeFrame extends DomainObject
 {

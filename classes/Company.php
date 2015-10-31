@@ -16,7 +16,7 @@ use MealBooker\manager\SecurityManager;
 
 /**
  * @Entity
- * @Table(name="company")
+ * @Table(name="app_company")
  */
 class Company extends DomainObject
 {

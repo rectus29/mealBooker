@@ -18,7 +18,7 @@ use Doctrine\ORM\Mapping\Table;
 
 /**
  * @Entity
- * @Table(name="drink")
+ * @Table(name="app_drink")
  */
 class Drink extends DomainObject
 {

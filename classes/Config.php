@@ -18,7 +18,7 @@ use Doctrine\ORM\Mapping\Table;
 
 /**
  * @Entity
- * @Table(name="config")
+ * @Table(name="app_config")
  */
 class Config extends DomainObject
 {

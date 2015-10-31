@@ -14,7 +14,7 @@ namespace MealBooker\models\dao;
 
 use MealBooker\model\Config;
 
-class ConfigDao extends GenericDAO
+class ConfigDao extends GenericDao
 {
 
     /**

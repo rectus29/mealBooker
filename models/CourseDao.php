@@ -12,13 +12,13 @@ namespace MealBooker\models\dao;
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
-use MealBooker\model\User;
+use MealBooker\model\Course;
 
-class UserDao extends GenericDAO {
+class CourseDao extends GenericDao {
 
     /**
      * @inheritdoc
-     * @param $user
+     * @param $em EntityManager
      */
     public function __construct($em) {
         parent::__construct($em);
@@ -26,15 +26,16 @@ class UserDao extends GenericDAO {
 
     /**
      * @inheritdoc
-     * @param $user
+     * @param $id
+     * @return Course
      */
     public function getByPrimaryKey($id) {
-        return parent::findByPrimaryKey(User::class, $id);
+        return parent::findByPrimaryKey(Course::class, $id);
     }
 
     /**
      * @inheritdoc
-     * @param $user
+     * @param $course Course
      */
     public function save($user) {
         parent::save($user);
@@ -49,46 +50,10 @@ class UserDao extends GenericDAO {
     }
 
     /**
-     * Find All User
-     * @return User[]
+     * Find All Course
+     * @return Course[]
      */
     public function getAll() {
-        return parent::findAll(User::class);
+        return parent::findAll(Course::class);
     }
-
-    /**
-     * find user by Mail address
-     * @param $mail
-     * @return User|null
-     */
-    public function getUserByMail($mail)
-    {
-        $query = $this->entityManager->createQuery('
-          SELECT e
-          FROM ' . User::class . ' e
-          WHERE e.mail = :mail'
-        )->setParameter('mail', $mail);
-        if($query->getResult() != null)
-            return $query->getResult()[0];
-        return null;
-    }
-
-    /**
-     * find user by session
-     * @return User|null
-     */
-    public function getBySession($session)
-    {
-        $query = $this->entityManager->createQuery('
-          SELECT e
-          FROM ' . User::class . ' e
-          WHERE e.session = :sessi'
-        )->setParameter('sessi', $session);
-        if($query->getResult() != null)
-            return $query->getResult()[0];
-        return null;
-    }
-
-
-
 }

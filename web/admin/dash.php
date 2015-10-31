@@ -13,17 +13,14 @@
 
 use MealBooker\models\dao\ConfigDao;
 use MealBooker\models\dao\OrderDao;
-use MealBooker\manager\SecurityManager;
-use MealBooker\model\Meal;
-use MealBooker\model\MealOrder;
 use MealBooker\models\dao\CourseDao;
 use MealBooker\models\dao\DrinkDao;
-use MealBooker\models\dao\MealDao;
-use MealBooker\models\dao\TimeFrameDao;
 use MealBooker\utils\Utils;
 
 $configDao = new ConfigDao($em);
 $MealOrderDao = new OrderDao($em);
+$courseDao = new CourseDao($em);
+$drinkDao = new DrinkDao($em);
 $mealPerDay = 40;
 
 $config = $configDao->getByKey('mealPerDay');
@@ -40,10 +37,27 @@ $stopDate->setTime(12, 0);
 //get all order in time window
 $todayMealOrder = $MealOrderDao->getMealOrderBetween($startDate, $stopDate);
 
+$courses = [];
+$drinks = [];
+foreach($todayMealOrder as $order){
+    foreach($order->getMeals() as $meal){
+        //sum course type
+        if(array_key_exists ($meal->getCourse()->getId() ,$courses))
+            $courses[$meal->getCourse()->getId()] = $courses[$meal->getCourse()->getId()]+1;
+        else
+            $courses[$meal->getCourse()->getId()] = 1;
+        //sum drink type
+        if(array_key_exists($meal->getDrink()->getId(),$drinks))
+            $drinks[$meal->getDrink()->getId()] = $drinks[$meal->getDrink()->getId()]+1;
+        else
+            $drinks[$meal->getDrink()->getId()] = 1;
+    }
+}
+
 ?>
 
 <h3>Commande du jour <?php echo sizeof($todayMealOrder) . "/" . $mealPerDay ?>
-    <small class="pull-right"><?php echo Utils::formatDate(new DateTime(), "d M Y")?></small>
+    <small class="pull-right"><?php echo Utils::formatDate(new DateTime(), "d M Y") ?></small>
 </h3>
 <div class="clearfix"></div>
 <div class="table-responsive">
@@ -62,8 +76,8 @@ $todayMealOrder = $MealOrderDao->getMealOrderBetween($startDate, $stopDate);
         foreach ($todayMealOrder as $mealOrder) {
             ?>
             <tr>
-                <td><?php echo $mealOrder->getId();?></td>
-                <td><?php echo $mealOrder->getUser()->getFormattedName() ."(" . $mealOrder->getUser()->getCompany()->getName() . ")";?></td>
+                <td><?php echo $mealOrder->getId(); ?></td>
+                <td><?php echo $mealOrder->getUser()->getFormattedName() . "(" . $mealOrder->getUser()->getCompany()->getName() . ")"; ?></td>
                 <td>
                     <ul>
                         <?php
@@ -72,7 +86,7 @@ $todayMealOrder = $MealOrderDao->getMealOrderBetween($startDate, $stopDate);
                         }
                         ?>
                     </ul>
-                <td><?php echo $mealOrder->getTimeFrame()->getStart();?></td>
+                <td><?php echo $mealOrder->getTimeFrame()->getStart(); ?></td>
                 <td>
                     <i class="fa fa-trash"></i>
                     <i class="fa fa-edit"></i>
@@ -83,6 +97,54 @@ $todayMealOrder = $MealOrderDao->getMealOrderBetween($startDate, $stopDate);
         ?>
         </tbody>
     </table>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <h4>Repas</h4>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Plats</th>
+                <th>Nombre</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+                foreach($courses as $course => $nb){
+            ?>
+            <tr>
+                <td><?php echo $courseDao->getByPrimaryKey($course)->getName()?></td>
+                <td><?php echo $nb?></td>
+            </tr>
+            <?php
+                }
+            ?>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-4">
+        <h4>Boissons</h4>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Boissons</th>
+                <th>Nombre</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            foreach($drinks as $drink => $nb){
+                ?>
+                <tr>
+                    <td><?php echo $drinkDao->getByPrimaryKey($drink)->getName()?></td>
+                    <td><?php echo $nb?></td>
+                </tr>
+                <?php
+            }
+            ?>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 

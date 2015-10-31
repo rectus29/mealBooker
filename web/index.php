@@ -1,5 +1,4 @@
 <?php
-namespace MealBooker;
 /*-----------------------------------------------------*/
 /*      _____           _               ___   ___      */
 /*     |  __ \         | |             |__ \ / _ \     */
@@ -12,12 +11,11 @@ namespace MealBooker;
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
-use MealBooker\manager\MailManager;
 use MealBooker\manager\SecurityManager;
 use MealBooker\models\dao\ConfigDao;
 use MealBooker\model;
 
-require_once( dirname(__FILE__) . '/../config/global.php');
+require_once('../config/global.php');
 require_once('../vendor/phpmailer/phpmailer/PHPMailerAutoload.php');
 
 $configDao = new ConfigDao($em);

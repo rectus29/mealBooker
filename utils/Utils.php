@@ -51,4 +51,18 @@ class Utils {
                 return $date->format($format);
         return $out;
     }
+
+    /**
+     * @return bool
+     */
+    public static function  isOrderEnable(){
+        //check if system is order enable
+        $before = new DateTime();
+        $before->setTime(12,00);
+        $after = new DateTime();
+        $after->setTime(14,00);
+        if(new DateTime() < $before || new DateTime() > $after )
+            return false;
+        return true;
+    }
 }

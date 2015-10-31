@@ -44,6 +44,6 @@ if (isset($_GET['authToken'])) {
         }
         ?>
     </p>
-    <a href="<?php WEB_PATH ?>" class="btn btn-default">Se connecter</a>
+    <a href="<?php echo WEB_PATH; ?>" class="btn btn-default">Se connecter</a>
 
 </div>

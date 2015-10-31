@@ -8,8 +8,11 @@ $baseDir = dirname($vendorDir);
 return array(
     'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
     'Symfony\\Component\\Console\\' => array($vendorDir . '/symfony/console'),
-    'MealBooker\\model\\' => array($baseDir . '/classes'),
-    'MealBooker\\manager\\' => array($baseDir . '/manager'),
     'MealBooker\\utils\\' => array($baseDir . '/utils'),
+    'MealBooker\\models\\dao\\' => array($baseDir . '/models/dao'),
+    'MealBooker\\model\\' => array($baseDir . '/classes'),
+    'MealBooker\\models\\dao\\' => array($baseDir . '/models'),
+    'MealBooker\\manager\\' => array($baseDir . '/manager'),
     'MealBooker\\' => array($baseDir . '/'),
+    'Doctrine\\Common\\Cache\\' => array($vendorDir . '/doctrine/cache/lib/Doctrine/Common/Cache'),
 );
