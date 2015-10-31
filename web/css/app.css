@@ -6277,8 +6277,7 @@ h4 {
     text-transform: uppercase;
     letter-spacing: -1px; }
   .loginbox .inscription {
-    margin-top: 30px;
-    border-top: solid 1px #eeeeee; }
+    border-left: solid 1px #eeeeee; }
 
 .card {
   overflow: hidden;
