@@ -21,7 +21,7 @@ use Doctrine\ORM\Mapping\Table;
 
 /**
  * @Entity
- * @Table(name="role")
+ * @Table(name="app_role")
  */
 class Role extends DomainObject
 {
