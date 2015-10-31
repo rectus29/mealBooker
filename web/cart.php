@@ -10,7 +10,6 @@
 /*                Date: 04/10/2015 17:41               */
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
-use MealBooker\model\Meal;
 use MealBooker\models\dao\CourseDao;
 use MealBooker\models\dao\DrinkDao;
 use MealBooker\models\dao\TimeFrameDao;
@@ -77,14 +76,14 @@ if ($_POST && isset($_POST['course']) && isset($_POST['drink']) && isset($_POST[
                             </a>
                         </td>
                     </tr>
-                    <?php
+                <?php
                 }
             } else {
                 ?>
                 <tr>
                     <td colspan="5">Aucune commande</td>
                 </tr>
-                <?php
+            <?php
             }
             ?>
             </tbody>
@@ -95,7 +94,15 @@ if ($_POST && isset($_POST['course']) && isset($_POST['drink']) && isset($_POST[
             <h4>Horaire de livraison </h4>
 
             <p>
-                Le [DATE +1] à :
+                <?php
+                $date = new DateTime();
+                $after = new DateTime();
+                $after->setTime(14, 00);
+                if ($date > $after)
+                    $date->add(new DateInterval('P1D'));
+
+                ?>
+                Le <?php echo \MealBooker\utils\Utils::formatDate($date); ?> à :
             </p>
 
             <select name="timeframe" id="tf" class="required">
@@ -103,7 +110,7 @@ if ($_POST && isset($_POST['course']) && isset($_POST['drink']) && isset($_POST[
                 foreach ($timeFrameDao->getAll() as $timeFrame) {
                     ?>
                     <option value="<?php echo $timeFrame->getId(); ?>"><?php echo $timeFrame->getStart() ?></option>
-                    <?php
+                <?php
                 }
                 ?>
             </select>
@@ -113,7 +120,7 @@ if ($_POST && isset($_POST['course']) && isset($_POST['drink']) && isset($_POST[
                 <div class="col-md-offset-3 col-md-6" style="text-align: center">
                     <a href="<?php echo WEB_PATH ?>" class="btn btn-default">Completer ma commande</a>
 
-                    <input type="submit" class="btn btn-green" value="Valider ma commande" /><br>
+                    <input type="submit" class="btn btn-green" value="Valider ma commande"/><br>
                     <a href="<?php WEB_PATH ?>?page=cart" style="margin-top: 15px; display: inline-block">
                         Vider mon panier
                     </a>
