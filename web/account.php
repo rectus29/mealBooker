@@ -46,13 +46,21 @@ if (isset($user) && $user == null)
         </thead>
         <tbody>
         <?php
-        foreach ($user->getMeals() as $meal) {
+        foreach ($user->getOrders() as $mealOrder) {
             ?>
             <tr>
-                <td><?php echo $meal->getBookingId(); ?></td>
-                <td><?php echo Utils::formatDate($meal->getCreated()); ?></td>
-                <td><?php echo $meal->getCourse() . " " . $meal->getDrink(); ?></td>
-                <td><?php echo $meal->getTimeFrame()->getStart();?></td>
+                <td><?php echo $mealOrder->getId(); ?></td>
+                <td><?php echo Utils::formatDate($mealOrder->getCreated()); ?></td>
+                <td>
+                    <ul>
+                        <?php
+                        foreach ($mealOrder->getMeals() as $meal) {
+                            echo "<li>" . $meal->getCourse()->getName() . " - " . $meal->getDrink()->getName() . " </li>";
+                        }
+                        ?>
+                    </ul>
+                </td>
+                <td><?php echo $mealOrder->getTimeFrame()->getStart();?></td>
             </tr>
             <?php
         }
