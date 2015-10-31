@@ -10,6 +10,7 @@
 /*                Date: 04/10/2015 17:41               */
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
+use MealBooker\manager\MailManager;
 use MealBooker\manager\SecurityManager;
 use MealBooker\model\Meal;
 use MealBooker\model\MealOrder;
@@ -24,8 +25,6 @@ $drinkDao = new DrinkDao($em);
 $timeFrameDao = new TimeFrameDao($em);
 $orderDao = new OrderDao($em);
 $mealDao = new MealDao($em);
-
-header('Location : ' . WEB_PATH);
 
 //if no cart or not logged in
 if((!isset($_COOKIE['mealCart']) && !isset($_POST['timeframe'])) || SecurityManager::get()->isAuthentified($_SESSION))
@@ -54,6 +53,7 @@ if(sizeof($mealCart->cart) > 0){
     }
     $order->setMeals($mealArray);
     $orderDao->save($order);
+    MailManager::get()->sendOrderConfirmation($user, $order);
 }
 if (isset($_COOKIE['mealCart'])) {
     unset($_COOKIE['mealCart']);

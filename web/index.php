@@ -15,6 +15,8 @@ use MealBooker\manager\SecurityManager;
 use MealBooker\models\dao\ConfigDao;
 use MealBooker\model;
 
+error_reporting(E_ALL);
+
 require_once('../config/global.php');
 require_once('../vendor/phpmailer/phpmailer/PHPMailerAutoload.php');
 
