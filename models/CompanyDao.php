@@ -12,9 +12,10 @@ namespace MealBooker\models\dao;
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
+use MealBooker\model\Company;
 use MealBooker\model\Course;
 
-class CourseDao extends GenericDAO {
+class CompanyDao extends GenericDao {
 
     /**
      * @inheritdoc
@@ -27,33 +28,28 @@ class CourseDao extends GenericDAO {
     /**
      * @inheritdoc
      * @param $id
-     * @return Course
+     * @return Company
      */
     public function getByPrimaryKey($id) {
-        return parent::findByPrimaryKey(Course::class, $id);
+        return parent::findByPrimaryKey(Company::class, $id);
     }
 
     /**
-     * @inheritdoc
-     * @param $course Course
-     */
-    public function save($user) {
-        parent::save($user);
-    }
-
-    /**
-     * @inheritdoc
-     * @param $user
-     */
-    public function delete($user) {
-        parent::delete($user);
-    }
-
-    /**
-     * Find All Course
-     * @return Course[]
+     * Find All
+     * @return Company[]
      */
     public function getAll() {
-        return parent::findAll(Course::class);
+        return parent::findAll(Company::class);
+    }
+
+    public function getByValidationCode($validationCode){
+        $query = $this->entityManager->createQuery('
+          SELECT e
+          FROM ' . Company::class . ' e
+          WHERE e.validationCode = :validcode'
+        )->setParameter('validcode', $validationCode);
+        if($query->getResult() != null)
+            return $query->getResult()[0];
+        return null;
     }
 }

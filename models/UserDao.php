@@ -12,9 +12,9 @@ namespace MealBooker\models\dao;
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
-use MealBooker\model\Meal;
+use MealBooker\model\User;
 
-class MealDao extends GenericDAO {
+class UserDao extends GenericDao {
 
     /**
      * @inheritdoc
@@ -26,11 +26,10 @@ class MealDao extends GenericDAO {
 
     /**
      * @inheritdoc
-     * @param $id
-     * @return Meal
+     * @param $user
      */
     public function getByPrimaryKey($id) {
-        return parent::findByPrimaryKey(Meal::class, $id);
+        return parent::findByPrimaryKey(User::class, $id);
     }
 
     /**
@@ -51,9 +50,45 @@ class MealDao extends GenericDAO {
 
     /**
      * Find All User
-     * @return Meal[]
+     * @return User[]
      */
     public function getAll() {
-        return parent::findAll(Meal::class);
+        return parent::findAll(User::class);
     }
+
+    /**
+     * find user by Mail address
+     * @param $mail
+     * @return User|null
+     */
+    public function getUserByMail($mail)
+    {
+        $query = $this->entityManager->createQuery('
+          SELECT e
+          FROM ' . User::class . ' e
+          WHERE e.mail = :mail'
+        )->setParameter('mail', $mail);
+        if($query->getResult() != null)
+            return $query->getResult()[0];
+        return null;
+    }
+
+    /**
+     * find user by session
+     * @return User|null
+     */
+    public function getBySession($session)
+    {
+        $query = $this->entityManager->createQuery('
+          SELECT e
+          FROM ' . User::class . ' e
+          WHERE e.session = :sessi'
+        )->setParameter('sessi', $session);
+        if($query->getResult() != null)
+            return $query->getResult()[0];
+        return null;
+    }
+
+
+
 }

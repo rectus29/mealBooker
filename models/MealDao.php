@@ -12,13 +12,13 @@ namespace MealBooker\models\dao;
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
-use MealBooker\model\Role;
+use MealBooker\model\Meal;
 
-class RoleDao extends GenericDAO {
+class MealDao extends GenericDao {
 
     /**
      * @inheritdoc
-     * @param $em
+     * @param $user
      */
     public function __construct($em) {
         parent::__construct($em);
@@ -27,17 +27,33 @@ class RoleDao extends GenericDAO {
     /**
      * @inheritdoc
      * @param $id
-     * @return Role
+     * @return Meal
      */
     public function getByPrimaryKey($id) {
-        return parent::findByPrimaryKey(Role::class, $id);
+        return parent::findByPrimaryKey(Meal::class, $id);
+    }
+
+    /**
+     * @inheritdoc
+     * @param $user
+     */
+    public function save($user) {
+        parent::save($user);
+    }
+
+    /**
+     * @inheritdoc
+     * @param $user
+     */
+    public function delete($user) {
+        parent::delete($user);
     }
 
     /**
      * Find All User
-     * @return Role[]
+     * @return Meal[]
      */
     public function getAll() {
-        return parent::findAll(Role::class);
+        return parent::findAll(Meal::class);
     }
 }

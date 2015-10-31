@@ -17,7 +17,7 @@ use DateTime;
 use Doctrine\ORM\EntityManager;
 use MealBooker\model\MealOrder;
 
-class OrderDao extends GenericDAO
+class OrderDao extends GenericDao
 {
 
     /**

@@ -12,60 +12,48 @@ namespace MealBooker\models\dao;
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
-use Doctrine\ORM\EntityManager;
+use MealBooker\model\TimeFrame;
 
-class GenericDAO {
-
-    /**
-     * @var $entityManager EntityManager
-     */
-    protected $entityManager;
+class TimeFrameDao extends GenericDao {
 
     /**
-     * DAO builder
-     * @param $em
+     * @inheritdoc
+     * @param $em EntityManager
      */
     public function __construct($em) {
-        $this->entityManager = $em;
+        parent::__construct($em);
     }
 
     /**
-     * find an entity by primarykey
-     * @param $entity
+     * @inheritdoc
      * @param $id
-     * @return mixed
+     * @return TimeFrame
      */
-    public function findByPrimaryKey($entity, $id) {
-        return $this->entityManager->find($entity, $id);
+    public function getByPrimaryKey($id) {
+        return parent::findByPrimaryKey(TimeFrame::class, $id);
     }
 
     /**
-     * Save an entity
+     * @inheritdoc
      * @param $entity
      */
     public function save($entity) {
-        $this->entityManager->persist($entity);
-        $this->entityManager->flush();
+        parent::save($entity);
     }
 
     /**
-     * delete an entity
+     * @inheritdoc
      * @param $entity
      */
     public function delete($entity) {
-        $this->entityManager->remove($entity);
-        $this->entityManager->flush();
+        parent::delete($entity);
     }
 
     /**
-     * return all entity of a class
-     * @param $entity
-     * @return mixed
+     * Find All User
+     * @return TimeFrame[]
      */
-    public function findAll($entity) {
-        $query = $this->entityManager->createQuery("SELECT e FROM ". $entity . " e");
-        return $query->getResult();
+    public function getAll() {
+        return parent::findAll(TimeFrame::class);
     }
-
-
 }

@@ -17,10 +17,10 @@ use Doctrine\ORM\EntityManager;
 use MealBooker\manager\MailManager;
 use MealBooker\manager\SecurityManager;
 use MealBooker\model;
-use MealBooker\models\dao\GenericDAO;
+use MealBooker\models\dao\GenericDao;
 
 session_start();
-define('APP_PATH',  '/reservresto/');
+define('APP_PATH',  '/mealbooker/');
 define('WEB_PATH',  APP_PATH.'web/');
 define('SERVER_URL',  'http://127.0.0.1');
 define('LIB_DIR',  dirname(__FILE__).'/../lib/');
@@ -59,9 +59,4 @@ $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__."/../classe
 $em = EntityManager::create($conn, $config);
 $securityMananger = SecurityManager::init($em);
 $mailManager = MailManager::init($em, $mailConfig);
-$gDao = new GenericDAO($em);
-
-return ConsoleRunner::createHelperSet($em);
-
-
-
+$gDao = new GenericDao($em);
