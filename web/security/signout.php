@@ -14,8 +14,10 @@ namespace MealBooker;
 require('../../config/global.php');
 use MealBooker\manager\SecurityManager;
 
-SecurityManager::get()->logOutUser($_SESSION);
-unset($_SESSION['auth']);
-session_regenerate_id();
-header('Location : ' . WEB_PATH);
+if (isset($_SESSION['auth'])) {
+    SecurityManager::get()->logOutUser($_SESSION);
+    unset($_SESSION['auth']);
+    session_regenerate_id();
+}
+header('Location: '.WEB_PATH);
 

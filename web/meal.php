@@ -60,7 +60,7 @@ if (isset($_GET) && isset($_GET['courseID'])) {
         <form action="<?php echo WEB_PATH; ?>?page=cart" method="post" id="mealForm">
             <input type="hidden" value="<?php echo $course->getId(); ?>" name="course" id="course"/>
             <input type="hidden" value="<?php echo time(); ?>" name="ts"/>
-            <article class="course">
+            <div class="course">
                 <div class="row">
                     <div class="col-md-4">
                         <img src="<?php echo APP_PATH; ?>files/course/<?php echo $course->getId(); ?>.jpg" alt="" class="img-responsive">
@@ -93,7 +93,7 @@ if (isset($_GET) && isset($_GET['courseID'])) {
 
                     </div>
                 </div>
-                <section class="validateCourse">
+                <div class="validateCourse">
                     <div class="row">
                         <?php
                         if ($orderEnable) {
@@ -109,8 +109,8 @@ if (isset($_GET) && isset($_GET['courseID'])) {
                             <input type="submit" class="btn btn-green" value="Réserver" <?php if ($orderEnable) echo "disabled"; ?>/>
                         </div>
                     </div>
-                </section>
-            </article>
+                </div>
+            </div>
         </form>
         <?php
     }

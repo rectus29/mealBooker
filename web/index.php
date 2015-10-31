@@ -47,7 +47,7 @@ include 'head.php';
         <?php
         if($maintenance){
             include 'security/maintenance.php';
-        } else if (isset($_SESSION) && SecurityManager::get()->isAuthentified($_SESSION)) {
+        } else if (SecurityManager::get()->isAuthentified($_SESSION)) {
             if (isset($_GET['page'])) {
                 switch ($_GET['page']) {
                     case 'meal':
@@ -99,4 +99,6 @@ include 'head.php';
 </body>
 </html>
 <?php
+
+$em->getConnection()->close();
 

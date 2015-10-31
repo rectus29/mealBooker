@@ -116,7 +116,7 @@ class SecurityManager
     public function getCurrentUser($session)
     {
         $userDao = new UserDao(self::$em);
-        $user = $userDao->getBySession(session_id());
+        $user = $userDao->getBySession($session['auth']);
         if ($user != null)
             return $user;
         return null;
@@ -143,12 +143,21 @@ class SecurityManager
      */
     public function logOutUser($session)
     {
-        $userDao = new UserDao(self::$em);
-        $user = $this->getCurrentUser($session['auth']);
-        if ($user != null) {
-            $user->setSession(null);
-            $userDao->save($user);
+        try {
+            $userDao = new UserDao(self::$em);
+            $user = $this->getCurrentUser($session);
+
+            if ($user != null) {
+                $user->setSession('');
+                $userDao->save($user);
+
+                return true;
+            }
+            return false;
+        }catch(Exception $ex){
+            var_dump($ex);
         }
+
     }
 
 }
