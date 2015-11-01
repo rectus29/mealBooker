@@ -6284,9 +6284,7 @@ h4 {
     padding-left: 30px; }
 
 .card {
-  overflow: hidden;
   display: block;
-  height: 200px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   text-decoration: none; }
   .card .card_body {
@@ -6318,9 +6316,6 @@ h4 {
       .card .meal-thumbnail .card_date p {
         margin: 0;
         font-size: 0.9em; }
-  .card:hover .meal-thumbnail {
-    height: 100px;
-    transition: all ease 0.3s; }
   .card:hover .meal-thumbnail img {
     opacity: 0.5;
     transform: scale(1.5);
