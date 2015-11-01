@@ -35,14 +35,14 @@ $todayMealOrder = $MealOrderDao->getMealOrderBetween($startDate, $stopDate);
 ?>
 
 <article class="course">
-    <div class="row">
-        <h3>Il reste <?php echo $mealPerDay - sizeof($todayMealOrder);?> repas disponibles</h3>
-    </div>
+  <!--  <div class="row">
+        <h3>Il reste <?php /*echo $mealPerDay - sizeof($todayMealOrder);*/?> repas disponibles</h3>
+    </div>-->
     <div class="row">
         <?php
         /**
          * @var $course Course
-         */
+         **/
         foreach ($courseDao->getAll() as $course) {
             ?>
             <div class="col-md-6">

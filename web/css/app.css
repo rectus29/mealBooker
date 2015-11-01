@@ -6289,9 +6289,9 @@ h4 {
   text-decoration: none;
   color: #2C2C2C; }
   .card .card_body {
-    padding: 5px 10px; }
+    padding: 5px 15px; }
     .card .card_body h3 {
-      margin: 0 0 10px;
+      margin: 10px 0;
       font-size: 1.1em;
       letter-spacing: -1px;
       text-transform: uppercase; }
@@ -6300,7 +6300,8 @@ h4 {
   .card:hover {
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
     transition: all ease 0.3s;
-    text-decoration: none; }
+    text-decoration: none;
+    color: #2C2C2C; }
   .card .meal-thumbnail {
     background: #000;
     position: relative;
