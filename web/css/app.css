@@ -6198,6 +6198,9 @@ footer {
     color: #cccccc;
     font-size: 0.8em; }
 
+a.brand {
+  float: left; }
+
 .success {
   padding: 50px 0;
   width: 600px;
