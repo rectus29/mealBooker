@@ -17,7 +17,7 @@ use MealBooker\manager\SecurityManager;
 if (isset($_SESSION['auth'])) {
     SecurityManager::get()->logOutUser($_SESSION);
     unset($_SESSION['auth']);
-    session_regenerate_id();
 }
+session_regenerate_id();
 header('Location: '.WEB_PATH);
 

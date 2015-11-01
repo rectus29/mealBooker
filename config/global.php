@@ -28,8 +28,8 @@ if (DEV_MOD) {
     define('APP_PATH', '/mealbooker/');
     define('SERVER_URL', 'http://127.0.0.1');
 } else {
-    define('APP_PATH', '/app/');
-    define('SERVER_URL', 'http://aurore-traiteur.fr');
+    define('APP_PATH', '/');
+    define('SERVER_URL', 'http://commande.aurore-traiteur.fr');
 }
 define('WEB_PATH', APP_PATH . 'web/');
 define('LIB_DIR', dirname(__FILE__) . '/../lib/');
@@ -75,7 +75,7 @@ $mailConfig = [
     'from' => 'contact@aurore-traiteur.fr'
 ];
 // obtaining the entity manager
-$config = Setup::createAnnotationMetadataConfiguration(array(__DIR__ . "/../classes/"), DEV_MOD);
+$config = Setup::createAnnotationMetadataConfiguration(array(__DIR__ . "/../classes/"), true);
 $em = EntityManager::create((DEV_MOD) ? $devConn : $conn, $config);
 $securityMananger = SecurityManager::init($em);
 $mailManager = MailManager::init($em, $mailConfig);

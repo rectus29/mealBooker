@@ -33,11 +33,11 @@ if($refDate > (new DateTime())->setTime(14,0)){
     $refDate->add(new DateInterval('P1D'));
 }
 //set min date
-$startDate = new DateTime($refDate->getTimestamp());
+$startDate = (new DateTime())->setTimeStamp($refDate->getTimestamp());
 $startDate->sub(new DateInterval('P1D'));
 $startDate->setTime(14, 0);
 //set min date
-$stopDate = new DateTime($refDate->getTimestamp());
+$stopDate = (new DateTime())->setTimeStamp($refDate->getTimestamp());
 $stopDate->setTime(12, 0);
 //get all order in time window
 $todayMealOrder = $MealOrderDao->getMealOrderBetween($startDate, $stopDate);

@@ -23,12 +23,8 @@ require_once('../vendor/phpmailer/phpmailer/PHPMailerAutoload.php');
 $configDao = new ConfigDao($em);
 
 //here check connection to dbserver
-$maintenance = false;
-try {
-    $em->getConnection()->connect();
-} catch (Exception $e) {
-    $maintenance= true;
-}
+$maintenance = !$em->getConnection()->ping();
+
 //check maintenance mod
 if($configDao->getByKey('serverState') != null && $configDao->getByKey('serverState')->getValue() == '1')
     $maintenance = true;
@@ -99,6 +95,5 @@ include 'head.php';
 </body>
 </html>
 <?php
-
 $em->getConnection()->close();
 
