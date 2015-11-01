@@ -61,6 +61,9 @@ if (isset($_POST['login']) && isset($_POST['password'])) {
                     <a href="<?php echo WEB_PATH;?>?page=inscription" class="btn btn-warning">S'incrire</a>
                 </div>
             </div>
+            <div class="retour">
+                <a href="http://www.aurore-traiteur.fr" class="btn btn-default">Retour sur le site</a>
+            </div>
 
         </div>
     </div>

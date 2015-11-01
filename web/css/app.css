@@ -6274,14 +6274,13 @@ h4 {
     color: white; }
 
 .loginbox {
-  margin-bottom: 30px; }
+  margin-bottom: 30px;
+  border-right: solid 1px #eeeeee;
+  padding-right: 30px; }
   .loginbox h2 {
     font-size: 1.3em;
     text-transform: uppercase;
     letter-spacing: -1px; }
-  .loginbox .inscription {
-    border-left: solid 1px #eeeeee;
-    padding-left: 30px; }
 
 .card {
   display: block;
