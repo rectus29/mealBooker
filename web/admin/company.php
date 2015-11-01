@@ -28,7 +28,7 @@ $timeFrameDao = new TimeFrameDao($em);
             <th>#</th>
             <th>Nom</th>
             <th>Créé le</th>
-            <th>Nb user</th>
+            <th>Nombre d'utilisateurs</th>
             <th>Action</th>
         </tr>
         </thead>

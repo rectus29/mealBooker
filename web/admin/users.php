@@ -55,4 +55,4 @@ $userDao = new UserDao($em);
 </div>
 <div class="row">
     <a class="btn btn-green pull-right" href="#">Créer</a>
-</div>v
+</div>
