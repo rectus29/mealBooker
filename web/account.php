@@ -39,9 +39,9 @@ if (isset($user) && $user == null)
         <thead>
         <tr>
             <th>#</th>
-            <th>Date</th>
+            <th>Date de commande</th>
             <th>Commande</th>
-            <th>Horaire</th>
+            <th>Date de livraison</th>
         </tr>
         </thead>
         <tbody>
