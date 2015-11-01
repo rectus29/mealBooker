@@ -33,12 +33,10 @@ $stopDate->setTime(12, 0);
 $todayMealOrder = $MealOrderDao->getMealOrderBetween($startDate, $stopDate);
 
 ?>
-<p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce posuere, lacus sit amet rhoncus semper, risus justo euismod justo, vitae commodo velit dui eu lacus. Nam iaculis enim dolor, nec sodales lorem sollicitudin condimentum. Pellentesque sed enim enim. Pellentesque dapibus nisl eget arcu sagittis porttitor. Suspendisse feugiat nec odio imperdiet maximus. Maecenas fringilla nulla vitae ante mattis placerat. Morbi dictum neque quis dui fringilla auctor. Cras bibendum feugiat leo, et tincidunt risus accumsan ac. Praesent sit amet commodo sapien. Cras consectetur blandit ipsum, vitae dapibus ligula tempus vitae.
-</p>
+
 <article class="course">
     <div class="row">
-        Il reste <?php echo $mealPerDay - sizeof($todayMealOrder);?> repas disponibles
+        <h3>Il reste <?php echo $mealPerDay - sizeof($todayMealOrder);?> repas disponibles</h3>
     </div>
     <div class="row">
         <?php
