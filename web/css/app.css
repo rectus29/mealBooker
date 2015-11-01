@@ -6275,7 +6275,7 @@ h4 {
 
 .loginbox {
   margin-bottom: 30px; }
-  .loginbox .col-md-5 {
+  .loginbox .col-md-5.col-md-offset-1 {
     border-right: solid 1px #eeeeee;
     padding-right: 30px; }
   .loginbox h2 {
