@@ -35,7 +35,7 @@ if (isset($_POST['login']) && isset($_POST['password'])) {
                 <br/>
 
                 <div class="control-group">
-                    <label for="password">Password</label>
+                    <label for="password">Mot de passe</label>
                     <input name="password" class="form-control" type="password"/>
                 </div>
                 <br/>
