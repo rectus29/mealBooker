@@ -50,9 +50,9 @@ $todayMealOrder = $MealOrderDao->getMealOrderBetween($startDate, $stopDate);
                     <div class="meal-thumbnail">
                         <img src="<?php echo APP_PATH; ?>files/course/<?php echo $course->getId(); ?>.jpg" alt="" class="img-responsive">
 
-                        <div class="card_date">
-                            <p><?php echo $course->getUpdated()->format('d M Y') ?></p>
-                        </div>
+                        <!--<div class="card_date">
+                            <p><?php /*echo $course->getUpdated()->format('d M Y') */?></p>
+                        </div>-->
                     </div>
                     <div class="card_body">
                         <h3><?php echo $course->getName(); ?></h3>
