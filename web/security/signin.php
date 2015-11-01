@@ -15,7 +15,7 @@ use MealBooker\manager\SecurityManager;
 if (isset($_POST['login']) && isset($_POST['password'])) {
     $login = $_POST['login'];
     $password = $_POST['password'];
-    if (SecurityManager::get()->authentificate($login, $password, $_SESSION) != null) {
+    if (SecurityManager::get()->authentificate($login, $password) != null) {
         header('Location: ' . WEB_PATH);
     } else {
         header('Location: ' . WEB_PATH . '?error=authError');

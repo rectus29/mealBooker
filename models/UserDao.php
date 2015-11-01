@@ -1,26 +1,28 @@
 <?php
 namespace MealBooker\models\dao;
-/*-----------------------------------------------------*/
-/*      _____           _               ___   ___      */
-/*     |  __ \         | |             |__ \ / _ \     */
-/*     | |__) |___  ___| |_ _   _ ___     ) | (_) |    */
-/*     |  _  // _ \/ __| __| | | / __|   / / \__, |    */
-/*     | | \ \  __/ (__| |_| |_| \__ \  / /_   / /     */
-/*     |_|  \_\___|\___|\__|\__,_|___/ |____| /_/      */
-/*                                                     */
-/*                Date: 29/09/2015 10:55               */
-/*                 All right reserved                  */
+    /*-----------------------------------------------------*/
+    /*      _____           _               ___   ___      */
+    /*     |  __ \         | |             |__ \ / _ \     */
+    /*     | |__) |___  ___| |_ _   _ ___     ) | (_) |    */
+    /*     |  _  // _ \/ __| __| | | / __|   / / \__, |    */
+    /*     | | \ \  __/ (__| |_| |_| \__ \  / /_   / /     */
+    /*     |_|  \_\___|\___|\__|\__,_|___/ |____| /_/      */
+    /*                                                     */
+    /*                Date: 29/09/2015 10:55               */
+    /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
 use MealBooker\model\User;
 
-class UserDao extends GenericDao {
+class UserDao extends GenericDao
+{
 
     /**
      * @inheritdoc
      * @param $user
      */
-    public function __construct($em) {
+    public function __construct($em)
+    {
         parent::__construct($em);
     }
 
@@ -28,7 +30,8 @@ class UserDao extends GenericDao {
      * @inheritdoc
      * @param $user
      */
-    public function getByPrimaryKey($id) {
+    public function getByPrimaryKey($id)
+    {
         return parent::findByPrimaryKey(User::class, $id);
     }
 
@@ -36,7 +39,8 @@ class UserDao extends GenericDao {
      * @inheritdoc
      * @param $user
      */
-    public function save($user) {
+    public function save($user)
+    {
         parent::save($user);
     }
 
@@ -44,7 +48,8 @@ class UserDao extends GenericDao {
      * @inheritdoc
      * @param $user
      */
-    public function delete($user) {
+    public function delete($user)
+    {
         parent::delete($user);
     }
 
@@ -52,7 +57,8 @@ class UserDao extends GenericDao {
      * Find All User
      * @return User[]
      */
-    public function getAll() {
+    public function getAll()
+    {
         return parent::findAll(User::class);
     }
 
@@ -67,8 +73,9 @@ class UserDao extends GenericDao {
           SELECT e
           FROM ' . User::class . ' e
           WHERE e.mail = :mail'
-        )->setParameter('mail', $mail);
-        if($query->getResult() != null)
+        );
+        $query->setParameter('mail', $mail);
+        if ($query->getResult() != null)
             return $query->getResult()[0];
         return null;
     }
@@ -84,11 +91,10 @@ class UserDao extends GenericDao {
           FROM ' . User::class . ' e
           WHERE e.session = :sessi'
         )->setParameter('sessi', $session);
-        if($query->getResult() != null)
+        if ($query->getResult() != null)
             return $query->getResult()[0];
         return null;
     }
-
 
 
 }
