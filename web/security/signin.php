@@ -39,7 +39,7 @@ if (isset($_POST['login']) && isset($_POST['password'])) {
                     <input name="password" class="form-control" type="password"/>
                 </div>
                 <br/>
-                <a href="">Mot de passe oublié ?</a>
+                <a href="<?php echo WEB_PATH; ?>?page=restorepassword">Mot de passe oublié ?</a>
 
                 <div class="form-group" style="text-align: center">
                     <input type="submit" class="btn btn-green" value="Connexion"/>
