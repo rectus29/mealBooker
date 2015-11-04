@@ -65,4 +65,19 @@ class Utils {
             return false;
         return true;
     }
+
+    /**
+     * generate alphanumeric code
+     * @param $codelength int length of string to generate
+     * @return string
+     */
+    public static function generateStringCode($codelength = 24)
+    {
+        $characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+        $string = '';
+        for ($i = 0; $i < $codelength; $i++) {
+            $string .= $characters[rand(0, strlen($characters) - 1)];
+        }
+        return $string;
+    }
 }

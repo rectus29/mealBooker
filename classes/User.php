@@ -11,6 +11,7 @@ namespace MealBooker\model;
     /*                Date: 28/09/2015 17:01                */
     /*                 All right reserved                  */
 /*-----------------------------------------------------*/
+use DateTime;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\ManyToOne;
@@ -87,7 +88,13 @@ class User extends DomainObject
      * @Column(type="string")
      * @var string
      */
-    private $session = false;
+    private $session;
+
+    /**
+     * @Column(type="string")
+     * @var string
+     */
+    private $restoreToken;
 
 
     /**
@@ -132,6 +139,7 @@ class User extends DomainObject
      */
     public function setFirstName($firstName)
     {
+        $this->setUpdated(new DateTime());
         $this->firstName = $firstName;
     }
 
@@ -148,6 +156,7 @@ class User extends DomainObject
      */
     public function setLastName($lastName)
     {
+        $this->setUpdated(new DateTime());
         $this->lastName = $lastName;
     }
 
@@ -164,6 +173,7 @@ class User extends DomainObject
      */
     public function setMail($mail)
     {
+        $this->setUpdated(new DateTime());
         $this->mail = $mail;
     }
 
@@ -180,6 +190,7 @@ class User extends DomainObject
      */
     public function setSalt($salt)
     {
+        $this->setUpdated(new DateTime());
         $this->salt = $salt;
     }
 
@@ -196,6 +207,7 @@ class User extends DomainObject
      */
     public function setPassword($password)
     {
+        $this->setUpdated(new DateTime());
         $this->password = $password;
     }
 
@@ -212,6 +224,7 @@ class User extends DomainObject
      */
     public function setPhoneNumber($phoneNumber)
     {
+        $this->setUpdated(new DateTime());
         $this->phoneNumber = $phoneNumber;
     }
 
@@ -230,6 +243,7 @@ class User extends DomainObject
      */
     public function setRole($role)
     {
+        $this->setUpdated(new DateTime());
         $this->role = $role;
     }
 
@@ -246,6 +260,7 @@ class User extends DomainObject
      */
     public function setCompany($company)
     {
+        $this->setUpdated(new DateTime());
         $this->company = $company;
     }
 
@@ -262,6 +277,7 @@ class User extends DomainObject
      */
     public function setOptIn($optIn)
     {
+        $this->setUpdated(new DateTime());
         $this->optIn = $optIn;
     }
 
@@ -274,10 +290,11 @@ class User extends DomainObject
     }
 
     /**
-     * @param MealOrder[] $Order
+     * @param MealOrder[] $order
      */
     public function setOrders($order)
     {
+        $this->setUpdated(new DateTime());
         $this->orders = $order;
     }
 
@@ -294,8 +311,28 @@ class User extends DomainObject
      */
     public function setSession($session)
     {
+        $this->setUpdated(new DateTime());
         $this->session = $session;
     }
+
+    /**
+     * @return string
+     */
+    public function getRestoreToken()
+    {
+        return $this->restoreToken;
+    }
+
+    /**
+     * @param string $restoreToken
+     */
+    public function setRestoreToken($restoreToken)
+    {
+        $this->setUpdated(new DateTime());
+        $this->restoreToken = $restoreToken;
+    }
+
+
 
     /**
      * return name formatted

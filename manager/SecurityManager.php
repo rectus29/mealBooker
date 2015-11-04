@@ -98,7 +98,7 @@ class SecurityManager
     {
         $userDao = new UserDao(self::$em);
         $user = $userDao->getUserByMail($login);
-        if ($user != null && $user->getPassword() === password_hash($password, PASSWORD_BCRYPT, ['salt' => $user->getSalt()]) && $user->getStatus() == 1 ) {
+        if (($user != null && $user->getPassword() === self::hashPassword($password, $user->getSalt())) && $user->getStatus() == 1) {
             $user->setSession(session_id());
             $userDao->save($user);
             $_SESSION['auth'] = session_id();
@@ -123,21 +123,6 @@ class SecurityManager
     }
 
     /**
-     * generate alphanumeric code
-     * @param int length of string to generate
-     * @return string
-     */
-    public function generateStringCode($codelength = 10)
-    {
-        $characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
-        $string = '';
-        for ($i = 0; $i < $codelength; $i++) {
-            $string .= $characters[rand(0, strlen($characters) - 1)];
-        }
-        return $string;
-    }
-
-    /**
      * logout user by session id
      * @param $session
      */
@@ -154,10 +139,20 @@ class SecurityManager
                 return true;
             }
             return false;
-        }catch(Exception $ex){
+        } catch (Exception $ex) {
             var_dump($ex);
         }
+    }
 
+    /**
+     * return hashed password
+     * @param $password
+     * @param $salt
+     * @return string
+     */
+    public static function hashPassword($password, $salt)
+    {
+        return password_hash($password, PASSWORD_BCRYPT, ['salt' => $salt]);
     }
 
 }

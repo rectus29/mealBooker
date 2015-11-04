@@ -96,5 +96,21 @@ class UserDao extends GenericDao
         return null;
     }
 
+    /**
+     * find user by restoration token
+     * @return User|null
+     */
+    public function getByRestoreToken($token)
+    {
+        $query = $this->entityManager->createQuery('
+          SELECT e
+          FROM ' . User::class . ' e
+          WHERE e.restorationToken = :token'
+        )->setParameter('token', $token);
+        if ($query->getResult() != null)
+            return $query->getResult()[0];
+        return null;
+    }
+
 
 }

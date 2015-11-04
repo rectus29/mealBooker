@@ -94,7 +94,7 @@ class MailManager
         <table>
             <tbody>
                 <tr>
-                    <td style="background: black;"><img src="'. SERVER_URL . WEB_PATH. 'img/logo_mail.jpg"></td>
+                    <td style="background: black;"><img src="' . SERVER_URL . WEB_PATH . 'img/logo_mail.jpg"></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -128,7 +128,7 @@ class MailManager
         <table>
             <tbody>
                 <tr style="background: black;">
-                    <td><img src="'. SERVER_URL . WEB_PATH. 'img/logo_mail.jpg"></td>
+                    <td><img src="' . SERVER_URL . WEB_PATH . 'img/logo_mail.jpg"></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -140,7 +140,47 @@ class MailManager
                 </tr>
             </tbody>
 	    </table>';
-        self::$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+        if (!self::$mail->send()) {
+            throw new Exception("Message could not be sent - " . self::$mail->ErrorInfo);
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * send restoration mail to user
+     * @param $user User
+     * @return bool
+     * @throws Exception
+     */
+    public static function sendRestorePasswordMail($user)
+    {
+        self::$mail->addAddress($user->getMail());
+        self::$mail->Subject = 'Aurore traiteur - Restorattion de votre mot de passe';
+        self::$mail->Body = '
+        <table>
+            <tbody>
+                <tr style="background: black;">
+                    <td><img src="' . SERVER_URL . WEB_PATH . 'img/logo_mail.jpg"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                       Bonjour ' . $user->getFormattedName() . '
+                        <p>
+                            Pour finaliser la procédure de restoration de votre mot de passe veuillez suivre le lien suivant :
+                        </p>
+                        <p>
+                            ' . SERVER_URL.WEB_PATH . '?page=restorepassword&token='.$user->getRestorationToken().'
+                        </p>
+                        <p>
+                            Attention : le lien ci-dessus n\'est valable que pendant 24h
+                        </p>
+                        Cordialement,
+                    </td>
+                </tr>
+            </tbody>
+	    </table>';
         if (!self::$mail->send()) {
             throw new Exception("Message could not be sent - " . self::$mail->ErrorInfo);
         } else {

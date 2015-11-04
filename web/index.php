@@ -79,6 +79,9 @@ include 'head.php';
                 case 'signupvalidation':
                     include 'security/signupvalidation.php';
                     break;
+                case 'restorepassword':
+                    include 'security/restorepassword.php';
+                    break;
                 default :
                     include 'security/signin.php';
                     break;
