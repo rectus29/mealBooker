@@ -41,4 +41,12 @@ class DrinkDao extends GenericDao {
     public function getAll() {
         return parent::findAll(Drink::class);
     }
+
+    /**
+     * Find All Drink
+     * @return Course[]
+     */
+    public function getAllEnabled() {
+        return parent::findAllEnabled(Drink::class);
+    }
 }

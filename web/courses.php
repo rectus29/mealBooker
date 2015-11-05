@@ -43,7 +43,7 @@ $todayMealOrder = $MealOrderDao->getMealOrderBetween($startDate, $stopDate);
         /**
          * @var $course Course
          **/
-        foreach ($courseDao->getAll() as $course) {
+        foreach ($courseDao->getAllEnabled() as $course) {
             ?>
             <div class="col-md-6">
                 <a href="<?php echo WEB_PATH ?>?page=meal&courseID=<?php echo $course->getId(); ?>" class="card">

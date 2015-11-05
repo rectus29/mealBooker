@@ -56,4 +56,13 @@ class CourseDao extends GenericDao {
     public function getAll() {
         return parent::findAll(Course::class);
     }
+
+
+    /**
+     * Find All Course
+     * @return Course[]
+     */
+    public function getAllEnabled() {
+        return parent::findAllEnabled(Course::class);
+    }
 }

@@ -73,7 +73,7 @@ class GenericDao {
      * @return mixed
      */
     public function findAllEnabled($entity) {
-        $query = $this->entityManager->createQuery("SELECT e FROM ". $entity . " e WHERE e:state");
+        $query = $this->entityManager->createQuery("SELECT e FROM ". $entity . " e WHERE e.status = 1");
         return $query->getResult();
     }
 

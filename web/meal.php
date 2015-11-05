@@ -77,7 +77,7 @@ if (isset($_GET) && isset($_GET['courseID'])) {
                     <div class="drinkOptions col-md-6">
                         <h4>Choisissez une boisson :</h4>
                         <?php
-                        foreach ($drinkDao->getAll() as $drink) {
+                        foreach ($drinkDao->getAllEnabled() as $drink) {
                             ?>
                             <div class="radio">
                                 <label>
