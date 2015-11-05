@@ -47,9 +47,6 @@ $orderDao = new OrderDao($em);
                 </td>
                 <td><?php echo $order->getUser()->getFormattedName() . " (" . $order->getUser()->getCompany()->getName() . ")"; ?></td>
                 <td>
-                    <a href=""><i class="fa fa-edit"></i></a>
-                    <a href=""><i class="fa fa-toggle-on"></i></a>
-                    <a href=""><i class="fa fa-remove"></i></a>
                 </td>
             </tr>
             <?php
@@ -59,5 +56,5 @@ $orderDao = new OrderDao($em);
     </table>
 </div>
 <div class="row">
-    <a class="btn btn-green pull-right" href="#">Créer</a>
+    <a class="btn btn-green pull-right" href="#" disabled>Créer</a>
 </div>

@@ -37,6 +37,7 @@ class Drink extends DomainObject
 
     function __construct($name = null, $description = null)
     {
+        parent::__construct();
         $this->name = $name;
         $this->description = $description;
     }

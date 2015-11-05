@@ -28,8 +28,8 @@ if (isset($_GET['tab'])) {
         <ul class="nav nav-tabs">
             <li role="presentation" <?php echo ($reqTab == null || $reqTab == 'dash') ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin"?>">Dashboard</a></li>
             <li role="presentation" <?php echo ($reqTab != null && $reqTab == 'order') ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=order"?>">Commandes</a></li>
-            <li role="presentation" <?php echo ($reqTab != null && $reqTab == 'course') ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=course"?>">Plats</a></li>
-            <li role="presentation" <?php echo ($reqTab != null && $reqTab == 'drink') ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=drink"?>">Boissons</a></li>
+            <li role="presentation" <?php echo ($reqTab != null && ($reqTab == 'course' || $reqTab == 'courseedit')) ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=course"?>">Plats</a></li>
+            <li role="presentation" <?php echo ($reqTab != null && ($reqTab == 'drink' || $reqTab == 'drinkedit')) ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=drink"?>">Boissons</a></li>
             <li role="presentation" <?php echo ($reqTab != null && $reqTab == 'timeframe') ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=timeframe"?>">Horaires</a></li>
             <li role="presentation" <?php echo ($reqTab != null && $reqTab == 'users') ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=users"?>">Utilisateurs</a></li>
             <li role="presentation" <?php echo ($reqTab != null && $reqTab == 'company') ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=company"?>">Entreprises</a></li>
@@ -47,8 +47,14 @@ if (isset($_GET['tab'])) {
                     case 'course' :
                         include 'course.php';
                         break;
+                    case 'courseedit' :
+                        include 'courseEdit.php';
+                        break;
                     case 'drink' :
                         include 'drink.php';
+                        break;
+                    case 'drinkedit' :
+                        include 'drinkEdit.php';
                         break;
                     case 'timeframe' :
                         include 'timeframe.php';

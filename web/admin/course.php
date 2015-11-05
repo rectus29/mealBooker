@@ -35,9 +35,7 @@ $courseDao = new CourseDao($em);
                 <td><?php echo $course->getCreated()->format('d M Y');?></td>
                 <td><?php echo ($course->getStatus()==1)?'Actif':'Inactif';?></td>
                 <td>
-                    <a href=""><i class="fa fa-edit"></i></a>
-                    <a href=""><i class="fa fa-toggle-on"></i></a>
-                    <a href=""><i class="fa fa-remove"></i></a>
+                    <a href="<?php echo WEB_PATH?>?page=admin&tab=courseedit&id=<?php echo $course->getId() ?>"><i class="fa fa-edit"></i></a>
                 </td>
             </tr>
         <?php
@@ -47,5 +45,5 @@ $courseDao = new CourseDao($em);
     </table>
 </div>
 <div class="row">
-    <a class="btn btn-green pull-right" href="#">Créer</a>
+    <a class="btn btn-green pull-right" href="<?php echo WEB_PATH?>?page=admin&tab=drinkedit">Créer</a>
 </div>

@@ -34,9 +34,6 @@ $tfDao = new TimeFrameDao($em);
                 <td><?php echo $tf->getStart();?></td>
                 <td><?php echo ($tf->getStatus()==1)?'Actif':'Inactif';?></td>
                 <td>
-                    <a href=""><i class="fa fa-edit"></i></a>
-                    <a href=""><i class="fa fa-toggle-on"></i></a>
-                    <a href=""><i class="fa fa-remove"></i></a>
                 </td>
             </tr>
         <?php
@@ -46,5 +43,5 @@ $tfDao = new TimeFrameDao($em);
     </table>
 </div>
 <div class="row">
-    <a class="btn btn-green pull-right" href="#">Créer</a>
+    <a class="btn btn-green pull-right" href="#" disabled>Créer</a>
 </div>

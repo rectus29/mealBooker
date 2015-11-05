@@ -111,9 +111,7 @@ class User extends DomainObject
      */
     public function __construct($firstName = null, $lastName = null, $mail = null, $salt = null, $password = null, $phoneNumber = null, Role $role = null, Company $company = null, $optIn = false)
     {
-        $this->created = new \DateTime();
-        $this->updated = new \DateTime();
-        $this->status = 1;
+        parent::__construct();
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->mail = $mail;
