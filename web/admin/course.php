@@ -45,5 +45,5 @@ $courseDao = new CourseDao($em);
     </table>
 </div>
 <div class="row">
-    <a class="btn btn-green pull-right" href="<?php echo WEB_PATH?>?page=admin&tab=drinkedit">Créer</a>
+    <a class="btn btn-green pull-right" href="<?php echo WEB_PATH?>?page=admin&tab=courseedit">Créer</a>
 </div>

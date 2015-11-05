@@ -33,7 +33,7 @@ if (isset($_GET['tab'])) {
             <li role="presentation" <?php echo ($reqTab != null && $reqTab == 'timeframe') ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=timeframe"?>">Horaires</a></li>
             <li role="presentation" <?php echo ($reqTab != null && $reqTab == 'users') ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=users"?>">Utilisateurs</a></li>
             <li role="presentation" <?php echo ($reqTab != null && $reqTab == 'company') ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=company"?>">Entreprises</a></li>
-            <li role="presentation" <?php echo ($reqTab != null && $reqTab == 'server') ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=server"?>">Gestion serveur</a></li>
+            <!--<li role="presentation" <?php echo ($reqTab != null && $reqTab == 'server') ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=server"?>">Gestion serveur</a></li>-->
         </ul>
         <div>
             <?php

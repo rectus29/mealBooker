@@ -67,5 +67,15 @@ class GenericDao {
         return $query->getResult();
     }
 
+    /**
+     * return all entity of a class
+     * @param $entity
+     * @return mixed
+     */
+    public function findAllEnabled($entity) {
+        $query = $this->entityManager->createQuery("SELECT e FROM ". $entity . " e WHERE e:state");
+        return $query->getResult();
+    }
+
 
 }
