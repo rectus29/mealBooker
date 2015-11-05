@@ -22,8 +22,10 @@ $userDao = new UserDao($em);
             <th>#</th>
             <th>Nom</th>
             <th>Mail</th>
+            <th>Tél.</th>
             <th>Créé le</th>
             <th>Société</th>
+            <th>Démarchable</th>
             <th>Rôle</th>
             <th>Statut</th>
             <th>Action</th>
@@ -33,14 +35,16 @@ $userDao = new UserDao($em);
         <?php
         foreach ($userDao->getAll() as $user) {
             ?>
-            <tr>
+            <tr <?php echo ($user->isOptIn())?'class="success"':'';?>>
                 <td><?php echo $user->getId();?></td>
                 <td><?php echo $user->getFormattedName();?></td>
                 <td><?php echo $user->getMail();?></td>
+                <td><?php echo $user->getPhoneNumber();?></td>
                 <td><?php echo $user->getCreated()->format('d M Y');?></td>
                 <td><?php echo $user->getCompany()->getName();?></td>
+                <td><?php echo ($user->isOptIn())?"Oui":"Non";?></td>
                 <td><?php echo $user->getRole()->getName();?></td>
-                <td><?php echo $user->getStatus();?></td>
+                <td><?php echo ($user->getStatus()==1)?'Actif':'Inactif';?></td>
                 <td>
                     <a href=""><i class="fa fa-edit"></i></a>
                     <a href=""><i class="fa fa-toggle-on"></i></a>

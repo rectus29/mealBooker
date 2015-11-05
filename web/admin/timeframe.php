@@ -32,7 +32,7 @@ $tfDao = new TimeFrameDao($em);
             <tr>
                 <td><?php echo $tf->getId();?></td>
                 <td><?php echo $tf->getStart();?></td>
-                <td><?php echo $tf->getStatus();?></td>
+                <td><?php echo ($tf->getStatus()==1)?'Actif':'Inactif';?></td>
                 <td>
                     <a href=""><i class="fa fa-edit"></i></a>
                     <a href=""><i class="fa fa-toggle-on"></i></a>

@@ -34,7 +34,7 @@ $drinkDao = new DrinkDao($em);
                 <td><?php echo $drink->getId();?></td>
                 <td><?php echo $drink->getName();?></td>
                 <td><?php echo $drink->getCreated()->format('d M Y');?></td>
-                <td><?php echo $drink->getStatus();?></td>
+                <td><?php echo ($drink->getStatus()==1)?'Actif':'Inactif';?></td>
                 <td>
                     <a href=""><i class="fa fa-edit"></i></a>
                     <a href=""><i class="fa fa-toggle-on"></i></a>

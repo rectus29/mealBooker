@@ -33,7 +33,7 @@ $courseDao = new CourseDao($em);
                 <td><?php echo $course->getId();?></td>
                 <td><?php echo $course->getName();?></td>
                 <td><?php echo $course->getCreated()->format('d M Y');?></td>
-                <td><?php echo $course->getStatus();?></td>
+                <td><?php echo ($course->getStatus()==1)?'Actif':'Inactif';?></td>
                 <td>
                     <a href=""><i class="fa fa-edit"></i></a>
                     <a href=""><i class="fa fa-toggle-on"></i></a>

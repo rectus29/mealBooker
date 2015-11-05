@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 04 Novembre 2015 à 14:05
+-- Généré le :  Jeu 05 Novembre 2015 à 21:39
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `app_company` (
 --
 
 INSERT INTO `app_company` (`id`, `name`, `validationCode`, `created`, `updated`, `status`) VALUES
-  (1, 'Sopra', '131', '2015-10-15 00:00:00', '2015-10-15 00:00:00', 1);
+(1, 'Sopra', '131', '2015-10-15 00:00:00', '2015-10-15 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -58,10 +58,10 @@ CREATE TABLE IF NOT EXISTS `app_config` (
 --
 
 INSERT INTO `app_config` (`id`, `keyCode`, `value`, `created`, `updated`, `status`) VALUES
-  (1, 'mealPerDay', '40', '2015-10-26 00:00:00', '2015-10-26 00:00:00', 1),
-  (2, 'serverState', '0', '2015-10-26 00:00:00', '2015-10-26 00:00:00', 1),
-  (3, 'startBookingStep', '1', '2015-10-26 00:00:00', '2015-10-26 00:00:00', 1),
-  (4, 'stopBookingHour', '14:00', '2015-10-26 00:00:00', '2015-10-26 00:00:00', 1);
+(1, 'mealPerDay', '40', '2015-10-26 00:00:00', '2015-10-26 00:00:00', 1),
+(2, 'serverState', '0', '2015-10-26 00:00:00', '2015-10-26 00:00:00', 1),
+(3, 'startBookingStep', '1', '2015-10-26 00:00:00', '2015-10-26 00:00:00', 1),
+(4, 'stopBookingHour', '14:00', '2015-10-26 00:00:00', '2015-10-26 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -84,8 +84,8 @@ CREATE TABLE IF NOT EXISTS `app_course` (
 --
 
 INSERT INTO `app_course` (`id`, `name`, `description`, `created`, `updated`, `status`) VALUES
-  (1, 'Menu équilibré', '<b>Menu équilibré 13.50 € + consigne 2.50 €<b><br>\nPoulet au riz et carottes, sauce à l''orange\n\nPot de crème au beure salé, caramel et<br> poudre de spéculoos', '2015-10-15 00:00:00', '2015-10-15 00:00:00', 1),
-  (2, 'Cassoulet', 'cassoulet qui fait PETER', '2015-10-13 00:00:00', '2015-10-13 00:00:00', 1);
+(1, 'Menu équilibré', '<b>Menu équilibré 13.50 € + consigne 2.50 €<b><br>\nPoulet au riz et carottes, sauce à l''orange\n\nPot de crème au beure salé, caramel et<br> poudre de spéculoos', '2015-10-15 00:00:00', '2015-10-15 00:00:00', 1),
+(2, 'Cassoulet', 'cassoulet qui fait PETER', '2015-10-13 00:00:00', '2015-10-13 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -108,12 +108,12 @@ CREATE TABLE IF NOT EXISTS `app_drink` (
 --
 
 INSERT INTO `app_drink` (`id`, `name`, `description`, `created`, `updated`, `status`) VALUES
-  (1, 'Evian', 'Evian', '2015-10-22 00:00:00', '2015-10-22 00:00:00', 1),
-  (2, 'Badoit', 'Badoit', '2015-10-22 00:00:00', '2015-10-22 00:00:00', 1),
-  (3, 'Coca-Cola', 'Coca-Cola', '2015-10-29 14:38:24', '2015-10-29 14:38:24', 1),
-  (4, 'Sprite', 'Sprite', '2015-10-29 14:38:24', '2015-10-29 14:38:24', 1),
-  (5, 'Fanta Citron', 'Fanta Citron', '2015-10-29 14:38:24', '2015-10-29 14:38:24', 1),
-  (6, 'Cocktail Apple Pie', 'Cocktail Apple Pie', '2015-10-29 14:38:24', '2015-10-29 14:38:24', 1);
+(1, 'Evian', 'Evian', '2015-10-22 00:00:00', '2015-10-22 00:00:00', 1),
+(2, 'Badoit', 'Badoit', '2015-10-22 00:00:00', '2015-10-22 00:00:00', 1),
+(3, 'Coca-Cola', 'Coca-Cola', '2015-10-29 14:38:24', '2015-10-29 14:38:24', 1),
+(4, 'Sprite', 'Sprite', '2015-10-29 14:38:24', '2015-10-29 14:38:24', 1),
+(5, 'Fanta Citron', 'Fanta Citron', '2015-10-29 14:38:24', '2015-10-29 14:38:24', 1),
+(6, 'Cocktail Apple Pie', 'Cocktail Apple Pie', '2015-10-29 14:38:24', '2015-10-29 14:38:24', 1);
 
 -- --------------------------------------------------------
 
@@ -193,8 +193,8 @@ CREATE TABLE IF NOT EXISTS `app_role` (
 --
 
 INSERT INTO `app_role` (`id`, `name`, `description`, `weight`, `isAdmin`, `created`, `updated`, `status`) VALUES
-  (1, 'Administrateur', 'Administrateur', 100, 1, '2015-10-15 00:00:00', '2015-10-15 00:00:00', 1),
-  (2, 'Utilisateur', 'Utilisateur', 50, 0, '2015-10-15 00:00:00', '2015-10-15 00:00:00', 1);
+(1, 'Administrateur', 'Administrateur', 100, 1, '2015-10-15 00:00:00', '2015-10-15 00:00:00', 1),
+(2, 'Utilisateur', 'Utilisateur', 50, 0, '2015-10-15 00:00:00', '2015-10-15 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -217,9 +217,9 @@ CREATE TABLE IF NOT EXISTS `app_timeframe` (
 --
 
 INSERT INTO `app_timeframe` (`id`, `start`, `stop`, `created`, `updated`, `status`) VALUES
-  (1, '12:30', '12:30', '2015-10-22 00:00:00', '2015-10-22 00:00:00', 1),
-  (2, '13:00', '13:30', '2015-10-22 00:00:00', '2015-10-22 00:00:00', 1),
-  (3, '13:30', '13:30', '2015-10-28 00:00:00', '2015-10-28 00:00:00', 1);
+(1, '12:30', '12:30', '2015-10-22 00:00:00', '2015-10-22 00:00:00', 1),
+(2, '13:00', '13:30', '2015-10-22 00:00:00', '2015-10-22 00:00:00', 1),
+(3, '13:30', '13:30', '2015-10-28 00:00:00', '2015-10-28 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -238,23 +238,24 @@ CREATE TABLE IF NOT EXISTS `app_user` (
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `phoneNumber` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `optIn` tinyint(1) NOT NULL,
-  `session` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `session` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
   `status` int(11) NOT NULL,
-  `restoreToken` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `restoreToken` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_88BDF3E95126AC48` (`mail`),
   KEY `IDX_88BDF3E9D60322AC` (`role_id`),
   KEY `IDX_88BDF3E9979B1AD6` (`company_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
 -- Contenu de la table `app_user`
 --
 
 INSERT INTO `app_user` (`id`, `role_id`, `company_id`, `firstName`, `lastName`, `mail`, `salt`, `password`, `phoneNumber`, `optIn`, `session`, `created`, `updated`, `status`, `restoreToken`) VALUES
-  (1, 1, 1, 'Admin', 'istrateur', 'contact@alexandrebernard.fr', 'GZokcpR4upD65B/avAk85XDfEM2QLg==', '$2y$10$R1pva2NwUjR1cEQ2NUIvYO.w14kb4WJdJK4a0hi5cQhzxXmTx8w4O', '0606060606', 1, 'jdn2q657l0lrpii2l4h7udpgj6', '2015-10-15 00:00:00', '2015-10-15 00:00:00', 1, '');
+(1, 1, 1, 'Admin', 'istrateur', 'contact@alexandrebernard.fr', 'GZokcpR4upD65B/avAk85XDfEM2QLg==', '$2y$10$R1pva2NwUjR1cEQ2NUIvYOnfG6sqdk7MVfJ32kvWIl1HvEKirPbbq', '0606060606', 1, '', '2015-10-15 00:00:00', '2015-11-05 21:32:44', 1, ''),
+(2, 2, 1, 'Alexandre', 'Bernard', 'rectus29@gmail.com', 'x7XsEOXrtRo1ZpydkC0Pod0Ov3XWow==', '$2y$10$eDdYc0VPWHJ0Um8xWnB5Z.SXVdgeyWEWDXg.WIA0vpOoN/LlqPs06', '+33640427440', 0, 'fgrhqgm0v1qczgvfmfepw666', '2015-11-05 21:37:57', '2015-11-05 21:37:57', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -278,27 +279,27 @@ CREATE TABLE IF NOT EXISTS `role_permission` (
 -- Contraintes pour la table `app_meal`
 --
 ALTER TABLE `app_meal`
-ADD CONSTRAINT `FK_9BD8AB3C36AA4BB4` FOREIGN KEY (`drink_id`) REFERENCES `app_drink` (`id`),
-ADD CONSTRAINT `FK_9BD8AB3C591CC992` FOREIGN KEY (`course_id`) REFERENCES `app_course` (`id`),
-ADD CONSTRAINT `FK_9BD8AB3C8D9F6D38` FOREIGN KEY (`order_id`) REFERENCES `app_mealorder` (`id`);
+  ADD CONSTRAINT `FK_9BD8AB3C36AA4BB4` FOREIGN KEY (`drink_id`) REFERENCES `app_drink` (`id`),
+  ADD CONSTRAINT `FK_9BD8AB3C591CC992` FOREIGN KEY (`course_id`) REFERENCES `app_course` (`id`),
+  ADD CONSTRAINT `FK_9BD8AB3C8D9F6D38` FOREIGN KEY (`order_id`) REFERENCES `app_mealorder` (`id`);
 
 --
 -- Contraintes pour la table `app_mealorder`
 --
 ALTER TABLE `app_mealorder`
-ADD CONSTRAINT `FK_1ABD6F42A76ED395` FOREIGN KEY (`user_id`) REFERENCES `app_user` (`id`),
-ADD CONSTRAINT `FK_1ABD6F42E61AE10A` FOREIGN KEY (`timeFrame_id`) REFERENCES `app_timeframe` (`id`);
+  ADD CONSTRAINT `FK_1ABD6F42A76ED395` FOREIGN KEY (`user_id`) REFERENCES `app_user` (`id`),
+  ADD CONSTRAINT `FK_1ABD6F42E61AE10A` FOREIGN KEY (`timeFrame_id`) REFERENCES `app_timeframe` (`id`);
 
 --
 -- Contraintes pour la table `app_user`
 --
 ALTER TABLE `app_user`
-ADD CONSTRAINT `FK_88BDF3E9979B1AD6` FOREIGN KEY (`company_id`) REFERENCES `app_company` (`id`),
-ADD CONSTRAINT `FK_88BDF3E9D60322AC` FOREIGN KEY (`role_id`) REFERENCES `app_role` (`id`);
+  ADD CONSTRAINT `FK_88BDF3E9979B1AD6` FOREIGN KEY (`company_id`) REFERENCES `app_company` (`id`),
+  ADD CONSTRAINT `FK_88BDF3E9D60322AC` FOREIGN KEY (`role_id`) REFERENCES `app_role` (`id`);
 
 --
 -- Contraintes pour la table `role_permission`
 --
 ALTER TABLE `role_permission`
-ADD CONSTRAINT `FK_6F7DF886FED90CCA` FOREIGN KEY (`permission_id`) REFERENCES `app_permission` (`id`) ON DELETE CASCADE,
-ADD CONSTRAINT `FK_6F7DF886D60322AC` FOREIGN KEY (`role_id`) REFERENCES `app_role` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `FK_6F7DF886FED90CCA` FOREIGN KEY (`permission_id`) REFERENCES `app_permission` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_6F7DF886D60322AC` FOREIGN KEY (`role_id`) REFERENCES `app_role` (`id`) ON DELETE CASCADE;

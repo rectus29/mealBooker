@@ -85,13 +85,13 @@ class User extends DomainObject
     private $optIn = false;
 
     /**
-     * @Column(type="string")
+     * @Column(type="string", nullable=true)
      * @var string
      */
     private $session;
 
     /**
-     * @Column(type="string")
+     * @Column(type="string", nullable=true)
      * @var string
      */
     private $restoreToken;

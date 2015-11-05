@@ -17,6 +17,7 @@ use MealBooker\model\User;
 use MealBooker\models\dao\CompanyDao;
 use MealBooker\models\dao\RoleDao;
 use MealBooker\models\dao\UserDao;
+use MealBooker\utils\Utils;
 
 $error = null;
 $info = null;
@@ -51,7 +52,7 @@ if (isset($_POST) && isset($_POST['email']) && isset($_POST['phone']) && isset($
         if (isset($_POST['optIn']))
             $user->setOptIn($_POST['optIn']);
         //use session field to put authToken
-        $user->setSession(SecurityManager::get()->generateStringCode());
+        $user->setSession(Utils::generateStringCode());
         $user->setStatus(0);
         //save user
         $userDao->save($user);
