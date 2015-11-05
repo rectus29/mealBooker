@@ -27,6 +27,7 @@ if (isset($_POST['email']) && sizeof($_POST['email']) > 0) {
             $user->setRestoreToken(\MealBooker\utils\Utils::generateStringCode());
             $userDao->save($user);
             MailManager::get()->sendRestorePasswordMail($user);
+            $message = 'Un E-mail vous a était envoyé pour réaliser la restoration de votre mots de passe';
         }
     } catch (Exception $ex) {
         $error = $ex->getMessage();
@@ -34,7 +35,7 @@ if (isset($_POST['email']) && sizeof($_POST['email']) > 0) {
 } else if (isset($_POST['restorepassword']) && sizeof($_POST['restorepassword']) > 0 && isset($_POST['token']) && sizeof($_POST['token']) > 0){
     //token and new password validation
     try{
-        $password = $_GET['restorepassword'];
+        $password = $_POST['restorepassword'];
         $token = $_GET['token'];
         $userDao = new UserDao($em);
         $user = $userDao->getByRestoreToken($token);

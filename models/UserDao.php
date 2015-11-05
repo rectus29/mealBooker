@@ -105,7 +105,7 @@ class UserDao extends GenericDao
         $query = $this->entityManager->createQuery('
           SELECT e
           FROM ' . User::class . ' e
-          WHERE e.restorationToken = :token'
+          WHERE e.restoreToken = :token'
         )->setParameter('token', $token);
         if ($query->getResult() != null)
             return $query->getResult()[0];

@@ -171,7 +171,7 @@ class MailManager
                             Pour finaliser la procédure de restoration de votre mot de passe veuillez suivre le lien suivant :
                         </p>
                         <p>
-                            ' . SERVER_URL.WEB_PATH . '?page=restorepassword&token='.$user->getRestorationToken().'
+                            ' . SERVER_URL.WEB_PATH . '?page=restorepassword&token='.$user->getRestoreToken().'
                         </p>
                         <p>
                             Attention : le lien ci-dessus n\'est valable que pendant 24h
