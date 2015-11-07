@@ -3,7 +3,8 @@
     <title>MealBooker</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+ <!--   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>-->
     <meta http-equiv="cache-control" content="no-cache"/>
     <meta http-equiv="pragma" content="no-cache"/>
     <meta http-equiv="expires" content="-1"/>
