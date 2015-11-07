@@ -31,10 +31,17 @@ class Course extends DomainObject
     private $name;
 
     /**
-     * @Column(type="string")
+     * @Column(type="string", length=65536)
      * @var String
      */
     private $description;
+
+    /**
+     * @Column(type="string")
+     * @var String
+     */
+    private $img;
+
 
     /**
      * Course constructor.
@@ -82,6 +89,24 @@ class Course extends DomainObject
         $this->setUpdated(new DateTime());
         $this->description = $description;
     }
+
+    /**
+     * @return String
+     */
+    public function getImg()
+    {
+        return $this->img;
+    }
+
+    /**
+     * @param String $img
+     */
+    public function setImg($img)
+    {
+        $this->img = $img;
+    }
+
+
 
     /**
      * @return String

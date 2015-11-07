@@ -30,7 +30,7 @@ if (isset($_GET['tab'])) {
             <li role="presentation" <?php echo ($reqTab != null && $reqTab == 'order') ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=order"?>">Commandes</a></li>
             <li role="presentation" <?php echo ($reqTab != null && ($reqTab == 'course' || $reqTab == 'courseedit')) ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=course"?>">Plats</a></li>
             <li role="presentation" <?php echo ($reqTab != null && ($reqTab == 'drink' || $reqTab == 'drinkedit')) ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=drink"?>">Boissons</a></li>
-            <li role="presentation" <?php echo ($reqTab != null && $reqTab == 'timeframe') ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=timeframe"?>">Horaires</a></li>
+            <li role="presentation" <?php echo ($reqTab != null && ($reqTab == 'timeframe' || $reqTab == 'timeframeedit')) ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=timeframe"?>">Horaires</a></li>
             <li role="presentation" <?php echo ($reqTab != null && $reqTab == 'users') ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=users"?>">Utilisateurs</a></li>
             <li role="presentation" <?php echo ($reqTab != null && $reqTab == 'company') ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=company"?>">Entreprises</a></li>
             <!--<li role="presentation" <?php echo ($reqTab != null && $reqTab == 'server') ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=server"?>">Gestion serveur</a></li>-->
@@ -58,6 +58,9 @@ if (isset($_GET['tab'])) {
                         break;
                     case 'timeframe' :
                         include 'timeframe.php';
+                        break;
+                    case 'timeframeedit' :
+                        include 'timeframeEdit.php';
                         break;
                     case 'users' :
                         include 'users.php';

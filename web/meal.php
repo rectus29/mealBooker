@@ -63,7 +63,7 @@ if (isset($_GET) && isset($_GET['courseID'])) {
             <div class="course">
                 <div class="row">
                     <div class="col-md-4">
-                        <img src="<?php echo APP_PATH; ?>files/course/<?php echo $course->getId(); ?>.jpg" alt="" class="img-responsive">
+                        <img src="<?php echo APP_PATH; ?>files/course/<?php echo $course->getImg(); ?>" alt="" class="img-responsive">
                     </div>
                     <div class="col-md-8">
                         <h2><?php echo $course->getName(); ?></h2>

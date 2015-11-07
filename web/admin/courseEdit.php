@@ -27,6 +27,17 @@ if (isset($_POST['name']) && isset($_POST['desc']) && isset($_POST['id']) && iss
     $course->setDescription($_POST['desc']);
     $course->setStatus($_POST['state']);
     $courseDao->save($course);
+    var_dump($_FILES['img']);
+    if (isset($_FILES['img']) && $_FILES['img']['size'] > 0) {
+        try {
+            $uploaddir = FILE_DIR . "course/";
+            $uploadfile = $uploaddir . basename($_FILES['img']['name']);
+            move_uploaded_file($_FILES['img']['tmp_name'], $uploadfile);
+            $course->setImg($_FILES['img']['name']);
+            $courseDao->save($course);
+        } catch (Exception $ignored) {
+        }
+    }
     header('Location:' . WEB_PATH . '?page=admin&tab=course');
 }
 
@@ -41,7 +52,7 @@ if (isset($_GET['id'])) {
 ?>
 <div class="row">
     <div class="col-md-4 col-md-offset-4">
-        <form action="#" method="post" class="form">
+        <form action="#" method="post" class="form" enctype="multipart/form-data">
             <?php
             if ($course->getId() == null) {
                 ?>
@@ -63,10 +74,14 @@ if (isset($_GET['id'])) {
                 </select>
             </div>
             <div class="form-group">
+                <label for="img">Visuel</label>
+                <input type="file" name="img"/>
+            </div>
+            <div class="form-group">
                 <label for="desc">Descriptif</label>
                 <textarea name="desc" class="form-control" rows="10">
-                <?php echo $course->getName(); ?>
-            </textarea>
+                    <?php echo $course->getDescription(); ?>
+                </textarea>
             </div>
             <div class="form-group" style="text-align: center">
                 <input type="submit" class="btn btn-green" value="Valider"/>

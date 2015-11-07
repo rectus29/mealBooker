@@ -105,12 +105,12 @@ foreach ($todayMealOrder as $order) {
         <tbody>
         <?php
         foreach ($timeFramesOrder as $timeFrame => $orders) {
+            ?>
+            <tr>
+                <td colspan="4"><b><?php echo $timeFrame; ?></b></td>
+            </tr>
+            <?php
             if (sizeof($orders) > 0) {
-                ?>
-                <tr>
-                    <td colspan="4"><b><?php echo $timeFrame; ?></b></td>
-                </tr>
-                <?php
                 foreach ($orders as $mealOrder) {
                     ?>
                     <tr>
@@ -126,8 +126,14 @@ foreach ($todayMealOrder as $order) {
                             </ul>
                         <td><?php echo $mealOrder->getTimeFrame()->getStart(); ?></td>
                     </tr>
-                    <?php
+                <?php
                 }
+            } else {
+                ?>
+                <tr>
+                    <td colspan="4">Aucune commande</td>
+                </tr>
+            <?php
             }
         }
         ?>
@@ -146,7 +152,7 @@ foreach ($todayMealOrder as $order) {
                 foreach ($timeFrames as $tf) {
                     ?>
                     <th><?php echo $tf->getStart() ?></th>
-                    <?php
+                <?php
                 }
                 ?>
             </tr>
@@ -161,11 +167,11 @@ foreach ($todayMealOrder as $order) {
                     foreach ($courseData as $tf => $val) {
                         ?>
                         <td><?php echo $val ?></td>
-                        <?php
+                    <?php
                     }
                     ?>
                 </tr>
-                <?php
+            <?php
             }
             ?>
             </tbody>
@@ -182,7 +188,7 @@ foreach ($todayMealOrder as $order) {
                 foreach ($timeFrames as $tf) {
                     ?>
                     <th><?php echo $tf->getStart() ?></th>
-                    <?php
+                <?php
                 }
                 ?>
             </tr>
@@ -197,11 +203,11 @@ foreach ($todayMealOrder as $order) {
                     foreach ($drinkData as $tf => $val) {
                         ?>
                         <td><?php echo $val ?></td>
-                        <?php
+                    <?php
                     }
                     ?>
                 </tr>
-                <?php
+            <?php
             }
             ?>
             </tbody>

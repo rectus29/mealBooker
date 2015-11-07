@@ -34,6 +34,7 @@ $tfDao = new TimeFrameDao($em);
                 <td><?php echo $tf->getStart();?></td>
                 <td><?php echo ($tf->getStatus()==1)?'Actif':'Inactif';?></td>
                 <td>
+                    <a href="<?php echo WEB_PATH?>?page=admin&tab=timeframeedit&id=<?php echo $tf->getId() ?>"><i class="fa fa-edit"></i></a>
                 </td>
             </tr>
         <?php
