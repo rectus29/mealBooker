@@ -45,7 +45,7 @@ $todayMealOrder = $MealOrderDao->getMealOrderBetween($startDate, $stopDate);
          **/
         foreach ($courseDao->getAllEnabled() as $course) {
             ?>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <a href="<?php echo WEB_PATH ?>?page=meal&courseID=<?php echo $course->getId(); ?>" class="card">
                     <div class="meal-thumbnail">
                         <img src="<?php echo APP_PATH; ?>files/course/<?php echo $course->getImg(); ?>" alt="" class="img-responsive">
