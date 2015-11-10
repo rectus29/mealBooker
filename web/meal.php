@@ -17,29 +17,35 @@ use MealBooker\models\dao\OrderDao;
 use MealBooker\models\dao\TimeFrameDao;
 use MealBooker\utils\Utils;
 
+$courseDao = new CourseDao($em);
+$drinkDao = new DrinkDao($em);
+$timeFrameDao = new TimeFrameDao($em);
+$MealOrderDao = new OrderDao($em);
+
 //if no ID go to home
 if (!isset($_GET['courseID']))
     header("location:" . WEB_PATH);
 
 /** @var $course  Course */
 $course = $courseDao->getByPrimaryKey($_GET['courseID']);
+$message = null;
 
 //if no course found go to home
 if ($course == null)
     header("location:" . WEB_PATH);
 
-$courseDao = new CourseDao($em);
-$drinkDao = new DrinkDao($em);
-$timeFrameDao = new TimeFrameDao($em);
-$MealOrderDao = new OrderDao($em);
 $orderEnable = true;
 $mealPerDay = $course->getNbPerDay();
 //get all order in time window
 $todayMealOrder = $MealOrderDao->getCurrentMealOrderForCourse($course);
-if (sizeof($todayMealOrder) >= $mealPerDay)
+if (sizeof($todayMealOrder) >= $mealPerDay){
+    $message = "Ce plat n'est plus disponible";
     $orderEnable = false;
-//check time
-$orderEnable = ($orderEnable) ? Utils::isOrderEnable() : false;
+}else if(!Utils::isOrderEnable()){
+    //check time
+    $message = "Réservations non disponibles de 11h à 14h";
+    $orderEnable = false;
+}
 
 
 ?>
@@ -101,17 +107,15 @@ $orderEnable = ($orderEnable) ? Utils::isOrderEnable() : false;
         <div class="validateCourse">
             <div class="row">
                 <?php
-                if (!$orderEnable) {
-                    ?>
-                    <div class="alert alert-warning">
-                        Réservations non disponibles de 11h à 14h
-                    </div>
-                    <?php
+                if ($message != null) {
+                    echo '<div class="alert alert-warning">';
+                    echo $message;
+                    echo '</div>';
                 }
                 ?>
                 <div class="col-md-4 col-md-offset-4">
                     <a href="<?php WEB_PATH ?>?page=course" class="btn btn-default">Revenir à la sélection</a>
-                    <input type="submit" class="btn btn-green" value="Réserver" <?php if ($orderEnable) echo "disabled"; ?>/>
+                    <input type="submit" class="btn btn-green" value="Réserver" <?php if (!$orderEnable) echo "disabled"; ?>/>
                 </div>
             </div>
         </div>
