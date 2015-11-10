@@ -19,15 +19,15 @@ if (!SecurityManager::get()->getCurrentUser($_SESSION)->isAdmin()) {
 }
 $courseDao = new CourseDao($em);
 //save mode
-if (isset($_POST['name']) && isset($_POST['desc']) && isset($_POST['id']) && isset($_POST['state'])) {
+if (isset($_POST['name']) && isset($_POST['desc']) && isset($_POST['id']) && isset($_POST['nb']) && isset($_POST['state'])) {
     $course = $courseDao->getByPrimaryKey($_POST['id']);
     if ($course == null)
         $course = new Course();
     $course->setName($_POST['name']);
+    $course->setNbPerDay($_POST['nb']);
     $course->setDescription($_POST['desc']);
     $course->setStatus($_POST['state']);
     $courseDao->save($course);
-    var_dump($_FILES['img']);
     if (isset($_FILES['img']) && $_FILES['img']['size'] > 0) {
         try {
             $uploaddir = FILE_DIR . "course/";
@@ -67,6 +67,10 @@ if (isset($_GET['id'])) {
                 <input name="name" class="form-control" type="text" value="<?php echo $course->getName(); ?>"/>
             </div>
             <div class="form-group">
+                <label for="nb">Nombre disponible</label>
+                <input name="nb" class="form-control" type="number" value="<?php echo $course->getNbPerDay(); ?>"/>
+            </div>
+            <div class="form-group">
                 <label for="state">Status</label>
                 <select name="state" id="state">
                     <option value="0" <?php echo (0 == $course->getStatus()) ? 'selected' : '' ?>>Inactif</option>
@@ -79,9 +83,7 @@ if (isset($_GET['id'])) {
             </div>
             <div class="form-group">
                 <label for="desc">Descriptif</label>
-                <textarea name="desc" class="form-control" rows="10">
-                    <?php echo $course->getDescription(); ?>
-                </textarea>
+                <textarea name="desc" class="form-control" rows="10"><?php echo $course->getDescription(); ?></textarea>
             </div>
             <div class="form-group" style="text-align: center">
                 <input type="submit" class="btn btn-green" value="Valider"/>

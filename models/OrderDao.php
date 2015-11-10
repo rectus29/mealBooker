@@ -15,6 +15,7 @@ namespace MealBooker\models\dao;
 use DateInterval;
 use DateTime;
 use Doctrine\ORM\EntityManager;
+use MealBooker\model\Course;
 use MealBooker\model\MealOrder;
 
 class OrderDao extends GenericDao
@@ -39,16 +40,35 @@ class OrderDao extends GenericDao
         return parent::findByPrimaryKey(MealOrder::class, $id);
     }
 
+    /**
+     * return all mealOrder for current timeFrame
+     * @return \MealBooker\model\MealOrder[]
+     */
     public function getCurrentMealOrder()
     {
         //set min date
         $startDate = new DateTime();
         $startDate->sub(new DateInterval('P1D'));
-        $startDate->setTime(14, 0);
+        $startDate->setTime(STARTBOOKINGHOUR, 0);
         //set min date
         $stopDate = new DateTime();
-        $stopDate->setTime(12, 0);
+        $stopDate->setTime(STOPBOOKINGHOUR, 0);
         return $this->getMealOrderBetween($startDate, $stopDate);
+    }
+
+    /**
+     * return meal order for specific course for current timeFrame
+     * @param Course $course Course to find
+     * @return \MealBooker\model\MealOrder[]
+     */
+    public function getCurrentMealOrderForCourse($course)
+    {
+        $result = [];
+        foreach($this->getCurrentMealOrder() as $order)
+            foreach($order->getMeals() as $meals)
+                if($meals->getCourse() ==$course)
+                    array_push($result, $order);
+        return $result;
     }
 
 
@@ -60,12 +80,11 @@ class OrderDao extends GenericDao
      */
     public function getMealOrderBetween($start, $stop)
     {
-        $query = $this->entityManager->createQuery('
-          SELECT e
-          FROM ' . MealOrder::class . ' e
-          WHERE e.created >= :start
-          AND e.created <= :stop'
-        );
+        $queryString = 'SELECT e
+                            FROM ' . MealOrder::class . ' e
+                            WHERE e.created >= :start
+                            AND e.created <= :stop';
+        $query = $this->entityManager->createQuery($queryString);
         $query->setParameter('start', $start);
         $query->setParameter('stop', $stop);
         $result = $query->getResult();

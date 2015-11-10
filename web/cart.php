@@ -97,7 +97,7 @@ if ($_POST && isset($_POST['course']) && isset($_POST['drink']) && isset($_POST[
                 <?php
                 $date = new DateTime();
                 $after = new DateTime();
-                $after->setTime(14, 00);
+                $after->setTime(STARTBOOKINGHOUR, 00);
                 if ($date > $after)
                     $date->add(new DateInterval('P1D'));
 

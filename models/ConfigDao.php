@@ -12,6 +12,7 @@ namespace MealBooker\models\dao;
     /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
+use Doctrine\ORM\EntityManager;
 use MealBooker\model\Config;
 
 class ConfigDao extends GenericDao

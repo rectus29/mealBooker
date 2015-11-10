@@ -31,16 +31,22 @@ class Course extends DomainObject
     private $name;
 
     /**
-     * @Column(type="string", length=65536)
+     * @Column(type="string", length=65536, nullable=true)
      * @var String
      */
     private $description;
 
     /**
-     * @Column(type="string")
+     * @Column(type="string", nullable=true)
      * @var String
      */
     private $img;
+
+    /**
+     * @Column(type="integer")
+     * @var Integer
+     */
+    private $nbPerDay = 10;
 
 
     /**
@@ -106,8 +112,6 @@ class Course extends DomainObject
         $this->img = $img;
     }
 
-
-
     /**
      * @return String
      */
@@ -116,5 +120,19 @@ class Course extends DomainObject
         return $this->getName();
     }
 
+    /**
+     * @return int
+     */
+    public function getNbPerDay()
+    {
+        return $this->nbPerDay;
+    }
 
+    /**
+     * @param int $nbPerDay
+     */
+    public function setNbPerDay($nbPerDay)
+    {
+        $this->nbPerDay = $nbPerDay;
+    }
 }
