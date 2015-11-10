@@ -42,9 +42,9 @@ if (sizeof($todayMealOrder) >= $mealPerDay){
     $message = "Ce plat n'est plus disponible";
     $orderEnable = false;
 }else if(!Utils::isOrderEnable()){
-//check time
+    //check time
     $message = "Réservations non disponibles de 11h à 14h";
-$orderEnable = false;
+    $orderEnable = false;
 }
 
 
@@ -115,7 +115,7 @@ $orderEnable = false;
                 ?>
                 <div class="col-md-4 col-md-offset-4">
                     <a href="<?php WEB_PATH ?>?page=course" class="btn btn-default">Revenir à la sélection</a>
-                    <input type="submit" class="btn btn-green" value="Réserver" <?php if ($orderEnable) echo "disabled"; ?>/>
+                    <input type="submit" class="btn btn-green" value="Réserver" <?php if (!$orderEnable) echo "disabled"; ?>/>
                 </div>
             </div>
         </div>

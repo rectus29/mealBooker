@@ -62,8 +62,8 @@ class Utils {
         $after = new DateTime();
         $after->setTime(STARTBOOKINGHOUR,00);
         if(new DateTime() < $before || new DateTime() > $after )
-            return false;
-        return true;
+            return true;
+        return false;
     }
 
     /**
