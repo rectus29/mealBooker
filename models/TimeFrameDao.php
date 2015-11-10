@@ -56,4 +56,12 @@ class TimeFrameDao extends GenericDao {
     public function getAll() {
         return parent::findAll(TimeFrame::class);
     }
+
+    /**
+     * Find All User
+     * @return TimeFrame[]
+     */
+    public function getAllEnabled() {
+        return parent::findAllEnabled(TimeFrame::class);
+    }
 }

@@ -25,7 +25,7 @@ error_reporting(E_ALL);
 session_start();
 if (DEV_MOD) {
     error_reporting(E_ALL);
-    define('APP_PATH', '/mealbooker/');
+    define('APP_PATH', '/reservresto/');
     define('SERVER_URL', 'http://127.0.0.1');
 } else {
     define('APP_PATH', '/');

@@ -39,24 +39,26 @@ if (isset($_GET['id'])) {
 }
 ?>
 <div class="row">
-    <form action="#" method="post" class="form">
-        <h2>Editer une Horaire</h2>
-        <input type="hidden" name="id" value="<?php echo $timeFrame->getId(); ?>">
+    <div class="col-md-4 col-md-offset-4">
+        <form action="#" method="post" class="form">
+            <h2>Editer une Horaire</h2>
+            <input type="hidden" name="id" value="<?php echo $timeFrame->getId(); ?>">
 
-        <div class="control-group">
-            <label for="start">Horaire</label>
-            <input name="start" class="form-control" type="text" value="<?php echo $timeFrame->getStart(); ?>"/>
-        </div>
-        <div class="control-group">
-            <label for="state">Status</label>
-            <select name="state" id="state">
-                <option value="0" <?php echo (0 == $timeFrame->getStatus())?'selected':''?>>Inactif</option>
-                <option value="1" <?php echo (1 == $timeFrame->getStatus())?'selected':''?>>Actif</option>
-            </select>
-        </div>
-        <div class="form-group" style="text-align: center">
-            <input type="submit" class="btn btn-green" value="Valider"/>
-            <a href="<?php echo WEB_PATH ?>?page=admin&tab=timeframe" class="btn btn-default" value="Connexion">Annuler</a>
-        </div>
-    </form>
+            <div class="control-group">
+                <label for="start">Horaire</label>
+                <input name="start" class="form-control" type="text" value="<?php echo $timeFrame->getStart(); ?>"/>
+            </div>
+            <div class="control-group">
+                <label for="state">Status</label>
+                <select name="state" id="state">
+                    <option value="0" <?php echo (0 == $timeFrame->getStatus()) ? 'selected' : '' ?>>Inactif</option>
+                    <option value="1" <?php echo (1 == $timeFrame->getStatus()) ? 'selected' : '' ?>>Actif</option>
+                </select>
+            </div>
+            <div class="form-group" style="text-align: center">
+                <input type="submit" class="btn btn-green" value="Valider"/>
+                <a href="<?php echo WEB_PATH ?>?page=admin&tab=timeframe" class="btn btn-default" value="Connexion">Annuler</a>
+            </div>
+        </form>
+    </div>
 </div>

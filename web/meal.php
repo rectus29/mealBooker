@@ -99,7 +99,7 @@ if (isset($_GET) && isset($_GET['courseID'])) {
                         if ($orderEnable) {
                             ?>
                             <div class="alert alert-warning">
-                                Réservations non disponibles de 12h à 14h
+                                Réservations non disponibles de 11h à 14h
                             </div>
                             <?php
                         }

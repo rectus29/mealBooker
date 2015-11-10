@@ -60,7 +60,7 @@ if (isset($_GET['tab'])) {
                         include 'timeframe.php';
                         break;
                     case 'timeframeedit' :
-                        include 'timeframeEdit.php';
+                        include 'timeFrameEdit.php';
                         break;
                     case 'users' :
                         include 'users.php';

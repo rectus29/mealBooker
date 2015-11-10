@@ -107,7 +107,7 @@ if ($_POST && isset($_POST['course']) && isset($_POST['drink']) && isset($_POST[
 
             <select name="timeframe" id="tf" class="required">
                 <?php
-                foreach ($timeFrameDao->getAll() as $timeFrame) {
+                foreach ($timeFrameDao->getAllEnabled() as $timeFrame) {
                     ?>
                     <option value="<?php echo $timeFrame->getId(); ?>"><?php echo $timeFrame->getStart() ?></option>
                 <?php

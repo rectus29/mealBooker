@@ -58,7 +58,7 @@ class Utils {
     public static function  isOrderEnable(){
         //check if system is order enable
         $before = new DateTime();
-        $before->setTime(12,00);
+        $before->setTime(11,00);
         $after = new DateTime();
         $after->setTime(14,00);
         if(new DateTime() < $before || new DateTime() > $after )
