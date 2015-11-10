@@ -18,26 +18,19 @@ use MealBooker\models\dao\OrderDao;
 $courseDao = new CourseDao($em);
 $MealOrderDao = new OrderDao($em);
 
-$mealPerDay = 40;
-$config = $configDao->getByKey('mealPerDay');
-if (isset($config))
-    $mealPerDay = $config->getValue();
-//set min date
-$startDate = new DateTime();
-$startDate->sub(new DateInterval('P1D'));
-$startDate->setTime(14, 0);
-//set min date
-$stopDate = new DateTime();
-$stopDate->setTime(12, 0);
-//get all order in time window
-$todayMealOrder = $MealOrderDao->getMealOrderBetween($startDate, $stopDate);
+$mealPerDay = 0;
+foreach($courseDao->getAllEnabled() as $course){
+    $mealPerDay += $course->getNbPerDay();
+}
+
+//get all order in current time window
+$todayMealOrder = $MealOrderDao->getCurrentMealOrder();
 
 ?>
-
 <article class="course">
-  <!--  <div class="row">
-        <h3>Il reste <?php /*echo $mealPerDay - sizeof($todayMealOrder);*/?> repas disponibles</h3>
-    </div>-->
+    <div class="row">
+        <h3>Il reste <?php echo $mealPerDay - sizeof($todayMealOrder);?> repas disponibles</h3>
+    </div>
     <div class="row">
         <?php
         /**

@@ -31,6 +31,7 @@ if (DEV_MOD) {
     define('APP_PATH', '/');
     define('SERVER_URL', 'http://commande.aurore-traiteur.fr');
 }
+/** SYSTEM CONSTANT */
 define('WEB_PATH', APP_PATH . 'web/');
 define('LIB_DIR', dirname(__FILE__) . '/../lib/');
 define('CFG_DIR', dirname(__FILE__) . '/');
@@ -40,6 +41,9 @@ define('HTML_DIR', dirname(__FILE__) . '/../html/');
 define('ROOT_DIR', dirname(__FILE__) . '/../');
 define('FILE_DIR', ROOT_DIR . '/files/');
 
+/** USEFULL CONSTANT */
+define('STOPBOOKINGHOUR', 11);
+define('STARTBOOKINGHOUR', 14);
 
 if (!file_exists(FILE_DIR)) {
     mkdir(FILE_DIR);
@@ -62,7 +66,6 @@ $conn = array(
     'dbname' => 'auroretruumeal',
     'charset' => 'utf8',
 );
-
 
 //mailerconfig
 $mailConfig = [

@@ -59,9 +59,7 @@ if (isset($_GET['id'])) {
             </div>
             <div class="form-group">
                 <label for="desc">Descriptif</label>
-                <textarea name="desc" class="form-control" rows="10">
-                <?php echo $drink->getName(); ?>
-            </textarea>
+                <textarea name="desc" class="form-control" rows="10"><?php echo $drink->getDescription(); ?></textarea>
             </div>
             <div class="form-group" style="text-align: center">
                 <input type="submit" class="btn btn-green" value="Valider"/>
