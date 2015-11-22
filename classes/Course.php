@@ -46,7 +46,7 @@ class Course extends DomainObject
      * @Column(type="integer")
      * @var Integer
      */
-    private $nbPerDay = 10;
+    private $nbPerDay = 99;
 
 
     /**
@@ -112,6 +112,8 @@ class Course extends DomainObject
         $this->img = $img;
     }
 
+
+
     /**
      * @return String
      */
@@ -135,4 +137,7 @@ class Course extends DomainObject
     {
         $this->nbPerDay = $nbPerDay;
     }
+
+
+
 }

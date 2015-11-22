@@ -16,6 +16,7 @@ use Doctrine\ORM\Tools\Setup;
 use MealBooker\manager\MailManager;
 use MealBooker\manager\SecurityManager;
 use MealBooker\model;
+use MealBooker\models\dao\ConfigDao;
 use MealBooker\models\dao\GenericDao;
 
 //enable devmode
@@ -25,7 +26,7 @@ error_reporting(E_ALL);
 session_start();
 if (DEV_MOD) {
     error_reporting(E_ALL);
-    define('APP_PATH', '/reservresto/');
+    define('APP_PATH', '/mealbooker/');
     define('SERVER_URL', 'http://127.0.0.1');
 } else {
     define('APP_PATH', '/');
@@ -83,3 +84,7 @@ $em = EntityManager::create((DEV_MOD) ? $devConn : $conn, $config);
 $securityMananger = SecurityManager::init($em);
 $mailManager = MailManager::init($em, $mailConfig);
 $gDao = new GenericDao($em);
+$configDao = new ConfigDao($em);
+//hack to hide course quantity
+
+define('COURSEQUANTITY', );
