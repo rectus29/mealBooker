@@ -85,6 +85,4 @@ $securityMananger = SecurityManager::init($em);
 $mailManager = MailManager::init($em, $mailConfig);
 $gDao = new GenericDao($em);
 $configDao = new ConfigDao($em);
-//hack to hide course quantity
 
-define('COURSEQUANTITY', );

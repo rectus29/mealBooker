@@ -12,6 +12,7 @@ namespace MealBooker\models\dao;
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
+use Doctrine\ORM\EntityManager;
 use MealBooker\model\Company;
 use MealBooker\model\Course;
 
@@ -35,11 +36,19 @@ class CompanyDao extends GenericDao {
     }
 
     /**
-     * Find All
-     * @return Company[]
-     */
+ * Find All
+ * @return Company[]
+ */
     public function getAll() {
         return parent::findAll(Company::class);
+    }
+
+    /**
+     * Find All Drink
+     * @return Course[]
+     */
+    public function getAllEnabled() {
+        return parent::findAllEnabled(Company::class);
     }
 
     public function getByValidationCode($validationCode){

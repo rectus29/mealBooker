@@ -28,11 +28,11 @@ $todayMealOrder = $MealOrderDao->getCurrentMealOrder();
 
 ?>
 <article class="course">
-    <?php if(){?>
-    <div class="row">
-        <h3>Il reste <?php echo $mealPerDay - sizeof($todayMealOrder);?> repas disponibles</h3>
-    </div>
-    <?php } ?>
+
+    <!--<div class="row">
+        <h3>Il reste <?php /*echo $mealPerDay - sizeof($todayMealOrder);*/?> repas disponibles</h3>
+    </div>-->
+
     <div class="row">
         <?php
         /**
