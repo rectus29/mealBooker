@@ -29,6 +29,7 @@ class UserDao extends GenericDao
     /**
      * @inheritdoc
      * @param $user
+     * @return User
      */
     public function getByPrimaryKey($id)
     {

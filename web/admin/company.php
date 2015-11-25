@@ -11,14 +11,8 @@
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 use MealBooker\models\dao\CompanyDao;
-use MealBooker\models\dao\CourseDao;
-use MealBooker\models\dao\DrinkDao;
-use MealBooker\models\dao\TimeFrameDao;
 
-$courseDao = new CourseDao($em);
 $companyDao = new CompanyDao($em);
-$drinkDao = new DrinkDao($em);
-$timeFrameDao = new TimeFrameDao($em);
 ?>
 <div class="row">
 
@@ -29,6 +23,7 @@ $timeFrameDao = new TimeFrameDao($em);
             <th>Nom</th>
             <th>Créé le</th>
             <th>Nombre d'utilisateurs</th>
+            <th>Statut</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -41,8 +36,9 @@ $timeFrameDao = new TimeFrameDao($em);
                 <td><?php echo $company->getName();?></td>
                 <td><?php echo $company->getCreated()->format('d M Y');?></td>
                 <td><?php echo sizeof($company->getUsers());?></td>
+                <td><?php echo ($company->getStatus()==1)?'Actif':'Inactif';?></td>
                 <td>
-
+                    <a href="<?php echo WEB_PATH?>?page=admin&tab=companyedit&id=<?php echo $company->getId() ?>"><i class="fa fa-edit"></i></a>
                 </td>
             </tr>
         <?php
@@ -52,5 +48,5 @@ $timeFrameDao = new TimeFrameDao($em);
     </table>
 </div>
 <div class="row">
-    <a class="btn btn-green pull-right" href="#" disabled>Créer</a>
+    <a class="btn btn-green pull-right" href="<?php echo WEB_PATH?>?page=admin&tab=companyedit" >Créer</a>
 </div>
