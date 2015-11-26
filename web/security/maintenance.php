@@ -12,6 +12,7 @@
 /*-----------------------------------------------------*/
 ?>
 <div class="row">
-    Syst&egrave;me en cours de maintenance
+    Le site est actuellement fermé. <br>
+    Nous serons de retour très bientôt !
 </div>
 
