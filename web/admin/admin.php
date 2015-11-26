@@ -65,9 +65,9 @@ if (isset($_GET['tab'])) {
                 case 'users' :
                     include 'users.php';
                     break;
-                /*case 'useredit' :
+                case 'useredit' :
                     include 'userEdit.php';
-                    break;*/
+                    break;
                 case 'company' :
                     include 'company.php';
                     break;

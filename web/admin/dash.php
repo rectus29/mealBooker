@@ -115,7 +115,7 @@ foreach ($todayMealOrder as $order) {
                 foreach ($orders as $mealOrder) {
                     ?>
                     <tr>
-                        <td><?php echo $mealOrder->getId(); ?></td>
+                        <td><?php echo sprintf("%04s", $mealOrder->getId()); ?></td>
                         <td><?php echo $mealOrder->getUser()->getFormattedName() . "(" . $mealOrder->getUser()->getCompany()->getName() . ")"; ?></td>
                         <td>
                             <ul>

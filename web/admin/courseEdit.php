@@ -18,15 +18,19 @@ if (!SecurityManager::get()->getCurrentUser($_SESSION)->isAdmin()) {
     header('Location:' . WEB_PATH);
 }
 $courseDao = new CourseDao($em);
+$error = null;
+$info = null;
+
 //save mode
-if (isset($_POST['name']) && isset($_POST['desc']) && isset($_POST['id']) && isset($_POST['nb']) && isset($_POST['state'])) {
+if (isset($_POST['name']) && isset($_POST['desc']) && isset($_POST['id']) && isset($_POST['state'])) {
     $course = $courseDao->getByPrimaryKey($_POST['id']);
     if ($course == null)
         $course = new Course();
     $course->setName($_POST['name']);
-    $course->setNbPerDay($_POST['nb']);
     $course->setDescription($_POST['desc']);
     $course->setStatus($_POST['state']);
+    if(isset($_POST['nb']))
+        $course->setNbPerDay($_POST['nb']);
     $courseDao->save($course);
     if (isset($_FILES['img']) && $_FILES['img']['size'] > 0) {
         try {
@@ -35,7 +39,8 @@ if (isset($_POST['name']) && isset($_POST['desc']) && isset($_POST['id']) && iss
             move_uploaded_file($_FILES['img']['tmp_name'], $uploadfile);
             $course->setImg($_FILES['img']['name']);
             $courseDao->save($course);
-        } catch (Exception $ignored) {
+        } catch (Exception $ex) {
+            $error = $ex->getMessage();
         }
     }
     header('Location:' . WEB_PATH . '?page=admin&tab=course');
@@ -66,10 +71,10 @@ if (isset($_GET['id'])) {
                 <label for="name">Nom</label>
                 <input name="name" class="form-control" type="text" value="<?php echo $course->getName(); ?>"/>
             </div>
-          <!--  <div class="form-group">
+            <div class="form-group">
                 <label for="nb">Nombre disponible</label>
-                <input name="nb" class="form-control" type="number" value="<?php /*echo $course->getNbPerDay(); */?>"/>
-            </div>-->
+                <input name="nb" class="form-control" type="number" value="<?php echo $course->getNbPerDay(); ?>" disabled/>
+            </div>
             <div class="form-group">
                 <label for="state">Status</label>
                 <select name="state" id="state">
@@ -85,6 +90,22 @@ if (isset($_GET['id'])) {
                 <label for="desc">Descriptif</label>
                 <textarea name="desc" class="form-control" rows="10"><?php echo $course->getDescription(); ?></textarea>
             </div>
+            <?php
+            if ($error != null) {
+                ?>
+                <div class="alert alert-danger">
+                    <?php echo $error; ?>
+                </div>
+                <?php
+            }
+            if ($info != null) {
+                ?>
+                <div class="alert alert-success">
+                    <?php echo $info; ?>
+                </div>
+                <?php
+            }
+            ?>
             <div class="form-group" style="text-align: center">
                 <input type="submit" class="btn btn-green" value="Valider"/>
                 <a href="<?php echo WEB_PATH ?>?page=admin&tab=course" class="btn btn-default"
@@ -92,4 +113,17 @@ if (isset($_GET['id'])) {
             </div>
         </form>
     </div>
+    <script type="text/javascript">
+        tinymce.init({
+            selector:'textarea',
+            menubar: false,
+            plugins: [
+                'advlist autolink lists link image charmap print preview anchor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table contextmenu paste code'
+            ],
+            toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link'
+
+        });
+    </script>
 </div>

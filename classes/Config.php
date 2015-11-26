@@ -42,6 +42,7 @@ class Config extends DomainObject
      */
     public function __construct($key, $value)
     {
+        parent::__construct();
         $this->keyCode = $key;
         $this->value = $value;
     }

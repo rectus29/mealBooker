@@ -73,6 +73,7 @@ class Role extends DomainObject
      */
     public function __construct($name = null, $description = null, $weight = 0, $isAdmin = false, array $permissions = null, array $Users = null)
     {
+        parent::__construct();
         $this->name = $name;
         $this->description = $description;
         $this->weight = $weight;

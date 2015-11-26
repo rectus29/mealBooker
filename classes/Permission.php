@@ -39,6 +39,7 @@ class Permission extends DomainObject
      */
     public function __construct()
     {
+        parent::__construct();
     }
 
     /**

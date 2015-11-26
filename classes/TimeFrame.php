@@ -37,6 +37,7 @@ class TimeFrame extends DomainObject
 
     function __construct($start = null, $stop = null)
     {
+        parent::__construct();
         $this->start = $start;
         $this->stop = $stop;
     }

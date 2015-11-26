@@ -24,7 +24,6 @@ $orderDao = new OrderDao($em);
             <th>Horaire</th>
             <th>Composition</th>
             <th>Utilisateur</th>
-            <th>Action</th>
         </tr>
         </thead>
         <tbody>
@@ -33,7 +32,7 @@ $orderDao = new OrderDao($em);
         foreach ($orderDao->getAll() as $order) {
             ?>
             <tr>
-                <td><?php echo $order->getId(); ?></td>
+                <td><?php echo sprintf("%04s", $order->getId()); ?></td>
                 <td><?php echo Utils::get()->formatDate($order->getCreated(), "d M Y H:m"); ?></td>
                 <td><?php echo $order->getTimeFrame()->__toString(); ?></td>
                 <td>
@@ -46,8 +45,6 @@ $orderDao = new OrderDao($em);
                     </ul>
                 </td>
                 <td><?php echo $order->getUser()->getFormattedName() . " (" . $order->getUser()->getCompany()->getName() . ")"; ?></td>
-                <td>
-                </td>
             </tr>
             <?php
         }

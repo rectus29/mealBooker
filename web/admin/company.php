@@ -35,24 +35,24 @@ $timeFrameDao = new TimeFrameDao($em);
         </thead>
         <tbody>
         <?php
-        foreach($companyDao->getAll() as $company){
+        foreach ($companyDao->getAll() as $company) {
             ?>
             <tr>
-                <td><?php echo $company->getId();?></td>
-                <td><?php echo $company->getName();?></td>
-                <td><?php echo $company->getCreated()->format('d M Y');?></td>
-                <td><?php echo sizeof($company->getUsers());?></td>
-                <td><?php echo ($company->getStatus()==1)?'Actif':'Inactif';?></td>
+                <td><?php echo $company->getId(); ?></td>
+                <td><?php echo $company->getName(); ?></td>
+                <td><?php echo $company->getCreated()->format('d M Y'); ?></td>
+                <td><?php echo sizeof($company->getUsers()); ?></td>
+                <td><?php echo ($company->getStatus() == 1) ? 'Actif' : 'Inactif'; ?></td>
                 <td>
-                    <a href="<?php echo WEB_PATH?>?page=admin&tab=companyedit&id=<?php echo $drink->getId() ?>"><i class="fa fa-edit"></i></a>
+                    <a href="<?php echo WEB_PATH ?>?page=admin&tab=companyedit&id=<?php echo $company->getId() ?>"><i class="fa fa-edit"></i></a>
                 </td>
             </tr>
-        <?php
+            <?php
         }
         ?>
         </tbody>
     </table>
 </div>
 <div class="row">
-    <a class="btn btn-green pull-right" href="<?php echo WEB_PATH?>?page=admin&tab=companyedit">Créer</a>
+    <a class="btn btn-green pull-right" href="<?php echo WEB_PATH ?>?page=admin&tab=companyedit">Créer</a>
 </div>

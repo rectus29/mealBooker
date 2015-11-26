@@ -12,7 +12,6 @@
 /*-----------------------------------------------------*/
 use MealBooker\manager\SecurityManager;
 use MealBooker\model\Company;
-use MealBooker\model\Course;
 use MealBooker\models\dao\CompanyDao;
 
 if (!SecurityManager::get()->getCurrentUser($_SESSION)->isAdmin()) {
@@ -23,7 +22,7 @@ $companyDao = new CompanyDao($em);
 if (isset($_POST['name']) && isset($_POST['id']) && isset($_POST['validCode']) && isset($_POST['state'])) {
     $company = $companyDao->getByPrimaryKey($_POST['id']);
     if ($company == null)
-        $company = new Course();
+        $company = new Company();
     $company->setName($_POST['name']);
     $company->setValidationCode($_POST['validCode']);
     $company->setStatus($_POST['state']);
@@ -54,7 +53,7 @@ if (isset($_GET['id'])) {
 
             <div class="form-group">
                 <label for="name">Nom</label>
-                <input name="" class="form-control" type="text" value="<?php echo $company->getName(); ?>"/>
+                <input name="name" class="form-control" type="text" value="<?php echo $company->getName(); ?>"/>
             </div>
             <div class="form-group">
                 <label for="validCode">Code de validation</label>
@@ -63,14 +62,9 @@ if (isset($_GET['id'])) {
             <div class="form-group">
                 <label for="state">Status</label>
                 <select name="state" id="state">
-                    <option value="0" <?php echo (0 == $company->getStatus()) ? 'selected' : '' ?>>Inactif</option>
                     <option value="1" <?php echo (1 == $company->getStatus()) ? 'selected' : '' ?>>Actif</option>
+                    <option value="0" <?php echo (0 == $company->getStatus()) ? 'selected' : '' ?>>Inactif</option>
                 </select>
-            </div>
-<<<<<<< Updated upstream
-            <div class="form-group">
-                <label for="validcode">Code de validation</label>
-                <textarea name="validcode" class="form-control" rows="10"><?php echo $company->getValidationCode(); ?></textarea>
             </div>
             <div class="form-group" style="text-align: center">
                 <input type="submit" class="btn btn-green" value="Valider"/>

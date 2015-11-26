@@ -135,7 +135,7 @@ class MailManager
                     <td colspan="2">
                         Bonjour,<br/>
                         <br />
-                        Votre commande est bien validée rendez vous à l\'horaire indiqué sur le parking de votre entreprise pour récupérer votre repas.
+                        Votre commande numéro ' . sprintf("%04s",$order->getId()) . ' est bien validée rendez vous à l\'horaire indiqué sur le parking de votre entreprise pour récupérer votre repas.
                     </td>
                 </tr>
             </tbody>
