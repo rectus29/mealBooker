@@ -28,9 +28,11 @@ $todayMealOrder = $MealOrderDao->getCurrentMealOrder();
 
 ?>
 <article class="course">
-    <div class="row">
-        <h3>Il reste <?php echo $mealPerDay - sizeof($todayMealOrder);?> repas disponibles</h3>
-    </div>
+
+    <!--<div class="row">
+        <h3>Il reste <?php /*echo $mealPerDay - sizeof($todayMealOrder);*/?> repas disponibles</h3>
+    </div>-->
+
     <div class="row">
         <?php
         /**
@@ -38,7 +40,7 @@ $todayMealOrder = $MealOrderDao->getCurrentMealOrder();
          **/
         foreach ($courseDao->getAllEnabled() as $course) {
             ?>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <a href="<?php echo WEB_PATH ?>?page=meal&courseID=<?php echo $course->getId(); ?>" class="card">
                     <div class="meal-thumbnail">
                         <img src="<?php echo APP_PATH; ?>files/course/<?php echo $course->getImg(); ?>" alt="" class="img-responsive">

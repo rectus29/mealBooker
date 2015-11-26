@@ -16,6 +16,7 @@ use Doctrine\ORM\Tools\Setup;
 use MealBooker\manager\MailManager;
 use MealBooker\manager\SecurityManager;
 use MealBooker\model;
+use MealBooker\models\dao\ConfigDao;
 use MealBooker\models\dao\GenericDao;
 
 //enable devmode
@@ -85,3 +86,5 @@ $em = EntityManager::create((DEV_MOD) ? $devConn : $conn, $config);
 $securityMananger = SecurityManager::init($em);
 $mailManager = MailManager::init($em, $mailConfig);
 $gDao = new GenericDao($em);
+$configDao = new ConfigDao($em);
+

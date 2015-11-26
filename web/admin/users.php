@@ -46,6 +46,7 @@ $userDao = new UserDao($em);
                 <td><?php echo $user->getRole()->getName();?></td>
                 <td><?php echo ($user->getStatus()==1)?'Actif':'Inactif';?></td>
                 <td>
+                    <a href="<?php echo WEB_PATH?>?page=admin&tab=useredit&id=<?php echo $user->getId() ?>"><i class="fa fa-edit"></i></a>
                 </td>
             </tr>
         <?php
@@ -55,5 +56,5 @@ $userDao = new UserDao($em);
     </table>
 </div>
 <div class="row">
-    <a class="btn btn-green pull-right" href="#" disabled>Créer</a>
+    <a class="btn btn-green pull-right" href="<?php echo WEB_PATH?>?page=admin&tab=useredit" >Créer</a>
 </div>

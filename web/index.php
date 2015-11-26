@@ -26,7 +26,7 @@ $configDao = new ConfigDao($em);
 $maintenance = !$em->getConnection()->ping();
 
 //check maintenance mod
-if($configDao->getByKey('serverState') != null && $configDao->getByKey('serverState')->getValue() == '1')
+if($configDao->getByKey('serverState') != null && $configDao->getByKey('serverState')->getValue() == '0' && !SecurityManager::get()->isAdmin($_SESSION))
     $maintenance = true;
 ?>
 <!DOCTYPE html>

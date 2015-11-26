@@ -12,6 +12,8 @@ namespace MealBooker\model;
     /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\Table;
 use MealBooker\manager\SecurityManager;
 
 /**
@@ -46,8 +48,8 @@ class Company extends DomainObject
      */
     public function __construct($name = null, $validationCode = null, array $Users = null)
     {
+        parent::__construct();
         $this->name = $name;
-        $this->validationCode = ($validationCode = null )? SecurityManager::get()->generateStringCode() :$validationCode;
         $this->Users = ($Users == null) ? array() : $Users;
     }
 
