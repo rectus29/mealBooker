@@ -112,9 +112,10 @@ if (isset($_GET['id'])) {
                 </select>
             </div>
             <div class="checkbox">
-                <label for="optin">Démarchable</label>
+                <label for="optin">Démarchable
                 <input name="optin" class="form-control"
                        type="checkbox" <?php echo(($user->isOptIn()) ? "checked" : ""); ?>/>
+                </label>
             </div>
             <div class="form-group">
                 <label for="company">Société</label>
