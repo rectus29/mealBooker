@@ -33,7 +33,7 @@ if (isset($_GET['tab'])) {
             <li role="presentation" <?php echo ($reqTab != null && ($reqTab == 'timeframe' || $reqTab == 'timeframeedit')) ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=timeframe" ?>">Horaires</a></li>
             <li role="presentation" <?php echo ($reqTab != null && ($reqTab == 'users' || $reqTab == 'useredit')) ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=users" ?>">Utilisateurs</a></li>
             <li role="presentation" <?php echo ($reqTab != null && ($reqTab == 'company' || $reqTab == 'companyedit')) ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=company" ?>">Entreprises</a></li>
-            <li role="presentation" <?php echo ($reqTab != null && ($reqTab == 'server' || $reqTab == 'serveredit')) ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=server" ?>">Gestion serveur</a></li>
+            <li role="presentation" <?php echo ($reqTab != null && ($reqTab == 'server' || $reqTab == 'server.php')) ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=server" ?>">Gestion serveur</a></li>
         </ul>
         <div>
             <?php
@@ -65,9 +65,9 @@ if (isset($_GET['tab'])) {
                 case 'users' :
                     include 'users.php';
                     break;
-                case 'useredit' :
+                /*case 'useredit' :
                     include 'userEdit.php';
-                    break;
+                    break;*/
                 case 'company' :
                     include 'company.php';
                     break;
@@ -76,6 +76,9 @@ if (isset($_GET['tab'])) {
                     break;
                 case 'server' :
                     include 'server.php';
+                    break;
+                case 'serveredit' :
+                    include 'serverEdit.php';
                     break;
                 default :
                     include 'dash.php';

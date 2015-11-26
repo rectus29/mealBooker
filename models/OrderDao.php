@@ -49,10 +49,10 @@ class OrderDao extends GenericDao
         //set min date
         $startDate = new DateTime();
         $startDate->sub(new DateInterval('P1D'));
-        $startDate->setTime(STARTBOOKINGHOUR, 0);
+        $startDate->setTime(STARTBOOKINGHOUR, STARTBOOKINGMINUTE);
         //set min date
         $stopDate = new DateTime();
-        $stopDate->setTime(STOPBOOKINGHOUR, 0);
+        $stopDate->setTime(STOPBOOKINGHOUR, STOPBOOKINGMINUTE);
         return $this->getMealOrderBetween($startDate, $stopDate);
     }
 

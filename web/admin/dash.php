@@ -40,16 +40,16 @@ if (isset($config))
 
 //set ref date
 $refDate = new DateTime();
-if ($refDate > (new DateTime())->setTime(STARTBOOKINGHOUR, 0)) {
+if ($refDate > (new DateTime())->setTime(STARTBOOKINGHOUR, STARTBOOKINGMINUTE)) {
     $refDate->add(new DateInterval('P1D'));
 }
 //set min date
 $startDate = (new DateTime())->setTimeStamp($refDate->getTimestamp());
 $startDate->sub(new DateInterval('P1D'));
-$startDate->setTime(STARTBOOKINGHOUR, 0);
+$startDate->setTime(STARTBOOKINGHOUR, STARTBOOKINGMINUTE);
 //set min date
 $stopDate = (new DateTime())->setTimeStamp($refDate->getTimestamp());
-$stopDate->setTime(STOPBOOKINGHOUR, 0);
+$stopDate->setTime(STOPBOOKINGHOUR, STOPBOOKINGMINUTE);
 //get all order in time window
 
 

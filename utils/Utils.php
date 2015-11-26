@@ -58,9 +58,9 @@ class Utils {
     public static function  isOrderEnable(){
         //check if system is order enable
         $before = new DateTime();
-        $before->setTime(STOPBOOKINGHOUR,00);
+        $before->setTime(STOPBOOKINGHOUR,STOPBOOKINGMINUTE);
         $after = new DateTime();
-        $after->setTime(STARTBOOKINGHOUR,00);
+        $after->setTime(STARTBOOKINGHOUR,STARTBOOKINGMINUTE);
         if(new DateTime() < $before || new DateTime() > $after )
             return true;
         return false;

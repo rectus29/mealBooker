@@ -11,8 +11,14 @@
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 use MealBooker\models\dao\CompanyDao;
+use MealBooker\models\dao\CourseDao;
+use MealBooker\models\dao\DrinkDao;
+use MealBooker\models\dao\TimeFrameDao;
 
+$courseDao = new CourseDao($em);
 $companyDao = new CompanyDao($em);
+$drinkDao = new DrinkDao($em);
+$timeFrameDao = new TimeFrameDao($em);
 ?>
 <div class="row">
 
@@ -38,7 +44,7 @@ $companyDao = new CompanyDao($em);
                 <td><?php echo sizeof($company->getUsers());?></td>
                 <td><?php echo ($company->getStatus()==1)?'Actif':'Inactif';?></td>
                 <td>
-                    <a href="<?php echo WEB_PATH?>?page=admin&tab=companyedit&id=<?php echo $company->getId() ?>"><i class="fa fa-edit"></i></a>
+                    <a href="<?php echo WEB_PATH?>?page=admin&tab=companyedit&id=<?php echo $drink->getId() ?>"><i class="fa fa-edit"></i></a>
                 </td>
             </tr>
         <?php
@@ -48,5 +54,5 @@ $companyDao = new CompanyDao($em);
     </table>
 </div>
 <div class="row">
-    <a class="btn btn-green pull-right" href="<?php echo WEB_PATH?>?page=admin&tab=companyedit" >Créer</a>
+    <a class="btn btn-green pull-right" href="<?php echo WEB_PATH?>?page=admin&tab=companyedit">Créer</a>
 </div>
