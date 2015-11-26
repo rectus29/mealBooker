@@ -6215,6 +6215,8 @@ a.brand {
   .course p.date {
     color: #b3b3b3;
     font-style: italic; }
+  .course h3 {
+    text-transform: 1px; }
 
 .course section {
   margin: 30px auto; }
@@ -6294,8 +6296,11 @@ h4 {
     .card .card_body h3 {
       margin: 10px 0;
       font-size: 1.1em;
-      letter-spacing: -1px;
+      letter-spacing: 1px;
       text-transform: uppercase; }
+      .card .card_body h3 a {
+        color: #2C2C2C;
+        text-decoration: none; }
     .card .card_body strong {
       color: #A9CE49; }
   .card:hover {

@@ -41,22 +41,27 @@ $todayMealOrder = $MealOrderDao->getCurrentMealOrder();
         foreach ($courseDao->getAllEnabled() as $course) {
             ?>
             <div class="col-md-4">
-                <a href="<?php echo WEB_PATH ?>?page=meal&courseID=<?php echo $course->getId(); ?>" class="card">
+                <div class="card">
                     <div class="meal-thumbnail">
-                        <img src="<?php echo APP_PATH; ?>files/course/<?php echo $course->getImg(); ?>" alt="" class="img-responsive">
-
+                        <a href="<?php echo WEB_PATH ?>?page=meal&courseID=<?php echo $course->getId(); ?>">
+                            <img src="<?php echo APP_PATH; ?>files/course/<?php echo $course->getImg(); ?>" alt="" class="img-responsive">
+                        </a>
                         <!--<div class="card_date">
                             <p><?php /*echo $course->getUpdated()->format('d M Y') */?></p>
                         </div>-->
                     </div>
                     <div class="card_body">
-                        <h3><?php echo $course->getName(); ?></h3>
 
+                        <h3>
+                            <a href="<?php echo WEB_PATH ?>?page=meal&courseID=<?php echo $course->getId(); ?>">
+                                <?php echo $course->getName(); ?></h3>
+                            </a>
                         <p>
                             <?php echo $course->getDescription(); ?>
                         </p>
+                        <a href="<?php echo WEB_PATH ?>?page=meal&courseID=<?php echo $course->getId(); ?>" class="btn btn-warning">Commander</a>
                     </div>
-                </a>
+                </div>
             </div>
 
             <?php
