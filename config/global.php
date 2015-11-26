@@ -25,7 +25,7 @@ error_reporting(E_ALL);
 session_start();
 if (DEV_MOD) {
     error_reporting(E_ALL);
-    define('APP_PATH', '/reservresto/');
+    define('APP_PATH', '/mealbooker/');
     define('SERVER_URL', 'http://127.0.0.1');
 } else {
     define('APP_PATH', '/');
@@ -43,7 +43,9 @@ define('FILE_DIR', ROOT_DIR . '/files/');
 
 /** USEFULL CONSTANT */
 define('STOPBOOKINGHOUR', 11);
+define('STOPBOOKINGMINUTE', 00);
 define('STARTBOOKINGHOUR', 14);
+define('STARTBOOKINGMINUTE', 00);
 
 if (!file_exists(FILE_DIR)) {
     mkdir(FILE_DIR);
