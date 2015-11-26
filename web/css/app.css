@@ -6291,7 +6291,8 @@ h4 {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   text-decoration: none;
   color: #2C2C2C;
-  margin-bottom: 30px; }
+  margin-bottom: 30px;
+  min-height: 435px; }
   .card .card_body {
     padding: 5px 15px; }
     .card .card_body h3 {
