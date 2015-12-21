@@ -12,6 +12,7 @@
 /*-----------------------------------------------------*/
 use MealBooker\model\Course;
 use MealBooker\models\dao\CourseDao;
+use MealBooker\models\dao\DessertDao;
 use MealBooker\models\dao\DrinkDao;
 use MealBooker\models\dao\OrderDao;
 use MealBooker\models\dao\TimeFrameDao;
@@ -19,6 +20,7 @@ use MealBooker\utils\Utils;
 
 $courseDao = new CourseDao($em);
 $drinkDao = new DrinkDao($em);
+$dessertDao = new DessertDao($em);
 $timeFrameDao = new TimeFrameDao($em);
 $MealOrderDao = new OrderDao($em);
 
@@ -56,12 +58,18 @@ if (sizeof($todayMealOrder) >= $mealPerDay){
         $('#feedback').hide();
         var requiredFree = true;
         var drinkSelected = false;
+        var dessertSelected = false;
         if ($('input[name="drink"]:checked').length > 0)
             drinkSelected = true;
-        if (drinkSelected && requiredFree) {
+        if ($('input[name="dessert"]:checked').length > 0)
+            dessertSelected = true;
+        if (drinkSelected && dessertSelected && requiredFree) {
             $($(this).parents('form')[0]).submit();
         } else if (!drinkSelected) {
             $('#feedback').html('Veuillez selectionner une boisson');
+            $('#feedback').show();
+        } else if (!dessertSelected) {
+            $('#feedback').html('Veuillez selectionner un dessert');
             $('#feedback').show();
         }
     });
@@ -94,6 +102,21 @@ if (sizeof($todayMealOrder) >= $mealPerDay){
                         <label>
                             <input type="radio" name="drink" class="required" required id="<?php echo $drink->getId(); ?>" value="<?php echo $drink->getId(); ?>">
                             <?php echo $drink->getName() ?>
+                        </label>
+                    </div>
+                    <?php
+                }
+                ?>
+            </div>
+            <div class="drinkOptions col-md-6">
+                <h4>Choisissez un dessert :</h4>
+                <?php
+                foreach ($dessertDao->getAllEnabled() as $dessert) {
+                    ?>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="dessert" class="required" required id="<?php echo $dessert->getId(); ?>" value="<?php echo $dessert->getId(); ?>">
+                            <?php echo $dessert->getName() ?>
                         </label>
                     </div>
                     <?php

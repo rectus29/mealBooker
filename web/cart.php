@@ -11,11 +11,13 @@
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 use MealBooker\models\dao\CourseDao;
+use MealBooker\models\dao\DessertDao;
 use MealBooker\models\dao\DrinkDao;
 use MealBooker\models\dao\TimeFrameDao;
 
 $courseDao = new CourseDao($em);
 $drinkDao = new DrinkDao($em);
+$dessertDao = new DessertDao($em);
 $timeFrameDao = new TimeFrameDao($em);
 
 //prepare new value
@@ -26,7 +28,7 @@ if (isset($_COOKIE['mealCart'])) {
     $mealCart = json_decode($_COOKIE['mealCart']);
 }
 //add new value in cookie
-if ($_POST && isset($_POST['course']) && isset($_POST['drink']) && isset($_POST['ts'])) {
+if ($_POST && isset($_POST['course']) && isset($_POST['ts'])) {
     //search for doubloon
     $found = false;
     foreach ($mealCart->cart as $stockedMeal) {
@@ -38,7 +40,8 @@ if ($_POST && isset($_POST['course']) && isset($_POST['drink']) && isset($_POST[
         $object = new stdClass();
         $object->id = $_POST['ts'];
         $object->course = $_POST['course'];
-        $object->drink = $_POST['drink'];
+        $object->drink = (isset($_POST['drink'])) ? $_POST['drink'] : "";
+        $object->dessert = (isset($_POST['dessert'])) ? $_POST['dessert'] : "";
         array_push($mealCart->cart, $object);
         setcookie("mealCart", json_encode($mealCart));
     }
@@ -55,6 +58,7 @@ if ($_POST && isset($_POST['course']) && isset($_POST['drink']) && isset($_POST[
             <tr>
                 <th>Plats</th>
                 <th>Boissons</th>
+                <th>Dessert</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -62,13 +66,18 @@ if ($_POST && isset($_POST['course']) && isset($_POST['drink']) && isset($_POST[
             <?php
             if (sizeof($mealCart->cart) > 0) {
                 foreach ($mealCart->cart as $meal) {
+                    $drink = $drinkDao->getByPrimaryKey($meal->drink);
+                    $dessert = $dessertDao->getByPrimaryKey($meal->dessert);
                     ?>
                     <tr>
                         <td>
                             <?php echo $courseDao->getByPrimaryKey($meal->course); ?>
                         </td>
                         <td>
-                            <?php echo $drinkDao->getByPrimaryKey($meal->drink); ?>
+                            <?php echo ($drink != null) ? $drink : "-"; ?>
+                        </td>
+                        <td>
+                            <?php echo ($dessert != null) ? $dessert : "-"; ?>
                         </td>
                         <td>
                             <a href="#" class="remove" id="">
@@ -76,14 +85,14 @@ if ($_POST && isset($_POST['course']) && isset($_POST['drink']) && isset($_POST[
                             </a>
                         </td>
                     </tr>
-                <?php
+                    <?php
                 }
             } else {
                 ?>
                 <tr>
                     <td colspan="5">Aucune commande</td>
                 </tr>
-            <?php
+                <?php
             }
             ?>
             </tbody>
@@ -110,7 +119,7 @@ if ($_POST && isset($_POST['course']) && isset($_POST['drink']) && isset($_POST[
                 foreach ($timeFrameDao->getAllEnabled() as $timeFrame) {
                     ?>
                     <option value="<?php echo $timeFrame->getId(); ?>"><?php echo $timeFrame->getStart() ?></option>
-                <?php
+                    <?php
                 }
                 ?>
             </select>

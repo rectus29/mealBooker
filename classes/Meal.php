@@ -38,6 +38,12 @@ class Meal extends DomainObject
     private $drink;
 
     /**
+     * @ManyToOne(targetEntity="Dessert")
+     * @var Dessert
+     */
+    private $dessert;
+
+    /**
      * @ManyToOne(targetEntity="Course")
      * @var Course
      */
@@ -121,6 +127,22 @@ class Meal extends DomainObject
     public function setBookingId($bookingId)
     {
         $this->bookingId = $bookingId;
+    }
+
+    /**
+     * @return Dessert
+     */
+    public function getDessert()
+    {
+        return $this->dessert;
+    }
+
+    /**
+     * @param Dessert $dessert
+     */
+    public function setDessert($dessert)
+    {
+        $this->dessert = $dessert;
     }
 
     function __toString()
