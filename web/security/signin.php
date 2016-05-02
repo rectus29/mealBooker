@@ -25,7 +25,7 @@ if (isset($_POST['login']) && isset($_POST['password'])) {
     ?>
     <div class="loginbox">
         <div class="col-md-5 col-md-offset-1">
-            <form class="form-horizontal" target="<?php echo WEB_PATH;?>" method="post" id="connectWrapper">
+            <form class="form-horizontal"  action="<?php echo WEB_PATH;?>" method="post" id="connectWrapper">
                 <h2>Vous avez un compte ?</h2>
                     <p>Pour commander votre repas, entrez votre identifiant (adresse mail) ainsi que votre mot de passe.</p>
                 <div class="control-group">

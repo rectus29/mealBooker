@@ -46,9 +46,6 @@ $todayMealOrder = $MealOrderDao->getCurrentMealOrder();
                         <a href="<?php echo WEB_PATH ?>?page=meal&courseID=<?php echo $course->getId(); ?>">
                             <img src="<?php echo APP_PATH; ?>files/course/<?php echo $course->getImg(); ?>" alt="" class="img-responsive">
                         </a>
-                        <!--<div class="card_date">
-                            <p><?php /*echo $course->getUpdated()->format('d M Y') */?></p>
-                        </div>-->
                     </div>
                     <div class="card_body">
 

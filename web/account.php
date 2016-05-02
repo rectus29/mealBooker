@@ -55,6 +55,7 @@ if (isset($user) && $user == null)
                     <ul>
                         <?php
                         foreach ($mealOrder->getMeals() as $meal) {
+                            var_dump($meal->getCourse());
                             echo "<li>" . $meal->getCourse()->getName() . " - " . $meal->getDrink()->getName() . " </li>";
                         }
                         ?>

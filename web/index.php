@@ -87,6 +87,7 @@ include 'head.php';
                     break;
             }
         }else{
+            include 'front/frontgallery.php';
             include 'security/signin.php';
         }
         ?>
