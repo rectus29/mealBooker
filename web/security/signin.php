@@ -76,16 +76,7 @@ if (isset($_POST)
 }
 ?>
 <div class="loginbox">
-    <div class="row">
-        <div class="col-md-12 col-md-offset-1">
-            <h1>Bienvenue</h1>
 
-            <p>
-                Vous êtes bien sur le système de réservation de repas Aurore Traiteur.<br/>
-                Commandez votre déjeuner pour vous le faire livrer à votre entreprise, selon un horaire pré-défini.
-            </p>
-        </div>
-    </div>
     <?php
     if ($error != null) {
         ?>
