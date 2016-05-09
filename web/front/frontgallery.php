@@ -15,34 +15,42 @@ use MealBooker\models\dao\CourseDao;
 
 $courseDao = new CourseDao($em);
 ?>
-<div class="row">
+<div class="row courseGallery">
     <?php
     /**
-     * @var $course Course
-     **/
-    foreach ($courseDao->getAllEnabled() as $course) {
-        ?>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="meal-thumbnail">
-                    <a href="<?php echo WEB_PATH ?>?page=meal&courseID=<?php echo $course->getId(); ?>">
-                        <img src="<?php echo APP_PATH; ?>files/course/<?php echo $course->getImg(); ?>" alt="" class="img-responsive">
-                    </a>
-                </div>
-                <div class="card_body">
-                    <h3>
+     * @var $courseArray Course[]
+     */
+    $courseArray = $courseDao->getAllEnabled();
+    if (sizeof($courseArray) > 0) {
+        foreach ($courseArray as $course) {
+            ?>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="meal-thumbnail">
                         <a href="<?php echo WEB_PATH ?>?page=meal&courseID=<?php echo $course->getId(); ?>">
-                        <?php echo $course->getName(); ?></h3>
-                    </a>
-                    <p>
-                        <?php echo $course->getDescription(); ?>
-                    </p>
-                    <a href="<?php echo WEB_PATH ?>?page=meal&courseID=<?php echo $course->getId(); ?>" class="btn btn-warning">Commander</a>
+                            <img src="<?php echo APP_PATH; ?>files/course/<?php echo $course->getImg(); ?>" alt="" class="img-responsive">
+                        </a>
+                    </div>
+                    <div class="card_body">
+                        <h3>
+                            <a href="<?php echo WEB_PATH ?>?page=meal&courseID=<?php echo $course->getId(); ?>">
+                            <?php echo $course->getName(); ?></h3>
+                        </a>
+                        <p>
+                            <?php echo $course->getDescription(); ?>
+                        </p>
+                        <a href="<?php echo WEB_PATH ?>?page=meal&courseID=<?php echo $course->getId(); ?>" class="btn btn-warning">Commander</a>
+                    </div>
                 </div>
             </div>
+            <?php
+        }
+    } else {
+?>
+        <div>
+            Pas de menu disponible actuellement
         </div>
-
-        <?php
+<?php
     }
     ?>
 </div>

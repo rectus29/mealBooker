@@ -73,9 +73,6 @@ include 'head.php';
             }
         }else if(isset($_GET['page'])){
             switch ($_GET['page']){
-                case 'inscription':
-                    include 'security/signup.php';
-                    break;
                 case 'signupvalidation':
                     include 'security/signupvalidation.php';
                     break;
