@@ -33,7 +33,6 @@ function boxOpen(content) {
 
 }
 
-
 $(document).on('click', '#signupForm input[type="submit"]', function(e){
     e.preventDefault();
     var requiredFree = true;

@@ -30,7 +30,6 @@ if (isset($user) && $user == null)
     <strong>Mail :</strong> <?php echo $user->getMail(); ?><br>
     <strong>Téléphone :</strong> <?php echo $user->getPhoneNumber(); ?><br>
     <strong>Date d'inscription :</strong> <?php echo $user->getCreated()->format('d M Y'); ?><br>
-    <strong>Société :</strong> <?php echo $user->getCompany()->getName(); ?><br>
 
 </div>
 <div class="row">
@@ -55,8 +54,12 @@ if (isset($user) && $user == null)
                     <ul>
                         <?php
                         foreach ($mealOrder->getMeals() as $meal) {
-                            var_dump($meal->getCourse());
-                            echo "<li>" . $meal->getCourse()->getName() . " - " . $meal->getDrink()->getName() . " </li>";
+                            echo "<li>" . $meal->getCourse()->getName();
+                            if($meal->getDrink() != null)
+                                echo " - " . $meal->getDrink()->getName();
+                            if($meal->getDessert() != null)
+                                echo " - " . $meal->getDessert()->getName();
+                            echo " </li>";
                         }
                         ?>
                     </ul>

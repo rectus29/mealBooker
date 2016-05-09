@@ -39,12 +39,17 @@ $orderDao = new OrderDao($em);
                     <ul>
                         <?php
                         foreach ($order->getMeals() as $meal) {
-                            echo "<li>" . $meal->getCourse()->getName() . " - " . $meal->getDrink()->getName() . " </li>";
+                            echo "<li>" . $meal->getCourse()->getName();
+                            if($meal->getDrink() != null )
+                                echo " - " . $meal->getDrink()->getName();
+                            if($meal->getDessert() != null )
+                                echo " - " . $meal->getDessert()->getName();
+                            echo  " </li>";
                         }
                         ?>
                     </ul>
                 </td>
-                <td><?php echo $order->getUser()->getFormattedName() . " (" . $order->getUser()->getCompany()->getName() . ")"; ?></td>
+                <td><?php echo $order->getUser()->getFormattedName(); ?></td>
             </tr>
             <?php
         }

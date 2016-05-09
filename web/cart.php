@@ -20,13 +20,15 @@ $drinkDao = new DrinkDao($em);
 $dessertDao = new DessertDao($em);
 $timeFrameDao = new TimeFrameDao($em);
 
+
 //prepare new value
 $mealCart = new stdClass();
 $mealCart->cart = [];
 //get value from cookie if cookie already set
-if (isset($_COOKIE['mealCart'])) {
-    $mealCart = json_decode($_COOKIE['mealCart']);
+if (isset($_SESSION['mealCart'])) {
+    $mealCart = json_decode($_SESSION['mealCart']);
 }
+
 //add new value in cookie
 if ($_POST && isset($_POST['course']) && isset($_POST['ts'])) {
     //search for doubloon
@@ -43,9 +45,22 @@ if ($_POST && isset($_POST['course']) && isset($_POST['ts'])) {
         $object->drink = (isset($_POST['drink'])) ? $_POST['drink'] : "";
         $object->dessert = (isset($_POST['dessert'])) ? $_POST['dessert'] : "";
         array_push($mealCart->cart, $object);
-        setcookie("mealCart", json_encode($mealCart));
+        $_SESSION['mealCart'] = json_encode($mealCart);
     }
 };
+
+if(isset($_GET['delete'])){
+    $toDelete = $_GET['delete'];
+    if($toDelete != ''){
+        for ($i=0; $i<sizeof($mealCart->cart);$i++) {
+            if ($mealCart->cart[$i]->id == $toDelete)
+                array_splice($mealCart->cart, $i,1);
+        }
+    }else{
+        $mealCart->cart= [];
+        unset($_SESSION['mealCart']);
+    }
+}
 ?>
 
 <div class="row">
@@ -80,7 +95,7 @@ if ($_POST && isset($_POST['course']) && isset($_POST['ts'])) {
                             <?php echo ($dessert != null) ? $dessert : "-"; ?>
                         </td>
                         <td>
-                            <a href="#" class="remove" id="">
+                            <a href="<?php WEB_PATH ?>?page=cart&delete=<?php echo $meal->id;?>" class="remove" id="cartRemove">
                                 <i class="fa fa-remove"></i>
                             </a>
                         </td>
@@ -129,8 +144,8 @@ if ($_POST && isset($_POST['course']) && isset($_POST['ts'])) {
                 <div class="col-md-offset-3 col-md-6" style="text-align: center">
                     <a href="<?php echo WEB_PATH ?>" class="btn btn-default">Completer ma commande</a>
 
-                    <input type="submit" class="btn btn-green" value="Valider ma commande"/><br>
-                    <a href="<?php WEB_PATH ?>?page=cart" style="margin-top: 15px; display: inline-block">
+                    <input type="submit" class="btn btn-green" /><br>
+                    <a href="<?php WEB_PATH ?>?page=cart&delete" id="cartRemove" style="margin-top: 15px; display: inline-block">
                         Vider mon panier
                     </a>
                 </div>

@@ -33,12 +33,20 @@ $todayMealOrder = $MealOrderDao->getCurrentMealOrder();
         <h3>Il reste <?php /*echo $mealPerDay - sizeof($todayMealOrder);*/?> repas disponibles</h3>
     </div>-->
 
-    <div class="row">
+
         <?php
         /**
          * @var $course Course
          **/
-        foreach ($courseDao->getAllEnabled() as $course) {
+        $courses = $courseDao->getAllEnabled();
+        for ( $i = 0; $i<sizeof($courses);$i++) {
+            $course = $courses[$i];
+            if($i%2 == 0){
+                if($i > 0)
+                    echo '</div>';
+                if($i < sizeof($courses))
+                echo '<div class="row">';
+            }
             ?>
             <div class="col-md-6">
                 <div class="card">
@@ -62,7 +70,7 @@ $todayMealOrder = $MealOrderDao->getCurrentMealOrder();
             </div>
 
             <?php
+
         }
         ?>
-    </div>
 </article>
