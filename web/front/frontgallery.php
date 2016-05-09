@@ -15,16 +15,73 @@ use MealBooker\models\dao\CourseDao;
 
 $courseDao = new CourseDao($em);
 ?>
-<div class="row courseGallery">
-    <?php
-    /**
-     * @var $courseArray Course[]
-     */
-    $courseArray = $courseDao->getAllEnabled();
-    if (sizeof($courseArray) > 0) {
-        foreach ($courseArray as $course) {
+
+<?php
+/**
+ * @var $courseArray Course[]
+ */
+$courseArray = $courseDao->getAllEnabled();
+if (sizeof($courseArray) > 0) { ?>
+    <div class="row courseGallery">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            </ol>
+
+
+            <?php
+            foreach ($courseArray as $course) {
+                ?>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img src="<?php echo APP_PATH; ?>files/course/<?php echo $course->getImg(); ?>"
+                             alt="<?php echo $course->getName(); ?>">
+
+                        <div class="carousel-caption">
+                            <h3><?php echo $course->getName(); ?></h3>
+
+                            <p><?php echo $course->getDescription(); ?></p>
+                            <a href="<?php echo WEB_PATH ?>?page=meal&courseID=<?php echo $course->getId(); ?>"
+                               class="btn btn-warning">Commander</a>
+                        </div>
+                    </div>
+                </div>
+
+                <?php
+            }
             ?>
-            <div class="col-md-4">
+
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+
+    <?php
+
+} else {
+    ?>
+    <div>
+        Pas de menu disponible actuellement
+    </div>
+    <?php
+}
+?>
+
+
+<!--
+ <div class="col-md-4">
                 <div class="card">
                     <div class="meal-thumbnail">
                         <a href="<?php echo WEB_PATH ?>?page=meal&courseID=<?php echo $course->getId(); ?>">
@@ -43,17 +100,9 @@ $courseDao = new CourseDao($em);
                     </div>
                 </div>
             </div>
-            <?php
-        }
-    } else {
-?>
-        <div>
-            Pas de menu disponible actuellement
-        </div>
-<?php
-    }
-    ?>
-</div>
+-->
+
+
 
 
 
