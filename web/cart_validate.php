@@ -33,7 +33,6 @@ if (!isset($_SESSION['mealCart']) || !isset($_POST['timeframe'])) {
     header('Location : ' . WEB_PATH);
     exit;
 }
-
 $mealCart = json_decode($_SESSION['mealCart']);
 if (sizeof($mealCart->cart) > 0) {
     $order = new MealOrder();
@@ -62,6 +61,8 @@ if (sizeof($mealCart->cart) > 0) {
     $order->setMeals($mealArray);
     $orderDao->save($order);
     MailManager::get()->sendOrderConfirmation(SecurityManager::get()->getCurrentUser($_SESSION), $order);
+}else{
+    header('Location : ' . WEB_PATH);
 }
 if (isset($_SESSION['mealCart'])) {
     unset($_SESSION['mealCart']);

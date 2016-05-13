@@ -97,7 +97,7 @@ if (isset($_POST)
     <br/>
 
     <div class="col-md-5 col-md-offset-1">
-        <form class="form-horizontal" action="#" method="post" id="connectWrapper">
+        <form class="form-horizontal" action="security/signin_exec.php" method="post" id="connectWrapper">
             <h2>Vous avez un compte ?</h2>
 
             <p>Pour commander votre repas, entrez votre identifiant (adresse mail) ainsi que votre mot de passe.</p>
