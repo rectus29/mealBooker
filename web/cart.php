@@ -56,6 +56,7 @@ if(isset($_GET['delete'])){
             if ($mealCart->cart[$i]->id == $toDelete)
                 array_splice($mealCart->cart, $i,1);
         }
+        $_SESSION['mealCart'] = json_encode($mealCart);
     }else{
         $mealCart->cart= [];
         unset($_SESSION['mealCart']);
