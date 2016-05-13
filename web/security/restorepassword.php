@@ -36,7 +36,7 @@ if (isset($_POST['email']) && sizeof($_POST['email']) > 0) {
     //token and new password validation
     try{
         $password = $_POST['restorepassword'];
-        $token = $_GET['token'];
+        $token = $_POST['token'];
         $userDao = new UserDao($em);
         $user = $userDao->getByRestoreToken($token);
         if($user != null){
