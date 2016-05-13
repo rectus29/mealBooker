@@ -44,15 +44,16 @@ $courseDao = new CourseDao($em);
                     ?>
                     <div class="item <?php echo ($i < 1) ? "active" : "" ?> ">
                         <div class="row">
-                            <div class="col-md-12 img-wrapper" style="background-image:url('<?php echo APP_PATH; ?>files/course/<?php echo $course->getImg(); ?>')">
-                                <div class="col-md-4 desc">
-                                    <div class="caption">
-                                        <h3><?php echo $course->getName(); ?></h3>
+                            <div class="col-md-8 img-wrapper" style="background-image:url('<?php echo APP_PATH; ?>files/course/<?php echo $course->getImg(); ?>')">
 
-                                        <p><?php echo $course->getDescription(); ?></p>
-                                        <a href="<?php echo WEB_PATH ?>?page=meal&courseID=<?php echo $course->getId(); ?>"
-                                           class="btn btn-warning">Commander</a>
-                                    </div>
+                            </div>
+                            <div class="col-md-4 desc">
+                                <div class="caption">
+                                    <h3><?php echo $course->getName(); ?></h3>
+
+                                    <p><?php echo $course->getDescription(); ?></p>
+                                    <a href="<?php echo WEB_PATH ?>?page=meal&courseID=<?php echo $course->getId(); ?>"
+                                       class="btn btn-warning">Commander</a>
                                 </div>
                             </div>
 

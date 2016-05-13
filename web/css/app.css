@@ -6389,7 +6389,6 @@ a.left i.fa, a.right i.fa {
   display: inline-block; }
 
 .desc {
-  background: rgba(255, 255, 255, 0.8);
   position: absolute;
   top: 0;
   right: 0;
