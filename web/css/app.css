@@ -6299,18 +6299,24 @@ h4 {
     color: white; }
 
 .loginbox {
-  margin-bottom: 30px; }
+  margin-bottom: 60px; }
   .loginbox .col-md-5.col-md-offset-1 {
     border-right: solid 1px #eeeeee;
     padding-right: 30px; }
   .loginbox h2 {
-    font-size: 1.3em;
+    font-size: 1em;
     text-transform: uppercase;
     letter-spacing: -1px; }
+  .loginbox input.btn-green {
+    margin-top: 20px; }
 
 .retour {
   text-align: center;
   margin-top: 30px; }
+
+.intro h1,
+.intro p {
+  text-align: center; }
 
 .card {
   display: block;
@@ -6320,15 +6326,21 @@ h4 {
   margin-bottom: 30px;
   min-height: 435px; }
   .card .card_body {
-    padding: 5px 15px; }
+    padding: 5px 15px;
+    position: relative;
+    top: 0;
+    bottom: 0; }
     .card .card_body h3 {
       margin: 10px 0;
-      font-size: 1.1em;
+      font-size: 1em;
       letter-spacing: 1px;
       text-transform: uppercase; }
       .card .card_body h3 a {
         color: #2C2C2C;
         text-decoration: none; }
+    .card .card_body p {
+      color: #666;
+      font-size: 0.9em; }
     .card .card_body strong {
       color: #A9CE49; }
   .card:hover {
@@ -6361,7 +6373,7 @@ h4 {
     transition: all ease 0.3s; }
 
 .img-wrapper {
-  height: 400px;
+  height: 350px;
   overflow: hidden;
   background-repeat: no-repeat;
   background-size: cover;
@@ -6379,5 +6391,15 @@ a.left i.fa, a.right i.fa {
   top: 0;
   right: 0;
   bottom: 0; }
+
+.caption {
+  position: absolute;
+  width: 90%;
+  top: 0;
+  bottom: 0; }
+  .caption a.btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px; }
 
 /*# sourceMappingURL=app.css.map */

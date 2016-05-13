@@ -46,7 +46,7 @@ $courseDao = new CourseDao($em);
                         <div class="row">
                             <div class="col-md-12 img-wrapper" style="background-image:url('<?php echo APP_PATH; ?>files/course/<?php echo $course->getImg(); ?>')">
                                 <div class="col-md-4 desc">
-                                    <div class="">
+                                    <div class="caption">
                                         <h3><?php echo $course->getName(); ?></h3>
 
                                         <p><?php echo $course->getDescription(); ?></p>
@@ -86,7 +86,7 @@ $courseDao = new CourseDao($em);
     ?>
 </div>
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 intro">
         <h1>Bienvenue</h1>
 
         <p>

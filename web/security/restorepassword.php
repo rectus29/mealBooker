@@ -27,7 +27,7 @@ if (isset($_POST['email']) && sizeof($_POST['email']) > 0) {
             $user->setRestoreToken(\MealBooker\utils\Utils::generateStringCode());
             $userDao->save($user);
             MailManager::get()->sendRestorePasswordMail($user);
-            $message = 'Un E-mail vous a était envoyé pour réaliser la restoration de votre mots de passe';
+            $message = 'Un E-mail vous a été envoyé pour réaliser la restauration de votre mot de passe';
         }
     } catch (Exception $ex) {
         $error = $ex->getMessage();
@@ -44,7 +44,7 @@ if (isset($_POST['email']) && sizeof($_POST['email']) > 0) {
             $user->setRestoreToken(null);
             $user->setPassword(SecurityManager::hashPassword($password, $user->getSalt()));
             $userDao->save($user);
-            $message = 'Votre mots de passe est validé, vous pouvez maintenant vous connecter';
+            $message = 'Votre mot de passe est validé, vous pouvez maintenant vous <a href="'.WEB_PATH.'">connecter</a>';
         }else{
             throw new Exception("Une erreur est survenue");
         }
@@ -58,9 +58,9 @@ if (isset($_POST['email']) && sizeof($_POST['email']) > 0) {
         $userDao = new UserDao($em);
         $user = $userDao->getByRestoreToken($token);
         if ($user == null)
-            throw new Exception("Jeton de restoration inconnu");
+            throw new Exception("Jeton de restauration inconnu");
         else if ($user->getUpdated() > (new DateTime())->add(new DateInterval('P1D')))
-            throw new Exception('Jeton de restoration expiré');
+            throw new Exception('Jeton de restauration expiré');
         else {
             $mod = "RESTOR";
         }
@@ -78,13 +78,13 @@ if (isset($_POST['email']) && sizeof($_POST['email']) > 0) {
             <form class="form-horizontal" action="<?php echo WEB_PATH; ?>?page=restorepassword" method="post" id="restorePassword">
                 <input type="hidden" value="<?php echo $token; ?>" name="token">
 
-                <h2>Récupération de votre mots de passe</h2>
+                <h2>Récupération de votre mot de passe</h2>
 
-                <p>Veuilez saisir votre nouveau mots de passe </p>
+                <p>Veuilez saisir votre nouveau mot de passe </p>
 
                 <div class="control-group">
-                    <label for="restorepassword">Nouveau mots de passe</label>
-                    <input name="restorepassword" class="form-control required" required="required" type="password" placeholder="Nouveau mots de passe"/>
+                    <label for="restorepassword">Nouveau mot de passe</label>
+                    <input name="restorepassword" class="form-control required" required="required" type="password" placeholder="Nouveau mot de passe"/>
                 </div>
                 <div class="form-group" style="text-align: center">
                     <input type="submit" class="btn btn-green" value="Valider"/>
