@@ -75,7 +75,7 @@ if (isset($_POST['email']) && sizeof($_POST['email']) > 0) {
         <?php
         if ($mod == 'RESTOR' && isset($token)) {
             ?>
-            <form class="form-horizontal" target="<?php echo WEB_PATH; ?>?page=restorepassword" method="post" id="restorePassword">
+            <form class="form-horizontal" action="<?php echo WEB_PATH; ?>?page=restorepassword" method="post" id="restorePassword">
                 <input type="hidden" value="<?php echo $token; ?>" name="token">
 
                 <h2>Récupération de votre mots de passe</h2>
@@ -93,7 +93,7 @@ if (isset($_POST['email']) && sizeof($_POST['email']) > 0) {
             <?php
         } else if($mod=='QUERY'){
             ?>
-            <form class="form-horizontal" target="<?php echo WEB_PATH; ?>?page=restorepassword" method="post" id="restorePassword">
+            <form class="form-horizontal" action="<?php echo WEB_PATH; ?>?page=restorepassword" method="post" id="restorePassword">
                 <h2>Vous avez perdu votre mot de passe ?</h2>
 
                 <p>Indiquez nous votre e-mail pour générer un nouveau mot de passe</p>
