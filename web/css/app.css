@@ -5,6 +5,7 @@
  * 2. Prevent iOS text size adjust after orientation change, without disabling
  *    user zoom.
  */
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700|Ubuntu:400,700);
 html {
   font-family: sans-serif;
   /* 1 */
@@ -6153,6 +6154,31 @@ button.close {
 @media print {
   .hidden-print {
     display: none !important; } }
+body {
+  font-family: "Ubuntu", sans-serif;
+  font-size: 16px; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Montserrat", sans-serif; }
+
+h1 {
+  font-size: 2.5em; }
+
+h2 {
+  font-size: 2em; }
+
+h3 {
+  font-size: 1.75em; }
+
+h4 {
+  font-size: 1.5em; }
+
+h5 {
+  font-size: 1.25em; }
+
+h6 {
+  font-size: 1em; }
+
 .btn-green {
   color: #fff;
   background-color: #A9CE49;
@@ -6335,7 +6361,23 @@ h4 {
     transition: all ease 0.3s; }
 
 .img-wrapper {
-  max-height: 300px;
-  overflow: hidden; }
+  height: 400px;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative; }
+
+a.left i.fa, a.right i.fa {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+  display: inline-block; }
+
+.desc {
+  background: rgba(255, 255, 255, 0.8);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0; }
 
 /*# sourceMappingURL=app.css.map */
