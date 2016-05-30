@@ -11,6 +11,7 @@
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 use MealBooker\models\dao\CourseDao;
+use MealBooker\utils\Utils;
 
 $courseDao = new CourseDao($em);
 ?>
@@ -32,7 +33,7 @@ $courseDao = new CourseDao($em);
             <tr>
                 <td><?php echo $course->getId();?></td>
                 <td><?php echo $course->getName();?></td>
-                <td><?php echo $course->getCreated()->format('d M Y');?></td>
+                <td><?php echo Utils::formatDate($course->getCreated());?></td>
                 <td><?php echo ($course->getStatus()==1)?'Actif':'Inactif';?></td>
                 <td>
                     <a href="<?php echo WEB_PATH?>?page=admin&tab=courseedit&id=<?php echo $course->getId() ?>"><i class="fa fa-edit"></i></a>

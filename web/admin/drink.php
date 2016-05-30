@@ -11,6 +11,7 @@
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 use MealBooker\models\dao\DrinkDao;
+use MealBooker\utils\Utils;
 
 $drinkDao = new DrinkDao($em);
 ?>
@@ -33,7 +34,7 @@ $drinkDao = new DrinkDao($em);
             <tr>
                 <td><?php echo $drink->getId();?></td>
                 <td><?php echo $drink->getName();?></td>
-                <td><?php echo $drink->getCreated()->format('d M Y');?></td>
+                <td><?php echo Utils::formatDate($drink->getCreated());?></td>
                 <td><?php echo ($drink->getStatus()==1)?'Actif':'Inactif';?></td>
                 <td>
                     <a href="<?php echo WEB_PATH?>?page=admin&tab=drinkedit&id=<?php echo $drink->getId() ?>"><i class="fa fa-edit"></i></a>

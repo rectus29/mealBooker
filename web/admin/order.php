@@ -33,7 +33,7 @@ $orderDao = new OrderDao($em);
             ?>
             <tr>
                 <td><?php echo sprintf("%04s", $order->getId()); ?></td>
-                <td><?php echo Utils::get()->formatDate($order->getCreated(), "d M Y H:m"); ?></td>
+                <td><?php echo Utils::formatDate($order->getCreated(), "d/m/Y H:m"); ?></td>
                 <td><?php echo $order->getTimeFrame()->__toString(); ?></td>
                 <td>
                     <ul>

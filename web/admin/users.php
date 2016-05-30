@@ -11,6 +11,7 @@
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 use MealBooker\models\dao\UserDao;
+use MealBooker\utils\Utils;
 
 $userDao = new UserDao($em);
 ?>
@@ -35,26 +36,26 @@ $userDao = new UserDao($em);
         <?php
         foreach ($userDao->getAll() as $user) {
             ?>
-            <tr <?php echo ($user->isOptIn())?'class="success"':'';?>>
-                <td><?php echo $user->getId();?></td>
-                <td><?php echo $user->getFormattedName();?></td>
-                <td><?php echo $user->getMail();?></td>
-                <td><?php echo $user->getPhoneNumber();?></td>
-                <td><?php echo $user->getCreated()->format('d M Y');?></td>
-                <td><?php echo $user->getCompany()->getName();?></td>
-                <td><?php echo ($user->isOptIn())?"Oui":"Non";?></td>
-                <td><?php echo $user->getRole()->getName();?></td>
-                <td><?php echo ($user->getStatus()==1)?'Actif':'Inactif';?></td>
+            <tr <?php echo ($user->isOptIn()) ? 'class="success"' : ''; ?>>
+                <td><?php echo $user->getId(); ?></td>
+                <td><?php echo $user->getFormattedName(); ?></td>
+                <td><?php echo $user->getMail(); ?></td>
+                <td><?php echo $user->getPhoneNumber(); ?></td>
+                <td><?php echo Utils::formatDate($user->getCreated()); ?></td>
+                <td><?php echo ($user->getCompany() != null) ? $user->getCompany()->getName() : "-"; ?></td>
+                <td><?php echo ($user->isOptIn()) ? "Oui" : "Non"; ?></td>
+                <td><?php echo $user->getRole()->getName(); ?></td>
+                <td><?php echo ($user->getStatus() == 1) ? 'Actif' : 'Inactif'; ?></td>
                 <td>
-                    <a href="<?php echo WEB_PATH?>?page=admin&tab=useredit&id=<?php echo $user->getId() ?>"><i class="fa fa-edit"></i></a>
+                    <a href="<?php echo WEB_PATH ?>?page=admin&tab=useredit&id=<?php echo $user->getId() ?>"><i class="fa fa-edit"></i></a>
                 </td>
             </tr>
-        <?php
+            <?php
         }
         ?>
         </tbody>
     </table>
 </div>
 <div class="row">
-    <a class="btn btn-green pull-right" href="<?php echo WEB_PATH?>?page=admin&tab=useredit" >Créer</a>
+    <a class="btn btn-green pull-right" href="<?php echo WEB_PATH ?>?page=admin&tab=useredit">Créer</a>
 </div>

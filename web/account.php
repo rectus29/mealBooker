@@ -29,7 +29,7 @@ if (isset($user) && $user == null)
     <strong>Prénom :</strong> <?php echo $user->getLastName(); ?><br>
     <strong>Mail :</strong> <?php echo $user->getMail(); ?><br>
     <strong>Téléphone :</strong> <?php echo $user->getPhoneNumber(); ?><br>
-    <strong>Date d'inscription :</strong> <?php echo $user->getCreated()->format('d M Y'); ?><br>
+    <strong>Date d'inscription :</strong> <?php echo Utils::formatDate($user->getCreated()); ?><br>
 
 </div>
 <div class="row">

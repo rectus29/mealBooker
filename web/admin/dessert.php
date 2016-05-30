@@ -11,6 +11,7 @@
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 use MealBooker\models\dao\DessertDao;
+use MealBooker\utils\Utils;
 
 $dessertDao = new DessertDao($em);
 ?>
@@ -33,7 +34,7 @@ $dessertDao = new DessertDao($em);
             <tr>
                 <td><?php echo $dessert->getId();?></td>
                 <td><?php echo $dessert->getName();?></td>
-                <td><?php echo $dessert->getCreated()->format('d M Y');?></td>
+                <td><?php echo Utils::formatDate($dessert->getCreated());?></td>
                 <td><?php echo ($dessert->getStatus()==1)?'Actif':'Inactif';?></td>
                 <td>
                     <a href="<?php echo WEB_PATH?>?page=admin&tab=dessertedit&id=<?php echo $dessert->getId() ?>"><i class="fa fa-edit"></i></a>

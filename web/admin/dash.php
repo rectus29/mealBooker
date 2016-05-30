@@ -108,7 +108,7 @@ foreach ($todayMealOrder as $order) {
 
 <h3>
     <!--Commande du jour --><?php /*echo sizeof($todayMealOrder) . "/" . $mealPerDay */ ?>
-    <small class="pull-right"><?php echo Utils::formatDate($refDate, "d M Y") ?></small>
+    <small class="pull-right"><?php echo Utils::formatDate($refDate) ?></small>
 </h3>
 <div class="clearfix"></div>
 <div class="table-responsive">

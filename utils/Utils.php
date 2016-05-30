@@ -44,11 +44,13 @@ class Utils {
      * @param string $format
      * @return String
      */
-    public static function formatDate($date, $format = 'd M Y'){
+    public static function formatDate($date, $format = 'd/m/Y'){
         $out ="-";
+        setlocale(LC_TIME, "fr_FR");
         if(isset($date) && $date != null)
             if(is_a($date, DateTime::class))
                 return $date->format($format);
+        //return strftime ('%d %B %Y', $date->getTimestamp() );
         return $out;
     }
 

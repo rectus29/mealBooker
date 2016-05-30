@@ -14,6 +14,7 @@ use MealBooker\models\dao\CompanyDao;
 use MealBooker\models\dao\CourseDao;
 use MealBooker\models\dao\DrinkDao;
 use MealBooker\models\dao\TimeFrameDao;
+use MealBooker\utils\Utils;
 
 $courseDao = new CourseDao($em);
 $companyDao = new CompanyDao($em);
@@ -40,7 +41,7 @@ $timeFrameDao = new TimeFrameDao($em);
             <tr>
                 <td><?php echo $company->getId(); ?></td>
                 <td><?php echo $company->getName(); ?></td>
-                <td><?php echo $company->getCreated()->format('d M Y'); ?></td>
+                <td><?php echo Utils::formatDate($company->getCreated()); ?></td>
                 <td><?php echo sizeof($company->getUsers()); ?></td>
                 <td><?php echo ($company->getStatus() == 1) ? 'Actif' : 'Inactif'; ?></td>
                 <td>
