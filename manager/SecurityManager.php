@@ -98,6 +98,8 @@ class SecurityManager
     {
         $userDao = new UserDao(self::$em);
         $user = $userDao->getUserByMail($login);
+//        var_dump($user);
+//        var_dump(self::hashPassword($password, $user->getSalt()));
         if (($user != null && $user->getPassword() === self::hashPassword($password, $user->getSalt())) && $user->getStatus() == 1) {
             $user->setSession(session_id());
             $userDao->save($user);

@@ -39,23 +39,13 @@ foreach ($timeFrameDao->getAll() as $tf) {
 $config = $configDao->getByKey('mealPerDay');
 if (isset($config))
     $mealPerDay = $config->getValue();
-
-//set ref date
+//set ref date for display
 $refDate = new DateTime();
 if ($refDate > (new DateTime())->setTime(STARTBOOKINGHOUR, STARTBOOKINGMINUTE)) {
     $refDate->add(new DateInterval('P1D'));
 }
-//set min date
-$startDate = (new DateTime())->setTimeStamp($refDate->getTimestamp());
-$startDate->sub(new DateInterval('P1D'));
-$startDate->setTime(STARTBOOKINGHOUR, STARTBOOKINGMINUTE);
-//set min date
-$stopDate = (new DateTime())->setTimeStamp($refDate->getTimestamp());
-$stopDate->setTime(STOPBOOKINGHOUR, STOPBOOKINGMINUTE);
 //get all order in time window
-
-
-$todayMealOrder = $MealOrderDao->getMealOrderBetween($startDate, $stopDate);
+$todayMealOrder = $MealOrderDao->getCurrentMealOrder();
 
 $timeFramesOrder = [];
 foreach ($timeFrames as $tf) {

@@ -71,10 +71,10 @@ if (isset($_GET['id'])) {
                 <label for="name">Nom</label>
                 <input name="name" class="form-control" type="text" value="<?php echo $course->getName(); ?>"/>
             </div>
-            <!--<div class="form-group">
-                <label for="nb">Nombre disponible</label>
+            <div class="form-group">
+                <label for="nb">Nombre disponible (Journalier)</label>
                 <input name="nb" class="form-control" type="number" value="<?php echo $course->getNbPerDay(); ?>" />
-            </div>-->
+            </div>
             <div class="form-group">
                 <label for="state">Status</label>
                 <select name="state" id="state">

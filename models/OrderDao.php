@@ -46,12 +46,17 @@ class OrderDao extends GenericDao
      */
     public function getCurrentMealOrder()
     {
+        //set ref date
+        $refDate = new DateTime();
+        if ($refDate > (new DateTime())->setTime(STARTBOOKINGHOUR, STARTBOOKINGMINUTE)) {
+            $refDate->add(new DateInterval('P1D'));
+        }
         //set min date
-        $startDate = new DateTime();
+        $startDate = (new DateTime())->setTimeStamp($refDate->getTimestamp());
         $startDate->sub(new DateInterval('P1D'));
         $startDate->setTime(STARTBOOKINGHOUR, STARTBOOKINGMINUTE);
         //set min date
-        $stopDate = new DateTime();
+        $stopDate = (new DateTime())->setTimeStamp($refDate->getTimestamp());
         $stopDate->setTime(STOPBOOKINGHOUR, STOPBOOKINGMINUTE);
         return $this->getMealOrderBetween($startDate, $stopDate);
     }

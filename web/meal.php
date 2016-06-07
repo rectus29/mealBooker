@@ -40,6 +40,7 @@ $orderEnable = true;
 $mealPerDay = $course->getNbPerDay();
 //get all order in time window
 $todayMealOrder = $MealOrderDao->getCurrentMealOrderForCourse($course);
+$remainingCourse = $mealPerDay - sizeof($todayMealOrder);
 if (sizeof($todayMealOrder) >= $mealPerDay){
     $message = "Ce plat n'est plus disponible";
     $orderEnable = false;
@@ -48,7 +49,6 @@ if (sizeof($todayMealOrder) >= $mealPerDay){
     $message = "Réservations non disponibles de 11h à 14h";
     $orderEnable = false;
 }
-
 
 ?>
 <script type="text/javascript">
@@ -85,7 +85,12 @@ if (sizeof($todayMealOrder) >= $mealPerDay){
                 <img src="<?php echo APP_PATH; ?>files/course/<?php echo $course->getImg(); ?>" alt="" class="img-responsive">
             </div>
             <div class="col-md-8">
-                <h2><?php echo $course->getName(); ?></h2>
+                <div class="pull-right">
+                    <?php echo $remainingCourse; ?>&nbsp;Restant(s)
+                </div>
+                <h2>
+                    <?php echo $course->getName(); ?>
+                </h2>
 
                 <p>
                     <?php echo $course->getDescription(); ?>

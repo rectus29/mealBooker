@@ -26,6 +26,9 @@ if (isset($_POST)
 ) {
     $login = $_POST['login'];
     $password = $_POST['password'];
+    var_dump($login);
+    var_dump($password);
+    var_dump(SecurityManager::get()->authentificate($login, $password));
     if (SecurityManager::get()->authentificate($login, $password) != null) {
         header('Location: ' . WEB_PATH);
     } else {

@@ -30,10 +30,16 @@ class Dessert extends DomainObject
     private $name;
 
     /**
-     * @Column(type="string")
+     * @Column(type="string", length=65536, nullable=true)
      * @var String
      */
     private $description;
+
+    /**
+     * @Column(type="integer")
+     * @var Integer
+     */
+    private $nbPerDay = 99;
 
     function __construct($name = null, $description = null)
     {
@@ -83,5 +89,19 @@ class Dessert extends DomainObject
         return $this->getName();
     }
 
+    /**
+     * @return int
+     */
+    public function getNbPerDay()
+    {
+        return $this->nbPerDay;
+    }
 
+    /**
+     * @param int $nbPerDay
+     */
+    public function setNbPerDay($nbPerDay)
+    {
+        $this->nbPerDay = $nbPerDay;
+    }
 }
