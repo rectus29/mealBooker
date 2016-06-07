@@ -91,8 +91,7 @@ $courseDao = new CourseDao($em);
         <h1>Bienvenue</h1>
 
         <p>
-            Vous êtes bien sur le système de réservation de repas Aurore Traiteur.<br/>
-            Commandez votre déjeuner pour vous le faire livrer à votre entreprise, selon un horaire pré-défini.
+            Vous êtes bien sur le système de réservation de repas Aurore Traiteur.
         </p>
     </div>
 </div>
