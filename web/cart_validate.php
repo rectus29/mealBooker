@@ -60,12 +60,12 @@ if (sizeof($mealCart->cart) > 0) {
     }
     $order->setMeals($mealArray);
     $orderDao->save($order);
+    if (isset($_SESSION['mealCart'])) {
+        unset($_SESSION['mealCart']);
+    }
     MailManager::get()->sendOrderConfirmation(SecurityManager::get()->getCurrentUser($_SESSION), $order);
 }else{
     header('Location : ' . WEB_PATH);
-}
-if (isset($_SESSION['mealCart'])) {
-    unset($_SESSION['mealCart']);
 }
 ?>
 <div class="success">

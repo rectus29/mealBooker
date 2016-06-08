@@ -12,8 +12,8 @@
 /*-----------------------------------------------------*/
 
 use MealBooker\manager\SecurityManager;
-use MealBooker\models\dao\ConfigDao;
 use MealBooker\model;
+use MealBooker\models\dao\ConfigDao;
 
 error_reporting(E_ALL);
 
@@ -26,75 +26,75 @@ $configDao = new ConfigDao($em);
 $maintenance = !$em->getConnection()->ping();
 
 //check maintenance mod
-if($configDao->getByKey('serverState') != null && $configDao->getByKey('serverState')->getValue() == '0' && !SecurityManager::get()->isAdmin($_SESSION))
+if ($configDao->getByKey('serverState') != null && $configDao->getByKey('serverState')->getValue() == '0' && !SecurityManager::get()->isAdmin($_SESSION))
     $maintenance = true;
 ?>
-<!DOCTYPE html>
-<html>
-<?php
-include 'head.php';
-?>
-<body>
-<?php
+    <!DOCTYPE html>
+    <html>
+    <?php
+    include 'head.php';
+    ?>
+    <body>
+    <?php
     include 'header.php';
-?>
-<div class="main container">
-    <div class="row">
-        <?php
-        if($maintenance){
-            include 'security/maintenance.php';
-        } else if (SecurityManager::get()->isAuthentified($_SESSION)) {
-            if (isset($_GET['page'])) {
+    ?>
+    <div class="main container">
+        <div class="row">
+            <?php
+            if ($maintenance) {
+                include 'security/maintenance.php';
+            } else if (SecurityManager::get()->isAuthentified($_SESSION)) {
+                if (isset($_GET['page'])) {
+                    switch ($_GET['page']) {
+                        case 'meal':
+                            include 'meal.php';
+                            break;
+                        case 'courses':
+                            include 'courses.php';
+                            break;
+                        case 'cart':
+                            include 'cart.php';
+                            break;
+                        case 'account':
+                            include 'account.php';
+                            break;
+                        case 'cartconfirm':
+                            include 'cart_validate.php';
+                            break;
+                        case 'admin':
+                            include 'admin/admin.php';
+                            break;
+                        default :
+                            include 'courses.php';
+                            break;
+                    }
+                } else {
+                    include 'courses.php';
+                }
+            } else if (isset($_GET['page'])) {
                 switch ($_GET['page']) {
-                    case 'meal':
-                        include 'meal.php';
+                    case 'signupvalidation':
+                        include 'security/signupvalidation.php';
                         break;
-                    case 'courses':
-                        include 'courses.php';
-                        break;
-                    case 'cart':
-                        include 'cart.php';
-                        break;
-                    case 'account':
-                        include 'account.php';
-                        break;
-                    case 'cartconfirm':
-                        include 'cart_validate.php';
-                        break;
-                    case 'admin':
-                        include 'admin/admin.php';
+                    case 'restorepassword':
+                        include 'security/restorepassword.php';
                         break;
                     default :
-                        include 'courses.php';
+                        include 'security/signin.php';
                         break;
                 }
             } else {
-                include 'courses.php';
+                include 'front/frontgallery.php';
+                include 'security/signin.php';
             }
-        }else if(isset($_GET['page'])){
-            switch ($_GET['page']){
-                case 'signupvalidation':
-                    include 'security/signupvalidation.php';
-                    break;
-                case 'restorepassword':
-                    include 'security/restorepassword.php';
-                    break;
-                default :
-                    include 'security/signin.php';
-                    break;
-            }
-        }else{
-            include 'front/frontgallery.php';
-            include 'security/signin.php';
-        }
-        ?>
+            ?>
+        </div>
     </div>
-</div>
-<?php
+    <?php
     include 'footer.php';
-?>
-</body>
-</html>
+    ?>
+    </body>
+    </html>
 <?php
 $em->getConnection()->close();
 
