@@ -6323,13 +6323,14 @@ h4 {
 
 .card {
   display: block;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-decoration: none;
   color: #2C2C2C;
   margin-bottom: 30px;
   min-height: 435px;
   border-radius: 3px;
-  overflow: hidden; }
+  overflow: hidden;
+  transition: all ease 0.3s; }
   .card .card_body {
     padding: 5px 15px;
     position: relative;
@@ -6354,7 +6355,7 @@ h4 {
     .card .card_body strong {
       color: #A9CE49; }
   .card:hover {
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
     transition: all ease 0.3s;
     text-decoration: none;
     color: #2C2C2C; }
