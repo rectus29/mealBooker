@@ -125,17 +125,18 @@ class MailManager
         self::$mail->addAddress($user->getMail());
         self::$mail->Subject = 'Confirmation de votre commande Aurore traiteur';
         self::$mail->Body = '
-        <table>
+        <table width="480px"  style"width:480px;">
             <tbody>
                 <tr style="background: black;">
                     <td><img src="' . SERVER_URL . WEB_PATH . 'img/logo_mail.jpg"></td>
-                    <td></td>
                 </tr>
                 <tr>
-                    <td colspan="2">
+                    <td>
                         Bonjour,<br/>
                         <br />
-                        Votre commande numéro ' . sprintf("%04s",$order->getId()) . ' est bien validée rendez vous à l\'horaire indiqué sur le parking de votre entreprise pour récupérer votre repas.
+                        Votre commande #' . sprintf("%04s",$order->getId()) . ' est validée,<br />
+                        <br />
+                        A bientôt sur <a href="http://aurore-traiteur.fr">aurore-traiteur.fr</a>
                     </td>
                 </tr>
             </tbody>
