@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 09 Mai 2016 à 20:43
+-- Généré le :  Mer 08 Juin 2016 à 20:43
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -19,6 +19,29 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `mealbooker`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `app_address`
+--
+
+CREATE TABLE IF NOT EXISTS `app_address` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `recipient` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `addressComplement` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `country` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `city` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `lat` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `lng` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  `status` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_E013EFCCA76ED395` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -107,10 +130,11 @@ INSERT INTO `app_course` (`id`, `name`, `description`, `created`, `updated`, `st
 CREATE TABLE IF NOT EXISTS `app_dessert` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` mediumtext COLLATE utf8_unicode_ci,
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
   `status` int(11) NOT NULL,
+  `nbPerDay` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
@@ -118,9 +142,9 @@ CREATE TABLE IF NOT EXISTS `app_dessert` (
 -- Contenu de la table `app_dessert`
 --
 
-INSERT INTO `app_dessert` (`id`, `name`, `description`, `created`, `updated`, `status`) VALUES
-(1, 'test', 'test', '2016-03-31 19:14:33', '2016-03-31 19:14:33', 1),
-(2, 'le caca au lait', 'caca dans du lait', '2016-05-09 18:57:34', '2016-05-09 18:57:34', 1);
+INSERT INTO `app_dessert` (`id`, `name`, `description`, `created`, `updated`, `status`, `nbPerDay`) VALUES
+(1, 'test', 'test', '2016-03-31 19:14:33', '2016-03-31 19:14:33', 1, 0),
+(2, 'le caca au lait', 'caca dans du lait', '2016-05-09 18:57:34', '2016-05-09 18:57:34', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -171,7 +195,7 @@ CREATE TABLE IF NOT EXISTS `app_meal` (
   KEY `IDX_9BD8AB3C8D9F6D38` (`order_id`),
   KEY `IDX_9BD8AB3C36AA4BB4` (`drink_id`),
   KEY `IDX_9BD8AB3C745B52FD` (`dessert_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Contenu de la table `app_meal`
@@ -179,7 +203,8 @@ CREATE TABLE IF NOT EXISTS `app_meal` (
 
 INSERT INTO `app_meal` (`id`, `course_id`, `order_id`, `bookingId`, `created`, `updated`, `status`, `drink_id`, `dessert_id`) VALUES
 (1, 2, 1, '1462816309', '2016-05-09 19:58:37', '2016-05-09 19:58:37', 1, NULL, 2),
-(2, 1, 1, '1462816411', '2016-05-09 19:58:37', '2016-05-09 19:58:37', 1, 4, 1);
+(2, 1, 1, '1462816411', '2016-05-09 19:58:37', '2016-05-09 19:58:37', 1, 4, 1),
+(3, 2, 2, '1462818480', '2016-05-13 20:41:41', '2016-05-13 20:41:41', 1, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -197,14 +222,15 @@ CREATE TABLE IF NOT EXISTS `app_mealorder` (
   PRIMARY KEY (`id`),
   KEY `IDX_1ABD6F42A76ED395` (`user_id`),
   KEY `IDX_1ABD6F42E61AE10A` (`timeFrame_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
 -- Contenu de la table `app_mealorder`
 --
 
 INSERT INTO `app_mealorder` (`id`, `user_id`, `created`, `updated`, `status`, `timeFrame_id`) VALUES
-(1, 1, '2016-05-09 19:58:37', '2016-05-09 19:58:37', 1, 1);
+(1, 1, '2016-05-09 19:58:37', '2016-05-09 19:58:37', 1, 1),
+(2, 1, '2016-05-13 20:41:41', '2016-05-13 20:41:41', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -299,18 +325,19 @@ CREATE TABLE IF NOT EXISTS `app_user` (
   UNIQUE KEY `UNIQ_88BDF3E95126AC48` (`mail`),
   KEY `IDX_88BDF3E9D60322AC` (`role_id`),
   KEY `IDX_88BDF3E9979B1AD6` (`company_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
 -- Contenu de la table `app_user`
 --
 
 INSERT INTO `app_user` (`id`, `role_id`, `company_id`, `firstName`, `lastName`, `mail`, `salt`, `password`, `phoneNumber`, `optIn`, `session`, `created`, `updated`, `status`, `restoreToken`) VALUES
-(1, 1, NULL, 'Admin', 'istrateur', 'contact@alexandrebernard.fr', 'GZokcpR4upD65B/avAk85XDfEM2QLg==', '$2y$10$R1pva2NwUjR1cEQ2NUIvYOnfG6sqdk7MVfJ32kvWIl1HvEKirPbbq', '0606060606', 1, 'fbk84b43nbb9tkbl6tabbu98b5', '2015-10-15 00:00:00', '2016-05-09 18:54:41', 1, ''),
+(1, 1, NULL, 'Admin', 'istrateur', 'contact@alexandrebernard.fr', 'GZokcpR4upD65B/avAk85XDfEM2QLg==', '$2y$10$R1pva2NwUjR1cEQ2NUIvYOnfG6sqdk7MVfJ32kvWIl1HvEKirPbbq', '0606060606', 1, 'dfjtcjl8anh3vrdmcv0kt8d436', '2015-10-15 00:00:00', '2016-06-08 20:14:23', 1, ''),
 (2, 2, 1, 'Alexandre', 'Bernard', 'rectus29@gmail.com', 'x7XsEOXrtRo1ZpydkC0Pod0Ov3XWow==', '$2y$10$eDdYc0VPWHJ0Um8xWnB5Z.SXVdgeyWEWDXg.WIA0vpOoN/LlqPs06', '+33640427440', 0, 'fgrhqgm0v1qczgvfmfepw666', '2015-11-05 21:37:57', '2015-11-26 21:18:31', 1, NULL),
 (3, 2, NULL, 'TETE', 'TETE', 'tete@teet.com', 'amULfSuL.nniBFuZR.t2aKm22DSbHA==', '$2y$10$YW1VTGZTdUwubm5pQkZ1WeJmzEsnhMCRfDBbWeG0Whn1tkgJpAdoG', '0606060606', 0, 'oyjwlhxc1anxfhuirnaeiv7i', '2016-05-06 18:10:54', '2016-05-06 18:10:54', 0, NULL),
 (4, 2, NULL, '', '', '', '7iHHdV7HJX2QWC8VlgUr8bg/C1YrZQ==', '$2y$10$N2lISGRWN0hKWDJRV0M4VeTpFJoI2odovvdnBtH.Ubvb5g/Mib2ka', '', 0, 'tvdz1qg84i3eu5w9m5yz8gvc', '2016-05-06 18:12:07', '2016-05-06 18:12:07', 0, NULL),
-(5, 2, NULL, 'tete', 'tete', 'tete@teet.fr', 'unuSS1nM924KNVbv6NqTUqVK2Tvuug==', '$2y$10$dW51U1Mxbk05MjRLTlZideJ.WI/B2MPHnYKQbYOWgfxGemzPfIWpO', '0606060606', 0, 'vmpyzyp7fz42sga14j3330un', '2016-05-06 18:15:16', '2016-05-06 18:15:16', 0, NULL);
+(5, 2, NULL, 'tete', 'tete', 'tete@teet.fr', 'unuSS1nM924KNVbv6NqTUqVK2Tvuug==', '$2y$10$dW51U1Mxbk05MjRLTlZideJ.WI/B2MPHnYKQbYOWgfxGemzPfIWpO', '0606060606', 0, 'vmpyzyp7fz42sga14j3330un', '2016-05-06 18:15:16', '2016-05-06 18:15:16', 0, NULL),
+(6, 2, NULL, 'test', 'test', 'test@alexandrebernard.fr', 'NtdBj3BuovH4DDJ1aF8mVkq7DMCJ3w==', '$2y$10$TnRkQmozQnVvdkg0RERKMOdharPCsTec/RUNhIq8OIugs/as.lwmm', '0909090909', 0, 'nlrh0sl5h591vmbuiowsabkl', '2016-05-13 20:31:21', '2016-05-13 20:31:21', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -329,6 +356,12 @@ CREATE TABLE IF NOT EXISTS `role_permission` (
 --
 -- Contraintes pour les tables exportées
 --
+
+--
+-- Contraintes pour la table `app_address`
+--
+ALTER TABLE `app_address`
+  ADD CONSTRAINT `FK_E013EFCCA76ED395` FOREIGN KEY (`user_id`) REFERENCES `app_address` (`id`);
 
 --
 -- Contraintes pour la table `app_meal`

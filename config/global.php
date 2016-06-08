@@ -43,7 +43,7 @@ define('ROOT_DIR', dirname(__FILE__) . '/../');
 define('FILE_DIR', ROOT_DIR . '/files/');
 
 /** USEFULL CONSTANT */
-define('STOPBOOKINGHOUR', 11);
+define('STOPBOOKINGHOUR', 12);
 define('STOPBOOKINGMINUTE', 00);
 define('STARTBOOKINGHOUR', 14);
 define('STARTBOOKINGMINUTE', 00);

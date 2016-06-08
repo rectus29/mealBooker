@@ -79,6 +79,12 @@ class User extends DomainObject
     private $orders;
 
     /**
+     * @OneToMany(mappedBy="user", targetEntity="Address")
+     * @var Address[]
+     */
+    private $adresses;
+
+    /**
      * @Column(type="boolean")
      * @var bool
      */
@@ -353,5 +359,23 @@ class User extends DomainObject
             return $this->getRole()->isIsAdmin();
         return false;
     }
+
+    /**
+     * @return Address[]
+     */
+    public function getAdresses()
+    {
+        return $this->adresses;
+    }
+
+    /**
+     * @param Address[] $adresses
+     */
+    public function setAdresses($adresses)
+    {
+        $this->adresses = $adresses;
+    }
+
+
 
 }
