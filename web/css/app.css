@@ -6421,4 +6421,7 @@ a.left i.fa, a.right i.fa {
     bottom: 20px;
     left: 20px; }
 
+.carousel-indicators {
+  display: none; }
+
 /*# sourceMappingURL=app.css.map */
