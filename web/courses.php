@@ -55,15 +55,17 @@ $remainingMeal = $mealPerDay - sizeof($todayMealOrder)
                     <a href="<?php echo WEB_PATH ?>?page=meal&courseID=<?php echo $course->getId(); ?>">
                         <img src="<?php echo APP_PATH; ?>files/course/<?php echo $course->getImg(); ?>" alt="" class="img-responsive">
                     </a>
-                </div>
-                <div class="card_body">
-                    <div class="pull-right">
+                    <div class="meal-left">
                         <?php echo $remaining > 0 ? $remaining : 0; ?> Restant(s)
                     </div>
+                </div>
+                <div class="card_body">
+
                     <h3>
                         <a href="<?php echo WEB_PATH ?>?page=meal&courseID=<?php echo $course->getId(); ?>">
-                        <?php echo $course->getName(); ?></h3>
-                    </a>
+                        <?php echo $course->getName(); ?></a></h3>
+                    <hr>
+
                     <p>
                         <?php echo $course->getDescription(); ?>
                     </p>

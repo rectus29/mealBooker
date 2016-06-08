@@ -5,21 +5,31 @@
   color: #2C2C2C
   margin-bottom: 30px
   min-height: 435px
+  border-radius: 3px
+  overflow: hidden
+
 
   .card_body
     padding: 5px 15px
     position: relative
     top: 0
     bottom: 0
+    text-align: center
 
     h3
       margin: 10px 0
       font-size: 1em
-      letter-spacing: 1px
-      text-transform: uppercase
+      text-align: center
       a
         color: #2C2C2C
         text-decoration: none
+
+    hr
+      width: 8em
+      margin: 0.5em auto 0.75em
+      border: none
+      border-top: solid 1px $light-grey
+
 
     p
       color: #666
@@ -45,6 +55,16 @@
     img
       opacity: 1
       transition: all ease 0.3s
+
+    .meal-left
+      position: absolute
+      bottom: 15px
+      right: 0px
+      background: $green
+      color: #fff
+      padding: 4px 8px
+      font-size: 0.7em
+      text-transform: uppercase
 
     .card_date
       position: absolute

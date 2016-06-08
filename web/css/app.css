@@ -6219,9 +6219,9 @@ h1, h2, h3, h4, h5, h6 {
 
 footer {
   margin-top: 50px;
-  border-top: solid 1px #e6e6e6; }
+  border-top: solid 1px white; }
   footer p {
-    color: #cccccc;
+    color: white;
     font-size: 0.8em; }
 
 a.brand {
@@ -6237,15 +6237,15 @@ a.brand {
     color: #A9CE49; }
 
 .course {
-  padding: 50px 0; }
+  padding: 50px 0;
+  width: 60em;
+  margin: 0 auto; }
   .course h2 {
     margin-top: 0;
     margin-bottom: 0; }
   .course p.date {
-    color: #b3b3b3;
+    color: #e6e6e6;
     font-style: italic; }
-  .course h3 {
-    text-transform: 1px; }
 
 .course section {
   margin: 30px auto; }
@@ -6327,20 +6327,27 @@ h4 {
   text-decoration: none;
   color: #2C2C2C;
   margin-bottom: 30px;
-  min-height: 435px; }
+  min-height: 435px;
+  border-radius: 3px;
+  overflow: hidden; }
   .card .card_body {
     padding: 5px 15px;
     position: relative;
     top: 0;
-    bottom: 0; }
+    bottom: 0;
+    text-align: center; }
     .card .card_body h3 {
       margin: 10px 0;
       font-size: 1em;
-      letter-spacing: 1px;
-      text-transform: uppercase; }
+      text-align: center; }
       .card .card_body h3 a {
         color: #2C2C2C;
         text-decoration: none; }
+    .card .card_body hr {
+      width: 8em;
+      margin: 0.5em auto 0.75em;
+      border: none;
+      border-top: solid 1px #e6e6e6; }
     .card .card_body p {
       color: #666;
       font-size: 0.9em; }
@@ -6360,6 +6367,15 @@ h4 {
     .card .meal-thumbnail img {
       opacity: 1;
       transition: all ease 0.3s; }
+    .card .meal-thumbnail .meal-left {
+      position: absolute;
+      bottom: 15px;
+      right: 0px;
+      background: #A9CE49;
+      color: #fff;
+      padding: 4px 8px;
+      font-size: 0.7em;
+      text-transform: uppercase; }
     .card .meal-thumbnail .card_date {
       position: absolute;
       bottom: 0;
