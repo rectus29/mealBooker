@@ -30,7 +30,7 @@ if (DEV_MOD) {
     define('SERVER_URL', 'http://127.0.0.1');
 } else {
     define('APP_PATH', '/');
-    define('SERVER_URL', 'http://commande.aurore-traiteur.fr');
+    define('SERVER_URL', '');
 }
 /** SYSTEM CONSTANT */
 define('WEB_PATH', APP_PATH . 'web/');
@@ -63,22 +63,22 @@ $devConn = array(
 );
 $conn = array(
     'driver' => 'pdo_mysql',
-    'host' => 'auroretruumeal.mysql.db',
-    'user' => 'auroretruumeal',
-    'password' => 'Mealbooker10',
-    'dbname' => 'auroretruumeal',
+    'host' => '',
+    'user' => '',
+    'password' => '',
+    'dbname' => '',
     'charset' => 'utf8',
 );
 
 //mailerconfig
 $mailConfig = [
-    'serversmtp' => 'SSL0.OVH.NET',
+    'serversmtp' => '',
     'SMTPAuth' => true,
-    'Username' => 'contact@aurore-traiteur.fr',
-    'Password' => 'pass4CONTACT',
+    'Username' => '',
+    'Password' => '',
     'SMTPSecure' => 'ssl',
     'Port' => 465,
-    'from' => 'contact@aurore-traiteur.fr'
+    'from' => ''
 ];
 // obtaining the entity manager
 $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__ . "/../classes/"), true);
