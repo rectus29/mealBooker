@@ -127,7 +127,7 @@ if(isset($_GET['delete'])){
                     $date->add(new DateInterval('P1D'));
 
                 ?>
-                Le <?php echo \MealBooker\utils\Utils::formatDate($date); ?> à :
+                Le <strong><?php echo \MealBooker\utils\Utils::formatDate($date); ?></strong> à :
             </p>
 
             <select name="timeframe" id="tf" class="required">
