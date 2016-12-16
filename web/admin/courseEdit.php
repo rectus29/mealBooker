@@ -22,11 +22,12 @@ $error = null;
 $info = null;
 
 //save mode
-if (isset($_POST['name']) && isset($_POST['desc']) && isset($_POST['id']) && isset($_POST['state'])) {
+if (isset($_POST['name']) && isset($_POST['desc'])&& isset($_POST['shortDesc']) && isset($_POST['id']) && isset($_POST['state'])) {
     $course = $courseDao->getByPrimaryKey($_POST['id']);
     if ($course == null)
         $course = new Course();
     $course->setName($_POST['name']);
+    $course->setShortDescription($_POST['shortDesc']);
     $course->setDescription($_POST['desc']);
     $course->setStatus($_POST['state']);
     if(isset($_POST['nb']))
@@ -85,6 +86,10 @@ if (isset($_GET['id'])) {
             <div class="form-group">
                 <label for="img">Visuel</label>
                 <input type="file" name="img"/>
+            </div>
+            <div class="form-group">
+                <label for="desc">Descriptif carrousel</label>
+                <textarea name="shortDesc" class="form-control" rows="10" maxlength="255"><?php echo $course->getshortDescription(); ?></textarea>
             </div>
             <div class="form-group">
                 <label for="desc">Descriptif</label>

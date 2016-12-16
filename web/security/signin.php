@@ -52,6 +52,7 @@ if (isset($_POST)
         $user = new User();
         $user->setLastName($_POST['lastName']);
         $user->setFirstName($_POST['firstName']);
+        $user->setCompany($_POST['company']);
         $user->setMail($_POST['email']);
         $user->setPhoneNumber($_POST['phone']);
         //check password validation
@@ -140,6 +141,14 @@ if (isset($_POST)
                 <input type="email" name="email" class="form-control required" id="exampleInputEmail1" placeholder="Email">
             </div>
             <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="company">Entreprise</label>
+                        <input type="text" name="company" class="form-control" id="company" placeholder="Entreprise">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="firsName">Prénom</label>
@@ -153,6 +162,7 @@ if (isset($_POST)
                     </div>
                 </div>
             </div>
+
             <div class="form-group">
                 <label for="phone">Numéro de téléphone</label>
                 <input type="text" name="phone" class="form-control required" id="phone" placeholder="Numéro de téléphone">

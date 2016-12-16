@@ -46,7 +46,7 @@ if (sizeof($todayMealOrder) >= $mealPerDay){
     $orderEnable = false;
 }else if(!Utils::isOrderEnable()){
     //check time
-    $message = "Réservations non disponibles de 11h à 14h";
+    $message = "Réservations non disponibles de 18h à 7h du matin";
     $orderEnable = false;
 }
 

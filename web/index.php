@@ -41,10 +41,10 @@ if ($configDao->getByKey('serverState') != null && $configDao->getByKey('serverS
     <div class="main container">
         <div class="row">
             <?php
-            if ($maintenance) {
-                include 'security/maintenance.php';
-            } else if (SecurityManager::get()->isAuthentified($_SESSION)) {
-                if (isset($_GET['page'])) {
+            if (SecurityManager::get()->isAuthentified($_SESSION)) {
+                if($maintenance && !SecurityManager::get()->getCurrentUser($_SESSION)->isAdmin()){
+                    include 'security/maintenance.php';
+                }else if (isset($_GET['page'])) {
                     switch ($_GET['page']) {
                         case 'meal':
                             include 'meal.php';

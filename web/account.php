@@ -24,13 +24,16 @@ if (isset($user) && $user == null)
     <h1>Mon compte</h1>
 </div>
 <div class="row">
-
-    <strong>Nom :</strong> <?php echo $user->getFirstName(); ?><br>
-    <strong>Prénom :</strong> <?php echo $user->getLastName(); ?><br>
-    <strong>Mail :</strong> <?php echo $user->getMail(); ?><br>
-    <strong>Téléphone :</strong> <?php echo $user->getPhoneNumber(); ?><br>
-    <strong>Date d'inscription :</strong> <?php echo Utils::formatDate($user->getCreated()); ?><br>
-
+    <div class="col-md-6">
+        <strong>Nom :</strong> <?php echo $user->getFirstName(); ?><br>
+        <strong>Prénom :</strong> <?php echo $user->getLastName(); ?><br>
+        <strong>Entreprise :</strong> <?php echo $user->getCompany(); ?><br>
+    </div>
+    <div class="col-md-6">
+        <strong>Mail :</strong> <?php echo $user->getMail(); ?><br>
+        <strong>Téléphone :</strong> <?php echo $user->getPhoneNumber(); ?><br>
+        <strong>Date d'inscription :</strong> <?php echo Utils::formatDate($user->getCreated()); ?><br>
+    </div>
 </div>
 <div class="row">
     <h2>Historique de mes commandes</h2>
@@ -40,7 +43,7 @@ if (isset($user) && $user == null)
             <th>#</th>
             <th>Date de commande</th>
             <th>Commande</th>
-            <th>Date de livraison</th>
+            <th>Lieu</th>
         </tr>
         </thead>
         <tbody>
@@ -55,16 +58,16 @@ if (isset($user) && $user == null)
                         <?php
                         foreach ($mealOrder->getMeals() as $meal) {
                             echo "<li>" . $meal->getCourse()->getName();
-                            if($meal->getDrink() != null)
+                            if ($meal->getDrink() != null)
                                 echo " - " . $meal->getDrink()->getName();
-                            if($meal->getDessert() != null)
+                            if ($meal->getDessert() != null)
                                 echo " - " . $meal->getDessert()->getName();
                             echo " </li>";
                         }
                         ?>
                     </ul>
                 </td>
-                <td><?php echo $mealOrder->getTimeFrame()->getStart();?></td>
+                <td><?php echo $mealOrder->getLocation(); ?></td>
             </tr>
             <?php
         }

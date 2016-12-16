@@ -21,7 +21,8 @@ $orderDao = new OrderDao($em);
         <tr>
             <th>#</th>
             <th>Date de réservation</th>
-            <th>Horaire</th>
+            <!--<th>Horaire</th>-->
+            <th>Lieu de livraison</th>
             <th>Composition</th>
             <th>Utilisateur</th>
         </tr>
@@ -34,7 +35,8 @@ $orderDao = new OrderDao($em);
             <tr>
                 <td><?php echo sprintf("%04s", $order->getId()); ?></td>
                 <td><?php echo Utils::formatDate($order->getCreated(), "d/m/Y H:m"); ?></td>
-                <td><?php echo $order->getTimeFrame()->__toString(); ?></td>
+                <!--<td><?php echo ($order->getTimeFrame()!= null)?$order->getTimeFrame()->__toString():"-"; ?></td>-->
+                <td><?php echo $order->getLocation()->getName(); ?></td>
                 <td>
                     <ul>
                         <?php

@@ -42,7 +42,7 @@ $userDao = new UserDao($em);
                 <td><?php echo $user->getMail(); ?></td>
                 <td><?php echo $user->getPhoneNumber(); ?></td>
                 <td><?php echo Utils::formatDate($user->getCreated()); ?></td>
-                <td><?php echo ($user->getCompany() != null) ? $user->getCompany()->getName() : "-"; ?></td>
+                <td><?php echo $user->getCompany(); ?></td>
                 <td><?php echo ($user->isOptIn()) ? "Oui" : "Non"; ?></td>
                 <td><?php echo $user->getRole()->getName(); ?></td>
                 <td><?php echo ($user->getStatus() == 1) ? 'Actif' : 'Inactif'; ?></td>

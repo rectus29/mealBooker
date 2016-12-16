@@ -12,6 +12,7 @@ namespace MealBooker\utils;
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
+use DateInterval;
 use DateTime;
 
 class Utils {
@@ -59,13 +60,14 @@ class Utils {
      */
     public static function  isOrderEnable(){
         //check if system is order enable
-        $before = new DateTime();
-        $before->setTime(STOPBOOKINGHOUR,STOPBOOKINGMINUTE);
-        $after = new DateTime();
-        $after->setTime(STARTBOOKINGHOUR,STARTBOOKINGMINUTE);
-        if(new DateTime() < $before || new DateTime() > $after )
-            return true;
-        return false;
+        $close = new DateTime();
+        $close->setTime(STOPBOOKINGHOUR,STOPBOOKINGMINUTE);
+        $open = new DateTime();
+        $open->add(new DateInterval('P1D'));
+        $open->setTime(STARTBOOKINGHOUR,STARTBOOKINGMINUTE);
+        if(new DateTime() > $close && new DateTime() < $open )
+            return false;
+        return true;
     }
 
     /**

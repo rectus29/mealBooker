@@ -6267,7 +6267,7 @@ h4 {
   border-top: solid 1px #A9CE49;
   padding: 30px 0; }
 
-.timeOptions {
+.timeOptions, .locationOptions {
   margin: 30px auto; }
 
 .hero {

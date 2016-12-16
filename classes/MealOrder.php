@@ -41,6 +41,13 @@ class MealOrder extends DomainObject
      */
     private $timeFrame;
 
+
+    /**
+     * @ManyToOne(targetEntity="Location")
+     * @var Location
+     */
+    private $location;
+
     /**
      * @return TimeFrame
      */
@@ -97,6 +104,24 @@ class MealOrder extends DomainObject
     {
         $this->user = $user;
     }
+
+    /**
+     * @return Location
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * @param Location $location
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+    }
+
+
 
 
 }

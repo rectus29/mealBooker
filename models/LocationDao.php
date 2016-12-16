@@ -12,11 +12,9 @@ namespace MealBooker\models\dao;
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
-use Doctrine\ORM\EntityManager;
-use MealBooker\model\Company;
-use MealBooker\model\Course;
+use MealBooker\model\Location;
 
-class CompanyDao extends GenericDao {
+class LocationDao extends GenericDao {
 
     /**
      * @inheritdoc
@@ -29,36 +27,41 @@ class CompanyDao extends GenericDao {
     /**
      * @inheritdoc
      * @param $id
-     * @return Company
+     * @return Location
      */
     public function getByPrimaryKey($id) {
-        return parent::findByPrimaryKey(Company::class, $id);
+        return parent::findByPrimaryKey(Location::class, $id);
     }
 
     /**
- * Find All
- * @return Company[]
- */
+     * @inheritdoc
+     * @param $entity
+     */
+    public function save($entity) {
+        parent::save($entity);
+    }
+
+    /**
+     * @inheritdoc
+     * @param $entity
+     */
+    public function delete($entity) {
+        parent::delete($entity);
+    }
+
+    /**
+     * Find All User
+     * @return Location[]
+     */
     public function getAll() {
-        return parent::findAll(Company::class);
+        return parent::findAll(Location::class);
     }
 
     /**
-     * Find All Drink
-     * @return Course[]
+     * Find All User
+     * @return Location[]
      */
     public function getAllEnabled() {
-        return parent::findAllEnabled(Company::class);
-    }
-
-    public function getByValidationCode($validationCode){
-        $query = $this->entityManager->createQuery('
-          SELECT e
-          FROM ' . Company::class . ' e
-          WHERE e.validationCode = :validcode'
-        )->setParameter('validcode', $validationCode);
-        if($query->getResult() != null)
-            return $query->getResult()[0];
-        return null;
+        return parent::findAllEnabled(Location::class);
     }
 }

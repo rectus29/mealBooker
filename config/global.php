@@ -43,9 +43,9 @@ define('ROOT_DIR', dirname(__FILE__) . '/../');
 define('FILE_DIR', ROOT_DIR . '/files/');
 
 /** USEFULL CONSTANT */
-define('STOPBOOKINGHOUR', 12);
+define('STOPBOOKINGHOUR', 18);
 define('STOPBOOKINGMINUTE', 00);
-define('STARTBOOKINGHOUR', 14);
+define('STARTBOOKINGHOUR', 07);
 define('STARTBOOKINGMINUTE', 00);
 
 if (!file_exists(FILE_DIR)) {
@@ -72,13 +72,13 @@ $conn = array(
 
 //mailerconfig
 $mailConfig = [
-    'serversmtp' => '',
+    'serversmtp' => 'SSL0.OVH.NET',
     'SMTPAuth' => true,
-    'Username' => '',
-    'Password' => '',
+    'Username' => 'contact@aurore-traiteur.fr',
+    'Password' => 'Mail4Contact',
     'SMTPSecure' => 'ssl',
     'Port' => 465,
-    'from' => ''
+    'from' => 'contact@aurore-traiteur.fr'
 ];
 // obtaining the entity manager
 $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__ . "/../classes/"), true);

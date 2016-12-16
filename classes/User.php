@@ -67,8 +67,8 @@ class User extends DomainObject
     private $role;
 
     /**
-     * @ManyToOne(targetEntity="Company")
-     * @var Company
+     * @Column(type="string", nullable=true)
+     * @var String
      */
     private $company;
 
@@ -115,7 +115,7 @@ class User extends DomainObject
      * @param Company $company
      * @param bool $optIn
      */
-    public function __construct($firstName = null, $lastName = null, $mail = null, $salt = null, $password = null, $phoneNumber = null, Role $role = null, Company $company = null, $optIn = false)
+    public function __construct($firstName = null, $lastName = null, $mail = null, $salt = null, $password = null, $phoneNumber = null, Role $role = null, $company = null, $optIn = false)
     {
         parent::__construct();
         $this->firstName = $firstName;
@@ -252,7 +252,7 @@ class User extends DomainObject
     }
 
     /**
-     * @return Company
+     * @return String
      */
     public function getCompany()
     {
@@ -260,7 +260,7 @@ class User extends DomainObject
     }
 
     /**
-     * @param Company $company
+     * @param String $company
      */
     public function setCompany($company)
     {

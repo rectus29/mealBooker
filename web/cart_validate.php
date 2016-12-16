@@ -12,11 +12,13 @@
 /*-----------------------------------------------------*/
 use MealBooker\manager\MailManager;
 use MealBooker\manager\SecurityManager;
+use MealBooker\model\Location;
 use MealBooker\model\Meal;
 use MealBooker\model\MealOrder;
 use MealBooker\models\dao\CourseDao;
 use MealBooker\models\dao\DessertDao;
 use MealBooker\models\dao\DrinkDao;
+use MealBooker\models\dao\LocationDao;
 use MealBooker\models\dao\MealDao;
 use MealBooker\models\dao\OrderDao;
 use MealBooker\models\dao\TimeFrameDao;
@@ -25,11 +27,12 @@ $courseDao = new CourseDao($em);
 $drinkDao = new DrinkDao($em);
 $dessertDao = new DessertDao($em);
 $timeFrameDao = new TimeFrameDao($em);
+$locationDao = new LocationDao($em);
 $orderDao = new OrderDao($em);
 $mealDao = new MealDao($em);
 
 //if no cart or not logged in
-if (!isset($_SESSION['mealCart']) || !isset($_POST['timeframe'])) {
+if (!isset($_SESSION['mealCart']) || !isset($_POST['location'])) {
     header('Location : ' . WEB_PATH);
     exit;
 }
@@ -37,9 +40,14 @@ $mealCart = json_decode($_SESSION['mealCart']);
 if (sizeof($mealCart->cart) > 0) {
     $order = new MealOrder();
     $order->setUser(SecurityManager::get()->getCurrentUser($_SESSION));
-    $timeframe = $timeFrameDao->getByPrimaryKey($_POST['timeframe']);
-    if ($timeframe != null)
-        $order->setTimeFrame($timeframe);
+    //set time fram if provide
+    //$timeframe = $timeFrameDao->getByPrimaryKey($_POST['timeframe']);
+    //if ($timeframe != null)
+    //    $order->setTimeFrame($timeframe);
+    //set location
+    $location = $locationDao->getByPrimaryKey($_POST['location']);
+    if ($location != null)
+        $order->setLocation($location);
     //fill oreder with meal
     $mealArray = array();
     foreach ($mealCart->cart as $mealStub) {

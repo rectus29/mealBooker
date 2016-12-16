@@ -51,7 +51,7 @@ $courseDao = new CourseDao($em);
                                 <div class="caption">
                                     <h3><?php echo $course->getName(); ?></h3>
 
-                                    <p><?php echo $course->getDescription(); ?></p>
+                                    <p><?php echo $course->getShortDescription(); ?></p>
                                     <a href="<?php echo WEB_PATH ?>?page=meal&courseID=<?php echo $course->getId(); ?>"
                                        class="btn btn-warning">Commander</a>
                                 </div>

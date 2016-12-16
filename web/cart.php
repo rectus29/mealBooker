@@ -10,15 +10,18 @@
 /*                Date: 04/10/2015 17:41               */
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
+use MealBooker\model\Location;
 use MealBooker\models\dao\CourseDao;
 use MealBooker\models\dao\DessertDao;
 use MealBooker\models\dao\DrinkDao;
+use MealBooker\models\dao\LocationDao;
 use MealBooker\models\dao\TimeFrameDao;
 
 $courseDao = new CourseDao($em);
 $drinkDao = new DrinkDao($em);
 $dessertDao = new DessertDao($em);
 $timeFrameDao = new TimeFrameDao($em);
+$locationDao = new LocationDao($em);
 
 
 //prepare new value
@@ -115,26 +118,37 @@ if(isset($_GET['delete'])){
         </table>
 
         <div class="timeOptions">
+            <?php
+            $date = new DateTime();
+            $after = new DateTime();
+            $after->setTime(STARTBOOKINGHOUR, STARTBOOKINGMINUTE);
+            if ($date > $after)
+                $date->add(new DateInterval('P1D'));
 
-            <h4>Livraison demain entre 9h et 11h </h4>
+            ?>
+            <h4>Livraison demain (<?php echo \MealBooker\utils\Utils::formatDate($date); ?>) entre 9h et 11h </h4>
 
-            <p>
-                <?php
-                $date = new DateTime();
-                $after = new DateTime();
-                $after->setTime(STARTBOOKINGHOUR, STARTBOOKINGMINUTE);
-                if ($date > $after)
-                    $date->add(new DateInterval('P1D'));
-
-                ?>
-                Le <strong><?php echo \MealBooker\utils\Utils::formatDate($date); ?></strong> à :
-            </p>
-
-            <select name="timeframe" id="tf" class="required">
+            <!--<select name="timeframe" id="tf" class="required">
                 <?php
                 foreach ($timeFrameDao->getAllEnabled() as $timeFrame) {
                     ?>
                     <option value="<?php echo $timeFrame->getId(); ?>"><?php echo $timeFrame->getStart() ?></option>
+                    <?php
+                }
+                ?>
+            </select>-->
+        </div>
+
+        <div class="locationOptions">
+
+            <h4>Lieu de livraison </h4>
+
+            <select name="location" id="location" class="required">
+                <?php
+                /**@var $location Location*/
+                foreach ($locationDao->getAllEnabled() as $location) {
+                    ?>
+                    <option value="<?php echo $location->getId(); ?>"><?php echo $location->getName() ?></option>
                     <?php
                 }
                 ?>

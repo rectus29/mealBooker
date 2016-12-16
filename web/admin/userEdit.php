@@ -20,7 +20,6 @@ if (!SecurityManager::get()->getCurrentUser($_SESSION)->isAdmin()) {
     header('Location:' . WEB_PATH);
 }
 $userDao = new UserDao($em);
-$companyDao = new CompanyDao($em);
 $roleDao = new RoleDao($em);
 $error = null;
 $info = null;
@@ -50,10 +49,7 @@ if (
         if ($role == null)
             throw new Exception("une erreur est survenue -> 0x1");
         $user->setRole($role);
-        $company = $companyDao->getByPrimaryKey($_POST['company']);
-        if ($company == null)
-            throw new Exception("une Erreur est survenue -> 0x2");
-        $user->setCompany($company);
+        $user->setCompany($_POST['company']);
         //if already password save
         if(isset($_POST['password']) && strlen($_POST['password']) > 0){
             if (($_POST['password'] != $_POST['passwordchk']))
@@ -119,13 +115,7 @@ if (isset($_GET['id'])) {
             </div>
             <div class="form-group">
                 <label for="company">Société</label>
-                <select name="company" class="form-control">
-                    <?php
-                    foreach ($companyDao->getAllEnabled() as $comp) {
-                        echo '<option value="' . $comp->getId() . '" ' . (($comp == $user->getCompany()) ? 'selected' : '') . '>' . $comp->getName() . '</option>';
-                    }
-                    ?>
-                </select>
+                <input name="company" class="form-control" type="text" value="<?php echo $user->getCompany(); ?>"/>
             </div>
 
             <div class="form-group">

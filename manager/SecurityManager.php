@@ -38,6 +38,15 @@ class SecurityManager
         self::$em = $entityManager;
     }
 
+    /**
+     * @return $this|SecurityManager
+     */
+    public static function get()
+    {
+        if (self::$ownInstance == null && self::em != null)
+            return self::init(self::$em);
+        return self::$ownInstance;
+    }
 
     /**
      * @return $this|SecurityManager
@@ -46,16 +55,6 @@ class SecurityManager
     {
         if (self::$ownInstance == null)
             self::$ownInstance = new SecurityManager($em);
-        return self::$ownInstance;
-    }
-
-    /**
-     * @return $this|SecurityManager
-     */
-    public static function get()
-    {
-        if (self::$ownInstance == null && self::em != null)
-            return self::init(self::$em);
         return self::$ownInstance;
     }
 
@@ -89,6 +88,22 @@ class SecurityManager
     }
 
     /**
+     * return current logged user
+     * @param $session
+     * @return User
+     */
+    public function getCurrentUser($session)
+    {
+        $userDao = new UserDao(self::$em);
+        if (isset($session['auth'])) {
+            $user = $userDao->getBySession($session['auth']);
+            if ($user != null)
+                return $user;
+        }
+        return null;
+    }
+
+    /**
      * check credential and authenticate user
      * @param $login
      * @param $password
@@ -111,17 +126,14 @@ class SecurityManager
     }
 
     /**
-     * return current logged user
-     * @param $session
-     * @return User
+     * return hashed password
+     * @param $password
+     * @param $salt
+     * @return string
      */
-    public function getCurrentUser($session)
+    public static function hashPassword($password, $salt)
     {
-        $userDao = new UserDao(self::$em);
-        $user = $userDao->getBySession($session['auth']);
-        if ($user != null)
-            return $user;
-        return null;
+        return password_hash($password, PASSWORD_BCRYPT, ['salt' => $salt]);
     }
 
     /**
@@ -144,17 +156,6 @@ class SecurityManager
         } catch (Exception $ex) {
             var_dump($ex);
         }
-    }
-
-    /**
-     * return hashed password
-     * @param $password
-     * @param $salt
-     * @return string
-     */
-    public static function hashPassword($password, $salt)
-    {
-        return password_hash($password, PASSWORD_BCRYPT, ['salt' => $salt]);
     }
 
 }

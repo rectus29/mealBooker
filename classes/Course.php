@@ -31,6 +31,12 @@ class Course extends DomainObject
     private $name;
 
     /**
+     * @Column(type="string", length=255, nullable=false)
+     * @var String
+     */
+    private $shortDescription;
+
+    /**
      * @Column(type="string", length=65536, nullable=true)
      * @var String
      */
@@ -53,12 +59,14 @@ class Course extends DomainObject
      * Course constructor.
      * @param String $name
      * @param String $description
+     * @param String $shortDescription
      */
-    public function __construct($name = null, $description = null)
+    public function __construct($name = null, $description = null, $shortDescription = null)
     {
         parent::__construct();
         $this->name = $name;
         $this->description = $description;
+        $this->shortDescription = $shortDescription;
     }
 
 
@@ -137,6 +145,24 @@ class Course extends DomainObject
     {
         $this->nbPerDay = $nbPerDay;
     }
+
+    /**
+     * @return String
+     */
+    public function getShortDescription()
+    {
+        return $this->shortDescription;
+    }
+
+    /**
+     * @param String $shortDescription
+     */
+    public function setShortDescription($shortDescription)
+    {
+        $this->shortDescription = $shortDescription;
+    }
+
+
 
 
 

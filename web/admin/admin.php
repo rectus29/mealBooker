@@ -31,9 +31,9 @@ if (isset($_GET['tab'])) {
             <li role="presentation" <?php echo ($reqTab != null && ($reqTab == 'course' || $reqTab == 'courseedit')) ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=course" ?>">Plats</a></li>
             <li role="presentation" <?php echo ($reqTab != null && ($reqTab == 'drink' || $reqTab == 'drinkedit')) ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=drink" ?>">Boissons</a></li>
             <li role="presentation" <?php echo ($reqTab != null && ($reqTab == 'dessert' || $reqTab == 'dessertedit')) ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=dessert" ?>">Dessert</a></li>
-            <li role="presentation" <?php echo ($reqTab != null && ($reqTab == 'timeframe' || $reqTab == 'timeframeedit')) ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=timeframe" ?>">Horaires</a></li>
+            <!--<li role="presentation" <?php echo ($reqTab != null && ($reqTab == 'timeframe' || $reqTab == 'timeframeedit')) ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=timeframe" ?>">Horaires</a></li>-->
+            <li role="presentation" <?php echo ($reqTab != null && ($reqTab == 'location' || $reqTab == 'locationedit')) ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=location" ?>">Lieu</a></li>
             <li role="presentation" <?php echo ($reqTab != null && ($reqTab == 'users' || $reqTab == 'useredit')) ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=users" ?>">Utilisateurs</a></li>
-            <li role="presentation" <?php echo ($reqTab != null && ($reqTab == 'company' || $reqTab == 'companyedit')) ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=company" ?>">Entreprises</a></li>
             <li role="presentation" <?php echo ($reqTab != null && ($reqTab == 'server' || $reqTab == 'server.php')) ? 'class="active"' : "" ?>><a href="<?php echo WEB_PATH . "?page=admin&tab=server" ?>">Gestion serveur</a></li>
         </ul>
         <div>
@@ -75,17 +75,17 @@ if (isset($_GET['tab'])) {
                 case 'useredit' :
                     include 'userEdit.php';
                     break;
-                case 'company' :
-                    include 'company.php';
-                    break;
-                case 'companyedit' :
-                    include 'companyEdit.php';
-                    break;
                 case 'server' :
                     include 'server.php';
                     break;
                 case 'serveredit' :
                     include 'serverEdit.php';
+                    break;
+                case 'location' :
+                    include 'location.php';
+                    break;
+                case 'locationedit' :
+                    include 'locationEdit.php';
                     break;
                 default :
                     include 'dash.php';
