@@ -134,9 +134,9 @@ class MailManager
                     <td>
                         Bonjour,<br/>
                         <br />
-                        Votre commande #' . sprintf("%04s",$order->getId()) . ' est validée,<br />
+                        Votre commande #' . sprintf("%04s",$order->getId()) . ' est valid&eacute;e,<br />
                         <br />
-                        A bientôt sur <a href="http://aurore-traiteur.fr">aurore-traiteur.fr</a>
+                        A bient&ocirc;t sur <a href="http://aurore-traiteur.fr">aurore-traiteur.fr</a>
                     </td>
                 </tr>
             </tbody>
@@ -157,7 +157,7 @@ class MailManager
     public static function sendRestorePasswordMail($user)
     {
         self::$mail->addAddress($user->getMail());
-        self::$mail->Subject = 'Aurore traiteur - Restorattion de votre mot de passe';
+        self::$mail->Subject = 'Aurore traiteur - Restaurattion de votre mot de passe';
         self::$mail->Body = '
         <table>
             <tbody>
@@ -169,7 +169,7 @@ class MailManager
                     <td colspan="2">
                        Bonjour ' . $user->getFormattedName() . '
                         <p>
-                            Pour finaliser la procédure de restoration de votre mot de passe veuillez suivre le lien suivant :
+                            Pour finaliser la proc&eacute;dure de restauration de votre mot de passe veuillez suivre le lien suivant :
                         </p>
                         <p>
                             ' . SERVER_URL.WEB_PATH . '?page=restorepassword&token='.$user->getRestoreToken().'
