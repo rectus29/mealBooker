@@ -99,7 +99,7 @@ if (sizeof($todayMealOrder) >= $mealPerDay){
         </div>
         <div class="row">
             <div class="drinkOptions col-md-6">
-                <h4>Choisissez une boisson :</h4>
+                <h4>Boisson :</h4>
                 <?php
                 foreach ($drinkDao->getAllEnabled() as $drink) {
                     ?>
@@ -114,7 +114,7 @@ if (sizeof($todayMealOrder) >= $mealPerDay){
                 ?>
             </div>
             <div class="drinkOptions col-md-6">
-                <h4>Choisissez un dessert :</h4>
+                <h4>Dessert :</h4>
                 <?php
                 foreach ($dessertDao->getAllEnabled() as $dessert) {
                     ?>
@@ -128,9 +128,10 @@ if (sizeof($todayMealOrder) >= $mealPerDay){
                 }
                 ?>
             </div>
-            <div id="feedback" class="alert alert-danger" style="display: none">
 
-            </div>
+        </div>
+        <div id="feedback" class="alert alert-danger" style="display: none">
+
         </div>
         <div class="validateCourse">
             <div class="row">

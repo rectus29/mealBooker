@@ -6238,8 +6238,13 @@ a.brand {
 
 .course {
   padding: 50px 0;
-  width: 60em;
+  width: 960px;
   margin: 0 auto; }
+@media (max-width: 769px) {
+    .course {
+        width: 100%;
+    }
+}
   .course h2 {
     margin-top: 0;
     margin-bottom: 0; }

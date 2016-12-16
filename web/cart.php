@@ -74,7 +74,7 @@ if(isset($_GET['delete'])){
             <tr>
                 <th>Plats</th>
                 <th>Boissons</th>
-                <th>Dessert</th>
+                <th>Desserts</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -116,7 +116,7 @@ if(isset($_GET['delete'])){
 
         <div class="timeOptions">
 
-            <h4>Horaire de livraison </h4>
+            <h4>Livraison demain entre 9h et 11h </h4>
 
             <p>
                 <?php
@@ -143,7 +143,7 @@ if(isset($_GET['delete'])){
         <div class="validateCourse">
             <div class="row">
                 <div class="col-md-offset-3 col-md-6" style="text-align: center">
-                    <a href="<?php echo WEB_PATH ?>" class="btn btn-default">Completer ma commande</a>
+                    <a href="<?php echo WEB_PATH ?>" class="btn btn-default">Compléter ma commande</a>
 
                     <input type="submit" class="btn btn-green" /><br>
                     <a href="<?php WEB_PATH ?>?page=cart&delete" id="cartRemove" style="margin-top: 15px; display: inline-block">
