@@ -13,7 +13,6 @@
 use MealBooker\manager\MailManager;
 use MealBooker\manager\SecurityManager;
 use MealBooker\model\User;
-use MealBooker\models\dao\CompanyDao;
 use MealBooker\models\dao\RoleDao;
 use MealBooker\models\dao\UserDao;
 use MealBooker\utils\Utils;
@@ -42,7 +41,6 @@ if (isset($_POST)
     && isset($_POST['password'])
     && isset($_POST['passwordCheck'])
 ) {
-    $companyDao = new CompanyDao($em);
     $userDao = new UserDao($em);
     $roleDao = new RoleDao($em);
     try {
