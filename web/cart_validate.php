@@ -48,7 +48,7 @@ if (sizeof($mealCart->cart) > 0) {
     $location = $locationDao->getByPrimaryKey($_POST['location']);
     if ($location != null)
         $order->setLocation($location);
-    //fill oreder with meal
+    //fill order with meal
     $mealArray = array();
     foreach ($mealCart->cart as $mealStub) {
         $drink = $drinkDao->getByPrimaryKey($mealStub->drink);

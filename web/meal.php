@@ -37,14 +37,7 @@ if ($course == null)
     header("location:" . WEB_PATH);
 
 $orderEnable = true;
-$mealPerDay = $course->getNbPerDay();
-//get all order in time window
-$todayMealOrder = $MealOrderDao->getCurrentMealOrderForCourse($course);
-$remainingCourse = $mealPerDay - sizeof($todayMealOrder);
-if (sizeof($todayMealOrder) >= $mealPerDay){
-    $message = "Ce plat n'est plus disponible";
-    $orderEnable = false;
-}else if(!Utils::isOrderEnable()){
+if(!Utils::isOrderEnable()){
     //check time
     $message = "Réservations non disponibles de 18h à 7h du matin";
     $orderEnable = false;
@@ -85,9 +78,6 @@ if (sizeof($todayMealOrder) >= $mealPerDay){
                 <img src="<?php echo APP_PATH; ?>files/course/<?php echo $course->getImg(); ?>" alt="" class="img-responsive">
             </div>
             <div class="col-md-8">
-                <div class="pull-right">
-                    <?php echo $remainingCourse; ?>&nbsp;Restant(s)
-                </div>
                 <h2>
                     <?php echo $course->getName(); ?>
                 </h2>
