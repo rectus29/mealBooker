@@ -35,6 +35,11 @@ $MealOrderDao = new OrderDao($em);
         ?>
         <div class="col-md-6">
             <div class="card">
+                <div class="meal-thumbnail">
+                    <a href="<?php echo WEB_PATH ?>?page=meal&courseID=<?php echo $course->getId(); ?>">
+                        <img src="<?php echo APP_PATH; ?>files/course/<?php echo $course->getImg(); ?>" alt="" class="img-responsive">
+                    </a>
+                </div>
                 <div class="card_body">
 
                     <h3>

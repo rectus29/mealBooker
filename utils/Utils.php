@@ -63,11 +63,10 @@ class Utils {
         $close = new DateTime();
         $close->setTime(STOPBOOKINGHOUR,STOPBOOKINGMINUTE);
         $open = new DateTime();
-        $open->add(new DateInterval('P1D'));
         $open->setTime(STARTBOOKINGHOUR,STARTBOOKINGMINUTE);
-        if(new DateTime() > $close && new DateTime() < $open )
-            return false;
-        return true;
+        if(new DateTime() < $close && new DateTime() > $open )
+            return true;
+        return false;
     }
 
     /**

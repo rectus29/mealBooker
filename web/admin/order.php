@@ -36,7 +36,7 @@ $orderDao = new OrderDao($em);
                 <td><?php echo sprintf("%04s", $order->getId()); ?></td>
                 <td><?php echo Utils::formatDate($order->getCreated(), "d/m/Y H:m"); ?></td>
                 <!--<td><?php echo ($order->getTimeFrame()!= null)?$order->getTimeFrame()->__toString():"-"; ?></td>-->
-                <td><?php echo $order->getLocation()->getName(); ?></td>
+                <td><?php echo ($order->getLocation() != null)?$order->getLocation()->getName():"-"; ?></td>
                 <td>
                     <ul>
                         <?php
