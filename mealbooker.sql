@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `app_dessert` (
 
 INSERT INTO `app_dessert` (`id`, `name`, `description`, `created`, `updated`, `status`, `nbPerDay`) VALUES
 (1, 'test', 'test', '2016-03-31 19:14:33', '2016-03-31 19:14:33', 1, 0),
-(2, 'le caca au lait', 'caca dans du lait', '2016-05-09 18:57:34', '2016-05-09 18:57:34', 1, 0);
+(2, 'lait', 'lait', '2016-05-09 18:57:34', '2016-05-09 18:57:34', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -198,18 +198,6 @@ CREATE TABLE IF NOT EXISTS `app_meal` (
   KEY `IDX_9BD8AB3C745B52FD` (`dessert_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
---
--- Contenu de la table `app_meal`
---
-
-INSERT INTO `app_meal` (`id`, `course_id`, `order_id`, `bookingId`, `created`, `updated`, `status`, `drink_id`, `dessert_id`) VALUES
-(1, 2, 1, '1462816309', '2016-05-09 19:58:37', '2016-05-09 19:58:37', 1, NULL, 2),
-(2, 1, 1, '1462816411', '2016-05-09 19:58:37', '2016-05-09 19:58:37', 1, 4, 1),
-(3, 2, 2, '1462818480', '2016-05-13 20:41:41', '2016-05-13 20:41:41', 1, 3, 1),
-(4, 1, 3, '1481901195', '2016-12-16 17:15:34', '2016-12-16 17:15:34', 1, 2, 1),
-(5, 1, 3, '1481903565', '2016-12-16 17:15:34', '2016-12-16 17:15:34', 1, 2, 2),
-(6, 1, 4, '1481898083', '2016-12-16 15:21:37', '2016-12-16 15:21:37', 1, 4, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -229,16 +217,6 @@ CREATE TABLE IF NOT EXISTS `app_mealorder` (
   KEY `IDX_1ABD6F42E61AE10A` (`timeFrame_id`),
   KEY `IDX_1ABD6F4264D218E` (`location_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
-
---
--- Contenu de la table `app_mealorder`
---
-
-INSERT INTO `app_mealorder` (`id`, `user_id`, `created`, `updated`, `status`, `timeFrame_id`, `location_id`) VALUES
-(1, 1, '2016-05-09 19:58:37', '2016-05-09 19:58:37', 1, 1, 1),
-(2, 1, '2016-05-13 20:41:41', '2016-05-13 20:41:41', 1, 1, 2),
-(3, 1, '2016-12-16 17:15:34', '2016-12-16 17:15:34', 1, NULL, 2),
-(4, 1, '2016-12-16 15:21:37', '2016-12-16 15:21:37', 1, NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -339,12 +317,9 @@ CREATE TABLE IF NOT EXISTS `app_user` (
 --
 
 INSERT INTO `app_user` (`id`, `role_id`, `firstName`, `lastName`, `mail`, `salt`, `password`, `phoneNumber`, `optIn`, `session`, `created`, `updated`, `status`, `restoreToken`, `company`) VALUES
-(1, 1, 'Admin', 'istrateur', 'rectus29@gmail.com', 'GZokcpR4upD65B/avAk85XDfEM2QLg==', '$2y$10$R1pva2NwUjR1cEQ2NUIvYOnfG6sqdk7MVfJ32kvWIl1HvEKirPbbq', '0606060606', 1, 'qrv9fvs48o3q09kdsb2u8iqt71', '2015-10-15 00:00:00', '2016-12-16 16:55:41', 1, '', 'La Fistiniére'),
-(2, 2, 'Alexandre', 'Bernard', 'rectus29@gmail.come', 'x7XsEOXrtRo1ZpydkC0Pod0Ov3XWow==', '$2y$10$eDdYc0VPWHJ0Um8xWnB5Z.SXVdgeyWEWDXg.WIA0vpOoN/LlqPs06', '+33640427440', 0, 'fgrhqgm0v1qczgvfmfepw666', '2015-11-05 21:37:57', '2016-12-16 16:46:54', 1, NULL, 'Ta soeur'),
-(3, 2, 'TETE', 'TETE', 'tete@teet.com', 'amULfSuL.nniBFuZR.t2aKm22DSbHA==', '$2y$10$YW1VTGZTdUwubm5pQkZ1WeJmzEsnhMCRfDBbWeG0Whn1tkgJpAdoG', '0606060606', 0, 'oyjwlhxc1anxfhuirnaeiv7i', '2016-05-06 18:10:54', '2016-05-06 18:10:54', 0, NULL, ''),
-(4, 2, '', '', '', '7iHHdV7HJX2QWC8VlgUr8bg/C1YrZQ==', '$2y$10$N2lISGRWN0hKWDJRV0M4VeTpFJoI2odovvdnBtH.Ubvb5g/Mib2ka', '', 0, 'tvdz1qg84i3eu5w9m5yz8gvc', '2016-05-06 18:12:07', '2016-05-06 18:12:07', 0, NULL, ''),
-(5, 2, 'tete', 'tete', 'tete@teet.fr', 'unuSS1nM924KNVbv6NqTUqVK2Tvuug==', '$2y$10$dW51U1Mxbk05MjRLTlZideJ.WI/B2MPHnYKQbYOWgfxGemzPfIWpO', '0606060606', 0, 'vmpyzyp7fz42sga14j3330un', '2016-05-06 18:15:16', '2016-05-06 18:15:16', 0, NULL, ''),
-(6, 2, 'test', 'test', 'test@alexandrebernard.fr', 'GZokcpR4upD65B/avAk85XDfEM2QLg==', '$2y$10$R1pva2NwUjR1cEQ2NUIvYOnfG6sqdk7MVfJ32kvWIl1HvEKirPbbq', '0909090909', 0, '', '2016-05-13 20:31:21', '2016-12-16 16:35:52', 1, NULL, '');
+(1, 1, 'Admin', 'istrateur', 'admin@test.com', 'GZokcpR4upD65B/avAk85XDfEM2QLg==',
+'$2y$10$R1pva2NwUjR1cEQ2NUIvYOnfG6sqdk7MVfJ32kvWIl1HvEKirPbbq', '0606060606', 1, 'qrv9fvs48o3q09kdsb2u8iqt71', '2015-10-15 00:00:00', '2016-12-16 16:55:41', 1, '', 'La Fistiniére');
+
 
 -- --------------------------------------------------------
 
