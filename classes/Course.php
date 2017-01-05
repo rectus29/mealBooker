@@ -54,6 +54,11 @@ class Course extends DomainObject
      */
     private $nbPerDay = 99;
 
+    /**
+     * @Column(type="integer")
+     * @var Integer
+     */
+    private $priceTaxFree;
 
     /**
      * Course constructor.
@@ -162,8 +167,20 @@ class Course extends DomainObject
         $this->shortDescription = $shortDescription;
     }
 
+    /**
+     * @return int
+     */
+    public function getPriceTaxFree()
+    {
+        return $this->priceTaxFree;
+    }
 
-
-
+    /**
+     * @param int $priceTaxFree
+     */
+    public function setPriceTaxFree($priceTaxFree)
+    {
+        $this->priceTaxFree = $priceTaxFree;
+    }
 
 }

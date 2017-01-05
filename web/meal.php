@@ -134,7 +134,7 @@ if(!Utils::isOrderEnable()){
                 ?>
                 <div class="col-md-4 col-md-offset-4">
                     <a href="<?php WEB_PATH ?>?page=course" class="btn btn-warning">Revenir à la sélection</a>
-                    <input type="submit" class="btn btn-green" value="Réserver" <?php if (!$orderEnable) echo "disabled"; ?>/>
+                    <input type="submit" class="btn btn-green" value="Commander" <?php if (!$orderEnable) echo "disabled"; ?>/>
                 </div>
             </div>
         </div>

@@ -50,7 +50,7 @@ $MealOrderDao = new OrderDao($em);
                     <p>
                         <?php echo $course->getDescription(); ?>
                     </p>
-                    <a href="<?php echo WEB_PATH ?>?page=meal&courseID=<?php echo $course->getId(); ?>" class="btn btn-warning">Commander</a>
+                    <a href="<?php echo WEB_PATH ?>?page=meal&courseID=<?php echo $course->getId(); ?>" class="btn btn-warning">Composer votre menu</a>
                 </div>
             </div>
         </div>
