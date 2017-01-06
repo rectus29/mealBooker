@@ -28,6 +28,9 @@ if (isset($user) && $user == null)
         <strong>Nom :</strong> <?php echo $user->getFirstName(); ?><br>
         <strong>Prénom :</strong> <?php echo $user->getLastName(); ?><br>
         <strong>Entreprise :</strong> <?php echo $user->getCompany(); ?><br>
+        <strong>Adresse de livraison :</strong> <?php ($user->getAddress() != null)
+            ?  echo $user->getAddress()->getFormattedAddress();
+        ?><br>
     </div>
     <div class="col-md-6">
         <strong>Mail :</strong> <?php echo $user->getMail(); ?><br>

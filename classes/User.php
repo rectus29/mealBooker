@@ -82,7 +82,7 @@ class User extends DomainObject
      * @OneToMany(mappedBy="user", targetEntity="Address")
      * @var Address[]
      */
-    private $adresses;
+    private $address = array();
 
     /**
      * @Column(type="boolean")
@@ -363,9 +363,9 @@ class User extends DomainObject
     /**
      * @return Address[]
      */
-    public function getAdresses()
+    public function getAllAdress()
     {
-        return $this->adresses;
+        return $this->address;
     }
 
     /**
@@ -373,7 +373,19 @@ class User extends DomainObject
      */
     public function setAdresses($adresses)
     {
-        $this->adresses = $adresses;
+        $this->address = $adresses;
+    }
+
+    /**
+     * return the first address of the address book
+     * @return Address|null
+     */
+    public function getAddress()
+    {
+        if (!empty($this->address)) {
+            return $this->address[0];
+        }
+        return null;
     }
 
 

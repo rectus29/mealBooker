@@ -41,12 +41,17 @@ class Address extends DomainObject
      * @Column(type="string")
      * @var String
      */
-    private $country;
+    private $country = "France";
     /**
      * @Column(type="string")
      * @var String
      */
     private $city;
+    /**
+     * @Column(type="string")
+     * @var String
+     */
+    private $zipCode;
     /**
      * @Column(type="string")
      * @var String
@@ -214,4 +219,42 @@ class Address extends DomainObject
         $this->user = $user;
     }
 
+    /**
+     * @return String
+     */
+    public function getZipCode()
+    {
+        return $this->zipCode;
+    }
+
+    /**
+     * @param String $zipCode
+     */
+    public function setZipCode($zipCode)
+    {
+        $this->zipCode = $zipCode;
+    }
+
+
+
+    /**
+     * Return the adress formatted for display
+     * @return String the formatted address
+     */
+    public function getFormattedAddress(){
+        $out = "";
+        if($this->getAddress() != null){
+            $out += $this->getAddress() + " ";
+        }
+        if($this->getAddressComplement() != null){
+            $out += $this->getAddressComplement() + " ";
+        }
+        if($this->getZipCode() != null){
+            $out += $this->getZipCode() + " ";
+        }
+        if($this->getCity() != null){
+            $out += $this->getCity() + " ";
+        }
+        return out;
+    }
 }
