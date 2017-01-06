@@ -2,6 +2,7 @@
 /node_modules/*
 /gulpfile.js
 /package.json
+*.iml
 
 
 /reservresto.iml

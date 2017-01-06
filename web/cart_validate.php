@@ -72,6 +72,7 @@ if (sizeof($mealCart->cart) > 0) {
         unset($_SESSION['mealCart']);
     }
     MailManager::get()->sendOrderConfirmation(SecurityManager::get()->getCurrentUser($_SESSION), $order);
+    MailManager::get()->sendOrderConfirmationToAdmin($order);
 }else{
     header('Location : ' . WEB_PATH);
 }

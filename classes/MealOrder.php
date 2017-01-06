@@ -49,6 +49,14 @@ class MealOrder extends DomainObject
     private $location;
 
     /**
+     * return the id formatted for display
+     * @return string
+     */
+    public function getFormattedID(){
+        return sprintf("%04s", $this->getId());
+    }
+
+    /**
      * @return TimeFrame
      */
     public function getTimeFrame()

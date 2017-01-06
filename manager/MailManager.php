@@ -149,6 +149,69 @@ class MailManager
     }
 
     /**
+     * send order confirmation mail to site admin
+     * @param MealOrder $order
+     * @return bool
+     * @throws Exception
+     */
+    public static function sendOrderConfirmationToAdmin($order)
+    {
+        static::$mail->addAddress("aurore-traiteur@orange.fr");
+        static::$mail->Subject = 'Commande ' . $order->getFormattedID() . ' enregistrée';
+        static::$mail->Body = '
+        <table width="480px"  style"width:480px;">
+            <tbody>
+                <tr style="background: black;">
+                    <td><img src="' . SERVER_URL . WEB_PATH . 'img/logo_mail.jpg"></td>
+                </tr>
+                <tr>
+                    <td>
+                        Bonjour,<br/>
+                        <br />
+                        Nouvelle commande #' . $order->getFormattedID() . ' <br />
+                        <br />
+                        <table>';
+        foreach($order->getMeals() as $meal){
+            static::$mail->Body += '<tr>';
+            static::$mail->Body += '<td>' . $meal->getCourse()->getName() .'</td>';
+            static::$mail->Body += '<td>' . $meal->getDessert()->getName() .'</td>';
+            static::$mail->Body += '<td>' . $meal->getDrink()->getName() .'</td>';
+            static::$mail->Body += '</tr>';
+        }
+
+                        
+
+                        //TODO corps du mail 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        '</table>
+                        A bient&ocirc;t sur <a href="http://aurore-traiteur.fr">aurore-traiteur.fr</a>
+                    </td>
+                </tr>
+            </tbody>
+	    </table>';
+        if (!self::$mail->send()) {
+            throw new Exception("Message could not be sent - " . self::$mail->ErrorInfo);
+        } else {
+            return true;
+        }
+    }
+
+
+
+    /**
      * send restoration mail to user
      * @param $user User
      * @return bool
