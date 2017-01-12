@@ -12,7 +12,9 @@ namespace MealBooker\model;
     /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 
+use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
@@ -36,17 +38,11 @@ class MealOrder extends DomainObject
     private $user;
 
     /**
-     * @ManyToOne(targetEntity="TimeFrame")
-     * @var TimeFrame
+     * @ManyToOne(targetEntity="Address")
+     * @JoinColumn(name="address_id", referencedColumnName="id", nullable=false)
+     * @var Address
      */
-    private $timeFrame;
-
-
-    /**
-     * @ManyToOne(targetEntity="Location")
-     * @var Location
-     */
-    private $location;
+    private $address;
 
     /**
      * return the id formatted for display
@@ -54,22 +50,6 @@ class MealOrder extends DomainObject
      */
     public function getFormattedID(){
         return sprintf("%04s", $this->getId());
-    }
-
-    /**
-     * @return TimeFrame
-     */
-    public function getTimeFrame()
-    {
-        return $this->timeFrame;
-    }
-
-    /**
-     * @param TimeFrame $timeFrame
-     */
-    public function setTimeFrame($timeFrame)
-    {
-        $this->timeFrame = $timeFrame;
     }
 
     /**
@@ -114,20 +94,22 @@ class MealOrder extends DomainObject
     }
 
     /**
-     * @return Location
+     * @return Address
      */
-    public function getLocation()
+    public function getAddress()
     {
-        return $this->location;
+        return $this->address;
     }
 
     /**
-     * @param Location $location
+     * @param Address $address
      */
-    public function setLocation($location)
+    public function setAddress($address)
     {
-        $this->location = $location;
+        $this->address = $address;
     }
+
+
 
 
 

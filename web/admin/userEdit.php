@@ -11,6 +11,7 @@
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 use MealBooker\manager\SecurityManager;
+use MealBooker\model\Address;
 use MealBooker\model\User;
 use MealBooker\models\dao\CompanyDao;
 use MealBooker\models\dao\RoleDao;
@@ -33,7 +34,11 @@ if (
     isset($_POST['role']) &&
     isset($_POST['company']) &&
     isset($_POST['id']) &&
-    isset($_POST['state'])
+    isset($_POST['state']) &&
+    isset($_POST['address']) &&
+    isset($_POST['addressComplement']) &&
+    isset($_POST['city']) &&
+    isset($_POST['zipCode'])
 ) {
     try {
         $user = $userDao->getByPrimaryKey($_POST['id']);
@@ -50,12 +55,21 @@ if (
             throw new Exception("une erreur est survenue -> 0x1");
         $user->setRole($role);
         $user->setCompany($_POST['company']);
+        //set address data
+        if ($user->getAddress() == null) {
+            $user->addAddress(new Address());
+        }
+        $user->getAddress()->setUser($user);
+        $user->getAddress()->setAddress($_POST['address']);
+        $user->getAddress()->setAddressComplement($_POST['addressComplement']);
+        $user->getAddress()->setCity($_POST['city']);
+        $user->getAddress()->setZipCode($_POST['zipCode']);
         //if already password save
-        if(isset($_POST['password']) && strlen($_POST['password']) > 0){
+        if (isset($_POST['password']) && strlen($_POST['password']) > 0) {
             if (($_POST['password'] != $_POST['passwordchk']))
                 throw new Exception("Le champs mot de passe et confirmation mot de passe doivent étre identiques");
             $user->setPassword(SecurityManager::get()->hashPassword($_POST['password'], $user->getSalt()));
-        }else if($user->getPassword() == null && strlen($_POST['password']) < 1){
+        } else if ($user->getPassword() == null && strlen($_POST['password']) < 1) {
             throw new Exception("un mot de passe est requis");
         }
         $userDao->save($user);
@@ -76,11 +90,13 @@ if (isset($_GET['id'])) {
 }
 ?>
 <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-        <form action="#" method="post" class="form">
-            <h2>Editer une Utilisateur</h2>
-            <input type="hidden" name="id" value="<?php echo $user->getId(); ?>">
+    <form action="#" method="post" class="form">
+        <input type="hidden" name="id" value="<?php echo $user->getId(); ?>">
 
+        <div>
+            <h2>Editer une Utilisateur</h2>
+        </div>
+        <div class="col-md-6">
             <div class="form-group">
                 <label for="lastname">Nom</label>
                 <input name="lastname" class="form-control" type="text" value="<?php echo $user->getLastName(); ?>"/>
@@ -107,17 +123,30 @@ if (isset($_GET['id'])) {
                     ?>
                 </select>
             </div>
-            <div class="checkbox">
-                <label for="optin">
-                    <input name="optin" type="checkbox" <?php echo(($user->isOptIn()) ? "checked" : ""); ?>/>
-                    Démarchable
-                </label>
-            </div>
+        </div>
+        <div class="col-md-6">
             <div class="form-group">
                 <label for="company">Société</label>
                 <input name="company" class="form-control" type="text" value="<?php echo $user->getCompany(); ?>"/>
             </div>
-
+            <hr>
+            <div class="form-group">
+                <label for="address">Adresse</label>
+                <input name="address" class="form-control" type="text" value="<?php echo ($user->getAddress() != null) ? $user->getAddress()->getAddress() : ""; ?>"/>
+            </div>
+            <div class="form-group">
+                <label for="address">Complement d'adresse</label>
+                <input name="addressComplement" class="form-control" type="text" value="<?php echo ($user->getAddress() != null) ? $user->getAddress()->getAddressComplement() : ""; ?>"/>
+            </div>
+            <div class="form-group">
+                <label for="city">Ville</label>
+                <input name="city" class="form-control" type="text" value="<?php echo ($user->getAddress() != null) ? $user->getAddress()->getCity() : ""; ?>"/>
+            </div>
+            <div class="form-group">
+                <label for="zipCode">Code postal</label>
+                <input name="zipCode" class="form-control" type="text" value="<?php echo ($user->getAddress() != null) ? $user->getAddress()->getZipCode() : ""; ?>"/>
+            </div>
+            <hr>
             <div class="form-group">
                 <label for="password">Mot de passe</label>
                 <input name="password" class="form-control" type="password" value=""/>
@@ -126,7 +155,6 @@ if (isset($_GET['id'])) {
                 <label for="passwordchk">Confirmation mot de passe</label>
                 <input name="passwordchk" class="form-control" type="password" value=""/>
             </div>
-
             <div class="form-group">
                 <label for="state">Status</label>
                 <select name="state" id="state">
@@ -134,14 +162,21 @@ if (isset($_GET['id'])) {
                     <option value="1" <?php echo (1 == $user->getStatus()) ? 'selected' : '' ?>>Actif</option>
                 </select>
             </div>
-
+            <div class="checkbox">
+                <label for="optin">
+                    <input name="optin" type="checkbox" <?php echo(($user->isOptIn()) ? "checked" : ""); ?>/>
+                    Démarchable
+                </label>
+            </div>
+        </div>
+        <div class="row">
             <?php
             if ($error != null) {
                 ?>
                 <div class="alert alert-danger">
                     <?php echo $error; ?>
                 </div>
-            <?php
+                <?php
             }
             ?>
             <?php
@@ -150,7 +185,7 @@ if (isset($_GET['id'])) {
                 <div class="alert alert-success">
                     <?php echo $info; ?>
                 </div>
-            <?php
+                <?php
             }
             ?>
 
@@ -158,6 +193,6 @@ if (isset($_GET['id'])) {
                 <input type="submit" class="btn btn-green" value="Valider"/>
                 <a href="<?php echo WEB_PATH ?>?page=admin&tab=users" class="btn btn-default">Annuler</a>
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
 </div>

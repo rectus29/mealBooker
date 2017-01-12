@@ -79,7 +79,7 @@ class User extends DomainObject
     private $orders;
 
     /**
-     * @OneToMany(mappedBy="user", targetEntity="Address")
+     * @OneToMany(mappedBy="user", targetEntity="Address",cascade={"persist"})
      * @var Address[]
      */
     private $address = array();
@@ -115,7 +115,7 @@ class User extends DomainObject
      * @param Company $company
      * @param bool $optIn
      */
-    public function __construct($firstName = null, $lastName = null, $mail = null, $salt = null, $password = null, $phoneNumber = null, Role $role = null, $company = null, $optIn = false)
+    public function __construct($firstName = null, $lastName = null, $mail = null, $salt = null, $password = null, $phoneNumber = null, Role $role = null, $company = null, $optIn = false, $address = null)
     {
         parent::__construct();
         $this->firstName = $firstName;
@@ -127,6 +127,7 @@ class User extends DomainObject
         $this->role = $role;
         $this->company = $company;
         $this->optIn = $optIn;
+        $this->address->add(($address == null)?new Address():$address);
     }
 
 
@@ -383,9 +384,15 @@ class User extends DomainObject
     public function getAddress()
     {
         if (!empty($this->address)) {
-            return $this->address[0];
+            return $this->address->get(0);
         }
         return null;
+    }
+
+    public function addAddress($address)
+    {
+        $this->address->add($address);
+        return $this->address;
     }
 
 

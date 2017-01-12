@@ -8,6 +8,8 @@ change list
 +++ - deplacement de l'adresse dans la profil utilisateur
 +++ - mail lors d'un reservation recap de la commande info sur la personne et la date de reservation et date de livraison + lieu
 
+bug sur lh'eure de reservation
+
 ++ - deplacer l'auth à la validation du panier
 ++ - nom et prenom non requis lors de l'inscription
 ++ - penser à sauter les weekend lors de la reservation

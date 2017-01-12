@@ -18,30 +18,30 @@ use MealBooker\manager\SecurityManager;
     <div class="container">
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <i class="fa-icon-user"></i>
-                <?php SecurityManager::get()->getCurrentUser($_SESSION)?>
-            </li>
-            <li>
                 <a href="<?php echo WEB_PATH ?>">Menus</a>
             </li>
+            <?php if (isset($_SESSION) && SecurityManager::get()->isAuthentified($_SESSION)) { ?>
             <li>
                 <a href="<?php echo WEB_PATH ?>?page=account">Mon compte</a>
             </li>
+            <?php } ?>
             <li>
                 <a href="<?php echo WEB_PATH ?>?page=cart">Mon panier</a>
             </li>
-            <?php
-            if (SecurityManager::get()->isAdmin($_SESSION)) {
-                ?>
-                <li>
-                    <a href="<?php echo WEB_PATH ?>?page=admin">Administration</a>
-                </li>
-                <?php
-            }
-            ?>
+            <?php if (isset($_SESSION) && SecurityManager::get()->isAuthentified($_SESSION)&& SecurityManager::get()->isAdmin($_SESSION)) { ?>
+            <li>
+                <a href="<?php echo WEB_PATH ?>?page=admin">Administration</a>
+            </li>
+            <?php } ?>
+            <?php if (isset($_SESSION) && SecurityManager::get()->isAuthentified($_SESSION)) { ?>
             <li class="log-out">
                 <a href="<?php echo WEB_PATH ?>security/signout.php">Déconnexion</a>
             </li>
+            <?php }else{ ?>
+            <li class="log-out">
+                <a href="<?php echo WEB_PATH ?>?page=signin">Se connecter</a>
+            </li>
+            <?php } ?>
         </ul>
     </div>
 </nav>

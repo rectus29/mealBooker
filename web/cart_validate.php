@@ -32,7 +32,7 @@ $orderDao = new OrderDao($em);
 $mealDao = new MealDao($em);
 
 //if no cart or not logged in
-if (!isset($_SESSION['mealCart']) || !isset($_POST['location'])) {
+if (!isset($_SESSION['mealCart'])) {
     header('Location : ' . WEB_PATH);
     exit;
 }
@@ -40,14 +40,7 @@ $mealCart = json_decode($_SESSION['mealCart']);
 if (sizeof($mealCart->cart) > 0) {
     $order = new MealOrder();
     $order->setUser(SecurityManager::get()->getCurrentUser($_SESSION));
-    //set time fram if provide
-    //$timeframe = $timeFrameDao->getByPrimaryKey($_POST['timeframe']);
-    //if ($timeframe != null)
-    //    $order->setTimeFrame($timeframe);
-    //set location
-    $location = $locationDao->getByPrimaryKey($_POST['location']);
-    if ($location != null)
-        $order->setLocation($location);
+    $order->setAddress($order->getUser()->getAddress());
     //fill order with meal
     $mealArray = array();
     foreach ($mealCart->cart as $mealStub) {

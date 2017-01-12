@@ -22,7 +22,13 @@ $error = null;
 $info = null;
 
 //save mode
-if (isset($_POST['name']) && isset($_POST['desc'])&& isset($_POST['shortDesc']) && isset($_POST['id']) && isset($_POST['state'])) {
+if (isset($_POST['name'])
+    && isset($_POST['desc'])
+    && isset($_POST['shortDesc'])
+    && isset($_POST['id'])
+    && isset($_POST['state'])
+    && isset($_POST['priceTaxFree'])
+) {
     $course = $courseDao->getByPrimaryKey($_POST['id']);
     if ($course == null)
         $course = new Course();
@@ -30,6 +36,7 @@ if (isset($_POST['name']) && isset($_POST['desc'])&& isset($_POST['shortDesc']) 
     $course->setShortDescription($_POST['shortDesc']);
     $course->setDescription($_POST['desc']);
     $course->setStatus($_POST['state']);
+    $course->setPriceTaxFree(preg_replace("#,#",".",$_POST['priceTaxFree']));
     if(isset($_POST['nb']))
         $course->setNbPerDay($_POST['nb']);
     $courseDao->save($course);
@@ -94,6 +101,10 @@ if (isset($_GET['id'])) {
             <div class="form-group">
                 <label for="desc">Descriptif</label>
                 <textarea name="desc" class="form-control" rows="10"><?php echo $course->getDescription(); ?></textarea>
+            </div>
+            <div class="form-group">
+                <label for="priceTaxFree">Prix hors taxe</label>
+                <input name="priceTaxFree" type="text" class="form-control" value="<?php echo $course->getPriceTaxFree(); ?>" />&nbsp;€
             </div>
             <?php
             if ($error != null) {

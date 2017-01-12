@@ -33,16 +33,17 @@ function boxOpen(content) {
 
 }
 
-$(document).on('click', '#signupForm input[type="submit"]', function(e){
+$(document).on('submit', 'form:not(.requiredFree)', function(e){
     e.preventDefault();
     var requiredFree = true;
-    $('input.required').each(function(){
+    $(this).find('input.required').each(function(){
         if($(this).val() == null || $(this).val().length < 1){
-            $(this).css('background', '#FFD5D5');
+            $(this).css('border', '1px solid #ff3a3a');
             requiredFree = false;
         }
     });
     if(requiredFree){
-        $($(this).parents('form')[0]).submit();
+        $(this).toggleClass("requiredFree");
+        $(this).submit();
     }
 });

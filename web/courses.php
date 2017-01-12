@@ -48,8 +48,9 @@ $MealOrderDao = new OrderDao($em);
                     <hr>
 
                     <p>
-                        <?php echo $course->getDescription(); ?>
+                        <?php echo $course->getShortDescription(); ?>
                     </p>
+                    <div class="price"><?php echo number_format($course->getPriceTaxFree(), 2) ?>&nbsp;€</div>
                     <a href="<?php echo WEB_PATH ?>?page=meal&courseID=<?php echo $course->getId(); ?>" class="btn btn-warning">Composer votre menu</a>
                 </div>
             </div>
