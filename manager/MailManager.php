@@ -169,6 +169,8 @@ class MailManager
                         Bonjour,<br/>
                         <br />
                         Nouvelle commande #' . $order->getFormattedID() . ' <br />
+                        De'. $order->getUser()->getFormattedName().'<br />
+                        Lieu de livraison :'. $order->getAddress()->getFormattedAddress().' 
                         <br />
                         <table>';
         foreach($order->getMeals() as $meal){
