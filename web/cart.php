@@ -68,7 +68,7 @@ if (isset($_GET['delete'])) {
 ?>
 
 <div class="row">
-    <form action="<?php echo WEB_PATH; ?>?page=cartconfirm" method="post">
+    <form action="<?php echo WEB_PATH; ?>cart_validate.php" method="post">
         <div class="pull-right">
             <a href="<?php WEB_PATH ?>?page=cart&delete" id="cartRemove" style="margin-top: 15px; display: inline-block">
                 Vider mon panier

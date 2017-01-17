@@ -13,7 +13,7 @@
 use MealBooker\manager\SecurityManager;
 
 if (!SecurityManager::get()->isAdmin($_SESSION))
-    header('location: / ');
+    header('location: '.SERVER_URL.WEB_PATH);
 
 $reqTab = null;
 if (isset($_GET['tab'])) {
@@ -37,9 +37,6 @@ if (isset($_GET['tab'])) {
         <div>
             <?php
             switch ($reqTab) {
-                case 'dash' :
-                    include 'dash.php';
-                    break;
                 case 'order' :
                     include 'order.php';
                     break;

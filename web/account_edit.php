@@ -16,10 +16,11 @@ use MealBooker\model\User;
 use MealBooker\models\dao\CompanyDao;
 use MealBooker\models\dao\RoleDao;
 use MealBooker\models\dao\UserDao;
+
 /** @var $user User */
 $user = SecurityManager::get()->getCurrentUser($_SESSION);
-if (isset($user) && $user == null){
-    header('Location: ' . WEB_PATH);
+if (!isset($user) || $user == null) {
+    header('Location: ' . SERVER_URL . WEB_PATH);
 }
 
 $userDao = new UserDao($em);
@@ -67,7 +68,6 @@ if (
 }
 
 
-
 ?>
 
 
@@ -77,6 +77,7 @@ if (
 
 <form action="#" method="post" class="form" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?php echo $user->getId(); ?>">
+
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">

@@ -49,9 +49,6 @@ if ($configDao->getByKey('serverState') != null && $configDao->getByKey('serverS
                         case 'meal':
                             include 'meal.php';
                             break;
-                        case 'courses':
-                            include 'courses.php';
-                            break;
                         case 'cart':
                             include 'cart.php';
                             break;
@@ -60,9 +57,6 @@ if ($configDao->getByKey('serverState') != null && $configDao->getByKey('serverS
                             break;
                         case 'account_edit':
                             include 'account_edit.php';
-                            break;
-                        case 'cartconfirm':
-                            include 'cart_validate.php';
                             break;
                         case 'admin':
                             include 'admin/admin.php';
