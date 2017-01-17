@@ -92,10 +92,11 @@ if (isset($_GET['delete'])) {
                 foreach ($mealCart->cart as $meal) {
                     $drink = $drinkDao->getByPrimaryKey($meal->drink);
                     $dessert = $dessertDao->getByPrimaryKey($meal->dessert);
+                    $course = $courseDao->getByPrimaryKey($meal->course);
                     ?>
                     <tr>
                         <td>
-                            <?php echo $courseDao->getByPrimaryKey($meal->course); ?>
+                            <?php echo $course; ?>
                         </td>
                         <td>
                             <?php echo ($drink != null) ? $drink : "-"; ?>

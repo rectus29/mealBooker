@@ -42,7 +42,7 @@ if ($configDao->getByKey('serverState') != null && $configDao->getByKey('serverS
         <div class="row">
             <?php
 
-                if($maintenance && !SecurityManager::get()->getCurrentUser($_SESSION)->isAdmin()){
+                if($maintenance && !SecurityManager::get()->isAdmin($_SESSION)){
                     include 'security/maintenance.php';
                 } else if(isset($_GET['page'])){
                     switch ($_GET['page']) {

@@ -78,7 +78,7 @@ if (isset($user) && $user == null)
                         ?>
                     </ul>
                 </td>
-                <td><?php echo $mealOrder->getAddress()->getFormattedAddress(); ?></td>
+                <td><?php echo ($mealOrder->getAddress()!= null)?$mealOrder->getAddress()->getFormattedAddress():"-"; ?></td>
             </tr>
             <?php
         }
