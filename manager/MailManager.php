@@ -156,30 +156,39 @@ class MailManager
      */
     public static function sendOrderConfirmationToAdmin($order)
     {
-        static::$mail->addAddress("aurore-traiteur@orange.fr");
+        static::$mail->addAddress(ADMINMAIL);
         static::$mail->Subject = 'Commande ' . $order->getFormattedID() . ' enregistrée';
         static::$mail->Body = '
-        <table width="480px"  style"width:480px;">
+       <table width="480px"  style"width:480px;">
             <tbody>
                 <tr style="background: black;">
                     <td><img src="' . SERVER_URL . WEB_PATH . 'img/logo_mail.jpg"></td>
                 </tr>
                 <tr>
                     <td>
+                        <br />
                         Bonjour,<br/>
                         <br />
-                        Nouvelle commande #' . $order->getFormattedID() . ' <br />
-                        De'. $order->getUser()->getFormattedName().'<br />
-                        Lieu de livraison :'. $order->getAddress()->getFormattedAddress().' 
+                        Nouvelle commande : #' . $order->getFormattedID() . ' <br />
+                        Date de commande : '. Utils::formatDate($order->getCreated(), 'd/m/Y H:m:s') .' <br />
+                        De : '. $order->getUser()->getFormattedName().'<br />
+                        Lieu de livraison : '. $order->getAddress()->getFormattedAddress().'
                         <br />
-                        <table>';
+                        <br />
+                        <table>
+                        <tr>
+                            <th width="30%">Plat</th>
+                            <th width="30%">Dessert</th>
+                            <th width="30%">Boisson</th>
+                        </tr>';
         foreach($order->getMeals() as $meal){
             static::$mail->Body += '<tr>';
-            static::$mail->Body += '<td>' . $meal->getCourse()->getName() .'</td>';
+            static::$mail->Body += '<td width="30%">' . $meal->getCourse()->getName() .'</td>';
             static::$mail->Body += '<td>' . $meal->getDessert()->getName() .'</td>';
             static::$mail->Body += '<td>' . $meal->getDrink()->getName() .'</td>';
             static::$mail->Body += '</tr>';
         }'</table>
+                    <br />
                         A bient&ocirc;t sur <a href="http://aurore-traiteur.fr">aurore-traiteur.fr</a>
                     </td>
                 </tr>

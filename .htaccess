@@ -1,6 +1,9 @@
-Errordocument 401 /web/error/error401.php
-Errordocument 403 /web/error/error403.php
-Errordocument 404 /web/error/error404.php
+Errordocument 401 /reservresto/web/error/404.php
+Errordocument 403 /reservresto/web/error/404.php
+Errordocument 404 /reservresto/web/error/404.php
+Errordocument 500 /reservresto/web/error/404.php
+
+Options -Indexes
 
 #RewriteEngine on
 #RewriteBase web/
@@ -21,3 +24,4 @@ Errordocument 404 /web/error/error404.php
 	order allow,deny
 	deny from all
 </Files>
+
