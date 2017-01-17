@@ -11,7 +11,7 @@
 /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 ?>
-<div class="row">
+<div class="container" style="text-align: center; font-size: 20px; padding-top: 20px">
     Le site est actuellement fermé. <br>
     Nous serons de retour très bientôt !
 </div>

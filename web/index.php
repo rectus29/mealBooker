@@ -23,11 +23,21 @@ require_once('../vendor/phpmailer/phpmailer/PHPMailerAutoload.php');
 $configDao = new ConfigDao($em);
 
 //here check connection to dbserver
-$maintenance = !$em->getConnection()->ping();
+$GLOBALS['maintenance'] = !$em->getConnection()->ping();
 
 //check maintenance mod
-if ($configDao->getByKey('serverState') != null && $configDao->getByKey('serverState')->getValue() == '0' && !SecurityManager::get()->isAdmin($_SESSION))
-    $maintenance = true;
+if ($configDao->getByKey('serverState') != null && $configDao->getByKey('serverState')->getValue() == '0' && !SecurityManager::get()->isAdmin($_SESSION)){
+    $GLOBALS['maintenance'] = true;
+}
+
+function includeWithMaintenanceControl($page){
+    if($GLOBALS['maintenance'] && !SecurityManager::get()->isAdmin($_SESSION)){
+        return 'security/maintenance.php';
+    }else{
+        return $page;
+    }
+}
+
 ?>
     <!DOCTYPE html>
     <html>
@@ -41,41 +51,38 @@ if ($configDao->getByKey('serverState') != null && $configDao->getByKey('serverS
     <div class="main container">
         <div class="row">
             <?php
-
-                if($maintenance && !SecurityManager::get()->isAdmin($_SESSION)){
-                    include 'security/maintenance.php';
-                } else if(isset($_GET['page'])){
+                if(isset($_GET['page'])){
                     switch ($_GET['page']) {
                         case 'meal':
-                            include 'meal.php';
+                            include includeWithMaintenanceControl('meal.php');
                             break;
                         case 'cart':
-                            include 'cart.php';
+                            include includeWithMaintenanceControl('cart.php');
                             break;
                         case 'account':
-                            include 'account.php';
+                            include includeWithMaintenanceControl('account.php');
                             break;
                         case 'account_edit':
-                            include 'account_edit.php';
+                            include includeWithMaintenanceControl('account_edit.php');
                             break;
                         case 'admin':
-                            include 'admin/admin.php';
+                            include includeWithMaintenanceControl('admin/admin.php');
                             break;
                         case 'signin':
                             include 'security/signin.php';
                             break;
                         case 'signupvalidation':
-                            include 'security/signupvalidation.php';
+                            include includeWithMaintenanceControl('security/signupvalidation.php');
                             break;
                         case 'restorepassword':
-                            include 'security/restorepassword.php';
+                            include includeWithMaintenanceControl('security/restorepassword.php');
                             break;
                         default :
-                            include 'courses.php';
+                            include includeWithMaintenanceControl('courses.php');
                             break;
                     }
                 }else{
-                    include 'courses.php';
+                    include includeWithMaintenanceControl('courses.php');
                 }
             ?>
         </div>
