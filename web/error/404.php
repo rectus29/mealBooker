@@ -13,4 +13,8 @@
 
 ?>
 
-hello
+<div class="row">
+    <h1>404</h1>
+    <h2>Désolé la page que vous recherchez n'existe pas</h2>
+    <a class="btn btn-warning" href="/">Retour vers l'accueil</a>
+</div>
