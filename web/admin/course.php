@@ -22,6 +22,7 @@ $courseDao = new CourseDao($em);
             <th>#</th>
             <th>Nom</th>
             <th>Créé le</th>
+            <th>Prix HT</th>
             <th>Statut</th>
             <th>Action</th>
         </tr>
@@ -34,6 +35,7 @@ $courseDao = new CourseDao($em);
                 <td><?php echo $course->getId();?></td>
                 <td><?php echo $course->getName();?></td>
                 <td><?php echo Utils::formatDate($course->getCreated());?></td>
+                <td><?php echo number_format($course->getPriceTaxFree(), 2);?>&nbsp;€</td>
                 <td><?php echo ($course->getStatus()==1)?'Actif':'Inactif';?></td>
                 <td>
                     <a href="<?php echo WEB_PATH?>?page=admin&tab=courseedit&id=<?php echo $course->getId() ?>"><i class="fa fa-edit"></i></a>

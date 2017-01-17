@@ -26,11 +26,6 @@ class Address extends DomainObject
      * @Column(type="string")
      * @var String
      */
-    private $recipient;
-    /**
-     * @Column(type="string")
-     * @var String
-     */
     private $address;
     /**
      * @Column(type="string")
@@ -53,25 +48,24 @@ class Address extends DomainObject
      */
     private $zipCode;
     /**
-     * @Column(type="string")
+     * @Column(type="string", nullable=true)
      * @var String
      */
     private $lat;
     /**
-     * @Column(type="string")
+     * @Column(type="string", nullable=true)
      * @var String
      */
     private $lng;
 
     /**
-     * @ManyToOne(targetEntity="Address")
-     * @var
+     * @ManyToOne(targetEntity="User")
+     * @var User
      */
     private $user;
 
     /**
      * Address constructor.
-     * @param String $recipient
      * @param String $address
      * @param String $addressComplement
      * @param String $country
@@ -79,64 +73,15 @@ class Address extends DomainObject
      * @param String $lat
      * @param String $lng
      */
-    public function __construct($recipient, $address, $addressComplement, $country, $city, $lat, $lng)
+    public function __construct($address = null, $addressComplement = null, $country = "France", $city = null, $lat = null, $lng = null)
     {
         parent::__construct();
-        $this->recipient = $recipient;
         $this->address = $address;
         $this->addressComplement = $addressComplement;
         $this->country = $country;
         $this->city = $city;
         $this->lat = $lat;
         $this->lng = $lng;
-    }
-
-    /**
-     * @return String
-     */
-    public function getRecipient()
-    {
-        return $this->recipient;
-    }
-
-    /**
-     * @param String $recipient
-     */
-    public function setRecipient($recipient)
-    {
-        $this->recipient = $recipient;
-    }
-
-    /**
-     * @return String
-     */
-    public function getAddress()
-    {
-        return $this->address;
-    }
-
-    /**
-     * @param String $address
-     */
-    public function setAddress($address)
-    {
-        $this->address = $address;
-    }
-
-    /**
-     * @return String
-     */
-    public function getAddressComplement()
-    {
-        return $this->addressComplement;
-    }
-
-    /**
-     * @param String $addressComplement
-     */
-    public function setAddressComplement($addressComplement)
-    {
-        $this->addressComplement = $addressComplement;
     }
 
     /**
@@ -153,22 +98,6 @@ class Address extends DomainObject
     public function setCountry($country)
     {
         $this->country = $country;
-    }
-
-    /**
-     * @return String
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * @param String $city
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
     }
 
     /**
@@ -220,6 +149,60 @@ class Address extends DomainObject
     }
 
     /**
+     * Return the adress formatted for display
+     * @return String the formatted address
+     */
+    public function getFormattedAddress()
+    {
+        $out = "";
+        if ($this->getAddress() != null) {
+            $out .= $this->getAddress() . " ";
+        }
+        if ($this->getAddressComplement() != null) {
+            $out .= $this->getAddressComplement() . " ";
+        }
+        if ($this->getZipCode() != null) {
+            $out .= $this->getZipCode() . " ";
+        }
+        if ($this->getCity() != null) {
+            $out .= $this->getCity() . " ";
+        }
+        return $out;
+    }
+
+    /**
+     * @return String
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param String $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
+
+    /**
+     * @return String
+     */
+    public function getAddressComplement()
+    {
+        return $this->addressComplement;
+    }
+
+    /**
+     * @param String $addressComplement
+     */
+    public function setAddressComplement($addressComplement)
+    {
+        $this->addressComplement = $addressComplement;
+    }
+
+    /**
      * @return String
      */
     public function getZipCode()
@@ -235,26 +218,19 @@ class Address extends DomainObject
         $this->zipCode = $zipCode;
     }
 
-
+    /**
+     * @return String
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
 
     /**
-     * Return the adress formatted for display
-     * @return String the formatted address
+     * @param String $city
      */
-    public function getFormattedAddress(){
-        $out = "";
-        if($this->getAddress() != null){
-            $out += $this->getAddress() + " ";
-        }
-        if($this->getAddressComplement() != null){
-            $out += $this->getAddressComplement() + " ";
-        }
-        if($this->getZipCode() != null){
-            $out += $this->getZipCode() + " ";
-        }
-        if($this->getCity() != null){
-            $out += $this->getCity() + " ";
-        }
-        return out;
+    public function setCity($city)
+    {
+        $this->city = $city;
     }
 }

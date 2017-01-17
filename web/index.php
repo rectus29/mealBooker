@@ -41,10 +41,10 @@ if ($configDao->getByKey('serverState') != null && $configDao->getByKey('serverS
     <div class="main container">
         <div class="row">
             <?php
-            if (SecurityManager::get()->isAuthentified($_SESSION)) {
+
                 if($maintenance && !SecurityManager::get()->getCurrentUser($_SESSION)->isAdmin()){
                     include 'security/maintenance.php';
-                }else if (isset($_GET['page'])) {
+                } else if(isset($_GET['page'])){
                     switch ($_GET['page']) {
                         case 'meal':
                             include 'meal.php';
@@ -58,35 +58,31 @@ if ($configDao->getByKey('serverState') != null && $configDao->getByKey('serverS
                         case 'account':
                             include 'account.php';
                             break;
+                        case 'account_edit':
+                            include 'account_edit.php';
+                            break;
                         case 'cartconfirm':
                             include 'cart_validate.php';
                             break;
                         case 'admin':
                             include 'admin/admin.php';
                             break;
+                        case 'signin':
+                            include 'security/signin.php';
+                            break;
+                        case 'signupvalidation':
+                            include 'security/signupvalidation.php';
+                            break;
+                        case 'restorepassword':
+                            include 'security/restorepassword.php';
+                            break;
                         default :
                             include 'courses.php';
                             break;
                     }
-                } else {
+                }else{
                     include 'courses.php';
                 }
-            } else if (isset($_GET['page'])) {
-                switch ($_GET['page']) {
-                    case 'signupvalidation':
-                        include 'security/signupvalidation.php';
-                        break;
-                    case 'restorepassword':
-                        include 'security/restorepassword.php';
-                        break;
-                    default :
-                        include 'security/signin.php';
-                        break;
-                }
-            } else {
-                include 'front/frontgallery.php';
-                include 'security/signin.php';
-            }
             ?>
         </div>
     </div>

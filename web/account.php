@@ -24,12 +24,17 @@ if (isset($user) && $user == null)
     <h1>Mon compte</h1>
 </div>
 <div class="row">
+    <div class="pull-right">
+        <a href="<?php echo WEB_PATH . "?page=account_edit" ?>" class="btn btn-default">Editer</a>
+    </div>
     <div class="col-md-6">
         <strong>Nom :</strong> <?php echo $user->getFirstName(); ?><br>
         <strong>Prénom :</strong> <?php echo $user->getLastName(); ?><br>
         <strong>Entreprise :</strong> <?php echo $user->getCompany(); ?><br>
-        <strong>Adresse de livraison :</strong> <?php ($user->getAddress() != null)
-            ?  echo $user->getAddress()->getFormattedAddress();
+        <strong>Adresse de livraison :</strong> <?php
+            echo ($user->getAddress() != null)
+                ? $user->getAddress()->getFormattedAddress()
+                : "-";
         ?><br>
     </div>
     <div class="col-md-6">
@@ -70,7 +75,7 @@ if (isset($user) && $user == null)
                         ?>
                     </ul>
                 </td>
-                <td><?php echo $mealOrder->getLocation(); ?></td>
+                <td><?php echo $mealOrder->getAddress()->getFormattedAddress(); ?></td>
             </tr>
             <?php
         }

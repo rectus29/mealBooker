@@ -27,9 +27,7 @@ use MealBooker\manager\SecurityManager;
             </div>
         </div>
         <?php
-        if (isset($_SESSION) && SecurityManager::get()->isAuthentified($_SESSION)) {
-            include 'nav.php';
-        }
+           include 'nav.php';
         ?>
     </div>
 </header>

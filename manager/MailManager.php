@@ -169,6 +169,8 @@ class MailManager
                         Bonjour,<br/>
                         <br />
                         Nouvelle commande #' . $order->getFormattedID() . ' <br />
+                        De'. $order->getUser()->getFormattedName().'<br />
+                        Lieu de livraison :'. $order->getAddress()->getFormattedAddress().' 
                         <br />
                         <table>';
         foreach($order->getMeals() as $meal){
@@ -177,26 +179,7 @@ class MailManager
             static::$mail->Body += '<td>' . $meal->getDessert()->getName() .'</td>';
             static::$mail->Body += '<td>' . $meal->getDrink()->getName() .'</td>';
             static::$mail->Body += '</tr>';
-        }
-
-                        
-
-                        //TODO corps du mail 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        '</table>
+        }'</table>
                         A bient&ocirc;t sur <a href="http://aurore-traiteur.fr">aurore-traiteur.fr</a>
                     </td>
                 </tr>

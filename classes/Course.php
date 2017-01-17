@@ -55,8 +55,8 @@ class Course extends DomainObject
     private $nbPerDay = 99;
 
     /**
-     * @Column(type="integer")
-     * @var Integer
+     * @Column(type="float")
+     * @var Float
      */
     private $priceTaxFree;
 
@@ -168,7 +168,7 @@ class Course extends DomainObject
     }
 
     /**
-     * @return int
+     * @return float
      */
     public function getPriceTaxFree()
     {
@@ -176,7 +176,7 @@ class Course extends DomainObject
     }
 
     /**
-     * @param int $priceTaxFree
+     * @param float $priceTaxFree
      */
     public function setPriceTaxFree($priceTaxFree)
     {
