@@ -16,6 +16,7 @@ use MealBooker\models\dao\DessertDao;
 use MealBooker\models\dao\DrinkDao;
 use MealBooker\models\dao\LocationDao;
 use MealBooker\models\dao\TimeFrameDao;
+use MealBooker\utils\Utils;
 
 $courseDao = new CourseDao($em);
 $drinkDao = new DrinkDao($em);
@@ -128,8 +129,19 @@ if (isset($_GET['delete'])) {
             $date = new DateTime();
             $after = new DateTime();
             $after->setTime(STARTBOOKINGHOUR, STARTBOOKINGMINUTE);
-            if ($date > $after)
+            if ($date > $after){
                 $date->add(new DateInterval('P1D'));
+
+            }
+            var_dump($date);
+            //if the current date is in weekend report to the next monday
+            if(Utils::isWeekend($date)){
+                $i = 0;
+                while(Utils::isWeekend($date) && $i < 2){
+                    $date->add(new DateInterval('P1D'));
+                    $i++;
+                }
+            }
 
             ?>
             <h4>Livraison le <?php echo \MealBooker\utils\Utils::formatDate($date); ?> entre 9h et 11h </h4>
