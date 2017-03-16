@@ -22,15 +22,19 @@ DONE
 NOT DONE
 --------------------------------------------
 
-+ - intégrer la quantité au panier
 + - prevoir un mode de fermeture previsionnel (congés) date ouverture/fermeture + message texte
-+ - prevoir une gestion de la TVA
-+ - incrementation des numero de commande + 100
 
 DELAYED
 --------------------------------------------
 
 Gestion des stock
+- intégrer la quantité au panier
 - nombre de repas renseignée dans l'admin
 - decremantation automatique
 - bloquage en cas de commmande superieur au nombre de repas dispo
+
+
+BONUS
+--------------------------------------------
+
+- prevoir une gestion de la TVA

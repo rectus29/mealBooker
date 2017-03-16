@@ -85,6 +85,12 @@ if (isset($_GET['delete'])) {
         unset($_SESSION['mealCart']);
     }
 }
+
+$orderEnable = true;
+if(!Utils::isOrderEnable()){
+    $orderEnable = false;
+}
+
 ?>
 
 <div class="row">
@@ -172,7 +178,11 @@ if (isset($_GET['delete'])) {
                     if(SecurityManager::get()->isAuthentified($_SESSION)){
                         $user = SecurityManager::get()->getCurrentUser($_SESSION);
                         if ($user->getAddress() != null) {
-                            echo '<input type="submit" class="btn btn-green"/>';
+                            if($orderEnable){
+                                echo '<input type="submit" class="btn btn-green"/>';
+                            }else{
+                                echo '<div class="alert alert-success">Réservations non disponibles de 18h à 7h du matin</div>';
+                            }
                         } else {
                             echo '<div class="alert alert-warning">Veuillez renseigner votre adresse dans "Mon compte" pour pouvoir valider votre commande</div>';
                         }

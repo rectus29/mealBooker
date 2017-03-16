@@ -37,7 +37,6 @@ if (
     isset($_POST['company']) &&
     isset($_POST['id']) &&
     isset($_POST['address']) &&
-    isset($_POST['addressComplement']) &&
     isset($_POST['city']) &&
     isset($_POST['zipCode'])
 ) {
@@ -56,7 +55,9 @@ if (
         }
         $user->getAddress()->setUser($user);
         $user->getAddress()->setAddress($_POST['address']);
-        $user->getAddress()->setAddressComplement($_POST['addressComplement']);
+        if(isset($_POST['addressComplement'])){
+            $user->getAddress()->setAddressComplement($_POST['addressComplement']);
+        }
         $user->getAddress()->setCity($_POST['city']);
         $user->getAddress()->setZipCode($_POST['zipCode']);
         $userDao->save($user);
@@ -109,7 +110,7 @@ if (
             </div>
             <div class="form-group">
                 <label for="address">Complement d'adresse</label>
-                <input name="addressComplement" class="form-control required" type="text" value="<?php echo ($user->getAddress() != null) ? $user->getAddress()->getAddressComplement() : ""; ?>"/>
+                <input name="addressComplement" class="form-control" type="text" value="<?php echo ($user->getAddress() != null) ? $user->getAddress()->getAddressComplement() : ""; ?>"/>
             </div>
             <div class="form-group">
                 <label for="city">Ville</label>
