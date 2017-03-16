@@ -39,6 +39,7 @@ $MealOrderDao = new OrderDao($em);
                     <a href="<?php echo WEB_PATH ?>?page=meal&courseID=<?php echo $course->getId(); ?>">
                         <img src="<?php echo APP_PATH; ?>files/course/<?php echo $course->getImg(); ?>" alt="" class="img-responsive">
                     </a>
+
                 </div>
                 <div class="card_body">
 
@@ -50,11 +51,14 @@ $MealOrderDao = new OrderDao($em);
                     <p>
                         <?php echo $course->getShortDescription(); ?>
                     </p>
+
                     <?php if($course->getPriceTaxFree() != null || $course->getPriceTaxFree() > 0 ){ ?>
+                        <hr class="sep">
                         <div class="price">
                             <?php echo number_format($course->getPriceTaxFree(), 2) ?>&nbsp;€
                         </div>
                     <?php } ?>
+
                     <a href="<?php echo WEB_PATH ?>?page=meal&courseID=<?php echo $course->getId(); ?>" class="btn btn-warning">Composer votre menu</a>
                 </div>
             </div>

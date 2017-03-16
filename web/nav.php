@@ -18,6 +18,9 @@ use MealBooker\manager\SecurityManager;
     <div class="container">
         <ul class="nav navbar-nav navbar-right">
             <li>
+            <a href="https://aurore-traiteur.fr/">Accueil</a>
+            </li>
+            <li>
                 <a href="<?php echo WEB_PATH ?>">Menus</a>
             </li>
             <?php if (isset($_SESSION) && SecurityManager::get()->isAuthentified($_SESSION)) { ?>

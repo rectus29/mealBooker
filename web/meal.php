@@ -76,6 +76,15 @@ if(!Utils::isOrderEnable()){
         <div class="row">
             <div class="col-md-4">
                 <img src="<?php echo APP_PATH; ?>files/course/<?php echo $course->getImg(); ?>" alt="" class="img-responsive">
+
+                <?php if($course->getPriceTaxFree() != null || $course->getPriceTaxFree() > 0 ){ ?>
+                    <hr class="sep">
+                    <div class="price">
+                        <?php echo number_format($course->getPriceTaxFree(), 2) ?>&nbsp;€
+                    </div>
+                <?php } ?>
+
+                <input type="submit" class="btn btn-block btn-green" value="Commander" <?php if (!$orderEnable) echo "disabled"; ?>/>
             </div>
             <div class="col-md-8">
                 <h2>
@@ -85,58 +94,61 @@ if(!Utils::isOrderEnable()){
                 <p>
                     <?php echo $course->getDescription(); ?>
                 </p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="drinkOptions col-md-6">
-                <h4>Boisson :</h4>
-                <?php
-                foreach ($drinkDao->getAllEnabled() as $drink) {
-                    ?>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="drink" class="required" required id="<?php echo $drink->getId(); ?>" value="<?php echo $drink->getId(); ?>">
-                            <?php echo $drink->getName() ?>
-                        </label>
-                    </div>
-                    <?php
-                }
-                ?>
-            </div>
-            <div class="drinkOptions col-md-6">
-                <h4>Dessert :</h4>
-                <?php
-                foreach ($dessertDao->getAllEnabled() as $dessert) {
-                    ?>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="dessert" class="required" required id="<?php echo $dessert->getId(); ?>" value="<?php echo $dessert->getId(); ?>">
-                            <?php echo $dessert->getName() ?>
-                        </label>
-                    </div>
-                    <?php
-                }
-                ?>
-            </div>
 
+                <div class="drinkOptions">
+                    <h4>Boisson</h4>
+                    <?php
+                    foreach ($drinkDao->getAllEnabled() as $drink) {
+                        ?>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="drink" class="required" required id="<?php echo $drink->getId(); ?>" value="<?php echo $drink->getId(); ?>">
+                                <?php echo $drink->getName() ?>
+                            </label>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
+                <div class="drinkOptions">
+                    <h4>Dessert</h4>
+                    <?php
+                    foreach ($dessertDao->getAllEnabled() as $dessert) {
+                        ?>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="dessert" class="required" required id="<?php echo $dessert->getId(); ?>" value="<?php echo $dessert->getId(); ?>">
+                                <?php echo $dessert->getName() ?>
+                            </label>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
+
+
+            </div>
         </div>
+
         <div id="feedback" class="alert alert-danger" style="display: none">
 
         </div>
         <div class="validateCourse">
+
+            <?php
+            if ($message != null) {
+                echo '<div class="alert alert-success">';
+                echo $message;
+                echo '</div>';
+            }
+            ?>
             <div class="row">
-                <?php
-                if ($message != null) {
-                    echo '<div class="alert alert-warning">';
-                    echo $message;
-                    echo '</div>';
-                }
-                ?>
                 <div class="col-md-4 col-md-offset-4">
                     <a href="<?php WEB_PATH ?>?page=course" class="btn btn-warning">Revenir à la sélection</a>
                     <input type="submit" class="btn btn-green" value="Commander" <?php if (!$orderEnable) echo "disabled"; ?>/>
                 </div>
             </div>
+
         </div>
     </div>
 </form>

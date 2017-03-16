@@ -6224,6 +6224,10 @@ footer {
     color: white;
     font-size: 0.8em; }
 
+.container {
+  width: 960px;
+}
+
 a.brand {
   float: left; }
 
@@ -6238,7 +6242,6 @@ a.brand {
 
 .course {
   padding: 50px 0;
-  width: 960px;
   margin: 0 auto; }
 @media (max-width: 769px) {
     .course {
@@ -6247,7 +6250,9 @@ a.brand {
 }
   .course h2 {
     margin-top: 0;
-    margin-bottom: 0; }
+    margin-bottom: 0.75em;
+    padding: 0 0 5px;
+    border-bottom: solid 1px #ddd;}
   .course p.date {
     color: #e6e6e6;
     font-style: italic; }
@@ -6256,16 +6261,17 @@ a.brand {
   margin: 30px auto; }
 
 h4 {
-  background: #f5f9ea;
-  color: #6f8b26;
   line-height: 1.4;
-  padding: 5px 10px;
-  border-left: solid 2px #A9CE49; }
+  padding: 5px 0;
+  border-bottom: solid 1px #ddd;
+  margin: 1.25em 0 0.75em;
+}
 
 .validateCourse {
   background: #f5f9ea;
   border-top: solid 1px #A9CE49;
-  padding: 30px 0; }
+  padding: 15px;
+  margin-top: 1.25em;}
 
 .timeOptions, .locationOptions {
   margin: 30px auto; }
@@ -6382,16 +6388,16 @@ h4 {
       padding: 4px 8px;
       font-size: 0.7em;
       text-transform: uppercase; }
-    .card .meal-thumbnail .card_date {
+    .card .meal-thumbnail .price {
       position: absolute;
       bottom: 0;
       right: 0;
-      background: #f99000;
+      background: #A9CE49;
       color: #fff;
-      padding: 3px 5px; }
-      .card .meal-thumbnail .card_date p {
-        margin: 0;
-        font-size: 0.9em; }
+      padding: 3px 5px;
+      font-size: 1.8em;
+    }
+
   .card:hover .meal-thumbnail img {
     opacity: 0.5;
     transform: scale(1.5);
@@ -6429,5 +6435,31 @@ a.left i.fa, a.right i.fa {
 
 .carousel-indicators {
   display: none; }
+
+.card .card_body hr.sep {
+  border: solid 2px #A9CE49;
+  width: 1em;
+  margin: 15px auto 10px;
+}
+
+.price {
+  color: #2C2C2C;
+  font-size: 1.8em;
+  text-align: center;
+  font-weight: 400;
+  margin: 5px auto 10px;
+}
+
+input.btn:disabled {
+  background-color: #efefef;
+  border-color: #adadad;
+  color: #555555;
+}
+
+input.btn:disabled:hover {
+  background-color: #efefef;
+  border-color: #adadad;
+  color: #555555;
+}
 
 /*# sourceMappingURL=app.css.map */

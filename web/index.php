@@ -49,7 +49,7 @@ function includeWithMaintenanceControl($page){
     include 'header.php';
     ?>
     <div class="main container">
-        <div class="row">
+
             <?php
                 if(isset($_GET['page'])){
                     switch ($_GET['page']) {
@@ -85,7 +85,7 @@ function includeWithMaintenanceControl($page){
                     include includeWithMaintenanceControl('courses.php');
                 }
             ?>
-        </div>
+
     </div>
     <?php
     include 'footer.php';
