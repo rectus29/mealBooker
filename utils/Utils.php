@@ -57,6 +57,7 @@ class Utils {
 
 
     /**
+     * Check if th e system is in the current reservation time slot
      * @return bool
      */
     public static function  isOrderEnable(){
@@ -68,6 +69,16 @@ class Utils {
         if(new DateTime() < $close && new DateTime() > $open )
             return true;
         return false;
+    }
+
+    /**
+     * Check if the given date is in a weekend
+     * @param   DateTime to check
+     * @return  bool
+     */
+    public static function isWeekend($date) {
+        $weekDay = date('w', $date->getTimestamp());
+        return ($weekDay == 0 || $weekDay == 6);
     }
 
     /**

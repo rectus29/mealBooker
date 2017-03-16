@@ -16,11 +16,11 @@ DONE
 ++ - utiliser la short desc sur la page d'accueil
 ++ - intégrer le prix hors taxe à l'objet menu
 + - "commander" a la place de reserver dans la page menu
++++ - bug sur lh'eure de reservation
 
 NOT DONE
 --------------------------------------------
 
-+++ - bug sur lh'eure de reservation
 ++ - penser à sauter les weekend lors de la reservation
 + - intégrer la quantité au panier
 + - prevoir un mode de fermeture previsionnel (congés) date ouverture/fermeture + message texte
