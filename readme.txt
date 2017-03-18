@@ -17,11 +17,11 @@ DONE
 ++ - intégrer le prix hors taxe à l'objet menu
 + - "commander" a la place de reserver dans la page menu
 +++ - bug sur lh'eure de reservation
+++ - penser à sauter les weekend lors de la reservation
 
 NOT DONE
 --------------------------------------------
 
-++ - penser à sauter les weekend lors de la reservation
 + - intégrer la quantité au panier
 + - prevoir un mode de fermeture previsionnel (congés) date ouverture/fermeture + message texte
 + - prevoir une gestion de la TVA

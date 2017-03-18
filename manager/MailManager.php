@@ -17,6 +17,7 @@ use Exception;
 use MealBooker\model\MealOrder;
 use MealBooker\model\User;
 use MealBooker\models\dao\UserDao;
+use MealBooker\utils\Utils;
 use PHPMailer;
 
 
@@ -57,6 +58,15 @@ class MailManager
         self::$mail->isHTML(true);
     }
 
+    /**
+     * @return $this|MailManager
+     */
+    public static function get()
+    {
+        if (self::$ownInstance == null && self::em != null)
+            return self::init(self::$em);
+        return self::$ownInstance;
+    }
 
     /**
      * @param $em EntityManager
@@ -67,16 +77,6 @@ class MailManager
     {
         if (self::$ownInstance == null)
             self::$ownInstance = new MailManager($em, $mailConfig);
-        return self::$ownInstance;
-    }
-
-    /**
-     * @return $this|MailManager
-     */
-    public static function get()
-    {
-        if (self::$ownInstance == null && self::em != null)
-            return self::init(self::$em);
         return self::$ownInstance;
     }
 
@@ -134,7 +134,7 @@ class MailManager
                     <td>
                         Bonjour,<br/>
                         <br />
-                        Votre commande #' . sprintf("%04s",$order->getId()) . ' est valid&eacute;e,<br />
+                        Votre commande #' . sprintf("%04s", $order->getId()) . ' est valid&eacute;e,<br />
                         <br />
                         A bient&ocirc;t sur <a href="http://aurore-traiteur.fr">aurore-traiteur.fr</a>
                     </td>
@@ -158,7 +158,7 @@ class MailManager
     {
         static::$mail->addAddress(ADMINMAIL);
         static::$mail->Subject = 'Commande ' . $order->getFormattedID() . ' enregistrée';
-        static::$mail->Body = '
+        $messageBody = '
        <table width="480px"  style"width:480px;">
             <tbody>
                 <tr style="background: black;">
@@ -170,9 +170,9 @@ class MailManager
                         Bonjour,<br/>
                         <br />
                         Nouvelle commande : #' . $order->getFormattedID() . ' <br />
-                        Date de commande : '. Utils::formatDate($order->getCreated(), 'd/m/Y H:m:s') .' <br />
-                        De : '. $order->getUser()->getFormattedName().'<br />
-                        Lieu de livraison : '. $order->getAddress()->getFormattedAddress().'
+                        Date de commande : ' . Utils::formatDate($order->getCreated(), 'd/m/Y H:m:s') . ' <br />
+                        De : ' . $order->getUser()->getFormattedName() . '<br />
+                        Lieu de livraison : ' . $order->getAddress()->getFormattedAddress() . '
                         <br />
                         <br />
                         <table>
@@ -181,26 +181,29 @@ class MailManager
                             <th width="30%">Dessert</th>
                             <th width="30%">Boisson</th>
                         </tr>';
-        foreach($order->getMeals() as $meal){
-            static::$mail->Body += '<tr>';
-            static::$mail->Body += '<td width="30%">' . $meal->getCourse()->getName() .'</td>';
-            static::$mail->Body += '<td>' . $meal->getDessert()->getName() .'</td>';
-            static::$mail->Body += '<td>' . $meal->getDrink()->getName() .'</td>';
-            static::$mail->Body += '</tr>';
-        }'</table>
+        foreach ($order->getMeals() as $meal) {
+            $messageBody .= '<tr>';
+            $messageBody .= '<td width="30%">' . $meal->getCourse()->getName() . '</td>';
+            $messageBody .= '<td>' . $meal->getDessert()->getName() . '</td>';
+            $messageBody .= '<td>' . $meal->getDrink()->getName() . '</td>';
+            $messageBody .= '</tr>';
+        }
+        $messageBody .= '</table>
                     <br />
                         A bient&ocirc;t sur <a href="http://aurore-traiteur.fr">aurore-traiteur.fr</a>
                     </td>
                 </tr>
             </tbody>
 	    </table>';
+
+        static::$mail->Body = $messageBody;
+
         if (!self::$mail->send()) {
             throw new Exception("Message could not be sent - " . self::$mail->ErrorInfo);
         } else {
             return true;
         }
     }
-
 
 
     /**
@@ -227,7 +230,7 @@ class MailManager
                             Pour finaliser la proc&eacute;dure de restauration de votre mot de passe veuillez suivre le lien suivant :
                         </p>
                         <p>
-                            ' . SERVER_URL.WEB_PATH . '?page=restorepassword&token='.$user->getRestoreToken().'
+                            ' . SERVER_URL . WEB_PATH . '?page=restorepassword&token=' . $user->getRestoreToken() . '
                         </p>
                         <p>
                             Attention : le lien ci-dessus n\'est valable que pendant 24h

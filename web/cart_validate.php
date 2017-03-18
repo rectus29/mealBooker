@@ -33,7 +33,7 @@ $orderDao = new OrderDao($em);
 $mealDao = new MealDao($em);
 
 //if no cart or not logged in
-if (SecurityManager::get()->isAuthentified($_SESSION) || !isset($_SESSION['mealCart'])) {
+if (!SecurityManager::get()->isAuthentified($_SESSION) || !isset($_SESSION['mealCart'])) {
     header('Location:'.SERVER_URL.WEB_PATH.'404');
 } else {
     $mealCart = json_decode($_SESSION['mealCart']);
@@ -41,6 +41,7 @@ if (SecurityManager::get()->isAuthentified($_SESSION) || !isset($_SESSION['mealC
         $order = new MealOrder();
         $order->setUser(SecurityManager::get()->getCurrentUser($_SESSION));
         $order->setAddress($order->getUser()->getAddress());
+        $order->setDeliveryDate((new DateTime())->setTimestamp($mealCart->deliveryDate));
         //fill order with meal
         $mealArray = array();
         foreach ($mealCart->cart as $mealStub) {

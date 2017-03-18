@@ -59,6 +59,9 @@ function includeWithMaintenanceControl($page){
                         case 'cart':
                             include includeWithMaintenanceControl('cart.php');
                             break;
+                        case 'cartconfirm':
+                            include includeWithMaintenanceControl('cart_validate.php');
+                            break;
                         case 'account':
                             include includeWithMaintenanceControl('account.php');
                             break;

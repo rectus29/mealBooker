@@ -45,6 +45,12 @@ class MealOrder extends DomainObject
     private $address;
 
     /**
+     * @Column(type="datetime")
+     * @var DateTime
+     */
+    private $deliveryDate;
+
+    /**
      * return the id formatted for display
      * @return string
      */
@@ -109,9 +115,19 @@ class MealOrder extends DomainObject
         $this->address = $address;
     }
 
+    /**
+     * @return DateTime
+     */
+    public function getDeliveryDate()
+    {
+        return $this->deliveryDate;
+    }
 
-
-
-
-
+    /**
+     * @param DateTime $deliveryDate
+     */
+    public function setDeliveryDate($deliveryDate)
+    {
+        $this->deliveryDate = $deliveryDate;
+    }
 }

@@ -24,7 +24,7 @@ include '../head.php';
         <div class="headings">
             <div class="container">
                 <a href="<?php echo WEB_PATH; ?>" class="brand">
-                    <img src="../img/logo.png" alt="Aurore Traiteur" width="150"/></a>
+                    <img src="<?php echo WEB_PATH; ?>img/logo.png" alt="Aurore Traiteur" width="150"/></a>
 
                 <p>
                     "Cuisiner suppose une tête légère, un esprit généreux et un coeur large" - Paul Gauguin
@@ -36,7 +36,7 @@ include '../head.php';
 <div class="container">
     <h1>404</h1>
     <h2>Désolé la page que vous recherchez n'existe pas</h2>
-    <a class="btn btn-warning" href="/">Retour vers l'accueil</a>
+    <a class="btn btn-warning" href="<?php echo WEB_PATH; ?>">Retour vers l'accueil</a>
 </div>
 
 <?php

@@ -33,6 +33,23 @@ if (isset($_SESSION['mealCart'])) {
     $mealCart = json_decode($_SESSION['mealCart']);
 }
 
+//prepare date for display
+$deliveryDate = new DateTime();
+$after = new DateTime();
+$after->setTime(STARTBOOKINGHOUR, STARTBOOKINGMINUTE);
+if ($deliveryDate > $after){
+    $deliveryDate->add(new DateInterval('P1D'));
+
+}
+//if the current date is in weekend report to the next monday
+if(Utils::isWeekend($deliveryDate)){
+    $i = 0;
+    while(Utils::isWeekend($deliveryDate) && $i < 2){
+        $deliveryDate->add(new DateInterval('P1D'));
+        $i++;
+    }
+}
+
 //add new value in cookie
 if ($_POST && isset($_POST['course']) && isset($_POST['ts'])) {
     //search for doubloon
@@ -49,6 +66,8 @@ if ($_POST && isset($_POST['course']) && isset($_POST['ts'])) {
         $object->drink = (isset($_POST['drink'])) ? $_POST['drink'] : "";
         $object->dessert = (isset($_POST['dessert'])) ? $_POST['dessert'] : "";
         array_push($mealCart->cart, $object);
+        //add the delivery date to the cart
+        $mealCart->deliveryDate = $deliveryDate->getTimestamp();
         $_SESSION['mealCart'] = json_encode($mealCart);
     }
 };
@@ -69,7 +88,8 @@ if (isset($_GET['delete'])) {
 ?>
 
 <div class="row">
-    <form action="<?php echo WEB_PATH; ?>cart_validate.php" method="post">
+    <!--<form action="<?php echo WEB_PATH; ?>cart_validate.php" method="post">-->
+        <form action="<?php echo WEB_PATH; ?>?page=cartconfirm" method="post">
         <div class="pull-right">
             <a href="<?php WEB_PATH ?>?page=cart&delete" id="cartRemove" style="margin-top: 15px; display: inline-block">
                 Vider mon panier
@@ -126,25 +146,10 @@ if (isset($_GET['delete'])) {
 
         <div class="timeOptions">
             <?php
-            $date = new DateTime();
-            $after = new DateTime();
-            $after->setTime(STARTBOOKINGHOUR, STARTBOOKINGMINUTE);
-            if ($date > $after){
-                $date->add(new DateInterval('P1D'));
 
-            }
-            var_dump($date);
-            //if the current date is in weekend report to the next monday
-            if(Utils::isWeekend($date)){
-                $i = 0;
-                while(Utils::isWeekend($date) && $i < 2){
-                    $date->add(new DateInterval('P1D'));
-                    $i++;
-                }
-            }
 
             ?>
-            <h4>Livraison le <?php echo \MealBooker\utils\Utils::formatDate($date); ?> entre 9h et 11h </h4>
+            <h4>Livraison le <?php echo \MealBooker\utils\Utils::formatDate($deliveryDate); ?> entre 9h et 11h </h4>
 
         </div>
         <?php
