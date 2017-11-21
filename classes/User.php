@@ -127,7 +127,7 @@ class User extends DomainObject
         $this->role = $role;
         $this->company = $company;
         $this->optIn = $optIn;
-        $this->address->add(($address == null)?new Address():$address);
+        array_push($this->address,($address == null)?new Address():$address);
     }
 
 
@@ -384,14 +384,14 @@ class User extends DomainObject
     public function getAddress()
     {
         if (!empty($this->address)) {
-            return $this->address->get(0);
+            return $this->address[0];
         }
         return null;
     }
 
     public function addAddress($address)
     {
-        $this->address->add($address);
+        array_push($this->address,$address);
         return $this->address;
     }
 
