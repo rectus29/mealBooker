@@ -47,50 +47,6 @@ if ($refDate > (new DateTime())->setTime(STARTBOOKINGHOUR, STARTBOOKINGMINUTE)) 
 //get all order in time window
 $todayMealOrder = $MealOrderDao->getCurrentMealOrder();
 
-
-
-
-
-foreach ($todayMealOrder as $order) {
-    foreach ($order->getMeals() as $meal) {
-        if ($meal->getDrink() != null) {
-            //build drink by timeframe
-            if (array_key_exists($meal->getDrink()->getId(), $drinks)) {
-                $drinks[$meal->getDrink()->getId()][$order->getTimeFrame()->getStart()] = $drinks[$meal->getDrink()->getId()][$order->getTimeFrame()->getStart()] + 1;
-            } else {
-                $drinks[$meal->getDrink()->getId()] = [];
-                foreach ($timeFrames as $tf) {
-                    $var = ($order->getTimeFrame() == $tf) ? 1 : 0;
-                    $drinks[$meal->getDrink()->getId()][$tf->getStart()] = $var;
-                }
-            }
-        }
-        if ($meal->getDessert() != null) {
-            //build dessert by timeframe
-            if (array_key_exists($meal->getDessert()->getId(), $desserts)) {
-                $desserts[$meal->getDessert()->getId()][$order->getTimeFrame()->getStart()] = $desserts[$meal->getDessert()->getId()][$order->getTimeFrame()->getStart()] + 1;
-            } else {
-                $desserts[$meal->getDessert()->getId()] = [];
-                foreach ($timeFrames as $tf) {
-                    $var = ($order->getTimeFrame() == $tf) ? 1 : 0;
-                    $desserts[$meal->getDessert()->getId()][$tf->getStart()] = $var;
-                }
-            }
-        }
-
-        //build courses by timeframe
-        if (array_key_exists($meal->getCourse()->getId(), $courses)) {
-            $courses[$meal->getCourse()->getId()][$order->getTimeFrame()->getStart()] = $courses[$meal->getCourse()->getId()][$order->getTimeFrame()->getStart()] + 1;
-        } else {
-            $courses[$meal->getCourse()->getId()] = [];
-            foreach ($timeFrames as $tf) {
-                $var = ($order->getTimeFrame() == $tf) ? 1 : 0;
-                $courses[$meal->getCourse()->getId()][$tf->getStart()] = $var;
-            }
-        }
-    }
-    array_push($timeFramesOrder[$order->getTimeFrame()->getStart()], $order);
-}
 ?>
 
 <h3>
