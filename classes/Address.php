@@ -23,27 +23,27 @@ use Doctrine\ORM\Mapping\ManyToOne;
 class Address extends DomainObject
 {
     /**
-     * @Column(type="string")
+     * @Column(type="string", nullable=true)
      * @var String
      */
     private $address;
     /**
-     * @Column(type="string")
+     * @Column(type="string", nullable=true)
      * @var String
      */
     private $addressComplement;
     /**
-     * @Column(type="string")
+     * @Column(type="string", nullable=true)
      * @var String
      */
     private $country = "France";
     /**
-     * @Column(type="string")
+     * @Column(type="string", nullable=true)
      * @var String
      */
     private $city;
     /**
-     * @Column(type="string")
+     * @Column(type="string", nullable=true)
      * @var String
      */
     private $zipCode;
@@ -59,7 +59,7 @@ class Address extends DomainObject
     private $lng;
 
     /**
-     * @ManyToOne(targetEntity="User")
+     * @ManyToOne(targetEntity="User", inversedBy="address")
      * @var User
      */
     private $user;

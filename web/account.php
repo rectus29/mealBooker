@@ -15,8 +15,6 @@
 use MealBooker\manager\SecurityManager;
 use MealBooker\utils\Utils;
 
-if (!SecurityManager::get()->isAdmin($_SESSION))
-    header('location: '.SERVER_URL.WEB_PATH);
 
 $user = SecurityManager::get()->getCurrentUser($_SESSION);
 if (isset($user) && $user == null)

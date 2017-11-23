@@ -12,6 +12,7 @@ namespace MealBooker\model;
     /*                 All right reserved                  */
 /*-----------------------------------------------------*/
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\ManyToOne;
@@ -82,7 +83,7 @@ class User extends DomainObject
      * @OneToMany(mappedBy="user", targetEntity="Address",cascade={"persist"})
      * @var Address[]
      */
-    private $address = array();
+    private $address;
 
     /**
      * @Column(type="boolean")
@@ -127,7 +128,9 @@ class User extends DomainObject
         $this->role = $role;
         $this->company = $company;
         $this->optIn = $optIn;
-        array_push($this->address,($address == null)?new Address():$address);
+        $this->orders = new ArrayCollection();
+        $this->address = new ArrayCollection();
+        $this->address->add(($address == null)?new Address():$address);
     }
 
 
@@ -384,14 +387,14 @@ class User extends DomainObject
     public function getAddress()
     {
         if (!empty($this->address)) {
-            return $this->address[0];
+            return $this->address->get(0);
         }
         return null;
     }
 
     public function addAddress($address)
     {
-        array_push($this->address,$address);
+        $this->address->add($address);
         return $this->address;
     }
 

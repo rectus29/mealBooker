@@ -76,6 +76,23 @@ if (
     <h1>Editer mon compte</h1>
 </div>
 
+<?php
+if ($error != null) {
+    ?>
+    <div class="alert alert-danger">
+        Erreur : <?php echo $error; ?>
+    </div>
+    <?php
+}
+if ($info != null) {
+    ?>
+    <div class="alert alert-success">
+        Information : <?php echo $info; ?>
+    </div>
+    <?php
+}
+?>
+
 <form action="#" method="post" class="form" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?php echo $user->getId(); ?>">
 
