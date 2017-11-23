@@ -47,13 +47,10 @@ if ($refDate > (new DateTime())->setTime(STARTBOOKINGHOUR, STARTBOOKINGMINUTE)) 
 //get all order in time window
 $todayMealOrder = $MealOrderDao->getCurrentMealOrder();
 
-$timeFramesOrder = [];
-foreach ($timeFrames as $tf) {
-    $timeFramesOrder[$tf->getStart()] = [];
-}
-$drinks = [];
-$desserts = [];
-$courses = [];
+
+
+
+
 foreach ($todayMealOrder as $order) {
     foreach ($order->getMeals() as $meal) {
         if ($meal->getDrink() != null) {
@@ -113,14 +110,8 @@ foreach ($todayMealOrder as $order) {
         </thead>
         <tbody>
         <?php
-        foreach ($timeFramesOrder as $timeFrame => $orders) {
-            ?>
-            <tr>
-                <td colspan="4"><b><?php echo $timeFrame; ?></b></td>
-            </tr>
-            <?php
-            if (sizeof($orders) > 0) {
-                foreach ($orders as $mealOrder) {
+            if (sizeof($todayMealOrder) > 0) {
+                foreach ($todayMealOrder as $mealOrder) {
                     ?>
                     <tr>
                         <td><?php echo sprintf("%04s", $mealOrder->getId()); ?></td>
@@ -149,122 +140,9 @@ foreach ($todayMealOrder as $order) {
                 </tr>
                 <?php
             }
-        }
         ?>
         </tbody>
     </table>
-</div>
-<div class="row">
-    <div class="col-md-6">
-        <h4>Repas</h4>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Plats</th>
-                <?php
-                /** @var TimeFrame $tf */
-                foreach ($timeFrames as $tf) {
-                    ?>
-                    <th><?php echo $tf->getStart() ?></th>
-                    <?php
-                }
-                ?>
-            </tr>
-            </thead>
-            <tbody>
-            <?php
-            foreach ($courses as $course => $courseData) {
-                ?>
-                <tr>
-                    <td><?php echo $courseDao->getByPrimaryKey($course); ?></td>
-                    <?php
-                    foreach ($courseData as $tf => $val) {
-                        ?>
-                        <td><?php echo $val ?></td>
-                        <?php
-                    }
-                    ?>
-                </tr>
-                <?php
-            }
-            ?>
-            </tbody>
-        </table>
-    </div>
-    <div class="col-md-6">
-        <h4>Boissons</h4>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Boissons</th>
-                <?php
-                /** @var TimeFrame $tf */
-                foreach ($timeFrames as $tf) {
-                    ?>
-                    <th><?php echo $tf->getStart() ?></th>
-                    <?php
-                }
-                ?>
-            </tr>
-            </thead>
-            <tbody>
-            <?php
-            foreach ($drinks as $drink => $drinkData) {
-                ?>
-                <tr>
-                    <td><?php echo $drinkDao->getByPrimaryKey($drink); ?></td>
-                    <?php
-                    foreach ($drinkData as $tf => $val) {
-                        ?>
-                        <td><?php echo $val ?></td>
-                        <?php
-                    }
-                    ?>
-                </tr>
-                <?php
-            }
-            ?>
-            </tbody>
-        </table>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6">
-        <h4>Desserts</h4>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Desserts</th>
-                <?php
-                /** @var TimeFrame $tf */
-                foreach ($timeFrames as $tf) {
-                    ?>
-                    <th><?php echo $tf->getStart() ?></th>
-                    <?php
-                }
-                ?>
-            </tr>
-            </thead>
-            <tbody>
-            <?php
-            foreach ($desserts as $dessert => $dessertData) {
-                ?>
-                <tr>
-                    <td><?php echo $dessertDao->getByPrimaryKey($dessert); ?></td>
-                    <?php
-                    foreach ($dessertData as $tf => $val) {
-                        ?>
-                        <td><?php echo $val ?></td>
-                        <?php
-                    }
-                    ?>
-                </tr>
-                <?php
-            }
-            ?>
-            </tbody>
-        </table>
-    </div>
 </div>
 
 
