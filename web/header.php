@@ -16,7 +16,7 @@
     <div class="hero">
         <div class="headings">
             <div class="container">
-                <a href="<?php echo WEB_PATH; ?>" class="brand">
+                <a href="https://aurore-traiteur.fr" class="brand">
                     <img src="img/logo.png" alt="Aurore Traiteur" width="150"/></a>
 
                 <p>
