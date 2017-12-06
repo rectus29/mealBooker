@@ -21,8 +21,8 @@ if (isset($_POST)
     $login = $_POST['login'];
     $password = $_POST['password'];
     if (SecurityManager::get()->authentificate($login, $password) != null) {
-        header('Location: ' . WEB_PATH);
+        header('Location: ' . WEB_PATH );
     } else {
-        header('Location: ' . WEB_PATH . '?error=authError');
+        header('Location: ' . WEB_PATH . '?page=signin&error=authError');
     }
 }

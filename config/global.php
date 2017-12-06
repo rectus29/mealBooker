@@ -25,7 +25,7 @@ error_reporting(E_ALL);
 
 session_start();
 if (DEV_MOD) {
-    define('APP_PATH', '/reservresto/');
+    define('APP_PATH', '/mealBooker/');
     define('SERVER_URL', 'http://127.0.0.1');
     define('ADMINMAIL', 'contact@alexandrebernard.fr');
 } else {

@@ -15,11 +15,10 @@ if (!SecurityManager::get()->isAuthentified($_SESSION) || !isset($_SESSION['orde
 }
 
 $workBook = new PHPExcel;
-$workBook->getProperties()->setCreator("Annie Gagnon");
+$workBook->getProperties()->setCreator("Aurore Traiteur");
 $workBook->setActiveSheetIndex(0);
 $workSheet=$workBook->getActiveSheet();
 
-// ajout des données dans la feuille de calcul
 $workSheet->setTitle('Nom affiché dans l\'onglet');
 $workSheet->setCellValueByColumnAndRow(0, 1, 'Les colonnes débutent à 0 et les lignes débutent à 1');
 $workSheet->SetCellValue('A2', 'Il est aussi possible d\'utiliser la notation LettreChiffre (ex : A2)');

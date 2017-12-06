@@ -17,9 +17,9 @@ use MealBooker\utils\Utils;
 
 
 $user = SecurityManager::get()->getCurrentUser($_SESSION);
-if (isset($user) && $user == null)
-    header('Location: '.SERVER_URL.WEB_PATH);
-
+if (isset($user) && $user == null) {
+    header('Location: ' . SERVER_URL . WEB_PATH);
+}
 ?>
 <div class="page-header">
     <h1>Mon compte</h1>
@@ -57,7 +57,18 @@ if (isset($user) && $user == null)
         </thead>
         <tbody>
         <?php
-        foreach ($user->getOrders() as $mealOrder) {
+        $sortedOrder = $user->getOrders()->getValues();
+        usort($sortedOrder, function($a, $b){
+            /** @var $a  \MealBooker\model\MealOrder */
+            /** @var $b  \MealBooker\model\MealOrder */
+             if($a->getCreated() > $b->getCreated()){
+                 return -1;
+             }else if($a->getCreated() < $b->getCreated()){
+                 return 1;
+             }
+             return 0;
+        });
+        foreach ($sortedOrder as $mealOrder) {
             ?>
             <tr>
                 <td><?php echo $mealOrder->getId(); ?></td>
@@ -67,10 +78,12 @@ if (isset($user) && $user == null)
                         <?php
                         foreach ($mealOrder->getMeals() as $meal) {
                             echo "<li>" . $meal->getCourse()->getName();
-                            if ($meal->getDrink() != null)
+                            if ($meal->getDrink() != null){
                                 echo " - " . $meal->getDrink()->getName();
-                            if ($meal->getDessert() != null)
+                            }
+                            if ($meal->getDessert() != null) {
                                 echo " - " . $meal->getDessert()->getName();
+                            }
                             echo " </li>";
                         }
                         ?>
